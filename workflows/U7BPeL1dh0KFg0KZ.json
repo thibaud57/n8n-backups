@@ -1,0 +1,1385 @@
+{
+  "active": false,
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Research Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BookSummary Subworkflow": {
+      "main": [
+        [
+          {
+            "node": "Execution Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Research Request": {
+      "main": [
+        [
+          {
+            "node": "Set Variables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Variables": {
+      "main": [
+        [
+          {
+            "node": "Create Page",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Page": {
+      "main": [
+        [
+          {
+            "node": "Initiate BookSummary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execution Data": {
+      "main": [
+        [
+          {
+            "node": "JobType Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "JobType Router": {
+      "main": [
+        [
+          {
+            "node": "Set Initial Query",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "BookSummary Control",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Initial Query": {
+      "main": [
+        [
+          {
+            "node": "Generate Summaries",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Initiate BookSummary": {
+      "main": [
+        [
+          {
+            "node": "End Form",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Accumulate Results": {
+      "main": [
+        [
+          {
+            "node": "Should Stop ?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Summaries": {
+      "main": [
+        [
+          {
+            "node": "Accumulate Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Should Stop ?": {
+      "main": [
+        [
+          {
+            "node": "Generate Report",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set Next Queries",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Next Queries": {
+      "main": [
+        [
+          {
+            "node": "Generate Summaries",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        []
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          },
+          {
+            "node": "AI Agent1",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "BookSummary Control",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tags to Items": {
+      "main": [
+        [
+          {
+            "node": "Notion Block Generator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to HTML": {
+      "main": [
+        []
+      ]
+    },
+    "HTML to Array": {
+      "main": [
+        [
+          {
+            "node": "Tags to Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notion Block Generator": {
+      "main": [
+        [
+          {
+            "node": "Parse JSON blocks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Notion Block Generator",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BookSummary Control": {
+      "main": [
+        [
+          {
+            "node": "Convert to HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse JSON blocks": {
+      "main": [
+        [
+          {
+            "node": "Valid Blocks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Valid Blocks": {
+      "main": [
+        [
+          {
+            "node": "For Each Block...",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload to Notion Page": {
+      "main": [
+        [
+          {
+            "node": "For Each Block...",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "For Each Block...": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Upload to Notion Page",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2025-03-16T15:26:28.850Z",
+  "id": "U7BPeL1dh0KFg0KZ",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Book Summary",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": " bookSummary",
+        "formDescription": "=Book Summary est un outil qui permet de créer le résumé d'un lvire.\n\nComment l'utiliser ?\nFournissez le nom de l'auteur et le titre du livre.\n\nCe workflow est conçu pour s'exécuter de manière autonome. Une fois terminé, le résumé est sauvegardé dans une page Notion.",
+        "formFields": {
+          "values": [
+            {
+              "fieldType": "html"
+            }
+          ]
+        },
+        "options": {
+          "buttonLabel": "Next",
+          "path": "bookSummary",
+          "ignoreBots": true
+        }
+      },
+      "id": "43bdf2a2-d4ec-44e2-b9d1-4fc7e7fb844c",
+      "name": "On form submission",
+      "type": "n8n-nodes-base.formTrigger",
+      "position": [
+        120,
+        40
+      ],
+      "webhookId": "ce545434-e845-4fed-8d5b-bbdba30e40a7",
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "pageId"
+            },
+            {
+              "name": "data",
+              "type": "object"
+            },
+            {
+              "name": "jobType"
+            }
+          ]
+        }
+      },
+      "id": "2e60b8df-0ddf-438a-b2c0-a9018fa325c5",
+      "name": "BookSummary Subworkflow",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        100,
+        880
+      ],
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "operation": "completion",
+        "completionTitle": "Merci d'utiliser BookSummary.",
+        "completionMessage": "Vous pouvez fermer la fenêtre.",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        40
+      ],
+      "id": "73282324-e50a-4346-9583-16c37eb1f763",
+      "name": "End Form",
+      "webhookId": "013ee839-a386-49fb-805e-23634f837908"
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Titre",
+              "placeholder": "Titre du livre",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Auteur",
+              "placeholder": "Nom de l'auteur",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "formTitle": "BookSummary"
+        }
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        320,
+        40
+      ],
+      "id": "9014bb63-07f6-4a06-9d67-d62988aa77a5",
+      "name": "Research Request",
+      "webhookId": "e5cd24b3-9833-4d7c-ac4c-f2d6b53a959d"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "56340b31-7474-4542-8c90-7b00673767a0",
+              "name": "title",
+              "value": "={{ $json.Titre.trim() }}",
+              "type": "string"
+            },
+            {
+              "id": "41af239e-7d0f-4388-b87c-e9534dfc7401",
+              "name": "author",
+              "value": "={{ $json.Auteur.trim() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        520,
+        40
+      ],
+      "id": "4f69cc4b-5e84-4524-acd6-eb2262195480",
+      "name": "Set Variables"
+    },
+    {
+      "parameters": {
+        "pageId": {
+          "__rl": true,
+          "value": "https://www.notion.so/Ma-biblioth-que-1b582fe2640680f7bc10ea713f4e6aba",
+          "mode": "url"
+        },
+        "title": "={{ $json.title }} - {{ $json.author }}",
+        "options": {
+          "icon": "📘"
+        }
+      },
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [
+        720,
+        40
+      ],
+      "id": "790dc583-9068-400b-be0f-fe1c77319b03",
+      "name": "Create Page",
+      "credentials": {
+        "notionApi": {
+          "id": "6bjg4ALH6fniuwyE",
+          "name": "Notion account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "dataToSave": {
+          "values": [
+            {
+              "key": "pageId",
+              "value": "={{ $json.pageId }}"
+            },
+            {
+              "key": "jobType",
+              "value": "={{ $json.jobType }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executionData",
+      "typeVersion": 1,
+      "position": [
+        320,
+        880
+      ],
+      "id": "9bd23493-e81f-4b85-ac16-2de454f97e4d",
+      "name": "Execution Data"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.jobType }}",
+                    "rightValue": "initiate",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "8b33c762-5b1c-41c1-829e-d8ef9c903e79"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "adebb414-35eb-4694-b494-c7a713c2572b",
+                    "leftValue": "={{ $json.jobType }}",
+                    "rightValue": "summaries",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "193fc70b-dd38-4fc7-be56-cafb5b3cf62e",
+                    "leftValue": "={{ $json.jobType }}",
+                    "rightValue": "report",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        540,
+        880
+      ],
+      "id": "dafc67a3-b82b-42a0-a963-1e44ae225963",
+      "name": "JobType Router"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "acb41e93-70c6-41a3-be0f-e5a74ec3ec88",
+              "name": "query",
+              "type": "string",
+              "value": "={{ $('JobType Router').first().json.data.query }} 1"
+            },
+            {
+              "id": "7fc54063-b610-42bc-a250-b1e8847c4d1e",
+              "name": "summaries",
+              "type": "array",
+              "value": "=[]"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3e15d298-a20a-4be9-979f-e325d9956001",
+      "name": "Set Initial Query",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        940,
+        280
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "={{ $workflow.id }}",
+          "mode": "id"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "data": "={{ \n  {\n    \"query\": `Titre: ${$('Set Variables').first().json.title} - Auteur: ${$('Set Variables').first().json.author}. Etape:`,\n    \"summaries\": []\n  }\n}}",
+            "pageId": "={{ $json.id }}",
+            "jobType": "initiate"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "pageId",
+              "displayName": "pageId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "data",
+              "displayName": "data",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "object",
+              "removed": false
+            },
+            {
+              "id": "jobType",
+              "displayName": "jobType",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        940,
+        40
+      ],
+      "id": "80ec63c4-2dd8-41df-b114-a5341bac4b7f",
+      "name": "Initiate BookSummary"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "db509e90-9a86-431f-8149-4094d22666cc",
+              "name": "shouldStop",
+              "type": "boolean",
+              "value": "={{ $runIndex + 1 >= 3 }}"
+            },
+            {
+              "id": "7a9703c5-459f-41cf-b1dc-fb90aebd6288",
+              "name": "currentStep",
+              "value": "={{ $runIndex + 1 }}",
+              "type": "number"
+            },
+            {
+              "id": "90986e2b-8aca-4a22-a9db-ed8809d6284d",
+              "name": "summaries",
+              "type": "array",
+              "value": "={{ \n  (() => {\n    try {\n      const currentSummaries = $input.item.json.summaries || [];\n      \n      const newData = $('Generate Summaries').all();\n\n      const newStepData = {\n        step: $runIndex + 1,\n        summary: newData.map(item => ({\n          modelName: item.json.output.modelName,\n          content: item.json.output.content\n        }))\n      };\n\n      return [...currentSummaries, newStepData];\n    } catch (e) {\n      console.error('Error processing summaries:', e);\n      return [];\n    }\n  })()\n}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "013eb356-2ba6-4639-b834-ea41bff8c2cd",
+      "name": "Accumulate Results",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1340,
+        280
+      ],
+      "executeOnce": true,
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d88bfe95-9e73-4d25-b45c-9f164b940b0e",
+              "name": "query",
+              "type": "string",
+              "value": "={{ `${$('JobType Router').first().json.data.query} ${$('Accumulate Results').first().json.currentStep + 1}` }}"
+            },
+            {
+              "id": "c98133e6-ab09-4f94-a554-97756d588b21",
+              "name": "currentStep",
+              "value": "={{ $('Accumulate Results').first().json.currentStep + 1 }}",
+              "type": "number"
+            },
+            {
+              "id": "4aa20690-d998-458a-b1e4-0d72e6a68e6b",
+              "name": "summaries",
+              "type": "array",
+              "value": "={{ $('Accumulate Results').item.json.summaries }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "05d184fb-7117-4b32-ba80-d43454b80da0",
+      "name": "Set Next Queries",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1860,
+        420
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "={{ $workflow.id }}",
+          "mode": "id"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "data": "={{\n  {\n    summaries: $json.summaries,\n    query: ''\n  }\n}}",
+            "pageId": "={{ $('JobType Router').first().json.pageId }}",
+            "jobType": "report"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "pageId",
+              "displayName": "pageId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "data",
+              "displayName": "data",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "object"
+            },
+            {
+              "id": "jobType",
+              "displayName": "jobType",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {
+          "waitForSubWorkflow": false
+        }
+      },
+      "id": "e7c1c168-3eda-4858-9b70-bb313e2a4c25",
+      "name": "Generate Report",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "position": [
+        1860,
+        220
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "={{ $workflow.id }}",
+          "mode": "id"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "pageId": "={{ $('JobType Router').first().json.pageId }}",
+            "data": "={{ $json }}",
+            "jobType": "summaries"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "pageId",
+              "displayName": "pageId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "data",
+              "displayName": "data",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "object"
+            },
+            {
+              "id": "jobType",
+              "displayName": "jobType",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "mode": "each",
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "id": "19cd9c24-e2d1-48f6-a46b-1ef99cd52e77",
+      "name": "Generate Summaries",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "position": [
+        1120,
+        280
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "75d18d88-6ba6-43df-bef7-3e8ad99ad8bd",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              },
+              "leftValue": "={{ $json.shouldStop }}",
+              "rightValue": ""
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "47f6f96a-2477-4738-934c-08c155dbdf4a",
+      "name": "Should Stop ?",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        1520,
+        280
+      ],
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Etant donné la requête suivante: <query>{{ $json.query }}</query>, génere le résumé défini par l'étape pour le livre mentionné.\n\n** Très important **\nAssure toi de respecter scrupuleusement le format de sortie attendu.\n\nFormat de sortie:\n<output>\nmodelName: indique \"gpt\"\ncontent: indique ici le résumé\n</output>",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "={{ $json.systemPrompt }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        1200,
+        720
+      ],
+      "id": "af8a72fa-318a-40c8-9588-90bac0da591c",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "o3-mini",
+          "mode": "list",
+          "cachedResultName": "o3-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        880,
+        720
+      ],
+      "id": "a03a1850-17dc-4b7f-9a6b-643e77984859",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "PmqmzdRFH1SO1Yvi",
+          "name": "OpenAi account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"modelName\": \"name\",\n  \"content\": \"Le résumé de l'étape\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        1440,
+        880
+      ],
+      "id": "174dd734-20f0-4ec6-aaf0-1e9c081bc46b",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8329cf5f-9642-4de1-b0cf-9c10ab94e2fc",
+              "name": "systemPrompt",
+              "value": "=# 📖 Prompt pour générer des fiches de lecture détaillées\n\n## 🎯 Contexte  \nTu vas rédiger une **fiche de lecture structurée** sur un livre d'économie, de développement personnel ou un roman.  \nL'objectif est d'analyser l'ouvrage en profondeur, en mettant en avant ses **idées principales**, sa **méthodologie**, son **impact** et une **réflexion personnelle**.  \n\nLe but est d'obtenir une fiche utile pour se rappeler des points essentiels, mais aussi pour partager avec d'autres personnes intéressées par le sujet.  \n\n## 📝 Instructions pour générer la fiche  \n\nRédige une fiche de lecture complète en respectant les étapes suivantes :  \n\n---\n\n# 1. Informations générales  \n\n### 📌 Données bibliographiques  \n- **Titre** :  \n- **Auteur** :  \n- **Éditeur** :  \n- **Année de publication** :  \n- **Contexte historique et intellectuel** :  \n  > Ex. *Le Cygne Noir* de Nassim Taleb s'inscrit dans la pensée critique sur la gestion des risques et l'incertitude, en opposition aux modèles prédictifs classiques utilisés en finance.*\n\n---\n\n# 2. Thèse et objectifs  \n\n### ❓ Problématique centrale  \n> Quelle question l’auteur cherche-t-il à résoudre ?  \n> *Ex. Taleb explore comment les événements rares et imprévisibles ont un impact majeur sur nos vies et notre économie.*\n\n### 🎯 Objectifs de l’auteur  \n- Quelle nouvelle perspective apporte l’auteur ?  \n- Quels changements de pensée ou d’action veut-il provoquer chez le lecteur ?  \n  > *Ex. Dans* La Semaine de 4 heures *, Tim Ferriss propose une approche révolutionnaire du travail qui encourage à automatiser ses revenus et à réduire le temps consacré au travail salarié.*\n\n---\n\n# 3. Structure et arguments  \n\n### 📚 Plan du livre  \nRésumé rapide de l'organisation du livre :  \n- **Nombre de chapitres / parties**  \n- **Logique de progression**  \n\n### 🔑 Points clés  \nIdentification des idées majeures et concepts principaux :  \n- **Ex. Le Cygne Noir** : le rôle des événements imprévus, la distinction entre Médiocristan et Extremistan.  \n- **Ex. La Semaine de 4h** : la loi de Pareto (80/20), l'automatisation du revenu.  \n\n---\n\n# 4. Méthodologie et preuves  \n\n### 📖 Sources et exemples utilisés  \nL’auteur s’appuie-t-il sur des études de cas, des statistiques, des témoignages ?  \n> Ex. *Taleb illustre son propos avec des événements historiques comme la crise financière de 2008, démontrant comment les modèles économiques classiques échouent à prévoir les crises.*\n\n### 🔍 Analyse critique  \n- **Les arguments sont-ils convaincants ?**  \n- **Y a-t-il des biais, des lacunes, des éléments contestables ?**  \n> Ex. *Certains reprochent à Taleb un manque de solutions concrètes et une tendance à l’exagération.*  \n\n---\n\n# 5. Implications et applications pratiques  \n\n### 🌍 Impact des idées  \nComment appliquer les concepts proposés dans la vie réelle ?  \n> *Ex. Pour un entrepreneur, la gestion du risque selon Taleb peut inspirer une stratégie d’investissement prudente basée sur l’anti-fragilité.*  \n\n### 🔄 Comparaison avec d’autres approches  \n- Quelles théories ou auteurs proposent des idées similaires ou opposées ?  \n- Existe-t-il d’autres moyens de répondre à la problématique ?  \n\n---\n\n# 6. Réflexion personnelle  \n\n### 💡 Impressions et questionnements  \nQu’est-ce qui vous a marqué ? Trouvez-vous le livre pertinent, innovant, discutable ?  \n\n### 🏆 Pertinence personnelle  \n- En quoi cet ouvrage vous impacte-t-il ?  \n- Change-t-il votre manière de penser ou d’agir ?  \n\n---\n\n# 7. Conclusion et synthèse  \n\n### 🔁 Récapitulatif des idées essentielles  \nSynthèse en quelques phrases des **idées majeures**, **arguments clés**, et **impact** du livre.  \n\n### 🌟 Ouverture  \n- Pourquoi ce livre est important dans son domaine ?  \n- Quelle réflexion plus large cela ouvre-t-il ?  \n- Quelles autres lectures pourraient compléter cette analyse ?  \n\n---\n\n## 📌 Structuration et mise en forme recommandées  \n\n- **Titre principal (H1 `#`)** → Nom du livre  \n- **Sections principales (H2 `##`)** → Suivent les grandes étapes de la fiche  \n- **Sous-sections (H3 `###`)** → Détail des éléments de chaque étape  \n- **Citations du livre** → Utiliser les blocs `>` pour mettre en valeur des extraits  \n- **Listes à puces** → Pour les idées clés  \n- **Exemples en italique** → Pour donner du contexte  \n\n---\n\n🎯 **Objectif final** : Obtenir une fiche de lecture bien structurée, synthétique et facile à relire.",
+              "type": "string"
+            },
+            {
+              "id": "8ec2711a-c778-4d2f-ab26-08d6696964a6",
+              "name": "query",
+              "value": "={{ $('JobType Router').first().json.data.query.trim() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        940,
+        880
+      ],
+      "id": "56f53430-4229-4711-8d53-962c0ea7f976",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Etant donné la requête suivante: <query>{{ $json.query }}</query>, génere le résumé défini par l'étape pour le livre mentionné.\n\n** Très important **\nAssure toi de respecter scrupuleusement le format de sortie attendu.\n\nFormat de sortie:\n<output>\nmodelName: indique \"claude\"\ncontent: indique ici le résumé\n</output>",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "={{ $json.systemPrompt }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        1200,
+        1020
+      ],
+      "id": "175edd0a-08bc-4216-a6d0-52d0769a3bfa",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "model": "claude-3-5-sonnet-20241022",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.2,
+      "position": [
+        1200,
+        1160
+      ],
+      "id": "c7986d55-49d4-4ff9-a7b1-b105234b192e",
+      "name": "Anthropic Chat Model",
+      "credentials": {
+        "anthropicApi": {
+          "id": "yeLIK0R1OKDySeyH",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        1700,
+        860
+      ],
+      "id": "cb282902-5f63-4a81-a58d-49f53bf42ade",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1200,
+        880
+      ],
+      "id": "19da4813-3f68-4bff-8ade-4be8f44f1997",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "PmqmzdRFH1SO1Yvi",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=# Agent de Contrôle et Formatage des Résumés de Livres\n\n## Contexte\nTu es un agent spécialisé dans l'analyse, la fusion et le formatage des résumés de livres générés par deux modèles d'IA différents (GPT et Claude). Ces résumés suivent une structure prédéfinie en 7 parties pour créer une fiche de lecture complète.\n\n## Objectif\nCréer une version unifiée, non-redondante et correctement formatée du résumé de livre en exploitant les meilleures contributions de chaque modèle pour chaque section.\n\n## Donées d'entrée\nTu recevras une collection de résumés structurés comme suit:\n<summaries>\n{{ \n  $('JobType Router').first().json.data.summaries\n    .map(stepData => \n      stepData.summaries\n        .map(summary => `<summary>\n          <model>${summary.modelName}</model>\n          <content>${summary.content}</content>\n        </summary>`)\n        .join('\\n')\n    )\n    .join('\\n')\n}}\n</summaries>\n\n## Instructions\n\n### 1. Analyse et sélection du contenu\nPour chaque section du résumé (1 à 7):\n- Compare les versions fournies par GPT et Claude\n- Identifie les informations uniques et pertinentes dans chaque version\n- Sélectionne les éléments les plus complets, précis et bien formulés\n- Évite toute redondance ou répétition d'information\n\n### 2. Fusion intelligente\n- Ne te contente pas de concaténer les informations, mais fusionne-les de manière cohérente\n- Préserve les informations distinctives et complémentaires de chaque source\n- Assure une transition fluide entre les éléments de différentes sources\n- Maintiens un ton et un style cohérents dans l'ensemble du document\n\n### 3. Vérification de la structure\nAssure-toi que le résumé final respecte rigoureusement la structure suivante:\n1. **Informations générales**\n   - Données bibliographiques (titre, auteur, éditeur, année, contexte)\n2. **Thèse et objectifs**\n   - Problématique centrale\n   - Objectifs de l'auteur\n3. **Structure et arguments**\n   - Plan du livre\n   - Points clés\n4. **Méthodologie et preuves**\n   - Sources et exemples\n   - Analyse critique\n5. **Implications et applications pratiques**\n   - Impact des idées\n   - Comparaison avec d'autres approches\n6. **Réflexion personnelle**\n   - Impressions et questionnements\n   - Pertinence personnelle\n7. **Conclusion et synthèse**\n   - Récapitulatif des idées essentielles\n   - Ouverture\n\n### 4. Formatage Markdown\n- Utilise le format Markdown de manière rigoureuse:\n  - Titres principaux (H1) avec `#` pour le titre du livre\n  - Sections principales (H2) avec `##` pour les 7 grandes parties\n  - Sous-sections (H3) avec `###` pour les détails de chaque partie\n  - Citations en blocs `>` pour les extraits du livre\n  - Listes à puces `-` pour les concepts et idées clés\n  - *Italique* pour les exemples et illustrations\n  - **Gras** pour les concepts importants\n\n### 5. Vérification finale\n- Assure-toi que toutes les sections sont présentes et substantielles\n- Vérifie que le formatage Markdown est correct et cohérent\n- Garantis que le document final est bien structuré, informatif et agréable à lire\n- Élimine toute redondance ou répétition inutile\n\n## Format de sortie\nFournis uniquement le résumé final en Markdown correctement formaté, sans ajouter de commentaires ou d'explications sur le processus utilisé."
+      },
+      "id": "6ac37b75-551b-4707-8c8d-0d193576e60d",
+      "name": "BookSummary Control",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "position": [
+        940,
+        1400
+      ],
+      "typeVersion": 1.5
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "o3-mini",
+          "mode": "list",
+          "cachedResultName": "o3-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1040,
+        1620
+      ],
+      "id": "ac6e832f-e679-4745-b53c-65084dbad44e",
+      "name": "OpenAI Chat Model2",
+      "credentials": {
+        "openAiApi": {
+          "id": "PmqmzdRFH1SO1Yvi",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "tag",
+        "options": {}
+      },
+      "id": "ed52bbe5-83c0-4ef0-b097-fd6b3d9f6b32",
+      "name": "Tags to Items",
+      "type": "n8n-nodes-base.splitOut",
+      "position": [
+        1620,
+        1400
+      ],
+      "typeVersion": 1,
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "mode": "markdownToHtml",
+        "markdown": "={{ $json.text }}",
+        "options": {
+          "tables": true
+        }
+      },
+      "id": "e2438d8c-167a-454e-b312-87556e0d0454",
+      "name": "Convert to HTML",
+      "type": "n8n-nodes-base.markdown",
+      "position": [
+        1300,
+        1400
+      ],
+      "typeVersion": 1,
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "851b8a3f-c2d3-41ad-bf60-4e0e667f6c58",
+              "name": "tag",
+              "type": "array",
+              "value": "={{ $json.data.match(/<table[\\s\\S]*?<\\/table>|<ul[\\s\\S]*?<\\/ul>|<[^>]+>[^<]*<\\/[^>]+>/g) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "24eeaf90-6249-4609-a76b-3939df30130f",
+      "name": "HTML to Array",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1460,
+        1400
+      ],
+      "typeVersion": 3.4,
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.tag.trim() }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Convertis le HTML suivant en son équivalent de Bloc Notion selon le schéma API de Notion.\n* Assure-toi que le contenu est toujours inclus et reste le même.\n* Renvoie uniquement une réponse JSON.\n* Génère des blocs de niveau enfant. Ne définis pas de propriété \"parent\" ou \"children\".\n* Privilégie fortement les titres, paragraphes, tableaux et des blocs de listes.\n* Les titres disponibles sont heading_1, heading_2 et heading_3 - h4, h5, h6 doivent utiliser le type heading_3 à la place. Assure-toi que les titres utilisent la définition de texte enrichi.\n* Assure-toi que les blocs de listes incluent tous les éléments de la liste.\n\n## Exemples\n\n1. Titres\n```\n<h3 id=\"references\">References</h3>\n```\nse convertirait en\n```\n{\"object\":  \"block\", \"type\": \"heading_3\", \"heading_3\": { \"rich_text\": [{\"type\": \"text\",\"text\": {\"content\": \"References\"}}]}}\n```\n\n2. Listes\n```\n<ul><li>hello</li><li>world</li></ul>\n```\nse convertirait en\n```\n[\n{\n  \"object\": \"block\",\n  \"type\": \"bulleted_list_item\",\n  \"bulleted_list_item\": {\"rich_text\": [{\"type\": \"text\",\"text\": {\"content\": \"hello\"}}]}\n},\n{\n  \"object\": \"block\",\n  \"type\": \"bulleted_list_item\",\n  \"bulleted_list_item\": {\"rich_text\": [{\"type\": \"text\",\"text\": {\"content\": \"world\"}}]}\n}\n]\n```\n\n3. Tableaux\n```\n<table>\n  <thead>\n    <tr><th>Technology</th><th>Potential Impact</th></tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>5G Connectivity</td><td>Enables faster data speeds and advanced apps</td>\n    </tr>\n  </tbody>\n</table>\n```\nse convertirait en\n```\n{\n  \"object\": \"block\",\n  \"type\": \"table\",\n  \"table\": {\n    \"table_width\": 2,\n    \"has_column_header\": true,\n    \"has_row_header\": false,\n    \"children\": [\n      {\n        \"object\": \"block\",\n        \"type\": \"table_row\",\n        \"table_row\": {\n          \"cells\": [\n            [\n              {\n                \"type\": \"text\",\n                \"text\": {\n                  \"content\": \"Technology\",\n                  \"link\": null\n                }\n              },\n              {\n                \"type\": \"text\",\n                \"text\": {\n                  \"content\": \"Potential Impact\",\n                  \"link\": null\n                }\n              }\n            ],\n            [\n              {\n                \"type\": \"text\",\n                \"text\": {\n                  \"content\": \"5G Connectivity\",\n                  \"link\": null\n                }\n              },\n              {\n                \"type\": \"text\",\n                \"text\": {\n                  \"content\": \"Enables faster data speeds and advanced apps\",\n                  \"link\": null\n                }\n              }\n            ]\n          ]\n        }\n      }\n    ]\n  }\n}\n```\n\n4. Liens d'ancrage\nPuisque Notion ne prend pas en charge les liens d'ancrage, convertis-les simplement en blocs de texte enrichi à la place.\n```\n<a href=\"#module-0-pre-course-setup-and-learning-principles\">Module 0: Pre-Course Setup and Learning Principles</a>\n```\nse convertit en\n```\n{\n  \"object\": \"block\",\n  \"type\": \"paragraph\",\n  \"paragraph\": {\n    \"rich_text\": [\n      {\n        \"type\": \"text\",\n        \"text\": {\n          \"content\": \"Module 0: Pre-Course Setup and Learning Principles\"\n        }\n      }\n    ]\n  }\n}\n```\n\n5. Parties HTML invalides\nLorsque le HTML n'est pas syntaxiquement valide, par ex. des balises de fermeture orphelines, ignore simplement la conversion et utilise un bloc de texte enrichi vide.\n```\n</li>\\n</ol>\n```\npeut être remplacé par\n```\n{\n  \"object\": \"block\",\n  \"type\": \"paragraph\",\n  \"paragraph\": {\n    \"rich_text\": [\n      {\n        \"type\": \"text\",\n        \"text\": {\n          \"content\": \" \"\n        }\n      }\n    ]\n  }\n}\n```"
+            }
+          ]
+        }
+      },
+      "id": "3f323268-63e1-4f46-82bf-534034369282",
+      "name": "Notion Block Generator",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "position": [
+        1780,
+        1400
+      ],
+      "typeVersion": 1.5,
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {}
+      },
+      "id": "d8bd06fa-7ae2-48cf-97ce-55bcbc42d442",
+      "name": "Google Gemini Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "position": [
+        1760,
+        1560
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "googlePalmApi": {
+          "id": "og4gMnGbp8Uy7toF",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "73fcb8a0-2672-4bd5-86de-8075e1e02baf",
+              "name": "=block",
+              "type": "array",
+              "value": "={{\n(function(){\n  const block = $json.text\n    .replace('```json', '')\n    .replace('```', '')\n    .trim()\n    .parseJson();\n  if (Array.isArray(block)) return block;\n  if (block.type.startsWith('heading_')) {\n    const prev = Number(block.type.split('_')[1]);\n    const next = Math.max(1, prev - 1);\n    if (next !== prev) {\n      block.type = `heading_${next}`;\n      block[`heading_${next}`] = Object.assign({}, block[`heading_${prev}`]);\n      block[`heading_${prev}`] = undefined;\n    }\n  }\n  return [block];\n})()\n}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "bae381aa-900d-4bdc-bb2e-656345f5e1fb",
+      "name": "Parse JSON blocks",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        2100,
+        1400
+      ],
+      "executeOnce": false,
+      "typeVersion": 3.4,
+      "disabled": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "f68cefe0-e109-4d41-9aa3-043f3bc6c449",
+              "operator": {
+                "type": "string",
+                "operation": "notExists",
+                "singleValue": true
+              },
+              "leftValue": "={{ $json.error }}",
+              "rightValue": ""
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "00b30ed4-017b-4da6-8b51-11abd656d77f",
+      "name": "Valid Blocks",
+      "type": "n8n-nodes-base.filter",
+      "position": [
+        2300,
+        1400
+      ],
+      "typeVersion": 2.2,
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://api.notion.com/v1/blocks/{{ $('JobType Router').first().json.data.pageId.trim() }}/children",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "notionApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Notion-Version",
+              "value": "2022-06-28"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{\n{\n  \"children\": $json.block\n}\n}}",
+        "options": {
+          "timeout": "={{ 1000 * 60 }}"
+        }
+      },
+      "id": "94eadddf-04b0-489c-952d-fc8081eed3d3",
+      "name": "Upload to Notion Page",
+      "type": "n8n-nodes-base.httpRequest",
+      "maxTries": 2,
+      "position": [
+        2880,
+        1560
+      ],
+      "retryOnFail": true,
+      "typeVersion": 4.2,
+      "waitBetweenTries": 3000,
+      "credentials": {
+        "notionApi": {
+          "id": "6bjg4ALH6fniuwyE",
+          "name": "Notion account"
+        }
+      },
+      "disabled": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "120a0265-48d6-4f99-a8cb-21b291395a4d",
+      "name": "For Each Block...",
+      "type": "n8n-nodes-base.splitInBatches",
+      "position": [
+        2640,
+        1400
+      ],
+      "typeVersion": 3,
+      "disabled": true
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 2,
+  "updatedAt": "2025-03-17T00:41:22.000Z",
+  "versionId": "b389767f-e6c6-4575-9468-44071accf2ff"
+}
