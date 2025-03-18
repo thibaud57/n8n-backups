@@ -34,17 +34,6 @@
         ]
       ]
     },
-    "Set Variables": {
-      "main": [
-        [
-          {
-            "node": "Create Page",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Create Page": {
       "main": [
         [
@@ -140,7 +129,7 @@
       "main": [
         [
           {
-            "node": "Generate Report",
+            "node": "Format Result",
             "type": "main",
             "index": 0
           }
@@ -366,6 +355,28 @@
       "main": [
         []
       ]
+    },
+    "Set Variables": {
+      "main": [
+        [
+          {
+            "node": "Create Page",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Result": {
+      "main": [
+        [
+          {
+            "node": "Generate Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-03-16T15:26:28.850Z",
@@ -397,7 +408,7 @@
       "type": "n8n-nodes-base.formTrigger",
       "position": [
         120,
-        40
+        -60
       ],
       "webhookId": "ce545434-e845-4fed-8d5b-bbdba30e40a7",
       "typeVersion": 2.2
@@ -439,7 +450,7 @@
       "typeVersion": 1,
       "position": [
         1140,
-        40
+        -60
       ],
       "id": "73282324-e50a-4346-9583-16c37eb1f763",
       "name": "End Form",
@@ -469,40 +480,11 @@
       "typeVersion": 1,
       "position": [
         320,
-        40
+        -60
       ],
       "id": "9014bb63-07f6-4a06-9d67-d62988aa77a5",
       "name": "Research Request",
       "webhookId": "e5cd24b3-9833-4d7c-ac4c-f2d6b53a959d"
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "56340b31-7474-4542-8c90-7b00673767a0",
-              "name": "title",
-              "value": "={{ $json.Titre.trim() }}",
-              "type": "string"
-            },
-            {
-              "id": "41af239e-7d0f-4388-b87c-e9534dfc7401",
-              "name": "author",
-              "value": "={{ $json.Auteur.trim() }}",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        520,
-        40
-      ],
-      "id": "4f69cc4b-5e84-4524-acd6-eb2262195480",
-      "name": "Set Variables"
     },
     {
       "parameters": {
@@ -520,7 +502,7 @@
       "typeVersion": 2.2,
       "position": [
         720,
-        40
+        -60
       ],
       "id": "790dc583-9068-400b-be0f-fe1c77319b03",
       "name": "Create Page",
@@ -654,7 +636,7 @@
               "id": "7fc54063-b610-42bc-a250-b1e8847c4d1e",
               "name": "summaries",
               "type": "array",
-              "value": "=[]"
+              "value": "={{ $('JobType Router').first().json.data.summaries }}"
             }
           ]
         },
@@ -667,7 +649,8 @@
         940,
         280
       ],
-      "typeVersion": 3.4
+      "typeVersion": 3.4,
+      "alwaysOutputData": true
     },
     {
       "parameters": {
@@ -719,13 +702,14 @@
           "attemptToConvertTypes": false,
           "convertFieldsToString": true
         },
+        "mode": "each",
         "options": {}
       },
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1.2,
       "position": [
         940,
-        40
+        -60
       ],
       "id": "80ec63c4-2dd8-41df-b114-a5341bac4b7f",
       "name": "Initiate BookSummary"
@@ -741,16 +725,10 @@
               "value": "={{ $runIndex + 1 >= 3 }}"
             },
             {
-              "id": "7a9703c5-459f-41cf-b1dc-fb90aebd6288",
+              "id": "8d1d3e13-452a-4bf5-8402-ee6450e2bfdb",
               "name": "currentStep",
               "value": "={{ $runIndex + 1 }}",
               "type": "number"
-            },
-            {
-              "id": "90986e2b-8aca-4a22-a9db-ed8809d6284d",
-              "name": "summaries",
-              "type": "array",
-              "value": "={{ \n  (() => {\n    try {\n      const currentSummaries = $input.item.json.summaries || [];\n      \n      const newData = $('Generate Summaries').all();\n\n      const newStepData = {\n        step: $runIndex + 1,\n        summary: newData.map(item => ({\n          modelName: item.json.output.modelName,\n          content: item.json.output.content\n        }))\n      };\n\n      return [...currentSummaries, newStepData];\n    } catch (e) {\n      console.error('Error processing summaries:', e);\n      return [];\n    }\n  })()\n}}"
             }
           ]
         },
@@ -760,11 +738,12 @@
       "name": "Accumulate Results",
       "type": "n8n-nodes-base.set",
       "position": [
-        1340,
+        1320,
         280
       ],
       "executeOnce": true,
-      "typeVersion": 3.4
+      "typeVersion": 3.4,
+      "alwaysOutputData": false
     },
     {
       "parameters": {
@@ -774,19 +753,13 @@
               "id": "d88bfe95-9e73-4d25-b45c-9f164b940b0e",
               "name": "query",
               "type": "string",
-              "value": "={{ `${$('JobType Router').first().json.data.query} ${$('Accumulate Results').first().json.currentStep + 1}` }}"
+              "value": "={{ `${$('JobType Router').first().json.data.query} ${$json.currentStep + 1}` }}"
             },
             {
-              "id": "c98133e6-ab09-4f94-a554-97756d588b21",
+              "id": "f2d3fb09-9593-47bd-83c9-4cc015e4b8bd",
               "name": "currentStep",
-              "value": "={{ $('Accumulate Results').first().json.currentStep + 1 }}",
+              "value": "={{ $json.currentStep + 1 }}",
               "type": "number"
-            },
-            {
-              "id": "4aa20690-d998-458a-b1e4-0d72e6a68e6b",
-              "name": "summaries",
-              "type": "array",
-              "value": "={{ $('Accumulate Results').item.json.summaries }}"
             }
           ]
         },
@@ -811,7 +784,7 @@
         "workflowInputs": {
           "mappingMode": "defineBelow",
           "value": {
-            "data": "={{\n  {\n    summaries: $json.summaries,\n    query: ''\n  }\n}}",
+            "data": "={{\n  {\n    summaries: $json.summaries,\n  }\n}}",
             "pageId": "={{ $('JobType Router').first().json.pageId }}",
             "jobType": "report"
           },
@@ -857,8 +830,8 @@
       "name": "Generate Report",
       "type": "n8n-nodes-base.executeWorkflow",
       "position": [
-        1860,
-        220
+        2100,
+        180
       ],
       "typeVersion": 1.2
     },
@@ -941,7 +914,7 @@
                 "operation": "true",
                 "singleValue": true
               },
-              "leftValue": "={{ $json.shouldStop }}",
+              "leftValue": "={{ $runIndex + 1 >= 3 }}",
               "rightValue": ""
             }
           ],
@@ -953,7 +926,7 @@
       "name": "Should Stop ?",
       "type": "n8n-nodes-base.if",
       "position": [
-        1520,
+        1540,
         280
       ],
       "typeVersion": 2.2
@@ -1371,15 +1344,70 @@
       ],
       "typeVersion": 3,
       "disabled": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "56340b31-7474-4542-8c90-7b00673767a0",
+              "name": "title",
+              "value": "={{ $json.Titre.trim() }}",
+              "type": "string"
+            },
+            {
+              "id": "41af239e-7d0f-4388-b87c-e9534dfc7401",
+              "name": "author",
+              "value": "={{ $json.Auteur.trim() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        520,
+        -60
+      ],
+      "id": "4f69cc4b-5e84-4524-acd6-eb2262195480",
+      "name": "Set Variables"
+    },
+    {
+      "parameters": {
+        "jsCode": "const maxStep = $('Accumulate Results').first().json.currentStep;\n\nreturn Array(maxStep)\n      .fill(0)\n      .flatMap((_, i) => {\n        try {\n          const results = $('Generate Summaries').all(0, i);\n          if (results && results.length > 0) {\n            return [{\n              step: i + 1,\n              summary: results.map(item => ({\n                modelName: item.json.output.modelName,\n                content: item.json.output.content\n              }))\n            }];\n          }\n          return [];\n        } catch (e) {\n          return [];\n        }\n      });"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1860,
+        180
+      ],
+      "id": "50c108ff-c7be-4ee1-a4f1-b924fa86c39b",
+      "name": "Format Result"
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "BookSummary Subworkflow": [
+      {
+        "json": {
+          "pageId": "1b982fe2-6406-8159-bcc3-ea2837504f7e",
+          "data": {
+            "query": "Titre: df - Auteur: df. Etape:",
+            "summaries": []
+          },
+          "jobType": "initiate"
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1"
   },
   "staticData": null,
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-03-17T00:41:22.000Z",
-  "versionId": "b389767f-e6c6-4575-9468-44071accf2ff"
+  "updatedAt": "2025-03-17T23:48:20.000Z",
+  "versionId": "1ba0e6d6-c310-4774-869b-aecffe445e43"
 }
