@@ -279,23 +279,18 @@
         ]
       ]
     },
-    "Upload to Notion Page": {
+    "For Each Block...": {
       "main": [
         [
           {
-            "node": "For Each Block...",
+            "node": "Add page cover image",
             "type": "main",
             "index": 0
           }
-        ]
-      ]
-    },
-    "For Each Block...": {
-      "main": [
-        [],
+        ],
         [
           {
-            "node": "Upload to Notion Page",
+            "node": "Add blocks to Notion Page",
             "type": "main",
             "index": 0
           }
@@ -406,6 +401,17 @@
         [
           {
             "node": "Map imageUrl",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add blocks to Notion Page": {
+      "main": [
+        [
+          {
+            "node": "For Each Block...",
             "type": "main",
             "index": 0
           }
@@ -1266,47 +1272,6 @@
     },
     {
       "parameters": {
-        "method": "PATCH",
-        "url": "=https://api.notion.com/v1/blocks/{{ $('JobType Router').first().json.pageId }}/children",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "notionApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Notion-Version",
-              "value": "2022-06-28"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={{\n{\n  \"children\": $json.block\n}\n}}",
-        "options": {
-          "timeout": "={{ 1000 * 60 }}"
-        }
-      },
-      "id": "0ace2728-1d59-4bd3-aa89-2ee825f75a3b",
-      "name": "Upload to Notion Page",
-      "type": "n8n-nodes-base.httpRequest",
-      "maxTries": 2,
-      "position": [
-        2840,
-        1620
-      ],
-      "retryOnFail": true,
-      "typeVersion": 4.2,
-      "waitBetweenTries": 3000,
-      "credentials": {
-        "notionApi": {
-          "id": "6bjg4ALH6fniuwyE",
-          "name": "Notion account"
-        }
-      },
-      "onError": "continueRegularOutput"
-    },
-    {
-      "parameters": {
         "options": {}
       },
       "id": "5cf5bb63-ff00-4d2e-9757-9a1f44a380f9",
@@ -1429,7 +1394,9 @@
             }
           ]
         },
-        "options": {}
+        "options": {
+          "timeout": 10000
+        }
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
@@ -1439,21 +1406,218 @@
       ],
       "id": "f4cb4b11-8635-4ef6-99f4-67658c40050d",
       "name": "Get book cover img",
+      "retryOnFail": true,
       "credentials": {
         "serpApi": {
           "id": "k2IJHvKOPldK2lbd",
           "name": "SerpAPI account"
         }
       }
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://api.notion.com/v1/blocks/{{ $('JobType Router').first().json.pageId }}/children",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "notionApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Notion-Version",
+              "value": "2022-06-28"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{\n  {\n    \"children\": $json.block\n  }\n}}",
+        "options": {
+          "timeout": "={{ 1000 * 60 }}"
+        }
+      },
+      "id": "0ace2728-1d59-4bd3-aa89-2ee825f75a3b",
+      "name": "Add blocks to Notion Page",
+      "type": "n8n-nodes-base.httpRequest",
+      "maxTries": 2,
+      "position": [
+        3060,
+        1620
+      ],
+      "retryOnFail": true,
+      "typeVersion": 4.2,
+      "waitBetweenTries": 3000,
+      "credentials": {
+        "notionApi": {
+          "id": "6bjg4ALH6fniuwyE",
+          "name": "Notion account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://api.notion.com/v1/pages/{{ $('JobType Router').first().json.pageId }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "notionApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Notion-Version",
+              "value": "2022-06-28"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{\n  {\n    \"cover\":{\n      \"type\": \"external\",\n      \"external\": {\n        \"url\": \"https://images.unsplash.com/photo-1526243741027-444d633d7365?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=6000\"\n      }\n    }\n  }\n}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3060,
+        1440
+      ],
+      "id": "14936708-8523-41f5-987b-2493400e6616",
+      "name": "Add page cover image",
+      "retryOnFail": false,
+      "maxTries": 3,
+      "credentials": {
+        "notionApi": {
+          "id": "6bjg4ALH6fniuwyE",
+          "name": "Notion account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "Erreur 409 mais ca update quand meme"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        3240,
+        1400
+      ],
+      "typeVersion": 1,
+      "id": "9a7e0682-8410-4990-9bba-0dc7b6557ad6",
+      "name": "Sticky Note"
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "BookSummary Subworkflow": [
+      {
+        "json": {
+          "pageId": "1bf82fe2-6406-81a3-b0d7-cb54f2d0e53a",
+          "data": {
+            "query": "Le Cygne noir - Nassim Nicholas Taleb",
+            "summaries": [
+              {
+                "step": 1,
+                "summary": [
+                  {
+                    "modelName": "gpt",
+                    "content": "## 1. Informations générales\n\n- **Titre** : Le Cygne noir\n- **Auteur** : Nassim Nicholas Taleb\n- **Éditeur** : Denoël (édition française, à confirmer selon la version)\n- **Année de publication** : 2007\n\n### 📌 Contexte historique et intellectuel\n\n> Le Cygne noir s'inscrit dans une réflexion critique sur la gestion des risques et l'incertitude, remettant en question les modèles prédictifs classiques utilisés en finance. Ton ouvrage se positionne dans un contexte intellectuel marqué par la remise en cause des approches traditionnelles, en soulignant l'impact majeur d'événements rares et imprévisibles sur l'histoire économique et financière. Cette perspective encourage à repenser notre approche du risque et à intégrer l'imprévisible dans nos analyses et décisions."
+                  },
+                  {
+                    "modelName": "claude",
+                    "content": "## 1. Informations générales  \n\n- **Titre** : Le Cygne noir\n- **Auteur** : Nassim Nicholas Taleb\n- **Éditeur** : Les Belles Lettres\n- **Année de publication** : 2007\n\n### 📌 Contexte historique et intellectuel \nLe Cygne noir s'inscrit dans un contexte post-11 septembre et pré-crise financière de 2008, une période où les modèles de prévision traditionnels commençaient à montrer leurs limites. L'ouvrage émerge dans un climat intellectuel où la finance quantitative et les modèles mathématiques sophistiqués dominaient la pensée économique et la gestion des risques. Taleb, ancien trader devenu philosophe des probabilités, développe une critique fondamentale de notre façon de penser l'incertitude et les événements rares. Son livre arrive à un moment crucial où le monde de la finance et de l'économie commence à questionner ses certitudes sur la prévisibilité des marchés et des événements majeurs."
+                  }
+                ]
+              },
+              {
+                "step": 2,
+                "summary": [
+                  {
+                    "modelName": "gpt",
+                    "content": "## 2. Thèse et objectifs\n\n### ❓ Problématique centrale\n> Dans Le Cygne noir, Nassim Nicholas Taleb interroge la manière dont les événements rares, imprévisibles et aux conséquences majeures influent sur nos systèmes économiques et sociaux, tout en soulignant l'incapacité des modèles traditionnels à anticiper de tels événements.\n\n### 🎯 Objectifs de l’auteur\n- Proposer une nouvelle perspective qui met en lumière le rôle prépondérant des événements extrêmes dans la détermination des résultats économiques et sociaux.\n- Inciter le lecteur à repenser la manière dont il évalue les risques et les incertitudes, en adoptant une approche plus sceptique vis-à-vis des modèles prédictifs classiques.\n- Favoriser une prise de conscience sur l’importance de l’anti-fragilité, c'est-à-dire la capacité des systèmes à tirer profit de l'incertitude et du chaos."
+                  },
+                  {
+                    "modelName": "claude",
+                    "content": "## 2. Thèse et objectifs  \n\n### ❓ Problématique centrale  \nTaleb s'attaque à notre compréhension fondamentale de la causalité, du hasard et de notre capacité à prévoir l'avenir. La question centrale qu'il pose est : Comment les événements hautement improbables et imprévisibles (les \"Cygnes Noirs\") façonnent-ils notre monde, et pourquoi sommes-nous si mal équipés pour les anticiper et les comprendre ?\n\n### 🎯 Objectifs de l'auteur  \n- Démontrer les limites fondamentales de notre capacité à prédire les événements majeurs qui influencent nos vies et nos sociétés\n- Déconstruire notre tendance à rationaliser a posteriori les événements imprévisibles\n- Proposer une nouvelle approche pour vivre dans un monde dominé par l'incertitude et les événements extrêmes\n- Remettre en question les modèles statistiques traditionnels et leur application dans la finance et l'économie\n- Sensibiliser le lecteur à l'impact disproportionné des événements rares et imprévisibles sur l'histoire et nos vies quotidiennes"
+                  }
+                ]
+              },
+              {
+                "step": 3,
+                "summary": [
+                  {
+                    "modelName": "gpt",
+                    "content": "## 3. Structure et arguments\n\n### 📚 Plan du livre\n- Le Cygne Noir est organisé en plusieurs parties, chacune servant à construire progressivement l'argumentation sur l'impact des événements imprévus sur notre compréhension du monde.\n- Le livre débute par la définition et l'illustration du concept de « Cygne Noir » afin d'introduire l'idée que certains événements rares et inattendus peuvent avoir des conséquences majeures.\n- La progression se poursuit en déconstruisant les modèles prédictifs traditionnels, en illustrant leur inadéquation face aux événements extrêmes.\n- Enfin, l'ouvrage conclut sur les implications pratiques de cette prise de conscience, invitant le lecteur à repenser la manière dont il évalue les risques et anticipe l'avenir.\n\n### 🔑 Points clés\n- La distinction entre deux mondes : *Médiocristan* (où les distributions sont prévisibles et les variations minuscules) et *Extrémistan* (où des événements rares peuvent avoir des conséquences énormes).\n- L'importance de reconnaître l'imprévisibilité inhérente aux systèmes complexes et d'adapter notre approche de la prise de décision en conséquence.\n- La critique des modèles statistiques et économiques classiques qui ne tiennent pas compte de l'impact disproportionné des événements extrêmes.\n- L'enjeu de remettre en question notre compréhension habituelle du risque et de la probabilité, pour intégrer des éléments d'incertitude extrême dans nos analyses."
+                  },
+                  {
+                    "modelName": "claude",
+                    "content": "## 3. Structure et arguments\n\n### 📚 Plan du livre\nLe livre est structuré en quatre parties principales :\n- **Première partie** : Introduction aux biais cognitifs et à notre incapacité à prévoir les Cygnes Noirs\n- **Deuxième partie** : Comment nous ne pouvons pas prédire l'extrême dans Extremistan\n- **Troisième partie** : Les Cygnes Gris - exploration des biais de confirmation\n- **Quatrième partie** : Applications pratiques et conclusion sur l'épistémologie\n\n### 🔑 Points clés\n- **La théorie du Cygne Noir** : Événements rares, extrêmement impactants et prévisibles uniquement rétrospectivement\n- **Médiocristan vs Extremistan** : Distinction entre deux types de domaines où les événements suivent des distributions différentes\n- **L'illusion narrative** : Notre tendance à créer des histoires cohérentes pour expliquer les événements passés\n- **L'empirisme sceptique** : Approche philosophique pour gérer l'incertitude\n- **L'anti-fragilité** : Concept clé sur la capacité à bénéficier du chaos et de l'incertitude\n- **La platonicité** : Notre tendance à simplifier la réalité dans des modèles théoriques trompeurs"
+                  }
+                ]
+              },
+              {
+                "step": 4,
+                "summary": [
+                  {
+                    "modelName": "gpt",
+                    "content": "## 4. Méthodologie et preuves\n\n### 📖 Sources et exemples utilisés\nL’auteur s’appuie sur une analyse détaillée des événements historiques et sur des études de cas issus du monde de la finance et de l’économie. Dans *Le Cygne Noir*, Taleb utilise notamment des exemples marquants tels que la crise financière de 2008 pour illustrer l’échec des modèles prédictifs traditionnels face à des événements rares et imprévus.\n\n> « Les modèles traditionnels de prévision ne prennent pas suffisamment en compte l’impact des événements improbables, pourtant dévastateurs. »\n\n### 🔍 Analyse critique\n- **Conviction des arguments** : Les arguments de Taleb sont percutants et incitent à remettre en question les approches statistiques classiques. Son analyse, fondée sur des faits historiques concrets, force le lecteur à considérer l’incertitude comme un élément central dans l’analyse des risques.\n- **Biais et lacunes** : Bien que sa critique soit pertinente, certains reproches pointent du doigt une tendance à l’exagération et un manque de propositions concrètes pour pallier les failles des modèles existants.\n- **Éléments contestables** : La généralisation de certaines conclusions peut paraître excessive, surtout lorsqu’elle est appliquée à des contextes qui ne se prêtent pas toujours aux mêmes logiques.\n"
+                  },
+                  {
+                    "modelName": "claude",
+                    "content": "## 4. Méthodologie et preuves  \n\n### 📖 Sources et exemples utilisés\nTaleb s'appuie sur une combinaison rigoureuse de :\n- Événements historiques majeurs (crash boursier de 1987, attentats du 11 septembre, crise de 2008)\n- Analyses mathématiques et statistiques approfondies\n- Exemples tirés de domaines variés : finance, histoire, science, technologie\n- Références philosophiques (notamment stoïcienne) et littéraires\n- Expériences personnelles en tant que trader et analyste quantitatif\n\nIl utilise particulièrement la méthode du contre-exemple pour démontrer les failles des modèles probabilistes classiques et illustre ses propos par des métaphores percutantes (la dinde de Thanksgiving, le cygne noir).\n\n### 🔍 Analyse critique\n\n**Points forts:**\n- Argumentation solide basée sur des preuves empiriques\n- Approche multidisciplinaire qui renforce la crédibilité\n- Démonstration mathématique rigoureuse des limites des modèles gaussiens\n- Exemples concrets et accessibles qui illustrent des concepts complexes\n\n**Limites et points contestables:**\n- Ton parfois polémique et agressif envers certains experts\n- Tendance à la répétition et à l'emphase excessive\n- Manque relatif de solutions pratiques face aux problèmes soulevés\n- Certains critiques pointent une possible surestimation de la fréquence des événements 'cygne noir'\n- La subjectivité de l'auteur transparaît parfois dans l'analyse des exemples"
+                  }
+                ]
+              },
+              {
+                "step": 5,
+                "summary": [
+                  {
+                    "modelName": "gpt",
+                    "content": "## 5. Implications et applications pratiques\n\n### 🌍 Impact des idées\nLe livre met en avant l'importance de repenser la gestion des risques dans un monde dominé par l'incertitude et les événements imprévus. Dans le contexte économique comme dans la vie quotidienne, l'approche de Taleb invite à :\n- Revoir les stratégies d'investissement en intégrant l'« anti-fragilité » qui consiste à se préparer non pas uniquement aux risques prévisibles, mais aussi à ceux qui sortent des cadres classiques.\n- Encourager une approche plus prudente et résiliente dans les démarches entrepreneuriales, notamment en évitant une surdépendance aux modèles probabilistes traditionnels.\n- Adapter les politiques publiques et la gestion des crises en tenant compte de la possibilité d'événements improbables aux conséquences majeures.\n\n### 🔄 Comparaison avec d’autres approches\nLe Cygne noir se distingue ainsi par une remise en question des modèles prédictifs classiques. En comparaison :\n- D'autres théories économiques continuent de s'appuyer sur des modèles statistiques habituels qui minimisent l'impact des événements rares, tandis que Taleb insiste sur le rôle crucial de ces exceptions.\n- Certains auteurs prônent une approche plus optimiste ou contrôlée de la prise de risque, contrastant avec l'argument de Taleb qui appelle à accepter l'incertitude comme un élément inhérent et inévitable de nos systèmes.\n- L'œuvre complémente des concepts comme l'innovation radicale ou la disruption, qui, tout en valorisant le changement, n'intègrent pas toujours la dimension de chaos et d'imprévisibilité sur le long terme.\n\nEn résumé, l'ouvrage offre une vision qui remet en cause les fondements des stratégies de gestion du risque et invite à adopter une posture plus critique et adaptable face à un environnement par nature incertain."
+                  },
+                  {
+                    "modelName": "claude",
+                    "content": "## 5. Implications et applications pratiques\n\n### 🌍 Impact des idées\nLes concepts du Cygne Noir ont des implications profondes dans de nombreux domaines :\n- En finance : Adopter des stratégies d'investissement qui protègent contre les événements extrêmes plutôt que de se fier aux modèles probabilistes classiques\n- En entrepreneuriat : Créer des entreprises \"antifragiles\" capables de bénéficier de l'incertitude plutôt que d'en souffrir\n- En gestion des risques : Privilégier la robustesse et la redondance plutôt que l'optimisation excessive\n- En prise de décision : Rester humble face à notre incapacité à prédire l'avenir et garder une marge de sécurité\n\n### 🔄 Comparaison avec d'autres approches\n- Contraste avec la théorie économique classique qui suppose que les marchés sont efficaces et les risques quantifiables\n- Opposition aux méthodes de gestion des risques basées sur la distribution normale (courbe en cloche)\n- Rejoint certaines idées de Mandelbrot sur les fractales et les événements extrêmes\n- S'inscrit dans la lignée des penseurs critiques de l'économie conventionnelle comme Hayek et sa théorie de l'ordre spontané\n\nLes idées de Taleb se distinguent par leur radicalité et leur remise en question fondamentale des modèles prédictifs traditionnels, proposant une approche plus prudente et consciente de nos limites cognitives."
+                  }
+                ]
+              },
+              {
+                "step": 6,
+                "summary": [
+                  {
+                    "modelName": "gpt",
+                    "content": "## 6. Réflexion personnelle\n\n### 💡 Impressions et questionnements\nDans « Le Cygne noir », Nassim Nicholas Taleb nous confronte à une vision du monde où l’imprévisible et l’extrême jouent un rôle central. Ce qui m’a particulièrement marqué, c’est la force avec laquelle l’auteur déconstruit les modèles de prévisibilité traditionnelle, invitant à une remise en question de nos certitudes. Le livre, à la fois provocateur et éclairant, suscite des interrogations sur notre capacité à anticiper l’avenir et sur l’influence des événements rares dans nos vies quotidiennes. Sa perspective, parfois radicale, pousse à réfléchir sur l’importance d’intégrer l’incertitude dans nos décisions personnelles et professionnelles.\n\n### 🏆 Pertinence personnelle\nAu niveau personnel, « Le Cygne noir » m’incite à adopter une approche plus prudente face aux risques et à valoriser une pensée critique par rapport aux modèles économiques et prédictifs conventionnels. L’ouvrage me pousse à questionner la fiabilité des méthodes traditionnelles et à envisager des stratégies de vie et d’investissement qui prennent en compte l’imprévu. Il m’encourage à développer une résilience face aux incertitudes, renforçant ainsi ma capacité à naviguer dans un environnement en constante évolution."
+                  },
+                  {
+                    "modelName": "claude",
+                    "content": "## 6. Réflexion personnelle  \n\n### 💡 Impressions et questionnements  \nLe Cygne Noir est un ouvrage profondément déstabilisant qui remet en question notre façon de percevoir le monde et les événements. La manière dont Taleb déconstruit nos certitudes sur la prévisibilité et notre capacité à anticiper l'avenir est particulièrement marquante. Son style provocateur et sans concession, bien qu'parfois polémique, force à la réflexion et à l'humilité intellectuelle.\n\nCe qui impressionne particulièrement est sa capacité à démontrer comment notre biais rétrospectif nous fait croire que nous aurions pu prévoir des événements majeurs, alors qu'en réalité leur nature même les rend imprévisibles. La notion d'incertitude radicale qu'il développe est à la fois fascinante et inconfortable.\n\n### 🏆 Pertinence personnelle  \nLa lecture de cet ouvrage transforme profondément notre rapport au risque et à l'incertitude. Elle nous pousse à :\n- Adopter une posture plus humble face à nos capacités de prédiction\n- Remettre en question notre confiance excessive dans les experts et les modèles\n- Développer des stratégies pour devenir plus \"antifragile\" face aux événements imprévus\n- Être plus attentif aux signaux faibles et aux possibilités de rupture\n\nCette nouvelle perspective influence directement la façon d'aborder la prise de décision, que ce soit dans un contexte professionnel ou personnel, en nous encourageant à nous préparer à l'imprévu plutôt que de tenter vainement de le prédire."
+                  }
+                ]
+              },
+              {
+                "step": 7,
+                "summary": [
+                  {
+                    "modelName": "gpt",
+                    "content": "## 7. Conclusion et synthèse\n\n### 🔁 Récapitulatif des idées essentielles\nDans « Le Cygne noir », Taleb nous invite à repenser notre perception du risque et de l'incertitude en soulignant l'impact disproportionné des événements rares. L'auteur rappelle la faillibilité des modèles prédictifs classiques en illustrant comment des « cygnes noirs » – imprévisibles et extrêmes – peuvent remodeler l'économie et notre vision du monde.\n\n### 🌟 Ouverture\n- Ce livre est crucial pour qui souhaite comprendre la fragilité des systèmes modernes face aux imprévus, ouvrant ainsi le débat sur l'importance de l'anti-fragilité.\n- Il incite à une réflexion plus large sur la capacité des individus et des institutions à s'adapter à l'inattendu en adoptant des stratégies résilientes.\n- Pour approfondir ces notions, des lectures complémentaires comme « Antifragile » de Taleb ou des ouvrages sur la gestion du risque et l'incertitude peuvent s'avérer très enrichissantes."
+                  },
+                  {
+                    "modelName": "claude",
+                    "content": "## 7. Conclusion et synthèse\n\n### 🔁 Récapitulatif des idées essentielles\nLe Cygne Noir révolutionne notre compréhension des événements rares et de leur impact. Taleb démontre magistralement que notre monde est dominé par l'imprévisible et l'extrême, plutôt que par la moyenne et le prévisible. Les points essentiels sont:\n- L'impossibilité de prédire les événements à fort impact\n- La fragilité des modèles de prévision traditionnels\n- L'importance de construire des systèmes anti-fragiles\n- La distinction fondamentale entre Médiocristan et Extrêmistan\n\n### 🌟 Ouverture\nL'importance du Cygne Noir dans le domaine de la gestion des risques et de la prise de décision est fondamentale. Il a profondément influencé la pensée économique et financière post-2008. Ce livre ouvre une réflexion cruciale sur notre rapport à l'incertitude et notre capacité à naviguer dans un monde de plus en plus complexe et interconnecté.\n\nPour approfondir ces concepts, les lecteurs pourront se tourner vers:\n- 'Antifragile' du même auteur\n- 'Thinking, Fast and Slow' de Daniel Kahneman\n- 'The Black Swan: Second Edition' qui inclut un essai sur la robustesse et la fragilité"
+                  }
+                ]
+              }
+            ]
+          },
+          "jobType": "report"
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1"
   },
   "staticData": null,
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-03-21T21:42:08.000Z",
-  "versionId": "e453c91b-d899-4d38-8fe7-1ad6f932fc70"
+  "updatedAt": "2025-03-23T15:44:55.000Z",
+  "versionId": "9f8af94e-92e9-407e-ab25-b5fd37307e2e"
 }
