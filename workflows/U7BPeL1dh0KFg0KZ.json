@@ -1,44 +1,11 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
-    "On form submission": {
-      "main": [
-        [
-          {
-            "node": "Research Request",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "BookSummary Subworkflow": {
-      "main": [
-        [
-          {
-            "node": "Execution Data",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Research Request": {
-      "main": [
-        [
-          {
-            "node": "Set Variables",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Create Page": {
       "main": [
         [
           {
-            "node": "End Form",
+            "node": "Initiate UdemySummary",
             "type": "main",
             "index": 0
           }
@@ -60,7 +27,7 @@
       "main": [
         [
           {
-            "node": "Set Initial Query",
+            "node": "Set Initial Transcript",
             "type": "main",
             "index": 0
           }
@@ -74,34 +41,7 @@
         ],
         [
           {
-            "node": "BookSummary Control",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Set Initial Query": {
-      "main": [
-        [
-          {
-            "node": "Generate Summaries",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Initiate BookSummary": {
-      "main": [
-        []
-      ]
-    },
-    "Set Next Queries": {
-      "main": [
-        [
-          {
-            "node": "Generate Summaries",
+            "node": "UdemySummary Control",
             "type": "main",
             "index": 0
           }
@@ -130,7 +70,7 @@
         ],
         [
           {
-            "node": "Set Next Queries",
+            "node": "Set Next Transcript",
             "type": "main",
             "index": 0
           }
@@ -206,7 +146,7 @@
       "ai_languageModel": [
         [
           {
-            "node": "BookSummary Control",
+            "node": "UdemySummary Control",
             "type": "ai_languageModel",
             "index": 0
           }
@@ -334,18 +274,7 @@
       "main": [
         [
           {
-            "node": "Insert image column",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "BookSummary Control": {
-      "main": [
-        [
-          {
-            "node": "Get book cover img",
+            "node": "HTML to Array",
             "type": "main",
             "index": 0
           }
@@ -363,55 +292,93 @@
         ]
       ]
     },
-    "End Form": {
-      "main": [
-        [
-          {
-            "node": "Initiate BookSummary",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Insert image column": {
-      "main": [
-        [
-          {
-            "node": "HTML to Array",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Map imageUrl": {
-      "main": [
-        [
-          {
-            "node": "Convert to HTML",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get book cover img": {
-      "main": [
-        [
-          {
-            "node": "Map imageUrl",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Add blocks to Notion Page": {
       "main": [
         [
           {
             "node": "For Each Block...",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Json": {
+      "main": [
+        [
+          {
+            "node": "Set Variables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Initiate UdemySummary": {
+      "main": [
+        []
+      ]
+    },
+    "UdemySummary Subworkflow": {
+      "main": [
+        [
+          {
+            "node": "Execution Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Next Transcript": {
+      "main": [
+        [
+          {
+            "node": "Generate Summaries",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Initial Transcript": {
+      "main": [
+        [
+          {
+            "node": "Generate Summaries",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Json",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Json",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "UdemySummary Control": {
+      "main": [
+        [
+          {
+            "node": "Convert to HTML",
             "type": "main",
             "index": 0
           }
@@ -424,116 +391,16 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "Book Summary",
+  "name": "Udemy Summary",
   "nodes": [
-    {
-      "parameters": {
-        "formTitle": " bookSummary",
-        "formDescription": "=Book Summary est un outil qui permet de créer le résumé d'un lvire.\n\nComment l'utiliser ?\nFournissez le nom de l'auteur et le titre du livre.\n\nCe workflow est conçu pour s'exécuter de manière autonome. Une fois terminé, le résumé est sauvegardé dans une page Notion.",
-        "formFields": {
-          "values": [
-            {
-              "fieldType": "html"
-            }
-          ]
-        },
-        "options": {
-          "buttonLabel": "Next",
-          "path": "bookSummary",
-          "ignoreBots": true
-        }
-      },
-      "id": "cd90e666-7397-4c8d-8f50-33e38b34ffaf",
-      "name": "On form submission",
-      "type": "n8n-nodes-base.formTrigger",
-      "position": [
-        820,
-        -20
-      ],
-      "webhookId": "ce545434-e845-4fed-8d5b-bbdba30e40a7",
-      "typeVersion": 2.2
-    },
-    {
-      "parameters": {
-        "workflowInputs": {
-          "values": [
-            {
-              "name": "pageId"
-            },
-            {
-              "name": "data",
-              "type": "object"
-            },
-            {
-              "name": "jobType"
-            }
-          ]
-        }
-      },
-      "id": "8a1b7010-d07b-4ff5-b828-75ff471a1848",
-      "name": "BookSummary Subworkflow",
-      "type": "n8n-nodes-base.executeWorkflowTrigger",
-      "position": [
-        -20,
-        940
-      ],
-      "typeVersion": 1.1
-    },
-    {
-      "parameters": {
-        "operation": "completion",
-        "completionTitle": "Merci d'utiliser BookSummary.",
-        "completionMessage": "Vous pouvez fermer la fenêtre.",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.form",
-      "typeVersion": 1,
-      "position": [
-        1740,
-        -20
-      ],
-      "id": "a75ed419-8e62-471b-99ee-45891119cf0d",
-      "name": "End Form",
-      "webhookId": "013ee839-a386-49fb-805e-23634f837908"
-    },
-    {
-      "parameters": {
-        "formFields": {
-          "values": [
-            {
-              "fieldLabel": "Titre",
-              "placeholder": "Titre du livre",
-              "requiredField": true
-            },
-            {
-              "fieldLabel": "Auteur",
-              "placeholder": "Nom de l'auteur",
-              "requiredField": true
-            }
-          ]
-        },
-        "options": {
-          "formTitle": "BookSummary"
-        }
-      },
-      "type": "n8n-nodes-base.form",
-      "typeVersion": 1,
-      "position": [
-        1020,
-        -20
-      ],
-      "id": "f9a924c2-94e8-4488-b3d8-7b0fa919c853",
-      "name": "Research Request",
-      "webhookId": "e5cd24b3-9833-4d7c-ac4c-f2d6b53a959d"
-    },
     {
       "parameters": {
         "pageId": {
           "__rl": true,
-          "value": "https://www.notion.so/Ma-biblioth-que-1b582fe2640680f7bc10ea713f4e6aba",
+          "value": "https://www.notion.so/Test-1c282fe26406806baa86e380cbe7e7ed",
           "mode": "url"
         },
-        "title": "={{ $json.title }} - {{ $json.author }}",
+        "title": "={{ $json.chapter }}",
         "options": {
           "icon": "📘"
         }
@@ -664,121 +531,6 @@
     },
     {
       "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "acb41e93-70c6-41a3-be0f-e5a74ec3ec88",
-              "name": "query",
-              "type": "string",
-              "value": "={{ $('JobType Router').first().json.data.query }} 1"
-            },
-            {
-              "id": "7fc54063-b610-42bc-a250-b1e8847c4d1e",
-              "name": "summaries",
-              "type": "array",
-              "value": "={{ $('JobType Router').first().json.data.summaries }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "7c559504-4c6f-4ae3-a33b-41bec408adc1",
-      "name": "Set Initial Query",
-      "type": "n8n-nodes-base.set",
-      "position": [
-        820,
-        340
-      ],
-      "typeVersion": 3.4,
-      "alwaysOutputData": true
-    },
-    {
-      "parameters": {
-        "workflowId": {
-          "__rl": true,
-          "value": "={{ $workflow.id }}",
-          "mode": "id"
-        },
-        "workflowInputs": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "data": "={{ \n  {\n    \"query\": `Titre: ${$('Set Variables').first().json.title} - Auteur: ${$('Set Variables').first().json.author}. Etape:`,\n    \"summaries\": []\n  }\n}}",
-            "pageId": "={{ $json.id }}",
-            "jobType": "initiate"
-          },
-          "matchingColumns": [],
-          "schema": [
-            {
-              "id": "pageId",
-              "displayName": "pageId",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "canBeUsedToMatch": true,
-              "type": "string",
-              "removed": false
-            },
-            {
-              "id": "data",
-              "displayName": "data",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "canBeUsedToMatch": true,
-              "type": "object",
-              "removed": false
-            },
-            {
-              "id": "jobType",
-              "displayName": "jobType",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "canBeUsedToMatch": true,
-              "type": "string",
-              "removed": false
-            }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": true
-        },
-        "mode": "each",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1.2,
-      "position": [
-        1940,
-        -20
-      ],
-      "id": "bc1b0ceb-3a42-48aa-b998-cf40657a667a",
-      "name": "Initiate BookSummary"
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "d88bfe95-9e73-4d25-b45c-9f164b940b0e",
-              "name": "query",
-              "type": "string",
-              "value": "={{ `${$('JobType Router').first().json.data.query} ${$json.currentStep + 1}` }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "35d089ff-4ee6-458e-9354-5c440aa4357c",
-      "name": "Set Next Queries",
-      "type": "n8n-nodes-base.set",
-      "position": [
-        1740,
-        480
-      ],
-      "typeVersion": 3.4
-    },
-    {
-      "parameters": {
         "workflowId": {
           "__rl": true,
           "value": "={{ $workflow.id }}",
@@ -835,7 +587,7 @@
       "name": "Generate Report",
       "type": "n8n-nodes-base.executeWorkflow",
       "position": [
-        1940,
+        1980,
         240
       ],
       "typeVersion": 1.2
@@ -919,7 +671,7 @@
                 "operation": "true",
                 "singleValue": true
               },
-              "leftValue": "={{ $json.currentStep >= 7 }}",
+              "leftValue": "={{ $json.currentStep >= $('JobType Router').first().json.data.transcripts.length }}",
               "rightValue": ""
             }
           ],
@@ -939,7 +691,7 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "=Etant donné la requête suivante: <query>{{ $json.query }}</query>, génere le résumé défini par l'étape pour le livre mentionné.\n\n** Très important **\n- Assure toi de respecter scrupuleusement le format de sortie attendu.\n- Retourne moi uniquement la partie mentionné dans l'étape et rien d'autre.\n\nPar exemple: Si tu vois \"Etape: 4\", retounre moi la partie sur \"# 4. Méthodologie et preuves\" en suivant les instructions tel que mentionné dans ton system prompt.\n\nFormat de sortie:\n<output>\nmodelName: indique \"gpt\"\ncontent: indique ici le résumé\n</output>",
+        "text": "=Etant donné le chapitre suivant: <chapter>{{ $json.transcript.parseJson().title }}</chapter>, génere la leçon à partir de la transcription: <transcription>{{ $json.transcript.parseJson().content }}</transcription>\n\n** Très important **\n- Assure toi de respecter scrupuleusement le format de sortie attendu.\n- Ecris en français. Traduis également le titre du chapire (sauf les termes techniques).\n- Retourne moi uniquement la partie mentionné dans l'étape et rien d'autre. Contente toi de résumer ce que l'instructeur indique dans la transcription et **n'invente rien** !\n\nFormat de sortie (strictement en JSON):\n{\n  \"modelName\": \"gpt\",\n  \"content\": \"Le résumé de l'étape\"\n}",
         "hasOutputParser": true,
         "options": {
           "systemMessage": "={{ $json.systemPrompt }}"
@@ -952,7 +704,8 @@
         780
       ],
       "id": "30488868-7310-4a40-baf5-5e59b3867b65",
-      "name": "AI Agent"
+      "name": "AI Agent",
+      "retryOnFail": true
     },
     {
       "parameters": {
@@ -990,7 +743,8 @@
         940
       ],
       "id": "2fe866a2-ab1c-4259-aef5-73ee51ef6a3e",
-      "name": "Structured Output Parser"
+      "name": "Structured Output Parser",
+      "disabled": true
     },
     {
       "parameters": {
@@ -999,13 +753,13 @@
             {
               "id": "8329cf5f-9642-4de1-b0cf-9c10ab94e2fc",
               "name": "systemPrompt",
-              "value": "=# 📖 Prompt pour générer des fiches de lecture détaillées\n\n## 🎯 Contexte  \nTu vas rédiger une **fiche de lecture structurée** sur un livre d'économie, de développement personnel ou un roman.  \nL'objectif est d'analyser l'ouvrage en profondeur, en mettant en avant ses **idées principales**, sa **méthodologie**, son **impact** et une **réflexion personnelle**.  \n\nLe but est d'obtenir une fiche utile pour se rappeler des points essentiels, mais aussi pour partager avec d'autres personnes intéressées par le sujet.  \n\n## 📝 Instructions pour générer la fiche  \n\nRédige une fiche de lecture complète en respectant les étapes suivantes :  \n\n---\n\n## 1. Informations générales  \n\n- **Titre** :  \n- **Auteur** :  \n- **Éditeur** :  \n- **Année de publication** :  \n\n### 📌 Contexte historique et intellectuel \n  > Ex. *Le Cygne Noir* de Nassim Taleb s'inscrit dans la pensée critique sur la gestion des risques et l'incertitude, en opposition aux modèles prédictifs classiques utilisés en finance.*\n\n---\n\n## 2. Thèse et objectifs  \n\n### ❓ Problématique centrale  \n> Quelle question l’auteur cherche-t-il à résoudre ?  \n> *Ex. Taleb explore comment les événements rares et imprévisibles ont un impact majeur sur nos vies et notre économie.*\n\n### 🎯 Objectifs de l’auteur  \n- Quelle nouvelle perspective apporte l’auteur ?  \n- Quels changements de pensée ou d’action veut-il provoquer chez le lecteur ?  \n  > *Ex. Dans* La Semaine de 4 heures *, Tim Ferriss propose une approche révolutionnaire du travail qui encourage à automatiser ses revenus et à réduire le temps consacré au travail salarié.*\n\n---\n\n## 3. Structure et arguments  \n\n### 📚 Plan du livre  \nRésumé rapide de l'organisation du livre :  \n- **Nombre de chapitres / parties**  \n- **Logique de progression**  \n\n### 🔑 Points clés  \nIdentification des idées majeures et concepts principaux :  \n- **Ex. Le Cygne Noir** : le rôle des événements imprévus, la distinction entre Médiocristan et Extremistan.  \n- **Ex. La Semaine de 4h** : la loi de Pareto (80/20), l'automatisation du revenu.  \n\n---\n\n## 4. Méthodologie et preuves  \n\n### 📖 Sources et exemples utilisés  \nL’auteur s’appuie-t-il sur des études de cas, des statistiques, des témoignages ?  \n> Ex. *Taleb illustre son propos avec des événements historiques comme la crise financière de 2008, démontrant comment les modèles économiques classiques échouent à prévoir les crises.*\n\n### 🔍 Analyse critique  \n- **Les arguments sont-ils convaincants ?**  \n- **Y a-t-il des biais, des lacunes, des éléments contestables ?**  \n> Ex. *Certains reprochent à Taleb un manque de solutions concrètes et une tendance à l’exagération.*  \n\n---\n\n## 5. Implications et applications pratiques  \n\n### 🌍 Impact des idées  \nComment appliquer les concepts proposés dans la vie réelle ?  \n> *Ex. Pour un entrepreneur, la gestion du risque selon Taleb peut inspirer une stratégie d’investissement prudente basée sur l’anti-fragilité.*  \n\n### 🔄 Comparaison avec d’autres approches  \n- Quelles théories ou auteurs proposent des idées similaires ou opposées ?  \n- Existe-t-il d’autres moyens de répondre à la problématique ?  \n\n---\n\n## 6. Réflexion personnelle  \n\n### 💡 Impressions et questionnements  \nQu’est-ce qui vous a marqué ? Trouvez-vous le livre pertinent, innovant, discutable ?  \n\n### 🏆 Pertinence personnelle  \n- En quoi cet ouvrage vous impacte-t-il ?  \n- Change-t-il votre manière de penser ou d’agir ?  \n\n---\n\n## 7. Conclusion et synthèse  \n\n### 🔁 Récapitulatif des idées essentielles  \nSynthèse en quelques phrases des **idées majeures**, **arguments clés**, et **impact** du livre.  \n\n### 🌟 Ouverture  \n- Pourquoi ce livre est important dans son domaine ?  \n- Quelle réflexion plus large cela ouvre-t-il ?  \n- Quelles autres lectures pourraient compléter cette analyse ?  \n\n---\n\n## 📌 Structuration et mise en forme recommandées  \n\n- **Sections principales (H1 `##`)** → Suivent les grandes étapes de la fiche  \n- **Sous-sections (H3 `###`)** → Détail des éléments de chaque étape  \n- **Citations du livre** → Utiliser les blocs `>` pour mettre en valeur des extraits  \n- **Listes à puces** → Pour les idées clés  \n- **Exemples en italique** → Pour donner du contexte  \n\n---\n\n🎯 **Objectif final** : Obtenir une fiche de lecture bien structurée, synthétique et facile à relire.",
+              "value": "=# 🎬 Prompt pour Résumer des Vidéos Udemy (Chapitre par Chapitre)\n\n## 🎯 Contexte  \nTu es un **professeur spécialisé en programmation informatique**.  \nTa mission est de **résumer efficacement le contenu d'une vidéo Udemy** sur le thème de {{ $json.data.theme }}, en mettant en avant les **concepts clés**, les **termes techniques** et des **exemples de code** pertinents.\n\n\n## 📝 Instructions  \n\nUtilise les **règles suivantes** pour générer un résumé structuré à partir du **transcript** de la vidéo.\nLa leçon doit être en langue **française**.\nL'utilisateur te fournira le **titre du chapitre** ainsi que sa **transcription** dans chacun de ses prompts.\n\n---\n\n## Format de sortie  \n\n### 🏷 Titre de la section  \n- Utilise `#` suivi du **titre de la section**.\n\n### 🔑 Idées clés\n- Détaille **7 points maximum** sous forme de bullet points `-` en identifiant les **concepts clés** du chapitre.  \n- Si un **terme technique** est mentionné dans la **transcription**,, ne le **traduis pas** et mets-le en **évidence avec des backticks (`)`**.\n- Ex. :  \n  > - Utilisation de `async/await` pour gérer les promesses en JavaScript.  \n  > - Différence entre `let`, `const` et `var` en ES6.  \n\n### 💻 Exemples de Code  \n- Si un **exemple de code** est mentionné, fournis-le **dans un bloc de code Markdown (` ``` `)**.  \n- **Langage du code** → déduis-le du contexte du sujet.\n- N'indique pas comme titre \"Exemples de Code\". Contente toi de donner l'exemple dans un bloc de code.\n- **Exemple** :\n  \n  ```python\n  def hello_world():\n      print(\"Hello, World!\")\n  ```\n\nTa réponse doit être EXACTEMENT dans ce format JSON, sans aucun texte avant ou après :\n\n{\n  \"modelName\": \"nom du modele\",\n  \"content\": \"# Titre de la section\\n\\n- Point 1\\n- Point 2\\n\\n```langage\\ncode ici\\n```\"\n}\n\nNotes importantes sur le format :\n- Le titre principal commence par un seul #\n- Les points clés sont listés directement avec des tirets (-) sans titre \"Points Clés\" ou \"### Points Clés\"\n- Les exemples de code sont inclus directement dans des blocs de code (```) sans titre \"Exemples de Code\"\n\n---\n\n## 📌 Structuration et mise en forme recommandées  \n\n- **Sections principales (H1 `##`)** → Suivent les grandes étapes de la fiche  \n- **Sous-sections (optionnel) (H3 `###`)** → Détail des éléments de chaque étape. Uniquement si nécessaire pour diviser un chapitre en plusieurs parties. Inutile pour les petits\n- **Listes à puces** → Pour les idées clés\n- **Bacticks (``) -> Pour les termes techniques\n- **Bloc de code** → Pour illustrer par des exemples\n\n---\n\n🎯 **Objectif final** : Obtenir un résumé **clair, synthétique et lisible** de chaque vidéo Udemy, facilitant la révision et l'apprentissage du contenu.",
               "type": "string"
             },
             {
               "id": "8ec2711a-c778-4d2f-ab26-08d6696964a6",
-              "name": "query",
-              "value": "={{ $('JobType Router').first().json.data.query.trim() }}",
+              "name": "transcript",
+              "value": "={{ $('JobType Router').first().json.data.transcript }}",
               "type": "string"
             }
           ]
@@ -1024,7 +778,7 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "=Etant donné la requête suivante: <query>{{ $json.query }}</query>, génere le résumé défini par l'étape pour le livre mentionné.\n\n** Très important **\n- Assure toi de respecter scrupuleusement le format de sortie attendu.\n- Retourne moi uniquement la partie mentionné dans l'étape et rien d'autre.\n\nPar exemple: Si tu vois \"Etape: 4\", retounre moi la partie sur \"# 4. Méthodologie et preuves\" en suivant les instructions tel que mentionné dans ton system prompt.\n\nFormat de sortie:\n<output>\nmodelName: indique \"claude\"\ncontent: indique ici le résumé\n</output>",
+        "text": "=Etant donné le chapitre suivant: <chapter>{{ $json.transcript.parseJson().title }}</chapter>, génere la leçon à partir de la transcription: <transcription>{{ $json.transcript.parseJson().content }}</transcription>\n\n** Très important **\n- Assure toi de respecter scrupuleusement le format de sortie attendu.\n- Ecris en français. Traduis également le titre du chapire (sauf les termes techniques).\n- Retourne moi uniquement la partie mentionné dans l'étape et rien d'autre. Contente toi de résumer ce que l'instructeur indique dans la transcription et **n'invente rien** !\n\nFormat de sortie (strictement en JSON):\n{\n  \"modelName\": \"claude\",\n  \"content\": \"Le résumé de l'étape\"\n}",
         "hasOutputParser": true,
         "options": {
           "systemMessage": "={{ $json.systemPrompt }}"
@@ -1037,7 +791,8 @@
         1080
       ],
       "id": "0c59c535-edea-4932-a352-8e30bd41e804",
-      "name": "AI Agent1"
+      "name": "AI Agent1",
+      "retryOnFail": true
     },
     {
       "parameters": {
@@ -1048,7 +803,7 @@
       "typeVersion": 1.2,
       "position": [
         1080,
-        1220
+        1240
       ],
       "id": "83cdf1b6-4a9f-4aab-b02d-c75a3bd89ec7",
       "name": "Anthropic Chat Model",
@@ -1069,27 +824,6 @@
       ],
       "id": "28585432-f193-44b6-9882-5856077d8e65",
       "name": "Merge"
-    },
-    {
-      "parameters": {
-        "promptType": "define",
-        "text": "=Liste des résumés sur lesquels tu dois performé le contrôle et le formatage:\n{{\n  $('JobType Router').first().json.data.summaries &&\n  `<summaries>\n    ${$('JobType Router').first().json.data.summaries.map(summaryItem => \n      `<step>${summaryItem.step}</step>\n        ${summaryItem.summary.map(item => \n          `<summary>\n            <model>${item.modelName}</model>\n            <content>${item.content}</content>\n          </summary>`\n        ).join('\\n')}`\n    ).join('\\n')}\n  </summaries>`\n}}\n",
-        "messages": {
-          "messageValues": [
-            {
-              "message": "=# Agent de Contrôle et Formatage des Résumés de Livres\n\n## Contexte\nTu es un agent spécialisé dans l'analyse, la fusion et le formatage des résumés de livres générés par deux modèles d'IA différents (GPT et Claude). Ces résumés suivent une structure prédéfinie en 7 parties pour créer une fiche de lecture complète.\n\n## Objectif\nCréer une version unifiée, non-redondante et correctement formatée du résumé de livre en exploitant les meilleures contributions de chaque modèle pour chaque section.\n\n## Donées d'entrée\nTu recevras une collection de résumés structurés comme suit:\n<summaries>\n  <step>: Indique la partie dans laquelle on se trouve.\n  <summary>\n    <model>: Indique le modèle LLM utilisé pour créer la partie.\n    <content>: Le contenu de la partie.\n  </summary>\n</summaries>\n\n## Instructions\n\n### 1. Analyse et sélection du contenu\nPour chaque section du résumé (1 à 7):\n- Compare les versions fournies par gpt et claude\n- Identifie les informations uniques et pertinentes dans chaque version\n- Sélectionne les éléments les plus complets, précis et bien formulés\n- Évite toute redondance ou répétition d'information\n\n### 2. Fusion intelligente\n- Ne te contente pas de concaténer les informations, mais fusionne-les de manière cohérente\n- Préserve les informations distinctives et complémentaires de chaque source\n- Assure une transition fluide entre les éléments de différentes sources\n- Maintiens un ton et un style cohérents dans l'ensemble du document\n\n### 3. Vérification de la structure\nAssure-toi que le résumé final respecte rigoureusement la structure suivante:\n1. **Informations générales**\n   - Données bibliographiques\n   - Contexte historique et intellectuel\n2. **Thèse et objectifs**\n   - Problématique centrale\n   - Objectifs de l'auteur\n3. **Structure et arguments**\n   - Plan du livre\n   - Points clés\n4. **Méthodologie et preuves**\n   - Sources et exemples\n   - Analyse critique\n5. **Implications et applications pratiques**\n   - Impact des idées\n   - Comparaison avec d'autres approches\n6. **Réflexion personnelle**\n   - Impressions et questionnements\n   - Pertinence personnelle\n7. **Conclusion et synthèse**\n   - Récapitulatif des idées essentielles\n   - Ouverture\n\n### 4. Formatage Markdown\n- Utilise le format Markdown de manière rigoureuse:\n  - Sections principales (H1) avec `#` pour les 7 grandes parties\n  - Sous-sections (H3) avec `###` pour les détails de chaque partie\n  - Citations en blocs `>` pour les extraits du livre\n  - Listes à puces `-` pour les concepts et idées clés\n  - *Italique* pour les exemples et illustrations\n  - **Gras** pour les concepts importants\n\nPour la partie Données bibliographiques:\nFournir uniquement liste qui contient: titre, auteur, éditeur, année.\nNe pas indiquer \"Données bibliographiques\" comme titre, mais simplement la liste avec le champs en gras et la valeur normal (par exemple: **Titre** : Valeur). \n\n### 5. Vérification finale\n- Assure-toi que toutes les sections sont présentes et substantielles\n- Vérifie que le formatage Markdown est correct et cohérent\n- Garantis que le document final est bien structuré, informatif et agréable à lire\n- Élimine toute redondance ou répétition inutile\n\n## Format de sortie\nFournis uniquement le résumé final en Markdown correctement formaté, sans ajouter de commentaires ou d'explications sur le processus utilisé."
-            }
-          ]
-        }
-      },
-      "id": "95223fbd-d1c8-404d-8fc7-925a28339e23",
-      "name": "BookSummary Control",
-      "type": "@n8n/n8n-nodes-langchain.chainLlm",
-      "position": [
-        820,
-        1460
-      ],
-      "typeVersion": 1.5
     },
     {
       "parameters": {
@@ -1125,7 +859,7 @@
       "name": "Tags to Items",
       "type": "n8n-nodes-base.splitOut",
       "position": [
-        1720,
+        1500,
         1680
       ],
       "typeVersion": 1
@@ -1133,7 +867,7 @@
     {
       "parameters": {
         "mode": "markdownToHtml",
-        "markdown": "={{ $('BookSummary Control').item.json.text }}",
+        "markdown": "={{ $('UdemySummary Control').item.json.text }}",
         "options": {
           "tables": true
         }
@@ -1142,7 +876,7 @@
       "name": "Convert to HTML",
       "type": "n8n-nodes-base.markdown",
       "position": [
-        1460,
+        1240,
         1460
       ],
       "typeVersion": 1
@@ -1165,7 +899,7 @@
       "name": "HTML to Array",
       "type": "n8n-nodes-base.set",
       "position": [
-        1720,
+        1500,
         1460
       ],
       "typeVersion": 3.4
@@ -1177,7 +911,7 @@
         "messages": {
           "messageValues": [
             {
-              "message": "=Convertis le HTML suivant en son équivalent de Bloc Notion selon le schéma API de Notion.\n* Assure-toi que le contenu est toujours inclus et reste le même.\n* Renvoie uniquement une réponse JSON.\n* Génère des blocs de niveau enfant. Ne définis pas de propriété \"parent\" ou \"children\".\n* Privilégie fortement les titres, paragraphes, tableaux et des blocs de listes.\n* Les titres disponibles sont heading_1, heading_2 et heading_3 - h4, h5, h6 doivent utiliser le type heading_3 à la place. Assure-toi que les titres utilisent la définition de texte enrichi.\n* Assure-toi que les blocs de listes incluent tous les éléments de la liste.\n* Retire les sauts de ligne (\\n) inutiles.\n\n## Exemples\n\n1. Titres\n```\n<h3 id=\"references\">References</h3>\n```\nse convertirait en\n```\n{\"object\":  \"block\", \"type\": \"heading_3\", \"heading_3\": { \"rich_text\": [{\"type\": \"text\",\"text\": {\"content\": \"References\"}}]}}\n```\n\n2. Listes\n```\n<ul><li><strong>hello</strong></li><li>world</li></ul>\n```\nse convertirait en\n```\n[\n{\n  \"object\": \"block\",\n  \"type\": \"bulleted_list_item\",\n  \"bulleted_list_item\": {\"rich_text\": [{\"type\": \"text\",\"text\": {\"content\": \"hello\"}, \"annotations\": {\"bold\": true}}]}\n},\n{\n  \"object\": \"block\",\n  \"type\": \"bulleted_list_item\",\n  \"bulleted_list_item\": {\"rich_text\": [{\"type\": \"text\",\"text\": {\"content\": \"world\"}}]}\n}\n]\n```\n\n3. Tableaux\n```\n<table>\n  <thead>\n    <tr><th>Technology</th><th>Potential Impact</th></tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>5G Connectivity</td><td>Enables faster data speeds and advanced apps</td>\n    </tr>\n  </tbody>\n</table>\n```\nse convertirait en\n```\n{\n  \"object\": \"block\",\n  \"type\": \"table\",\n  \"table\": {\n    \"table_width\": 2,\n    \"has_column_header\": true,\n    \"has_row_header\": false,\n    \"children\": [\n      {\n        \"object\": \"block\",\n        \"type\": \"table_row\",\n        \"table_row\": {\n          \"cells\": [\n            [\n              {\n                \"type\": \"text\",\n                \"text\": {\n                  \"content\": \"Technology\",\n                  \"link\": null\n                }\n              },\n              {\n                \"type\": \"text\",\n                \"text\": {\n                  \"content\": \"Potential Impact\",\n                  \"link\": null\n                }\n              }\n            ],\n            [\n              {\n                \"type\": \"text\",\n                \"text\": {\n                  \"content\": \"5G Connectivity\",\n                  \"link\": null\n                }\n              },\n              {\n                \"type\": \"text\",\n                \"text\": {\n                  \"content\": \"Enables faster data speeds and advanced apps\",\n                  \"link\": null\n                }\n              }\n            ]\n          ]\n        }\n      }\n    ]\n  }\n}\n```\n\n4. Liens d'ancrage\nPuisque Notion ne prend pas en charge les liens d'ancrage, convertis-les simplement en blocs de texte enrichi à la place.\n```\n<a href=\"#module-0-pre-course-setup-and-learning-principles\">Module 0: Pre-Course Setup and Learning Principles</a>\n```\nse convertit en\n```\n{\n  \"object\": \"block\",\n  \"type\": \"paragraph\",\n  \"paragraph\": {\n    \"rich_text\": [\n      {\n        \"type\": \"text\",\n        \"text\": {\n          \"content\": \"Module 0: Pre-Course Setup and Learning Principles\"\n        }\n      }\n    ]\n  }\n}\n```\n\n5. Parties HTML invalides\nLorsque le HTML n'est pas syntaxiquement valide, par ex. des balises de fermeture orphelines, ignore simplement la conversion et utilise un bloc de texte enrichi vide.\n```\n</li>\\n</ol>\n```\npeut être remplacé par\n```\n{\n  \"object\": \"block\",\n  \"type\": \"paragraph\",\n  \"paragraph\": {\n    \"rich_text\": [\n      {\n        \"type\": \"text\",\n        \"text\": {\n          \"content\": \" \"\n        }\n      }\n    ]\n  }\n}\n```\nConvertis le HTML suivant en son équivalent de Bloc Notion selon le schéma API de Notion.\n* Assure-toi que le contenu est toujours inclus et reste le même.\n* Renvoie uniquement une réponse JSON.\n* Génère des blocs de niveau enfant. Ne définis pas de propriété \"parent\" ou \"children\".\n* Privilégie fortement les titres, paragraphes, tableaux et des blocs de listes.\n* Les titres disponibles sont heading_1, heading_2 et heading_3 - h4, h5, h6 doivent utiliser le type heading_3 à la place. Assure-toi que les titres utilisent la définition de texte enrichi.\n* Assure-toi que les blocs de listes incluent tous les éléments de la liste.\n\n## Exemples\n\n1. Titres\n```\n<h3 id=\"references\">References</h3>\n```\nse convertirait en\n```\n{\"object\":  \"block\", \"type\": \"heading_3\", \"heading_3\": { \"rich_text\": [{\"type\": \"text\",\"text\": {\"content\": \"References\"}}]}}\n```\n\n2. Listes\n```\n<ul><li>hello</li><li>world</li></ul>\n```\nse convertirait en\n```\n[\n{\n  \"object\": \"block\",\n  \"type\": \"bulleted_list_item\",\n  \"bulleted_list_item\": {\"rich_text\": [{\"type\": \"text\",\"text\": {\"content\": \"hello\"}}]}\n},\n{\n  \"object\": \"block\",\n  \"type\": \"bulleted_list_item\",\n  \"bulleted_list_item\": {\"rich_text\": [{\"type\": \"text\",\"text\": {\"content\": \"world\"}}]}\n}\n]\n```\n\n3. Tableaux\n```\n<table>\n  <thead>\n    <tr><th>Technology</th><th>Potential Impact</th></tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>5G Connectivity</td><td>Enables faster data speeds and advanced apps</td>\n    </tr>\n  </tbody>\n</table>\n```\nse convertirait en\n```\n{\n  \"object\": \"block\",\n  \"type\": \"table\",\n  \"table\": {\n    \"table_width\": 2,\n    \"has_column_header\": true,\n    \"has_row_header\": false,\n    \"children\": [\n      {\n        \"object\": \"block\",\n        \"type\": \"table_row\",\n        \"table_row\": {\n          \"cells\": [\n            [\n              {\n                \"type\": \"text\",\n                \"text\": {\n                  \"content\": \"Technology\",\n                  \"link\": null\n                }\n              },\n              {\n                \"type\": \"text\",\n                \"text\": {\n                  \"content\": \"Potential Impact\",\n                  \"link\": null\n                }\n              }\n            ],\n            [\n              {\n                \"type\": \"text\",\n                \"text\": {\n                  \"content\": \"5G Connectivity\",\n                  \"link\": null\n                }\n              },\n              {\n                \"type\": \"text\",\n                \"text\": {\n                  \"content\": \"Enables faster data speeds and advanced apps\",\n                  \"link\": null\n                }\n              }\n            ]\n          ]\n        }\n      }\n    ]\n  }\n}\n```\n\n4. Liens d'ancrage\nPuisque Notion ne prend pas en charge les liens d'ancrage, convertis-les simplement en blocs de texte enrichi à la place.\n```\n<a href=\"#module-0-pre-course-setup-and-learning-principles\">Module 0: Pre-Course Setup and Learning Principles</a>\n```\nse convertit en\n```\n{\n  \"object\": \"block\",\n  \"type\": \"paragraph\",\n  \"paragraph\": {\n    \"rich_text\": [\n      {\n        \"type\": \"text\",\n        \"text\": {\n          \"content\": \"Module 0: Pre-Course Setup and Learning Principles\"\n        }\n      }\n    ]\n  }\n}\n```\n\n5. Parties HTML invalides\nLorsque le HTML n'est pas syntaxiquement valide, par ex. des balises de fermeture orphelines, ignore simplement la conversion et utilise un bloc de texte enrichi vide.\n```\n</li>\\n</ol>\n```\npeut être remplacé par\n```\n{\n  \"object\": \"block\",\n  \"type\": \"paragraph\",\n  \"paragraph\": {\n    \"rich_text\": [\n      {\n        \"type\": \"text\",\n        \"text\": {\n          \"content\": \" \"\n        }\n      }\n    ]\n  }\n}\n```\n\nConvertis le HTML suivant en son équivalent de Bloc Notion selon le schéma API de Notion.\n* Assure-toi que le contenu est toujours inclus et reste le même.\n* Renvoie uniquement une réponse JSON.\n* Génère des blocs de niveau enfant. Ne définis pas de propriété \"parent\" ou \"children\".\n* Privilégie fortement les titres, paragraphes, tableaux et des blocs de listes.\n* Les titres disponibles sont heading_1, heading_2 et heading_3 - h4, h5, h6 doivent utiliser le type heading_3 à la place. Assure-toi que les titres utilisent la définition de texte enrichi.\n* Assure-toi que les blocs de listes incluent tous les éléments de la liste.\n\n## Exemples\n\n1. Titres\n```\n<h3 id=\"references\">References</h3>\n```\nse convertirait en\n```\n{\"object\":  \"block\", \"type\": \"heading_3\", \"heading_3\": { \"rich_text\": [{\"type\": \"text\",\"text\": {\"content\": \"References\"}}]}}\n```\n\n2. Listes\n```\n<ul><li>hello</li><li>world</li></ul>\n```\nse convertirait en\n```\n[\n{\n  \"object\": \"block\",\n  \"type\": \"bulleted_list_item\",\n  \"bulleted_list_item\": {\"rich_text\": [{\"type\": \"text\",\"text\": {\"content\": \"hello\"}}]}\n},\n{\n  \"object\": \"block\",\n  \"type\": \"bulleted_list_item\",\n  \"bulleted_list_item\": {\"rich_text\": [{\"type\": \"text\",\"text\": {\"content\": \"world\"}}]}\n}\n]\n```\n\n3. Tableaux\n```\n<table>\n  <thead>\n    <tr><th>Technology</th><th>Potential Impact</th></tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>5G Connectivity</td><td>Enables faster data speeds and advanced apps</td>\n    </tr>\n  </tbody>\n</table>\n```\nse convertirait en\n```\n{\n  \"object\": \"block\",\n  \"type\": \"table\",\n  \"table\": {\n    \"table_width\": 2,\n    \"has_column_header\": true,\n    \"has_row_header\": false,\n    \"children\": [\n      {\n        \"object\": \"block\",\n        \"type\": \"table_row\",\n        \"table_row\": {\n          \"cells\": [\n            [\n              {\n                \"type\": \"text\",\n                \"text\": {\n                  \"content\": \"Technology\",\n                  \"link\": null\n                }\n              },\n              {\n                \"type\": \"text\",\n                \"text\": {\n                  \"content\": \"Potential Impact\",\n                  \"link\": null\n                }\n              }\n            ],\n            [\n              {\n                \"type\": \"text\",\n                \"text\": {\n                  \"content\": \"5G Connectivity\",\n                  \"link\": null\n                }\n              },\n              {\n                \"type\": \"text\",\n                \"text\": {\n                  \"content\": \"Enables faster data speeds and advanced apps\",\n                  \"link\": null\n                }\n              }\n            ]\n          ]\n        }\n      }\n    ]\n  }\n}\n```\n\n4. Liens d'ancrage\nPuisque Notion ne prend pas en charge les liens d'ancrage, convertis-les simplement en blocs de texte enrichi à la place.\n```\n<a href=\"#module-0-pre-course-setup-and-learning-principles\">Module 0: Pre-Course Setup and Learning Principles</a>\n```\nse convertit en\n```\n{\n  \"object\": \"block\",\n  \"type\": \"paragraph\",\n  \"paragraph\": {\n    \"rich_text\": [\n      {\n        \"type\": \"text\",\n        \"text\": {\n          \"content\": \"Module 0: Pre-Course Setup and Learning Principles\"\n        }\n      }\n    ]\n  }\n}\n```\n\n5. Parties HTML invalides\nLorsque le HTML n'est pas syntaxiquement valide, par ex. des balises de fermeture orphelines, ignore simplement la conversion et utilise un bloc de texte enrichi vide.\n```\n</li>\\n</ol>\n```\npeut être remplacé par\n```\n{\n  \"object\": \"block\",\n  \"type\": \"paragraph\",\n  \"paragraph\": {\n    \"rich_text\": [\n      {\n        \"type\": \"text\",\n        \"text\": {\n          \"content\": \" \"\n        }\n      }\n    ]\n  }\n}\n```\n\n6. Div et images\nPour les mises en page flexibles comme <div style=\"display: flex\">, transforme-les en une séquence de blocs, d'abord un bloc image puis des paragraphes/listes pour maintenir le contenu dans l'ordre correct.\nPour les balises <img>, crée un bloc de type \"image\" et utilise l'URL dans l'attribut \"src\" comme source externe.\n```\n<div style=\"display: flex; align-items: flex-start;\">\n  <div style=\"width: 20%;\">\n    <img src=\"https://example.com/image.jpg\" alt=\"Description\" style=\"width: 100%;\">\n  </div>\n  <div style=\"width: 80%\">\n    <ul><li>Item 1</li><li>Item 2</li></ul>\n  </div>\n</div>\n```\nse convertirait en\n```\n{\n    \"object\": \"block\",\n    \"type\": \"column_list\",\n    \"column_list\": {\n        \"children\": [\n            {\n                \"object\": \"block\",\n                \"type\": \"column\",\n                \"column\": {\n                    \"children\": [\n                        {\n                            \"object\": \"block\",\n                            \"type\": \"image\",\n                            \"image\": {\n                                \"type\": \"external\",\n                                \"external\": {\n                                    \"url\": \"https://example.com/image.jpg\"\n                                }\n                            }\n                        }\n                    ]\n                }\n            },\n            {\n                \"object\": \"block\",\n                \"type\": \"column\",\n                \"column\": {\n                    \"children\": [\n                        {\n                            \"object\": \"block\",\n                            \"type\": \"bulleted_list_item\",\n                            \"bulleted_list_item\": {\n                                \"rich_text\": [\n                                    {\n                                        \"type\": \"text\",\n                                        \"text\": {\n                                            \"content\": \"Item 1\"\n                                        }\n                                    }\n                                ]\n                            }\n                        },\n                        {\n                            \"object\": \"block\",\n                            \"type\": \"bulleted_list_item\",\n                            \"bulleted_list_item\": {\n                                \"rich_text\": [\n                                    {\n                                        \"type\": \"text\",\n                                        \"text\": {\n                                            \"content\": \"Item 2\"\n                                        }\n                                    }\n                                ]\n                            }\n                        }\n                    ]\n                }\n            }\n        ]\n    }\n}\n```\n\n7. Images simples\nPour les balises <img> indépendantes, crée un bloc image:\n```\n<img src=\"https://example.com/photo.jpg\" alt=\"Photo\" width=\"500\">\n```\nse convertirait en\n```\n{\n    \"object\": \"block\",\n    \"type\": \"image\",\n    \"image\": {\n        \"type\": \"external\",\n        \"external\": {\n            \"url\": \"https://example.com/photo.jpg\"\n        },\n        \"caption\": [\n            {\n                \"type\": \"text\",\n                \"text\": {\n                    \"content\": \"Photo\"\n                }\n            }\n        ]\n    }\n}\n```\n"
+              "message": "=Convertis le HTML suivant en son équivalent de Bloc Notion selon le schéma API de Notion.\n* Assure-toi que le contenu est toujours inclus et reste le même.\n* Renvoie uniquement une réponse JSON.\n* Génère des blocs de niveau enfant. Ne définis pas de propriété \"parent\" ou \"children\".\n* Privilégie fortement les titres, paragraphes, tableaux et des blocs de listes.\n* Les titres disponibles sont heading_1, heading_2 et heading_3 - h4, h5, h6 doivent utiliser le type heading_3 à la place. Assure-toi que les titres utilisent la définition de texte enrichi.\n* Assure-toi que les blocs de listes incluent tous les éléments de la liste.\n\n## Exemples\n\n1. Titres\n```\n<h3 id=\"references\">References</h3>\n```\nse convertirait en\n```\n{\"object\":  \"block\", \"type\": \"heading_3\", \"heading_3\": { \"rich_text\": [{\"type\": \"text\",\"text\": {\"content\": \"References\"}}]}}\n```\n\n2. Listes\n```\n<ul><li>hello</li><li>world</li></ul>\n```\nse convertirait en\n```\n[\n{\n  \"object\": \"block\",\n  \"type\": \"bulleted_list_item\",\n  \"bulleted_list_item\": {\"rich_text\": [{\"type\": \"text\",\"text\": {\"content\": \"hello\"}}]}\n},\n{\n  \"object\": \"block\",\n  \"type\": \"bulleted_list_item\",\n  \"bulleted_list_item\": {\"rich_text\": [{\"type\": \"text\",\"text\": {\"content\": \"world\"}}]}\n}\n]\n```\n\n3. Tableaux\n```\n<table>\n  <thead>\n    <tr><th>Technology</th><th>Potential Impact</th></tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>5G Connectivity</td><td>Enables faster data speeds and advanced apps</td>\n    </tr>\n  </tbody>\n</table>\n```\nse convertirait en\n```\n{\n  \"object\": \"block\",\n  \"type\": \"table\",\n  \"table\": {\n    \"table_width\": 2,\n    \"has_column_header\": true,\n    \"has_row_header\": false,\n    \"children\": [\n      {\n        \"object\": \"block\",\n        \"type\": \"table_row\",\n        \"table_row\": {\n          \"cells\": [\n            [\n              {\n                \"type\": \"text\",\n                \"text\": {\n                  \"content\": \"Technology\",\n                  \"link\": null\n                }\n              },\n              {\n                \"type\": \"text\",\n                \"text\": {\n                  \"content\": \"Potential Impact\",\n                  \"link\": null\n                }\n              }\n            ],\n            [\n              {\n                \"type\": \"text\",\n                \"text\": {\n                  \"content\": \"5G Connectivity\",\n                  \"link\": null\n                }\n              },\n              {\n                \"type\": \"text\",\n                \"text\": {\n                  \"content\": \"Enables faster data speeds and advanced apps\",\n                  \"link\": null\n                }\n              }\n            ]\n          ]\n        }\n      }\n    ]\n  }\n}\n```\n\n4. Liens d'ancrage\nPuisque Notion ne prend pas en charge les liens d'ancrage, convertis-les simplement en blocs de texte enrichi à la place.\n```\n<a href=\"#module-0-pre-course-setup-and-learning-principles\">Module 0: Pre-Course Setup and Learning Principles</a>\n```\nse convertit en\n```\n{\n  \"object\": \"block\",\n  \"type\": \"paragraph\",\n  \"paragraph\": {\n    \"rich_text\": [\n      {\n        \"type\": \"text\",\n        \"text\": {\n          \"content\": \"Module 0: Pre-Course Setup and Learning Principles\"\n        }\n      }\n    ]\n  }\n}\n```\n\n5. Parties HTML invalides\nLorsque le HTML n'est pas syntaxiquement valide, par ex. des balises de fermeture orphelines, ignore simplement la conversion et utilise un bloc de texte enrichi vide.\n```\n</li>\\n</ol>\n```\npeut être remplacé par\n```\n{\n  \"object\": \"block\",\n  \"type\": \"paragraph\",\n  \"paragraph\": {\n    \"rich_text\": [\n      {\n        \"type\": \"text\",\n        \"text\": {\n          \"content\": \" \"\n        }\n      }\n    ]\n  }\n}\n```\n\n6. Blocs de code\nLorsque tu vois des blocs de code.\n\n```html\n<pre><code class=\"language-javascript\">function hello() {\n  console.log(\"Hello world!\");\n}</code></pre>\n```\nse convertirait en\n```json\n{\n  \"object\": \"block\",\n  \"type\": \"code\",\n  \"code\": {\n    \"rich_text\": [{\n      \"type\": \"text\",\n      \"text\": {\n        \"content\": \"function hello() {\\n  console.log(\\\"Hello world!\\\");\\n}\"\n      }\n    }],\n    \"language\": \"javascript\"\n  }\n}\n```\n\nNotes importantes pour les blocs de code :\n- La propriété `language` est optionnelle, elle peut être déduite de la classe `language-xxx` dans le HTML\n- Les langages supportés par Notion incluent : abap, arduino, bash, basic, c, clojure, coffeescript, c++, c#, css, dart, diff, docker, elixir, elm, erlang, flow, fortran, f#, gherkin, glsl, go, graphql, groovy, haskell, html, java, javascript, json, julia, kotlin, latex, less, lisp, livescript, lua, makefile, markdown, markup, matlab, mermaid, nix, objective-c, ocaml, pascal, perl, php, plain text, powershell, prolog, protobuf, python, r, reason, ruby, rust, sass, scala, scheme, scss, shell, sql, swift, typescript, vb.net, verilog, vhdl, visual basic, webassembly, xml, yaml\n- Si aucun langage n'est spécifié ou si le langage n'est pas supporté, Notion utilisera \"plain text\" par défaut\n\nInformation importante pour les termes techniques qui sont marqués en backticks:\nDans l'API Notion, le code inline est géré via l'annotation `code: true` dans le `rich_text`. C'est différent des blocs de code qui utilisent le type `code`. Cette distinction est importante car :\n- Les backticks simples (`) doivent générer du texte avec `annotations.code = true`\n- Les blocs de code (```) doivent générer des blocs de type `code`"
             }
           ]
         }
@@ -1186,7 +920,7 @@
       "name": "Notion Block Generator",
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "position": [
-        2000,
+        1780,
         1460
       ],
       "typeVersion": 1.5
@@ -1200,7 +934,7 @@
       "name": "Google Gemini Chat Model",
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "position": [
-        2020,
+        1800,
         1600
       ],
       "typeVersion": 1,
@@ -1229,7 +963,7 @@
       "name": "Parse JSON blocks",
       "type": "n8n-nodes-base.set",
       "position": [
-        2320,
+        2100,
         1460
       ],
       "executeOnce": false,
@@ -1265,7 +999,7 @@
       "name": "Valid Blocks",
       "type": "n8n-nodes-base.filter",
       "position": [
-        2320,
+        2100,
         1680
       ],
       "typeVersion": 2.2
@@ -1278,7 +1012,7 @@
       "name": "For Each Block...",
       "type": "n8n-nodes-base.splitInBatches",
       "position": [
-        2600,
+        2380,
         1460
       ],
       "typeVersion": 3
@@ -1289,15 +1023,21 @@
           "assignments": [
             {
               "id": "56340b31-7474-4542-8c90-7b00673767a0",
-              "name": "title",
-              "value": "={{ $json.Titre.trim() }}",
+              "name": "theme",
+              "value": "={{ $json.theme }}",
               "type": "string"
             },
             {
-              "id": "41af239e-7d0f-4388-b87c-e9534dfc7401",
-              "name": "author",
-              "value": "={{ $json.Auteur.trim() }}",
+              "id": "b413f2dd-e8fb-40db-a62c-aaebdfea6a85",
+              "name": "chapter",
+              "value": "={{ $json.chapter }}",
               "type": "string"
+            },
+            {
+              "id": "9aee7906-3504-452b-8893-2167fb6509d1",
+              "name": "transcripts",
+              "value": "={{ $json.sections }}",
+              "type": "array"
             }
           ]
         },
@@ -1314,7 +1054,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const maxStep = $('Set Current Step').first().json.currentStep;\nconst queryString = $('JobType Router').first().json.data.query;\nconst titleMatch = queryString.match(/Titre:\\s*(.*?)\\s*-\\s*Auteur:/i);\nconst title = titleMatch ? titleMatch[1].trim() : \"Titre inconnu\";\nconst authorMatch = queryString.match(/Auteur:\\s*(.*?)(?:\\.\\s*Etape:|\\s*$)/i);\nconst author = authorMatch ? authorMatch[1].trim() : \"Auteur inconnu\";\n\nreturn {\n  pageId: $('JobType Router').first().json.pageId,\n  jobType: \"report\",\n  data: {\n    query: `${title} - ${author}`,\n    summaries: Array(maxStep)\n      .fill(0)\n      .flatMap((_, i) => {\n        try {\n          const results = $('Generate Summaries').all(0, i);\n          if (results && results.length > 0) {\n            return [{\n              step: i + 1,\n              summary: results.map(item => ({\n                modelName: item.json.output.modelName,\n                content: item.json.output.content\n              }))\n            }];\n          }\n          return [];\n        } catch (e) {\n          return [];\n        }\n      })\n  }\n};"
+        "jsCode": "const length = $('JobType Router').first().json.data.transcripts.length;\nconst theme = $('JobType Router').first().json.data.theme;\nconst chapter = $('JobType Router').first().json.data.chapter;\n\nreturn {\n  pageId: $('JobType Router').first().json.pageId,\n  jobType: \"report\",\n  data: {\n    theme: `${theme}`,\n    chapter: `${chapter}`,\n    summaries: Array(length)\n      .fill(0)\n      .flatMap((_, i) => {\n        try {\n          const results = $('Generate Summaries').all(0, i);\n          if (results && results.length > 0) {\n            return [{\n              step: i + 1,\n              summary: results.map(item => {\n                // Parse the output string to get the JSON object\n                const parsedOutput = JSON.parse(item.json.output);\n                return {\n                  modelName: parsedOutput.modelName,\n                  content: parsedOutput.content\n                };\n              })\n            }];\n          }\n          return [];\n        } catch (e) {\n          return [];\n        }\n      })\n  }\n};"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -1352,70 +1092,6 @@
     },
     {
       "parameters": {
-        "jsCode": "// Dans un nœud \"Code\" ou \"Function\"\nfunction formatSummaryWithColumns(html) {\n  // 1. D'abord, corriger le HTML mal formé où \"id=\" est directement collé à \"</div>\"\n  let correctedHtml = html.replace(/(<\\/div>)\\s*id=\"([^\"]+)\">(.*?<\\/h[1-6]>)/g, '$1\\n<h2 id=\"$2\">$3');\n  \n  // 2. Trouver la section \"1. Informations générales\" sans capturer les sections suivantes\n  const section1Pattern = /<h1[^>]*>1\\.\\s*Informations générales[^>]*>([\\s\\S]*?)(?=<h1|$)/i;\n  const section1Match = correctedHtml.match(section1Pattern);\n  \n  if (section1Match) {\n    // 3. Créer la nouvelle mise en page à deux colonnes pour cette section\n    const imageUrl = $('Map imageUrl').first().json.imageUrl\n    const originalContent = section1Match[0].replace(/<h1[^>]*>1\\.\\s*Informations générales[^>]*>/i, '');\n    const newSection1 = `<h1 id=\"1informationsgnrales\">1. Informations générales</h1>\n    <div>\n      <div>\n        <img src=\"${imageUrl}\">\n      </div>\n      <div>\n        ${originalContent}\n      </div>\n    </div>`;\n    \n    // 4. Remplacer uniquement cette section, tout en préservant le reste du document\n    correctedHtml = correctedHtml.replace(section1Pattern, newSection1);\n  }\n  \n  return correctedHtml;\n}\n\n// Appliquer la fonction au HTML d'entrée\nconst formattedHtml = formatSummaryWithColumns($input.first().json.data);\nreturn { data: formattedHtml };"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        1460,
-        1680
-      ],
-      "id": "e19bb151-0e6e-4ccb-b15b-29c36d1c6e39",
-      "name": "Insert image column"
-    },
-    {
-      "parameters": {
-        "jsCode": "const response = $input.first().json;\n\nconst imageUrl = (response && response.images_results && response.images_results.length > 0)\n  ? response.images_results[0].original\n  : \"https://st2.depositphotos.com/2769299/7314/i/450/depositphotos_73146775-stock-photo-a-stack-of-books-on.jpg\";\n\nreturn { imageUrl };"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        1200,
-        1680
-      ],
-      "id": "0a485fd8-280f-4b74-92ec-7428becd5c20",
-      "name": "Map imageUrl"
-    },
-    {
-      "parameters": {
-        "url": "https://serpapi.com/search",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "serpApi",
-        "sendQuery": true,
-        "queryParameters": {
-          "parameters": [
-            {
-              "name": "q",
-              "value": "={{ $('JobType Router').first().json.data.query }}"
-            },
-            {
-              "name": "engine",
-              "value": "google_images"
-            }
-          ]
-        },
-        "options": {
-          "timeout": 10000
-        }
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        1200,
-        1460
-      ],
-      "id": "f4cb4b11-8635-4ef6-99f4-67658c40050d",
-      "name": "Get book cover img",
-      "retryOnFail": true,
-      "credentials": {
-        "serpApi": {
-          "id": "k2IJHvKOPldK2lbd",
-          "name": "SerpAPI account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "method": "PATCH",
         "url": "=https://api.notion.com/v1/blocks/{{ $('JobType Router').first().json.pageId }}/children",
         "authentication": "predefinedCredentialType",
@@ -1441,7 +1117,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "maxTries": 2,
       "position": [
-        3060,
+        2840,
         1620
       ],
       "retryOnFail": true,
@@ -1478,7 +1154,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3060,
+        2840,
         1440
       ],
       "id": "14936708-8523-41f5-987b-2493400e6616",
@@ -1494,130 +1170,226 @@
     },
     {
       "parameters": {
-        "content": "Erreur 409 mais ca update quand meme"
+        "jsCode": "return {\n    \"theme\": \"GitHub Actions\",\n    \"chapter\": \"4: Workflows & Events -  Deep Dive\",\n    \"sections\": [\n        {\n            \"title\": \"Which Events Can You Use ?\",\n            \"content\": \"<v Maximilian>Now before diving into event filters</v>or activity types, let me briefly diveinto the available events in general first.And I did mention this earlier in the course already.With GitHub Actions, there is a broad varietyof event triggers you can add to your workflows.Most of them are Repository-related,like for example triggering a workflowwhenever a commit is pushed to the Repositoryor when some pull request-related action occurs.But there also are some eventswhich are not directly Repository-related.For example, you can manually dispatch and triggeryour workflows, or you could create a scheduleso that a certain workflow is executedevery couple of hours or once a day or anything like that.And whilst we will see many key eventsand triggers in action throughout this courseand in this section here, it's best to also explorethe official documentation to learn aboutall available events and read more about them.Here you learn more about the different eventsthat can be assigned to your workflows.You learn more about when exactlyan event accounts asked triggered,so when exactly those events occur.And you'll learn more about usingand configuring these events,though that's also something we'll take a closer look atin this course section.\"\n        },\n        {\n            \"title\": \"A Demo Project Setup\",\n            \"content\": \"<v Maximilian>Now for this course section</v>I prepared another example project,which actually is the same example project as before,but which already comes with a workflow,one YML file in the dot GitHub slash workflows folderwhere I have a very simple demo workflow defined.However, the event is missingbecause that's exactly what we'll evaluate and dive inin this course section.But this is the demo project we'll usethroughout this section, and I will also createa remote Repository for this demo projectbecause of course we need that GitHub Repositoryin order to then really have and triggerthose GitHub Actions workflows.So therefore what I'll do is I'll initializea new Git Repository here and create an initial commit,even though my workflow is not finished yet,but we'll finish that later.But I will create this initial commit here.And with that created on GitHubI'll add a new Repository, which I'll name GH events.The name of course is up to you.And you can turn this into a private or a public Repository.Here I'll go with a public Repositorybecause I need this Repository to be publicto show you something a little bit later.So I'll stick to a public Repository and create this.And with that created, we grab that URLand connect our local Git Repositoryby using Git remote add giving this an identifier of origin,which is a typical identifier used.Adding that URL and my usernameso that my push requests will be authenticated automaticallywith that personal access token that's stored on my system.And now if I run Git push, this fails initiallyso I'll run this command to kind of connectmy local main branch to the remote main branchand push this initial commit to this Repository.So here it is.And that's now the starting state of this project.Now let's dive into this workflow hereand let's dive into the events we can assign.\"\n        },\n        {\n            \"title\": \"More on the push Event\",\n            \"content\": \"<v ->Now regarding the events,</v>we saw some events in action earlier in the course already,and one of the most important eventsyou can add to your workflows as a triggeris the push event.And I will add this here again as well.And this is how we added it thus far in the course.Now, if you have a second eventthat should also trigger this workflow,you can wrap push in square brackets,and for example, also add the workflow_dispatch eventso that we can also manually trigger this workflow.So that's how we can add multiple events like this.But this is all just a relatively simple wayof assigning events to the workflow.Often you need a bit more control than that,because right now, any push,so any commit that's pushed to any branchof this GitHub repository would trigger this workflow,and it's not unreasonable to expectthat not all pushes to all branchesshould trigger this workflow.Instead, you might only want to trigger this workflowwhen push targets the main branch,because if we're pushing to some other branchwe maybe don't wanna execute this workflow,because imagine that we're reallydeploying the website here.We don't wanna deploy the websiteif we're pushing to some development branch.We only wanna deploy if the main branch is targeted.And it's things like that that can be controlledwith additional event related featuresoffered by GitHub Actions.\"\n        },\n        {\n            \"title\": \"Introducing Event Filters & Activity Types\",\n            \"content\": \"<v Maximilian>So, as outlined in the last lecture already,</v>there are situations where you knowthat you, for example,want to trigger a workflowwhen a commit is pushed to the repository,but you want more control.You want to control that this should not triggerthe workflow for all branches,but instead only if the main branch is targeted.So, just adding an event like pushor pull request alone isn't enough.And GitHub actions gives you more controlfor your event configurations.For example, some events have so-called activity types,which allow you to specify in greater detailwhich exact version or variationof the event should trigger a workflow.If, for example, the pull request eventhas a couple of activity typesthat allow you to controlwhether all pull request related actionsshould trigger the workflowor maybe only if a pull request is opened, or closed,or edited.And then we also have so-called event filterswhich are supported by some eventsHere, we also got more controlover when exactly a workflow will be triggered,and filters do exist for the push and pull request eventsand a few other events.And here we can, for example,configure that we want to filter all push events,such that only push eventsthat target the main branchor any other defined brancheswill trigger the workflow,and other pushes,which target other branches,won't trigger the workflow.So, activity types and event filters are key featuresthat give us more controlover which event exactly will trigger our workflow.\"\n        },\n        {\n            \"title\": \"Using Activity Types\",\n            \"content\": \"<v Maximilian>So how do these activity types</v>and event filters work?And how do you know which activity types and event filtersare supported for the different events?Well, let's start with activity types.We learn more about those in the official documentationon that page that lists all available events.Here we have this column activity typeswhich shows us all the variationsof this event or all the subtypes of that event,you could say that can be used for triggering a workflow.And in case of the push event, we have no variations.But that changes if we take a lookat the pull request event.There we see that we have a long list of activity types,and those activity types allow us to controlwhether all pull request related actionsshould trigger a workflowif we don't specify any information about the activity typesor if only some types of pull request related actionsshould trigger a workflow.We could for example, say that only opening a pull requestshould trigger a workflow.Though I will say right away that for the pull request eventwe actually have a long list of activity types,but if you don't specify any activity types, by default,the pull request event will only activate a workflow,so will only trigger a workflowwhen a pull request was opened, Synchronized or reopened.Closing a pull request by defaultwould not trigger a workflow.And therefore, it's always a good idea to have a lookat the official documentationto learn about nuances like this.Now in this section we will still learn how we can useall these activity types for the pull requestor for any other event to have that fine grain controlover when exactly a workflow runsand to even override defaults like the onedescribed down there.And that's how we can use those activity types.How do we use them in our yml file here?Well, instead of defining our events like this,we have to define them in a bit of a more complex way,we have to add our event in a new indented lineand for example, add pull request, a colon,and then in another line which is even more indented,we add the types key.And this is not up to you, this has to be types,because here you specify the activity types of this event,so of the pull request event herethat should trigger this workflow.And here you could, for example, say opened and edited,or just opened if you're only interested inpull requests being opened, triggering that workflow.You can also specify a list like this,opened and edited like this or just opened like this.So there are different ways of writing this,but in the end, you define a list of activity typesfor this event that should trigger this workflow.So for example, with this definition,this workflow would run whenever a pull request is opened,but it would not run if a pull request is edited or closed,and it would also not run if we pushto this repository right now.Now if you wanna add a second trigger,a second event like workflow dispatch,we also have to add it like thisincluding this colon here at the endeven though we got no details for this event.So even though we don't have any indented linesbelow workflow dispatch, we still have to add it like this.And workflow dispatch must be on the same levelregarding its indentation as the other events.So in this case as pull request.So that's how we could add pull requestand workflow dispatch as our two eventsfor this workflow.And for pull request, we also specify which activity typesexactly should trigger this workflow,and in this case, it would be opened.And to show you how this works, I'll save thisand create a new commit,where I say added eventsand push this to my repository.Now as we do that, in this repository under actions,we see this events demoand I see one failed run from earlier,but I see no new workflow execution run herebecause we have this dispatch eventand we have the pull request open event,but we have no push event added to this workflow.That's why it's not executing after pushing here.And with that added, what we can dois we can quickly create a new branch herewith git checkout -b and we could name it dev,and then make a tiny change to our code here.For example, in HelpBox.jsx,we could change this h free tag here to h2,but you can make any change you want, of course.With this change made, I can push this changed to h2,could be a fitting commit message.And keep in mind that this is on a new branch.I did this so that here I can create a pull requestbecause now I got two branches,though we have to push this first, of course,so I have to push my DEF branch to origin first,but thereafter I can create a pull requestand I can do this as the owner of this repository,we don't have to do as another user.So here I'll create a pull request to merge the deaf branchinto the main branch.And if I create that pull request,I will of course trigger that workflowbecause we're listening to pull requests being opened.Therefore, if we go to actions,we now see that this workflow is executing,we got a new ongoing workflow run herebecause our event was triggered.We can see this here,the opened activity type was triggered in the end.Now what you'll also seeis that if I go to this pull requestand I close it by marking it as closed,this will not trigger a new workflow runbecause, well, we're only listening to it being opened.If I had closed here as well, that would be different,but that's not the case here.So that's how these activity types work.And for many events like pull request,but for example, also for the issues eventwhere you can run workflows whenever anything happensto GitHub Repository issues.For events like this,it's very useful to have this additional control.Without this activity type added here,all pull request related events would trigger this workflow,though in case of pull requests specifically,it's worth reading the documentationas it always is the case for all these eventsif you're using them, because here we learnthat actually by default,only opened, synchronized and reopenedwould trigger a workflowif just pull request is added as an event.And if you wanna trigger a workflowon some other event variations,you explicitly have to add the respective activity types.So if you want to run a workflowwhen a pull request is closed,you would have to explicitly add the closed activity typeunder pull request to your workflow.But this depends on which event you're using,for some events, all activity typesmight trigger a workflow if you don't provide more detailsfor other events like pull request,only a selected list of activity types triggers a workflowif you don't have further details at hand.But that's the idea of activity types.You got more control over when exactly your workflow runs.\"\n        },\n        {\n            \"title\": \"Using Event Filters\",\n            \"content\": \"<v Maximilian>Now, activity types are one important feature</v>that helps you control when exactly a workflow executes.Another important feature are event filters.So what are event filters?Well, let's say that we also wanna listen to the push event.By default, out of the box, this would meanthat whenever a commit is pushedto any branch, this workflow would be triggered.Now, especially for a workflow that deploys codeand therefore, updates the websitethat's visible to your usersshould probably not run for all pushes against all branches.Instead, it would be reasonable to assumethat only pushes to the main branchshould trigger this workflow.And that's exactly what you can controlwith event filters.Now, you can also learn more about event filtersin the official documentation under workflow syntax,and here you'll learn that for a short listof selected events, there are filters that can be added.To be precise, GitHub Actions currently supports filtersfor pull_request, pull_request_target,push, and also workflow _call,which is something I'll get back to later.Now, for push, we can, for example,add the branches filter hereor the tags or branches-ignore or tags-ignore filters.This allows you to only start a workflowif a push targets a specific branchor does not target a specific branchif you wanna check for the oppositeor has a specific tag attached to it so to say.So if you, for example, only want to run this workflow,if a push target's the main branch,you would add the branches filter under the push event,and this name also is reservedbecause it has to be branches as you see herein the official docs.So you add this branches filterand then you specify your list of branchesthat should be covered.For example, the main branch.This configuration would make surethat only pushes to the main branchwould trigger this workflow.And of course, you can add multiple branches hereand you can even use a more flexible notationand for example, write something like this,which would mean all branches that start with dev-and then any other word or combination of charactersof your choice would be covered.Or something like this,which means all branches that start with feat/and having a slash in a branch name is totally fine,and then any other words or combination of charactersincluding more slashes thereafter.That's the difference between one asteriskand double asterisk.The double asterisk allows for further slashesas part of the remaining characters.The single asterisk means any characters other than slashes.So this would cover pushes to dev-newor dev-this-is-newand this would cover pushes to feat/newor feat/new/button or anything like this.And this here would only cover main.So now pushes to any branch with a name like thiswould trigger a workflow.Pushes to a branch like developer-1would not trigger this workflowbecause this would not be coveredby any of these definitions.So that's the branches filter.And this branches filter can also be addedto pull_request, also in addition to the types here.So you can narrow this down even further.You could for example, say that this workflowshould run if a push to one of these branches happensor if a pull request is openedand targets one of these branches.You can also add the branches filter here to pull_requestas you also see in the official documentation.There under pull_request,you also see that branches can be added here.And if you know that you wanna run a workflowfor all branches but one specific branch,or a list of specific branches,you could use branches-ignore.Also for the push event.Now, event filters are therefore usefuland you're not limited to filtering based on branches.You can also filter based on file pathswith the paths filter.This is another filter that can be addedto pull requests and pushes,as you see in the official docs again.So for push and pull_request,you can add the paths and the paths-ignore filters.And this allows you to basically saythat you want to run a workflowif a push or a pull_request changes filesin a specific pathor with paths-ignore if it changes anythingbut files in a specific folder.And at the bottom of this page,you also find cheat sheetswith all the syntax, rules and combinations you can usefor specifying your branchesand for specifying your file paths.But here, for example, we could saythat we want to run this workflowwhen we push to the main branch.But maybe only if we did not change a filein this github/workflows folder.This could be done by adding github/workflows/*as a paths-ignore value hereand this means that this event here,this push event activates this workflowif we target one of these branchesbut we did not change a filein the workflows folder in the GitHub folder.And even if we also changed other files,as long as at least one filein this folder changed,this workflow will not be triggeredbecause we used paths-ignore here.If we use just paths here,it would mean the opposite.Now this workflow would only be triggeredif at least one file changed in this workflows folderand we targeted one of these branches.So that's how you can control in detailwhen this workflow will be triggered.And therefore now if I create a new commit here,and I say changed workflow,and I push this,the workflow should actually not executebecause I changed a file in the workflows folder.I changed the definition of this workflow.So therefore now if I push this here,and we take a look at actions,we see that no new workflow run was startedbecause for the reasons I just explained.\"\n        },\n        {\n            \"title\": \"Special Behavior: Forks & Pull Request Events\",\n            \"content\": \"<v Maximilian>Now, over the last lectures,</v>I explained the ideas behind activity types,which allow you to define which exact sub-eventor version of an event should trigger a Workflow.And I explained the idea behind event filters,namely the branches and paths filters, which allow youto define which branches or file pathshave to be targeted or changed by an eventlike the pull request or push eventin order for that event to activate the Workflow.Now, there's one specific thing regardingthe pull-request event that you should be aware of,no matter if you're using activity types or event filters.You should be aware of it when you are acceptingpull requests from people that forked your Repository.As also covered in the crash course section,people can fork a GitHub Repository,in order to work on the code on their own,and then they can also open pull requests for that.Now, here's something I wanna show you.Keep in mind that this Workflow should runwhenever a pull request is openedand that that pull request targets any of these branches.To simulate this as a third-party contributor,so not as the person who owns this Repository,I logged into my second GitHub account here,and I will then grab a linkto this Repository and visit it from my second account.That's why I made the Repository public.So now here, I'm on the accountthat does not own this Repository, and I'll fork it.That's something every user can do.I'll fork it, which means I create a copy here on GitHuband I can then also clone this to my local machine.So now I'm simulating that I'm a different user.Here, I opened this Repository as this second userand now I'll make a tiny change to the code here.In main.jsx, I'll add a comment where I say,'This is important.'It doesn't really matter.Now, I made this change and I will store this changein a new branch.Dev-max is my branch name here,but the branch name could be anything.It also doesn't have to be a branch namethat qualifies for these filtersbecause these filters are for the branchthat's targeted by a pull request, and I created that branchto be used for a pull request in the future.So here I added this, then I will create a commitwhere I say 'added comment'and then I'll push this like this.Now once this is pushed, this update is on my forkedGitHub Repository, not on the original Repository,but now I can, of course, create a pull requeston that original Repository.So this is now the original Repositoryand there I can open a new pull requestand compare across forksto use my forked Repository as the source.And there this dev-max branchand target the main branch of the original Repository.Now, before I create this, please notethat this should qualify for this Workflow.It should trigger this Workflowbecause it is a pull request.I'm opening a pull requestand I'm targeting the main branch.The branch's filter here is always regardingthe branch that's being targetedand I'm targeting the main branch.So this Workflow should be executed.So therefore back here, I will now create this pull request,like this, and back in the original Repository,if I refresh my actions page,I have this item here with this exclamation mark.<v ->So it looks like the Workflow wanted to run</v>but wasn't really started.Now if we click on it,we see that here we must give approval first.We must first approve that this Workflow should be executed.Now why are we getting this?We are getting this because by default,pull requests based on forks do not trigger a Workflow,even if they technically should.The reason for that is that everyone can forkyour public Repositories, and everyone can then createpull requests targeting your Repository.And because of that, people could, of course,start Workflow runs in a malicious way.More on that later in the course in the security section.And they could also simply spam your accountand your Repository with Workflow runsby opening dozens or hundreds of pull requests.And even though you are not paying for thatif it's a public Repository and you are using the free plan,this could get you into problems,and if you do have a paid GitHub account,it could even cost you money.So that can be a problem and that's whyfirst-time contributors must be approved manually.So whenever first-time contributors,so people who have not opened pull requests beforeand had those pull requests approved by you before,whenever people open a pull request with your Repositoryfor the first time, you as the owner have to approvethat pull request first before the Workflow runs.And then subsequent pull requestswill trigger the Workflow automaticallybecause you approved this first pull request manually.So that's how that works.This is not the case if you add a collaboratorand that collaborator opened a pull requestbecause the assumption here isthat people that were added as a collaboratorby you are people you trust, but people you don't know,people who just fork your Repository,those people if they do open pull requestswill not automatically trigger your workflowsand the workflows will therefore not run automatically.That's something to be aware of.\"\n        },\n        {\n            \"title\": \"Cancelling Workflows & Skipping Workflows\",\n            \"content\": \"<v Maximilian>So that was a lot of information</v>about events that can trigger and start workflows.Let's also briefly talk about cancelingand skipping workflow runs, because that's also a thing.And if we start with canceling it is of course worth notingthat by default workflows get canceled automaticallyif jobs fail, though, you will later learnthat you can also, for example add certain rulesthat subsequent jobs still executeeven if earlier jobs failed.But by default, if a job failsthe workflow gets canceled.And a job fails, if at least one step failsthough that can also be changed as you will learn later.But you can also cancel workflows manually.And to briefly show you how that would workI will change something,for example, add a comment here,my testsand create a new commit in the main branchadded commentand push thisand here I'm doing this as the ownerof this repository, again, as the original creator.With that, we got a new workflow running hereand if we click on that, we can always cancel this workflowby clicking on this cancel workflow button here.And that does just what the name suggests.So that's how you can manually cancel a workflowand that can be useful if you have some error in your codeor your workflow that would cost the workflow to runfor a very long time.Or if you identify an error right after pushingand you know that the workflow will fail anywaysand you don't wanna waste the time waitinguntil it fails automatically.So that's how you can cancel it manually.Now, besides canceling a workflowyou can also skip a workflow.And skipping simply means that you do somethingthat would normally trigger the workflow.So for example, you push to the main branchbut you want to skip this execution.You want to make sure that this push does nottrigger the workflow, for example,because by default all matching events start a workflow.But if you want to skip a workflow executionthere are exceptions for push and pull request event typesthat can be specified by you.To be precise, you can skip a workflow runthat would normally be triggered by addinga proper commit message or message to your poll request.To show you what I mean, here's a another example.Let's say I add yet another comment,and of course if I add comments like this,I might not wanna run my workflowbecause I know that these comments don't change my code.There is no reason to run my tests or redeploy.I just wanted to add a comment.So therefore, of course I still create a commit maybebecause I want to save these comments in a new commit.But now I can skip a workflow run that would normallybe triggered by pushing this to the main branchon the remote repository by adding my messagewhich could be added comments.And then thereafter, in square brackets, skip cior skip actions or a couple of other keywordswhich you of course find in the official documentation.If you add one of these messagesto your commit messageor to the latest commit of a pull request,that pull request or push will not trigger a workflowthat would otherwise be triggered.So now here, if I now push thisto the main branchbecause this is on the main branchif I push this to my repository,you will see under actions herethat no new workflow was started.I have that one workflow here, which I canceled beforebut no new workflow run was triggeredbecause my latest commit had this special message,this special annotation with skip ci.And that can also be useful because sometimes you knowthat it doesn't make sense to trigger your workflowand in order to save time and possibly also costif you're paying for ityou then might want to add an annotation like this.\"\n        }\n    ]\n}\n"
       },
-      "type": "n8n-nodes-base.stickyNote",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
       "position": [
-        3240,
-        1400
+        1020,
+        -20
       ],
+      "id": "9e6043bf-f508-4b64-b96a-ac95d0ab94bb",
+      "name": "Json"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "={{ $workflow.id }}",
+          "mode": "id"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "data": "={{ \n  {\n  \"theme\": $('Set Variables').item.json.theme,\n  \"chapter\": $('Set Variables').item.json.chapter,\n  \"transcripts\": $('Set Variables').item.json.transcripts,\n  \"summaries\": []\n  }\n}}",
+            "pageId": "={{ $json.id }}",
+            "jobType": "initiate"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "pageId",
+              "displayName": "pageId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "data",
+              "displayName": "data",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "object",
+              "removed": false
+            },
+            {
+              "id": "jobType",
+              "displayName": "jobType",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "mode": "each",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        1740,
+        -20
+      ],
+      "id": "bc1b0ceb-3a42-48aa-b998-cf40657a667a",
+      "name": "Initiate UdemySummary"
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "pageId"
+            },
+            {
+              "name": "data",
+              "type": "object"
+            },
+            {
+              "name": "jobType"
+            }
+          ]
+        }
+      },
+      "id": "8a1b7010-d07b-4ff5-b828-75ff471a1848",
+      "name": "UdemySummary Subworkflow",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        -20,
+        940
+      ],
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d88bfe95-9e73-4d25-b45c-9f164b940b0e",
+              "name": "transcript",
+              "type": "object",
+              "value": "={{ $('JobType Router').first().json.data.transcripts[$json.currentStep] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "35d089ff-4ee6-458e-9354-5c440aa4357c",
+      "name": "Set Next Transcript",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1740,
+        480
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "acb41e93-70c6-41a3-be0f-e5a74ec3ec88",
+              "name": "theme",
+              "type": "string",
+              "value": "={{ $json.data.theme }}"
+            },
+            {
+              "id": "d4f2b39e-2bb5-42aa-8f9b-b866a41b56fb",
+              "name": "chapter",
+              "value": "={{ $json.data.chapter }}",
+              "type": "string"
+            },
+            {
+              "id": "60c4474d-a949-4488-9dd3-11de5cfa6c29",
+              "name": "transcript",
+              "value": "={{ $('JobType Router').first().json.data.transcripts[0] }}",
+              "type": "object"
+            },
+            {
+              "id": "7fc54063-b610-42bc-a250-b1e8847c4d1e",
+              "name": "summaries",
+              "type": "array",
+              "value": "={{ $('JobType Router').first().json.data.summaries }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7c559504-4c6f-4ae3-a33b-41bec408adc1",
+      "name": "Set Initial Transcript",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        820,
+        340
+      ],
+      "typeVersion": 3.4,
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
-      "id": "9a7e0682-8410-4990-9bba-0dc7b6557ad6",
-      "name": "Sticky Note"
+      "position": [
+        840,
+        -20
+      ],
+      "id": "23340538-d80c-4d05-a896-89ce140a0991",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "path": "f0529faf-3a5a-42c2-8d4b-9981fcfdcf7f",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        840,
+        -220
+      ],
+      "id": "b895ace4-1864-458c-9878-2a65228b59e6",
+      "name": "Webhook",
+      "webhookId": "f0529faf-3a5a-42c2-8d4b-9981fcfdcf7f",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Liste des résumés sur lesquels tu dois performé le contrôle et le formatage:\n{{\n  $('JobType Router').first().json.data.summaries &&\n  `<summaries>\n    ${$('JobType Router').first().json.data.summaries.map(summaryItem => \n      `<step>${summaryItem.step}</step>\n        ${summaryItem.summary.map(item => \n          `<summary>\n            <model>${item.modelName}</model>\n            <content>${item.content}</content>\n          </summary>`\n        ).join('\\n')}`\n    ).join('\\n')}\n  </summaries>`\n}}\n",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=# Agent de Contrôle et Formatage des Résumés de Vidéos Udemy\n\n## Contexte\nTu es un agent spécialisé dans l'analyse, la fusion et le formatage des résumés de leçons Udemy générés par deux modèles d'IA différents (GPT et Claude). Ces résumés suivent une structure prédéfinie section par section pour définir une fiche complète.\n\n## Objectif\nCréer une version unifiée, non-redondante et correctement formatée du résumé de leçon en exploitant les meilleures contributions de chaque modèle pour chaque section.\n\n## Donées d'entrée\nTu recevras une collection de résumés structurés comme suit:\n```json\n{\n  \"theme\": \"Thème général de la leçon\",\n  \"chapter\": \"Titre du chapitre\",\n  \"summaries\": [\n    {\n      \"step\": \"Numéro de l'étape\",\n      \"summary\": [\n        {\n          \"model\": \"Nom du modèle (gpt/claude)\",\n          \"content\": \"Contenu du résumé\"\n        }\n      ]\n    }\n  ]\n}\n```\n\n## Instructions\n\n### 1. Analyse et sélection du contenu\nPour chaque section du résumé:\n- Compare et fusionne les versions de GPT et Claude\n- Sélectionne les éléments les plus pertinents et complets\n- Évite les redondances\n- Assure une transition fluide et un style cohérent\n\n### 2. Fusion intelligente\n- Ne te contente pas de concaténer les informations, mais fusionne-les de manière cohérente\n- Préserve les informations distinctives et complémentaires de chaque source\n- Assure une transition fluide entre les éléments de différentes sources\n- Maintiens un ton et un style cohérents dans l'ensemble du document\n\n### 3. Formatage Markdown\n- Utilise le format Markdown de manière rigoureuse:\n  - Sections principales (H1) avec `#` pour les grandes étapes et sont numérotés avec l'étape en cours\n  - Sous-sections (H3) avec `###` pour les détails de chaque partie (si présent)\n  - Listes à puces `-` pour les concepts et idées clés\n  - Bacticks (``) -> Pour les termes techniques\n  - Bloc de code → Pour illustrer par des exemples\nExemple de titre:\nSi je suis dans le <step>1</step> et que <content>#Introduction\\n\\n...</content>\nAlors j'attends \"#1. Introduction\"\n\nPour les exemples de code:\n- Si un **exemple de code** est mentionné, fournis-le **dans un bloc de code Markdown (` ``` `)**.  \n- **Langage du code** → déduis-le du contexte du sujet.  \n- **Exemple** :\n  ```python\n  def hello_world():\n      print(\"Hello, World!\")\n  ```\n\n### 4. Vérification finale\n- Assure-toi que toutes les sections sont présentes et substantielles\n- Vérifie que le formatage Markdown est correct et cohérent\n- Garantis que le document final est bien structuré, informatif et agréable à lire\n- Élimine toute redondance ou répétition inutile\n- Le titre principal commence par un seul # et contiennent le numéro de l'étape\n- Les points clés sont listés directement avec des tirets (-) sans titre \"Points Clés\" ou \"### Points Clés\"\n- Les exemples de code sont inclus directement dans des blocs de code (```) sans titre \"Exemples de Code\"\n- Les termes techniques avec des backticks (``)\n\n## Format de sortie\nFournis uniquement le résumé final en Markdown correctement formaté, sans ajouter de commentaires ou d'explications sur le processus utilisé."
+            }
+          ]
+        }
+      },
+      "id": "95223fbd-d1c8-404d-8fc7-925a28339e23",
+      "name": "UdemySummary Control",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "position": [
+        820,
+        1460
+      ],
+      "typeVersion": 1.5
     }
   ],
-  "pinData": {
-    "BookSummary Subworkflow": [
-      {
-        "json": {
-          "pageId": "1bf82fe2-6406-81a3-b0d7-cb54f2d0e53a",
-          "data": {
-            "query": "Le Cygne noir - Nassim Nicholas Taleb",
-            "summaries": [
-              {
-                "step": 1,
-                "summary": [
-                  {
-                    "modelName": "gpt",
-                    "content": "## 1. Informations générales\n\n- **Titre** : Le Cygne noir\n- **Auteur** : Nassim Nicholas Taleb\n- **Éditeur** : Denoël (édition française, à confirmer selon la version)\n- **Année de publication** : 2007\n\n### 📌 Contexte historique et intellectuel\n\n> Le Cygne noir s'inscrit dans une réflexion critique sur la gestion des risques et l'incertitude, remettant en question les modèles prédictifs classiques utilisés en finance. Ton ouvrage se positionne dans un contexte intellectuel marqué par la remise en cause des approches traditionnelles, en soulignant l'impact majeur d'événements rares et imprévisibles sur l'histoire économique et financière. Cette perspective encourage à repenser notre approche du risque et à intégrer l'imprévisible dans nos analyses et décisions."
-                  },
-                  {
-                    "modelName": "claude",
-                    "content": "## 1. Informations générales  \n\n- **Titre** : Le Cygne noir\n- **Auteur** : Nassim Nicholas Taleb\n- **Éditeur** : Les Belles Lettres\n- **Année de publication** : 2007\n\n### 📌 Contexte historique et intellectuel \nLe Cygne noir s'inscrit dans un contexte post-11 septembre et pré-crise financière de 2008, une période où les modèles de prévision traditionnels commençaient à montrer leurs limites. L'ouvrage émerge dans un climat intellectuel où la finance quantitative et les modèles mathématiques sophistiqués dominaient la pensée économique et la gestion des risques. Taleb, ancien trader devenu philosophe des probabilités, développe une critique fondamentale de notre façon de penser l'incertitude et les événements rares. Son livre arrive à un moment crucial où le monde de la finance et de l'économie commence à questionner ses certitudes sur la prévisibilité des marchés et des événements majeurs."
-                  }
-                ]
-              },
-              {
-                "step": 2,
-                "summary": [
-                  {
-                    "modelName": "gpt",
-                    "content": "## 2. Thèse et objectifs\n\n### ❓ Problématique centrale\n> Dans Le Cygne noir, Nassim Nicholas Taleb interroge la manière dont les événements rares, imprévisibles et aux conséquences majeures influent sur nos systèmes économiques et sociaux, tout en soulignant l'incapacité des modèles traditionnels à anticiper de tels événements.\n\n### 🎯 Objectifs de l’auteur\n- Proposer une nouvelle perspective qui met en lumière le rôle prépondérant des événements extrêmes dans la détermination des résultats économiques et sociaux.\n- Inciter le lecteur à repenser la manière dont il évalue les risques et les incertitudes, en adoptant une approche plus sceptique vis-à-vis des modèles prédictifs classiques.\n- Favoriser une prise de conscience sur l’importance de l’anti-fragilité, c'est-à-dire la capacité des systèmes à tirer profit de l'incertitude et du chaos."
-                  },
-                  {
-                    "modelName": "claude",
-                    "content": "## 2. Thèse et objectifs  \n\n### ❓ Problématique centrale  \nTaleb s'attaque à notre compréhension fondamentale de la causalité, du hasard et de notre capacité à prévoir l'avenir. La question centrale qu'il pose est : Comment les événements hautement improbables et imprévisibles (les \"Cygnes Noirs\") façonnent-ils notre monde, et pourquoi sommes-nous si mal équipés pour les anticiper et les comprendre ?\n\n### 🎯 Objectifs de l'auteur  \n- Démontrer les limites fondamentales de notre capacité à prédire les événements majeurs qui influencent nos vies et nos sociétés\n- Déconstruire notre tendance à rationaliser a posteriori les événements imprévisibles\n- Proposer une nouvelle approche pour vivre dans un monde dominé par l'incertitude et les événements extrêmes\n- Remettre en question les modèles statistiques traditionnels et leur application dans la finance et l'économie\n- Sensibiliser le lecteur à l'impact disproportionné des événements rares et imprévisibles sur l'histoire et nos vies quotidiennes"
-                  }
-                ]
-              },
-              {
-                "step": 3,
-                "summary": [
-                  {
-                    "modelName": "gpt",
-                    "content": "## 3. Structure et arguments\n\n### 📚 Plan du livre\n- Le Cygne Noir est organisé en plusieurs parties, chacune servant à construire progressivement l'argumentation sur l'impact des événements imprévus sur notre compréhension du monde.\n- Le livre débute par la définition et l'illustration du concept de « Cygne Noir » afin d'introduire l'idée que certains événements rares et inattendus peuvent avoir des conséquences majeures.\n- La progression se poursuit en déconstruisant les modèles prédictifs traditionnels, en illustrant leur inadéquation face aux événements extrêmes.\n- Enfin, l'ouvrage conclut sur les implications pratiques de cette prise de conscience, invitant le lecteur à repenser la manière dont il évalue les risques et anticipe l'avenir.\n\n### 🔑 Points clés\n- La distinction entre deux mondes : *Médiocristan* (où les distributions sont prévisibles et les variations minuscules) et *Extrémistan* (où des événements rares peuvent avoir des conséquences énormes).\n- L'importance de reconnaître l'imprévisibilité inhérente aux systèmes complexes et d'adapter notre approche de la prise de décision en conséquence.\n- La critique des modèles statistiques et économiques classiques qui ne tiennent pas compte de l'impact disproportionné des événements extrêmes.\n- L'enjeu de remettre en question notre compréhension habituelle du risque et de la probabilité, pour intégrer des éléments d'incertitude extrême dans nos analyses."
-                  },
-                  {
-                    "modelName": "claude",
-                    "content": "## 3. Structure et arguments\n\n### 📚 Plan du livre\nLe livre est structuré en quatre parties principales :\n- **Première partie** : Introduction aux biais cognitifs et à notre incapacité à prévoir les Cygnes Noirs\n- **Deuxième partie** : Comment nous ne pouvons pas prédire l'extrême dans Extremistan\n- **Troisième partie** : Les Cygnes Gris - exploration des biais de confirmation\n- **Quatrième partie** : Applications pratiques et conclusion sur l'épistémologie\n\n### 🔑 Points clés\n- **La théorie du Cygne Noir** : Événements rares, extrêmement impactants et prévisibles uniquement rétrospectivement\n- **Médiocristan vs Extremistan** : Distinction entre deux types de domaines où les événements suivent des distributions différentes\n- **L'illusion narrative** : Notre tendance à créer des histoires cohérentes pour expliquer les événements passés\n- **L'empirisme sceptique** : Approche philosophique pour gérer l'incertitude\n- **L'anti-fragilité** : Concept clé sur la capacité à bénéficier du chaos et de l'incertitude\n- **La platonicité** : Notre tendance à simplifier la réalité dans des modèles théoriques trompeurs"
-                  }
-                ]
-              },
-              {
-                "step": 4,
-                "summary": [
-                  {
-                    "modelName": "gpt",
-                    "content": "## 4. Méthodologie et preuves\n\n### 📖 Sources et exemples utilisés\nL’auteur s’appuie sur une analyse détaillée des événements historiques et sur des études de cas issus du monde de la finance et de l’économie. Dans *Le Cygne Noir*, Taleb utilise notamment des exemples marquants tels que la crise financière de 2008 pour illustrer l’échec des modèles prédictifs traditionnels face à des événements rares et imprévus.\n\n> « Les modèles traditionnels de prévision ne prennent pas suffisamment en compte l’impact des événements improbables, pourtant dévastateurs. »\n\n### 🔍 Analyse critique\n- **Conviction des arguments** : Les arguments de Taleb sont percutants et incitent à remettre en question les approches statistiques classiques. Son analyse, fondée sur des faits historiques concrets, force le lecteur à considérer l’incertitude comme un élément central dans l’analyse des risques.\n- **Biais et lacunes** : Bien que sa critique soit pertinente, certains reproches pointent du doigt une tendance à l’exagération et un manque de propositions concrètes pour pallier les failles des modèles existants.\n- **Éléments contestables** : La généralisation de certaines conclusions peut paraître excessive, surtout lorsqu’elle est appliquée à des contextes qui ne se prêtent pas toujours aux mêmes logiques.\n"
-                  },
-                  {
-                    "modelName": "claude",
-                    "content": "## 4. Méthodologie et preuves  \n\n### 📖 Sources et exemples utilisés\nTaleb s'appuie sur une combinaison rigoureuse de :\n- Événements historiques majeurs (crash boursier de 1987, attentats du 11 septembre, crise de 2008)\n- Analyses mathématiques et statistiques approfondies\n- Exemples tirés de domaines variés : finance, histoire, science, technologie\n- Références philosophiques (notamment stoïcienne) et littéraires\n- Expériences personnelles en tant que trader et analyste quantitatif\n\nIl utilise particulièrement la méthode du contre-exemple pour démontrer les failles des modèles probabilistes classiques et illustre ses propos par des métaphores percutantes (la dinde de Thanksgiving, le cygne noir).\n\n### 🔍 Analyse critique\n\n**Points forts:**\n- Argumentation solide basée sur des preuves empiriques\n- Approche multidisciplinaire qui renforce la crédibilité\n- Démonstration mathématique rigoureuse des limites des modèles gaussiens\n- Exemples concrets et accessibles qui illustrent des concepts complexes\n\n**Limites et points contestables:**\n- Ton parfois polémique et agressif envers certains experts\n- Tendance à la répétition et à l'emphase excessive\n- Manque relatif de solutions pratiques face aux problèmes soulevés\n- Certains critiques pointent une possible surestimation de la fréquence des événements 'cygne noir'\n- La subjectivité de l'auteur transparaît parfois dans l'analyse des exemples"
-                  }
-                ]
-              },
-              {
-                "step": 5,
-                "summary": [
-                  {
-                    "modelName": "gpt",
-                    "content": "## 5. Implications et applications pratiques\n\n### 🌍 Impact des idées\nLe livre met en avant l'importance de repenser la gestion des risques dans un monde dominé par l'incertitude et les événements imprévus. Dans le contexte économique comme dans la vie quotidienne, l'approche de Taleb invite à :\n- Revoir les stratégies d'investissement en intégrant l'« anti-fragilité » qui consiste à se préparer non pas uniquement aux risques prévisibles, mais aussi à ceux qui sortent des cadres classiques.\n- Encourager une approche plus prudente et résiliente dans les démarches entrepreneuriales, notamment en évitant une surdépendance aux modèles probabilistes traditionnels.\n- Adapter les politiques publiques et la gestion des crises en tenant compte de la possibilité d'événements improbables aux conséquences majeures.\n\n### 🔄 Comparaison avec d’autres approches\nLe Cygne noir se distingue ainsi par une remise en question des modèles prédictifs classiques. En comparaison :\n- D'autres théories économiques continuent de s'appuyer sur des modèles statistiques habituels qui minimisent l'impact des événements rares, tandis que Taleb insiste sur le rôle crucial de ces exceptions.\n- Certains auteurs prônent une approche plus optimiste ou contrôlée de la prise de risque, contrastant avec l'argument de Taleb qui appelle à accepter l'incertitude comme un élément inhérent et inévitable de nos systèmes.\n- L'œuvre complémente des concepts comme l'innovation radicale ou la disruption, qui, tout en valorisant le changement, n'intègrent pas toujours la dimension de chaos et d'imprévisibilité sur le long terme.\n\nEn résumé, l'ouvrage offre une vision qui remet en cause les fondements des stratégies de gestion du risque et invite à adopter une posture plus critique et adaptable face à un environnement par nature incertain."
-                  },
-                  {
-                    "modelName": "claude",
-                    "content": "## 5. Implications et applications pratiques\n\n### 🌍 Impact des idées\nLes concepts du Cygne Noir ont des implications profondes dans de nombreux domaines :\n- En finance : Adopter des stratégies d'investissement qui protègent contre les événements extrêmes plutôt que de se fier aux modèles probabilistes classiques\n- En entrepreneuriat : Créer des entreprises \"antifragiles\" capables de bénéficier de l'incertitude plutôt que d'en souffrir\n- En gestion des risques : Privilégier la robustesse et la redondance plutôt que l'optimisation excessive\n- En prise de décision : Rester humble face à notre incapacité à prédire l'avenir et garder une marge de sécurité\n\n### 🔄 Comparaison avec d'autres approches\n- Contraste avec la théorie économique classique qui suppose que les marchés sont efficaces et les risques quantifiables\n- Opposition aux méthodes de gestion des risques basées sur la distribution normale (courbe en cloche)\n- Rejoint certaines idées de Mandelbrot sur les fractales et les événements extrêmes\n- S'inscrit dans la lignée des penseurs critiques de l'économie conventionnelle comme Hayek et sa théorie de l'ordre spontané\n\nLes idées de Taleb se distinguent par leur radicalité et leur remise en question fondamentale des modèles prédictifs traditionnels, proposant une approche plus prudente et consciente de nos limites cognitives."
-                  }
-                ]
-              },
-              {
-                "step": 6,
-                "summary": [
-                  {
-                    "modelName": "gpt",
-                    "content": "## 6. Réflexion personnelle\n\n### 💡 Impressions et questionnements\nDans « Le Cygne noir », Nassim Nicholas Taleb nous confronte à une vision du monde où l’imprévisible et l’extrême jouent un rôle central. Ce qui m’a particulièrement marqué, c’est la force avec laquelle l’auteur déconstruit les modèles de prévisibilité traditionnelle, invitant à une remise en question de nos certitudes. Le livre, à la fois provocateur et éclairant, suscite des interrogations sur notre capacité à anticiper l’avenir et sur l’influence des événements rares dans nos vies quotidiennes. Sa perspective, parfois radicale, pousse à réfléchir sur l’importance d’intégrer l’incertitude dans nos décisions personnelles et professionnelles.\n\n### 🏆 Pertinence personnelle\nAu niveau personnel, « Le Cygne noir » m’incite à adopter une approche plus prudente face aux risques et à valoriser une pensée critique par rapport aux modèles économiques et prédictifs conventionnels. L’ouvrage me pousse à questionner la fiabilité des méthodes traditionnelles et à envisager des stratégies de vie et d’investissement qui prennent en compte l’imprévu. Il m’encourage à développer une résilience face aux incertitudes, renforçant ainsi ma capacité à naviguer dans un environnement en constante évolution."
-                  },
-                  {
-                    "modelName": "claude",
-                    "content": "## 6. Réflexion personnelle  \n\n### 💡 Impressions et questionnements  \nLe Cygne Noir est un ouvrage profondément déstabilisant qui remet en question notre façon de percevoir le monde et les événements. La manière dont Taleb déconstruit nos certitudes sur la prévisibilité et notre capacité à anticiper l'avenir est particulièrement marquante. Son style provocateur et sans concession, bien qu'parfois polémique, force à la réflexion et à l'humilité intellectuelle.\n\nCe qui impressionne particulièrement est sa capacité à démontrer comment notre biais rétrospectif nous fait croire que nous aurions pu prévoir des événements majeurs, alors qu'en réalité leur nature même les rend imprévisibles. La notion d'incertitude radicale qu'il développe est à la fois fascinante et inconfortable.\n\n### 🏆 Pertinence personnelle  \nLa lecture de cet ouvrage transforme profondément notre rapport au risque et à l'incertitude. Elle nous pousse à :\n- Adopter une posture plus humble face à nos capacités de prédiction\n- Remettre en question notre confiance excessive dans les experts et les modèles\n- Développer des stratégies pour devenir plus \"antifragile\" face aux événements imprévus\n- Être plus attentif aux signaux faibles et aux possibilités de rupture\n\nCette nouvelle perspective influence directement la façon d'aborder la prise de décision, que ce soit dans un contexte professionnel ou personnel, en nous encourageant à nous préparer à l'imprévu plutôt que de tenter vainement de le prédire."
-                  }
-                ]
-              },
-              {
-                "step": 7,
-                "summary": [
-                  {
-                    "modelName": "gpt",
-                    "content": "## 7. Conclusion et synthèse\n\n### 🔁 Récapitulatif des idées essentielles\nDans « Le Cygne noir », Taleb nous invite à repenser notre perception du risque et de l'incertitude en soulignant l'impact disproportionné des événements rares. L'auteur rappelle la faillibilité des modèles prédictifs classiques en illustrant comment des « cygnes noirs » – imprévisibles et extrêmes – peuvent remodeler l'économie et notre vision du monde.\n\n### 🌟 Ouverture\n- Ce livre est crucial pour qui souhaite comprendre la fragilité des systèmes modernes face aux imprévus, ouvrant ainsi le débat sur l'importance de l'anti-fragilité.\n- Il incite à une réflexion plus large sur la capacité des individus et des institutions à s'adapter à l'inattendu en adoptant des stratégies résilientes.\n- Pour approfondir ces notions, des lectures complémentaires comme « Antifragile » de Taleb ou des ouvrages sur la gestion du risque et l'incertitude peuvent s'avérer très enrichissantes."
-                  },
-                  {
-                    "modelName": "claude",
-                    "content": "## 7. Conclusion et synthèse\n\n### 🔁 Récapitulatif des idées essentielles\nLe Cygne Noir révolutionne notre compréhension des événements rares et de leur impact. Taleb démontre magistralement que notre monde est dominé par l'imprévisible et l'extrême, plutôt que par la moyenne et le prévisible. Les points essentiels sont:\n- L'impossibilité de prédire les événements à fort impact\n- La fragilité des modèles de prévision traditionnels\n- L'importance de construire des systèmes anti-fragiles\n- La distinction fondamentale entre Médiocristan et Extrêmistan\n\n### 🌟 Ouverture\nL'importance du Cygne Noir dans le domaine de la gestion des risques et de la prise de décision est fondamentale. Il a profondément influencé la pensée économique et financière post-2008. Ce livre ouvre une réflexion cruciale sur notre rapport à l'incertitude et notre capacité à naviguer dans un monde de plus en plus complexe et interconnecté.\n\nPour approfondir ces concepts, les lecteurs pourront se tourner vers:\n- 'Antifragile' du même auteur\n- 'Thinking, Fast and Slow' de Daniel Kahneman\n- 'The Black Swan: Second Edition' qui inclut un essai sur la robustesse et la fragilité"
-                  }
-                ]
-              }
-            ]
-          },
-          "jobType": "report"
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "settings": {
     "executionOrder": "v1"
   },
   "staticData": null,
   "tags": [],
-  "triggerCount": 2,
-  "updatedAt": "2025-03-23T15:44:55.000Z",
-  "versionId": "9f8af94e-92e9-407e-ab25-b5fd37307e2e"
+  "triggerCount": 1,
+  "updatedAt": "2025-03-26T22:35:33.000Z",
+  "versionId": "d35b3e2d-f197-406f-8883-9dfb5825be02"
 }
