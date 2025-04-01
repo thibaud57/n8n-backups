@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "On form submission": {
       "main": [
@@ -945,7 +945,9 @@
         800
       ],
       "id": "1313f92a-daa6-42ce-b56a-d557016f1ed9",
-      "name": "AI Agent"
+      "name": "AI Agent",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000
     },
     {
       "parameters": {
@@ -1030,7 +1032,9 @@
         1100
       ],
       "id": "8f65e997-0d31-45fb-b627-e66bccfe51b9",
-      "name": "AI Agent1"
+      "name": "AI Agent1",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000
     },
     {
       "parameters": {
@@ -1505,7 +1509,7 @@
   },
   "staticData": null,
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2025-03-26T21:02:14.000Z",
-  "versionId": "3355575d-343d-44ff-97fc-c35c5049bbe7"
+  "triggerCount": 2,
+  "updatedAt": "2025-03-31T14:20:52.000Z",
+  "versionId": "a0fdaa78-c584-4e02-a037-2b75d6b4c5f9"
 }
