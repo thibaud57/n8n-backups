@@ -1,0 +1,508 @@
+{
+  "active": true,
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram": {
+      "main": [
+        [
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gpt 4o": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RAG Agent": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Drive RAG": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-11T10:28:30.944Z",
+  "id": "5vXTykjn4oGeJ3VO",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Telegram Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "4c7b92da-d2c2-4fcf-8da2-e8e78541a03a",
+      "name": "Telegram Trigger",
+      "webhookId": "c645e66a-494d-4381-bfb8-0040b99e81c7",
+      "credentials": {
+        "telegramApi": {
+          "id": "6WYvXZMTCRUQHjwY",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    },
+                    "id": "990dffd2-06d3-4e9d-851e-0d95a36c821e"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "text"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "648bf991-fd59-4a38-a678-e7e9142feea9",
+                    "leftValue": "={{ $json.message.voice.file_id }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "audio"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        220,
+        0
+      ],
+      "id": "237e71ed-a1eb-4f64-857c-22a062804a58",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "269bb5e4-fd41-4b6c-8018-3241db35615b",
+              "name": "text",
+              "value": "={{ $json?.text || $('Switch').item.json.message.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        740,
+        -20
+      ],
+      "id": "501c3591-8b98-46f2-bbe4-c6ad7f32979d",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.text }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=## 📌 Contexte  \nTu es un assistant personnel via Telegram qui orchestre différents workflows selon les demandes des utilisateurs.\nTu es le point d'entrée principal qui dirige les requêtes vers les bons services.\nLa date du jour est : {{ $today.format('dd/MM/yyyy') }}\n\n## 🎯 Workflows disponibles\n- rag_agent (Recherche documentaire)\n- drive_rag (Mise à jour des collections)\n\n### RAG Agent\nDescription : Recherche d'informations dans les documents indexés\nQuand l'utiliser : \n- Questions sur des documents\n- Recherche d'informations spécifiques\n- Consultation de documentation\n\nFormat de sortie :\n{\n    \"message\": \"Message de l'utilisateur reformulé\",\n    \"folderName\": \"Nom du dossier\"\n}\n\n### Drive RAG\nDescription : Mise à jour ou création d'une collection RAG à partir d'un dossier\nQuand l'utiliser :\n- Demande d'indexation d'un nouveau dossier\n- Mise à jour d'une collection existante\n\nRègles de nommage :\n- Si l'utilisateur donne \"appart\" → utiliser \"rag_appart\"\n- Si l'utilisateur donne déjà \"rag_appart\" → utiliser tel quel\n\nFormat de sortie :\n{\n    \"message\": \"Mettre à jour la collection: {nom_collection}\",\n    \"folderName\": \"nom_du_dossier_formaté\"\n}\n\nPoint d'attention:\n- Toujours vérifier et formater le nom du dossier avec les règles de nommage\n\n### Requête non reconnue\nFormat de sortie :\n{\n    \"message\": \"Je ne comprends pas votre demande. Souhaitez-vous effectuer une recherche dans les documents ou mettre à jour une collection ?\"\n}\n\n## 📝 Formatage du message final\n\nQuand tu retournes ton message à l'utilisateur, fais en sorte qu'il soit facilement lisible et aéré dans le cas d'un grand texte:\n- Utilise des sauts de ligne pour séparer les sections\n- Ajoute des puces (•) pour lister les informations\n- Mets en **gras** les informations importantes\n- Mets en *italique* les sources ou citations\n- Structure le texte avec des sous-titres si nécessaire\n- Évite les paragraphes trop denses et soit le plus concis possible\n\n## ⚠️ Règles importantes\n1. Toujours répondre en JSON\n2. Toujours s'assurer que les points d'attention des workflows sont respectés\n3. Si doute, demander des clarifications\n4. Maintenir un ton conversationnel et professionnel et qui respecte le format attendu"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        1000,
+        -20
+      ],
+      "id": "62fa4b3b-483e-400c-820e-25ca4ce2c562",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $json.message.voice.file_id }}"
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        420,
+        100
+      ],
+      "id": "59ca9fc8-5848-4e61-9a76-9d18c6816841",
+      "name": "Telegram",
+      "webhookId": "c1b64975-c409-4fa4-a486-e327ae0d2be8",
+      "credentials": {
+        "telegramApi": {
+          "id": "6WYvXZMTCRUQHjwY",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        560,
+        100
+      ],
+      "id": "d6314b0a-eaa7-4db2-a6b6-69b87a4b6c2a",
+      "name": "OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "PmqmzdRFH1SO1Yvi",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "gpt-4o"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        980,
+        140
+      ],
+      "id": "1ab31528-d96b-4236-966d-4e1bc0514b13",
+      "name": "Gpt 4o",
+      "credentials": {
+        "openAiApi": {
+          "id": "PmqmzdRFH1SO1Yvi",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "tableName": "telegram_chat_histories",
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        1080,
+        140
+      ],
+      "id": "b7e95e24-3184-4733-beab-d072075c16cd",
+      "name": "Postgres Chat Memory",
+      "credentials": {
+        "postgres": {
+          "id": "R8z5A96juGNl77cz",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "rag_agent",
+        "workflowId": {
+          "__rl": true,
+          "value": "YcnsYR94thiDz0tX",
+          "mode": "list",
+          "cachedResultName": "RAG Agent"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "folderName": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('folderName', ``, 'string') }}",
+            "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('message', ``, 'string') }}",
+            "sessionId": "={{ $('Telegram Trigger').item.json.message.chat.id }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "message",
+              "displayName": "message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "sessionId",
+              "displayName": "sessionId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "folderName",
+              "displayName": "folderName",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.1,
+      "position": [
+        1240,
+        140
+      ],
+      "id": "e8b94658-3be2-4d33-a0b9-4a7f5974c8c9",
+      "name": "RAG Agent"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "={{ $json.output.message }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1460,
+        -100
+      ],
+      "id": "18a5add3-a1bf-4faf-8aa8-bb334026db65",
+      "name": "Response",
+      "webhookId": "ed254908-b2f8-4882-a037-3b7a0d2619cc",
+      "credentials": {
+        "telegramApi": {
+          "id": "6WYvXZMTCRUQHjwY",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "drive_rag",
+        "workflowId": {
+          "__rl": true,
+          "value": "LytkQY3E14CjN45I",
+          "mode": "list",
+          "cachedResultName": "Drive RAG"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "folderName": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('folderName', ``, 'string') }}"
+          },
+          "matchingColumns": [
+            "folderName"
+          ],
+          "schema": [
+            {
+              "id": "folderName",
+              "displayName": "folderName",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.1,
+      "position": [
+        1360,
+        140
+      ],
+      "id": "5b42b0a3-6d3b-4f57-ac92-a03d8a874be9",
+      "name": "Drive RAG"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"message\": \"le message final pour l'utilisateur\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        1160,
+        220
+      ],
+      "id": "1b24c786-bac8-49d8-b94c-091f2c53ebed",
+      "name": "Structured Output Parser"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-04-11T17:40:31.000Z",
+  "versionId": "0e6fde12-7f8e-4cc5-a3a9-271806ee1947"
+}
