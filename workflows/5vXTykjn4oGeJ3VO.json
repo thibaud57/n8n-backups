@@ -135,7 +135,7 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "Telegram Agent",
+  "name": "RAG Telegram Agent",
   "nodes": [
     {
       "parameters": {
@@ -515,6 +515,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-04-13T20:18:25.000Z",
-  "versionId": "5e658b8c-2f63-4658-bc38-486922350cfc"
+  "updatedAt": "2025-04-15T13:42:15.000Z",
+  "versionId": "0fb3da3b-5ee1-414e-b4d7-e7601b03fed6"
 }
