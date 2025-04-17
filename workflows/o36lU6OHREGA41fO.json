@@ -1,0 +1,56 @@
+{
+  "active": true,
+  "connections": {
+    "Calculator": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-16T18:24:40.418Z",
+  "id": "o36lU6OHREGA41fO",
+  "meta": null,
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "2f317ada-78fc-4ccc-b6ff-6d1b17dafc15"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "ef7499a5-0943-41a1-9f49-d4d869a4569b",
+      "name": "MCP Server Trigger",
+      "webhookId": "2f317ada-78fc-4ccc-b6ff-6d1b17dafc15"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "typeVersion": 1,
+      "position": [
+        160,
+        160
+      ],
+      "id": "248a9745-e932-40ba-83ef-7ec454a6e30d",
+      "name": "Calculator"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-04-16T18:25:15.000Z",
+  "versionId": "e7ca9368-8f14-4bc7-b609-72b606dc5b83"
+}
