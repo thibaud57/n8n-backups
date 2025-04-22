@@ -1,0 +1,67 @@
+{
+  "active": false,
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-21T15:35:51.346Z",
+  "id": "zww9F9TUEbDiNNHV",
+  "meta": null,
+  "name": "Techno scraper",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "c928d26d-37b9-493a-8574-ceadcadecfac",
+      "name": "When chat message received",
+      "webhookId": "fa1a22f7-e1c4-42fc-abca-65cd91ff479a"
+    },
+    {
+      "parameters": {
+        "url": "=http://techno-scraper:8000/api/soundcloud/search-profile/{{ $json.chatInput }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        220,
+        0
+      ],
+      "id": "1f9235ae-f5e4-4c72-8807-832347782495",
+      "name": "HTTP Request",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "lcTZOPtCaK63felb",
+          "name": "Techno Scraper"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-04-21T16:05:09.000Z",
+  "versionId": "e8199321-6601-4237-ac1d-31c24c939454"
+}
