@@ -16,7 +16,7 @@
   "createdAt": "2025-04-16T18:24:40.418Z",
   "id": "o36lU6OHREGA41fO",
   "meta": null,
-  "name": "My workflow",
+  "name": "Mcp test",
   "nodes": [
     {
       "parameters": {
@@ -51,6 +51,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-04-16T18:25:15.000Z",
-  "versionId": "e7ca9368-8f14-4bc7-b609-72b606dc5b83"
+  "updatedAt": "2025-04-23T20:53:09.000Z",
+  "versionId": "f52a8325-cd44-4895-9330-0ce744ff59b7"
 }
