@@ -1,0 +1,644 @@
+{
+  "active": false,
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "folderNameTool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Response",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "metadataTool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "ragTool",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ragTool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Auto-fixing Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser1": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Auto-fixing Output Parser",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Auto-fixing Output Parser",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-11T10:20:30.057Z",
+  "id": "YcnsYR94thiDz0tX",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "RAG Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "message"
+            },
+            {
+              "name": "sessionId"
+            },
+            {
+              "name": "folderName"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        20,
+        0
+      ],
+      "id": "89bf976c-f0b1-499c-86af-6745e25bbfe0",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ebf104cf-6612-40e1-b474-98767a51e936",
+              "leftValue": "={{ $json.folderName }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        240,
+        0
+      ],
+      "id": "2149b489-4534-4e02-b927-c31ba3f4cfd9",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=## 📌 Contexte  \nTu es un agent de recherche qui utilise les métadonnées et la recherche sémantique RAG. \nTu reçois TOUJOURS un folderName validé.\n\n## 🛠️ Outils disponibles :\n1. **metadataTool** (PostgreSQL)\n   - Accède aux métadonnées des documents :\n     - title: le titre du document\n     - theme : thème principal\n     - topics : sujets abordés\n     - painPoints : points de douleur\n     - keywords : mots-clés\n   - Utilise ces informations pour cibler les documents pertinents\n\n2. **ragTool** (Qdrant)\n   - Recherche sémantique dans les documents\n   - Tu dois filtrer les résultats pour ne garder que ceux provenant des documents retenus lors de l'étape 1\n\n## 🔍 Processus de recherche :\n1. TOUJOURS commencer par metadataTool pour :\n   - Identifier les documents pertinents via metadata\n   - Utiliser theme/topics/keywords pour affiner la sélection\n\n2. ENSUITE utiliser ragTool pour :\n   - Prends connaissance des documents spécifiés (noms ou IDs exacts)\n   - Recherche précise dans les documents présélectionnés\n   - Vérifie dans les métadonnées des résultats que chaque extrait provient bien des documents spécifiés\n   - IGNORE tous les extraits provenant d'autres documents\n\n## ⚠️ FORMAT DE RÉPONSE OBLIGATOIRE :\n{\n    \"message\": \"réponse détaillée basée UNIQUEMENT sur les documents spécifiés\",\n    \"sources\": {\n        \"documents\": [\"liste exacte des documents utilisés avec leurs noms et IDs tels qu'ils apparaissent dans les métadonnées\"],\n        \"themes\": [\"thèmes identifiés\"],\n        \"keywords\": [\"mots-clés pertinents\"]\n    }\n}\n\n## ⚠️ RÈGLES ABSOLUES :\n1. SEULS les documents spécifiés doivent être utilisés\n2. Vérifie TOUJOURS les métadonnées (fileName, fileId) des extraits pour confirmer leur source\n3. Si le ragTool retourne des extraits d'autres documents, IGNORE-LES COMPLÈTEMENT\n4. Si tu ne trouves pas l'information dans les documents spécifiés, indique-le clairement et n'utilise PAS d'autres sources\n5. JAMAIS d'invention d'information - si tu ne la trouves pas, dis-le simplement"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        1200,
+        -280
+      ],
+      "id": "51107c89-0ae1-4546-be80-4c7689008a66",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=## 📌 Contexte  \nTu es un agent de validation qui détermine le dossier approprié pour la recherche.\nTu as accès à un seul outil : folderNameTool (PostgreSQL).\n\n## 🎯 Objectif\nDéterminer si la requête de l'utilisateur correspond à un dossier existant.\n\n## 🛠️ Processus :\n1. Utiliser folderNameTool pour obtenir la liste des collections disponibles\n2. Analyser si la requête correspond clairement à une collection\n\n## ⚠️ FORMAT DE RÉPONSE OBLIGATOIRE :\n{\n    \"folderName\": \"nom_du_dossier\",  // uniquement si dossier clairement identifié\n    \"message\": \"ton message\",\n    \"status\": \"VALID\" | \"CONFIRM\" | \"NOT_FOUND\"  // Statut de la recherche\n}\n\n## 📝 Exemples de réponses :\n\nCas VALID (dossier trouvé clairement) :\n{\n    \"folderName\": \"appart\",\n    \"message\": \"J'ai identifié la collection 'rag_appart' pour votre recherche.\",\n    \"status\": \"VALID\"\n}\n\nCas CONFIRM (besoin de confirmation) :\n{\n    \"message\": \"Votre requête pourrait correspondre à plusieurs collections : rag_test, rag_appart. Laquelle vous intéresse ?\",\n    \"status\": \"CONFIRM\"\n}\n\nCas NOT_FOUND (aucune correspondance) :\n{\n    \"message\": \"Aucune collection ne correspond à votre demande. Collections disponibles : rag_test, rag_appart. Veuillez préciser.\",\n    \"status\": \"NOT_FOUND\"\n}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        420,
+        380
+      ],
+      "id": "c61fdf14-876e-42d7-a5c4-12b9d4c81fee",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        320,
+        540
+      ],
+      "id": "b42d86b5-6121-466c-9774-8846f8489b68",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "PmqmzdRFH1SO1Yvi",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT table_name \nFROM information_schema.tables \nWHERE table_schema = 'public' \nAND table_name ILIKE '%rag%';",
+        "options": {
+          "connectionTimeout": 10,
+          "delayClosingIdleConnection": 11
+        }
+      },
+      "type": "n8n-nodes-base.postgresTool",
+      "typeVersion": 2.6,
+      "position": [
+        620,
+        540
+      ],
+      "id": "82f1715e-2d0a-4f07-94e0-522cd53449fc",
+      "name": "folderNameTool",
+      "credentials": {
+        "postgres": {
+          "id": "R8z5A96juGNl77cz",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n    \"folderName\": \"nom_du_dossier\",\n    \"message\": \"ton message\",\n    \"status\": \"VALID\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        760,
+        540
+      ],
+      "id": "5d1b0f38-d5e6-4708-9b03-6c0acee625ea",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.output.status }}",
+                    "rightValue": "VALID",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "3ca48f71-089c-4345-8a8f-eeafc89bd4df"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "36ca609f-6d33-4436-9908-1008e588c6df",
+                    "leftValue": "={{ $json.output.status }}",
+                    "rightValue": "CONFIRM",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "24f09e4c-3f1e-4daa-b672-e3fd6b07560b",
+                    "leftValue": "={{ $json.output.status }}",
+                    "rightValue": "NOT_FOUND",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        820,
+        380
+      ],
+      "id": "d1f4d73f-6f56-4242-bc7b-2016b4430cbf",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "505cc1da-27a0-4456-b96d-946245c186f5",
+              "name": "message",
+              "value": "={{ $json.output.message }}",
+              "type": "string"
+            },
+            {
+              "id": "25c7f7ac-d081-4ad5-a359-b57e4767923f",
+              "name": "sources",
+              "value": "={{ $json.output.sources.documents }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1600,
+        340
+      ],
+      "id": "db60db60-4988-4c42-89e3-692d412e1de1",
+      "name": "Response"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "=n8n_{{ $('When Executed by Another Workflow').item.json.folderName }}_metadata",
+          "mode": "name"
+        },
+        "returnAll": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgresTool",
+      "typeVersion": 2.6,
+      "position": [
+        1300,
+        -120
+      ],
+      "id": "50fec1a5-ad02-4bf3-9c72-679a5f97da1b",
+      "name": "metadataTool",
+      "credentials": {
+        "postgres": {
+          "id": "R8z5A96juGNl77cz",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1580,
+        -20
+      ],
+      "id": "0e759a77-0282-4027-8133-065a43863b8d",
+      "name": "Embeddings OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "PmqmzdRFH1SO1Yvi",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolName": "=n8n_{{ $('When Executed by Another Workflow').item.json.folderName }}",
+        "toolDescription": "=",
+        "qdrantCollection": {
+          "__rl": true,
+          "value": "=n8n_{{ $('When Executed by Another Workflow').item.json.folderName }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
+      "typeVersion": 1.1,
+      "position": [
+        1440,
+        -140
+      ],
+      "id": "5a764e5c-5f8d-4385-b904-496f1cc0f95a",
+      "name": "ragTool",
+      "credentials": {
+        "qdrantApi": {
+          "id": "70YbAQdnvCQbSD6T",
+          "name": "QdrantApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserAutofixing",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        20
+      ],
+      "id": "fdba9700-44d5-4525-b8a5-7ba063a796a1",
+      "name": "Auto-fixing Output Parser"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n    \"message\": \"réponse détaillée basée sur la recherche\",\n    \"sources\": {\n        \"documents\": [\"liste des documents pertinents\"],\n        \"themes\": [\"thèmes identifiés\"],\n        \"keywords\": [\"mots-clés pertinents\"]\n    }\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        1260,
+        140
+      ],
+      "id": "61de60ac-81ac-4b33-bd25-72b04301a6f1",
+      "name": "Structured Output Parser1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "claude-3-7-sonnet-20250219",
+          "cachedResultName": "Claude 3.7 Sonnet"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
+      "position": [
+        1120,
+        140
+      ],
+      "id": "6c07a3bc-3c7f-494d-bca0-b41f957a2935",
+      "name": "Anthropic Chat Model",
+      "credentials": {
+        "anthropicApi": {
+          "id": "yeLIK0R1OKDySeyH",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "gpt-4o"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1160,
+        -120
+      ],
+      "id": "08cb3777-b311-4ff8-a108-9ecefb939562",
+      "name": "OpenAI Chat Model2",
+      "credentials": {
+        "openAiApi": {
+          "id": "PmqmzdRFH1SO1Yvi",
+          "name": "OpenAi account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-04-29T15:25:25.104Z",
+      "updatedAt": "2025-04-29T15:25:25.104Z",
+      "id": "BsAhe622cR53PoZb",
+      "name": "qdrant"
+    },
+    {
+      "createdAt": "2025-04-29T15:25:21.698Z",
+      "updatedAt": "2025-04-29T15:25:21.698Z",
+      "id": "dlt1FEn2ZK8zJfUl",
+      "name": "postgres"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-04-29T15:28:12.000Z",
+  "versionId": "da78b7f1-4c8e-47de-b770-84c9c2a6ce79"
+}
