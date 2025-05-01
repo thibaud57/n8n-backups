@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Operation": {
       "main": [
@@ -581,7 +581,7 @@
     },
     {
       "parameters": {
-        "path": "a5fd7047-e31b-4c0d-bd68-c36072c3da0d"
+        "path": "postgres"
       },
       "id": "ac3d9b98-8f1e-4abd-972c-1725aac1ad1e",
       "name": "PostgreSQL MCP Server",
@@ -658,7 +658,7 @@
       "name": "postgres"
     }
   ],
-  "triggerCount": 0,
-  "updatedAt": "2025-04-29T15:26:10.000Z",
-  "versionId": "2ed3480a-dee3-4bc7-8815-aaa1b31c7892"
+  "triggerCount": 1,
+  "updatedAt": "2025-04-30T10:47:22.000Z",
+  "versionId": "08ec60c7-7416-433c-bf3b-5f9e393b3328"
 }
