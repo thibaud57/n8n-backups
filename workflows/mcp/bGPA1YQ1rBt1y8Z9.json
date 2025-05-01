@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Operation": {
       "main": [
@@ -450,7 +450,13 @@
         800
       ],
       "executeOnce": true,
-      "typeVersion": 4.2
+      "typeVersion": 4.2,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "BcZBYz8QikBHrxiI",
+          "name": "Apify"
+        }
+      }
     },
     {
       "parameters": {
@@ -525,7 +531,13 @@
       ],
       "retryOnFail": true,
       "typeVersion": 4.2,
-      "waitBetweenTries": 5000
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "BcZBYz8QikBHrxiI",
+          "name": "Apify"
+        }
+      }
     },
     {
       "parameters": {
@@ -719,7 +731,13 @@
         2400,
         1200
       ],
-      "typeVersion": 4.2
+      "typeVersion": 4.2,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "BcZBYz8QikBHrxiI",
+          "name": "Apify"
+        }
+      }
     },
     {
       "parameters": {
@@ -797,11 +815,17 @@
         2200,
         1200
       ],
-      "typeVersion": 4.2
+      "typeVersion": 4.2,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "BcZBYz8QikBHrxiI",
+          "name": "Apify"
+        }
+      }
     },
     {
       "parameters": {
-        "path": "b975bb25-be7c-49fb-8cd2-8e135d91ed4e"
+        "path": "youtube"
       },
       "id": "90da2c29-a1fc-4772-a271-602cdd14b679",
       "name": "Apify Youtube MCP Server",
@@ -863,7 +887,7 @@
       "name": "apify"
     }
   ],
-  "triggerCount": 0,
-  "updatedAt": "2025-04-29T15:40:19.000Z",
-  "versionId": "0404a6c9-9117-4e70-bf46-a943e0c2295f"
+  "triggerCount": 1,
+  "updatedAt": "2025-04-30T10:46:19.000Z",
+  "versionId": "6689c5aa-05a0-4567-925d-7852ccfa27a2"
 }
