@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Insert": {
       "ai_tool": [
@@ -595,7 +595,7 @@
     },
     {
       "parameters": {
-        "path": "a1aff1b5-e5c7-4ca2-91eb-017c1fe32dab"
+        "path": "qdrant"
       },
       "id": "d1d53cbc-0a22-409d-9336-d8c98eeaa170",
       "name": "Qdrant MCP Server",
@@ -1737,7 +1737,7 @@
       "name": "mcp"
     }
   ],
-  "triggerCount": 0,
-  "updatedAt": "2025-04-29T15:32:26.000Z",
-  "versionId": "a8329384-a728-4ceb-bb59-f5249ebd01d9"
+  "triggerCount": 1,
+  "updatedAt": "2025-04-30T10:48:01.000Z",
+  "versionId": "1657b320-d900-44cd-a00a-f2bde7cae762"
 }
