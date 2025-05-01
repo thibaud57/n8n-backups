@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "FileType": {
       "main": [
@@ -178,7 +178,7 @@
     },
     {
       "parameters": {
-        "path": "a289c719-fb71-4b08-97c6-79d12645dc7e"
+        "path": "google-drive"
       },
       "id": "02aee033-58e8-4f33-a18d-b872840e81d8",
       "name": "Google Drive MCP Server",
@@ -670,7 +670,7 @@
       "name": "drive"
     }
   ],
-  "triggerCount": 0,
-  "updatedAt": "2025-04-29T15:33:41.000Z",
-  "versionId": "760a02b9-99bb-47a4-a0ec-3b67722a3483"
+  "triggerCount": 1,
+  "updatedAt": "2025-04-30T10:39:52.000Z",
+  "versionId": "96dd4509-86de-4542-875c-13a62e53c026"
 }
