@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Operation": {
       "main": [
@@ -127,7 +127,7 @@
     },
     {
       "parameters": {
-        "path": "0d93cfd5-2fbf-457e-9535-5bfc9a73ba9e"
+        "path": "file-system"
       },
       "id": "fe9f1c8e-8334-4732-be3a-5ee49036e11e",
       "name": "FileSystem MCP Server",
@@ -469,7 +469,7 @@
       "name": "mcp"
     }
   ],
-  "triggerCount": 0,
-  "updatedAt": "2025-04-29T15:23:37.000Z",
-  "versionId": "a4ef7cd0-3a00-49c1-9fe8-bb572d27c790"
+  "triggerCount": 1,
+  "updatedAt": "2025-04-30T10:25:03.000Z",
+  "versionId": "af00ab37-7b57-4db0-ab47-7102e3a9e2a6"
 }
