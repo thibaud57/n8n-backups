@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Telegram Trigger": {
       "main": [
@@ -132,6 +132,7 @@
   },
   "createdAt": "2025-04-11T10:28:30.944Z",
   "id": "5vXTykjn4oGeJ3VO",
+  "isArchived": false,
   "meta": {
     "templateCredsSetupCompleted": true
   },
@@ -510,7 +511,9 @@
   ],
   "pinData": {},
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "5SeL1g0ygtyvlBLC"
   },
   "staticData": null,
   "tags": [
@@ -522,6 +525,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-05-05T17:06:03.000Z",
-  "versionId": "3b2a65d8-e09c-43ff-8c7a-6af6ce394c9d"
+  "updatedAt": "2025-05-19T16:24:13.000Z",
+  "versionId": "47dc056b-499a-40e8-bd33-66f2d27f9ddc"
 }
