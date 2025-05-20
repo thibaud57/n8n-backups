@@ -88,6 +88,7 @@
   },
   "createdAt": "2025-04-29T15:23:01.824Z",
   "id": "dG2GsrQ07A5lAF0G",
+  "isArchived": false,
   "meta": {
     "templateId": "3630"
   },
@@ -458,7 +459,9 @@
   ],
   "pinData": {},
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "5SeL1g0ygtyvlBLC"
   },
   "staticData": null,
   "tags": [
@@ -470,6 +473,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-04-30T10:25:03.000Z",
-  "versionId": "af00ab37-7b57-4db0-ab47-7102e3a9e2a6"
+  "updatedAt": "2025-05-19T16:58:14.000Z",
+  "versionId": "01d4927e-0d1b-43fa-9080-bb04ec216f1b"
 }
