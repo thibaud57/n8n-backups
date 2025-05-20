@@ -571,6 +571,7 @@
   },
   "createdAt": "2025-02-27T19:26:55.609Z",
   "id": "LytkQY3E14CjN45I",
+  "isArchived": false,
   "meta": {
     "templateCredsSetupCompleted": true
   },
@@ -2084,7 +2085,8 @@
   "settings": {
     "executionOrder": "v1",
     "callerPolicy": "workflowsFromSameOwner",
-    "saveExecutionProgress": true
+    "saveExecutionProgress": true,
+    "errorWorkflow": "5SeL1g0ygtyvlBLC"
   },
   "staticData": {
     "node:Google Drive Trigger": {
@@ -2118,6 +2120,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-04-29T15:27:05.000Z",
-  "versionId": "149e1ef7-a5d0-4346-9bae-0c42f56d1315"
+  "updatedAt": "2025-05-19T16:24:36.000Z",
+  "versionId": "034fb513-7d15-4faf-90fd-995599726260"
 }
