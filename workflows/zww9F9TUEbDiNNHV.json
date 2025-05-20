@@ -15,6 +15,7 @@
   },
   "createdAt": "2025-04-21T15:35:51.346Z",
   "id": "zww9F9TUEbDiNNHV",
+  "isArchived": false,
   "meta": null,
   "name": "Techno scraper",
   "nodes": [
@@ -66,11 +67,13 @@
   ],
   "pinData": {},
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "5SeL1g0ygtyvlBLC"
   },
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-04-29T16:11:38.000Z",
-  "versionId": "aa0e808b-c14d-48c8-b3bd-02a635df83ed"
+  "updatedAt": "2025-05-19T16:56:12.000Z",
+  "versionId": "a1e4cc68-927c-458c-a832-d77d786c0949"
 }
