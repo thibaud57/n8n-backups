@@ -213,6 +213,7 @@
   },
   "createdAt": "2025-03-23T17:37:50.435Z",
   "id": "wDWa7UOKQOFX11Cd",
+  "isArchived": false,
   "meta": {
     "templateCredsSetupCompleted": true
   },
@@ -804,7 +805,9 @@
     ]
   },
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "5SeL1g0ygtyvlBLC"
   },
   "staticData": {
     "node:Google Sheets Trigger": {
@@ -824,6 +827,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-04-29T15:38:34.000Z",
-  "versionId": "6d615ef6-e453-4586-9bcb-c5a4bfcc9bc6"
+  "updatedAt": "2025-05-19T16:56:21.000Z",
+  "versionId": "afb4ecb0-d1f2-402d-af53-0e646a635cd7"
 }
