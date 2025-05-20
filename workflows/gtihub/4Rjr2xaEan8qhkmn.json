@@ -258,6 +258,7 @@
   },
   "createdAt": "2025-03-13T11:51:39.997Z",
   "id": "4Rjr2xaEan8qhkmn",
+  "isArchived": false,
   "meta": {
     "templateCredsSetupCompleted": true
   },
@@ -830,7 +831,9 @@
   ],
   "pinData": {},
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "5SeL1g0ygtyvlBLC"
   },
   "staticData": {
     "node:Schedule Trigger": {
@@ -846,6 +849,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-04-29T15:28:58.000Z",
-  "versionId": "433196bd-54d8-4d2a-91f6-e2f1bcdd9051"
+  "updatedAt": "2025-05-19T16:58:23.000Z",
+  "versionId": "7ef076a1-bc28-4279-a7fa-fb0dbfe60e4f"
 }
