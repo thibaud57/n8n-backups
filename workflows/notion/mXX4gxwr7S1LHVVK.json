@@ -416,6 +416,7 @@
   },
   "createdAt": "2025-03-26T18:40:43.696Z",
   "id": "mXX4gxwr7S1LHVVK",
+  "isArchived": false,
   "meta": null,
   "name": "Book Summary",
   "nodes": [
@@ -1505,7 +1506,9 @@
   ],
   "pinData": {},
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "5SeL1g0ygtyvlBLC"
   },
   "staticData": null,
   "tags": [
@@ -1517,6 +1520,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-04-29T15:38:59.000Z",
-  "versionId": "2188d374-fa2a-4a90-9e06-70ef7a88e27d"
+  "updatedAt": "2025-05-19T16:56:49.000Z",
+  "versionId": "82c9fa3f-f530-4c71-8485-e785a99f8a8c"
 }
