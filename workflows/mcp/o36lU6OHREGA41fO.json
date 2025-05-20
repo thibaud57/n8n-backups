@@ -15,6 +15,7 @@
   },
   "createdAt": "2025-04-16T18:24:40.418Z",
   "id": "o36lU6OHREGA41fO",
+  "isArchived": false,
   "meta": null,
   "name": "Mcp test",
   "nodes": [
@@ -46,7 +47,9 @@
   ],
   "pinData": {},
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "5SeL1g0ygtyvlBLC"
   },
   "staticData": null,
   "tags": [
@@ -58,6 +61,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-04-29T15:24:07.000Z",
-  "versionId": "682ec279-5da7-420e-ac9f-af8684488201"
+  "updatedAt": "2025-05-19T16:58:38.000Z",
+  "versionId": "f434b0a0-edc0-4466-a6ee-37c64239e7bd"
 }
