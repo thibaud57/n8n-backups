@@ -154,17 +154,6 @@
         ]
       ]
     },
-    "OpenAI Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Structured Output Parser": {
       "ai_outputParser": [
         [
@@ -204,17 +193,6 @@
             "node": "Merge",
             "type": "main",
             "index": 1
-          }
-        ]
-      ]
-    },
-    "Anthropic Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "AI Agent1",
-            "type": "ai_languageModel",
-            "index": 0
           }
         ]
       ]
@@ -296,17 +274,6 @@
         ]
       ]
     },
-    "OpenAI Chat Model3": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "BookSummary Control",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Tags to Items1": {
       "main": [
         [
@@ -346,17 +313,6 @@
           {
             "node": "Parse JSON blocks1",
             "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Google Gemini Chat Model1": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Notion Block Generator1",
-            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -412,12 +368,58 @@
           }
         ]
       ]
+    },
+    "O3 mini": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini 2.5 flash": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Notion Block Generator1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Claude 4 Sonnet": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "O3 mini1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "BookSummary Control",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-03-26T18:40:43.696Z",
   "id": "mXX4gxwr7S1LHVVK",
   "isArchived": false,
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "Book Summary",
   "nodes": [
     {
@@ -952,31 +954,6 @@
     },
     {
       "parameters": {
-        "model": {
-          "__rl": true,
-          "value": "o3-mini",
-          "mode": "list",
-          "cachedResultName": "o3-mini"
-        },
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1.2,
-      "position": [
-        260,
-        960
-      ],
-      "id": "711fee06-43a1-47a5-be11-545d4336d19d",
-      "name": "OpenAI Chat Model",
-      "credentials": {
-        "openAiApi": {
-          "id": "PmqmzdRFH1SO1Yvi",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "jsonSchemaExample": "{\n  \"modelName\": \"name\",\n  \"content\": \"Le résumé de l'étape\"\n}"
       },
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
@@ -1036,26 +1013,6 @@
       "name": "AI Agent1",
       "retryOnFail": true,
       "waitBetweenTries": 5000
-    },
-    {
-      "parameters": {
-        "model": "claude-3-5-sonnet-20241022",
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
-      "typeVersion": 1.2,
-      "position": [
-        260,
-        1240
-      ],
-      "id": "8b5887a7-0458-41f7-ab5d-78a336e5f844",
-      "name": "Anthropic Chat Model",
-      "credentials": {
-        "anthropicApi": {
-          "id": "yeLIK0R1OKDySeyH",
-          "name": "Anthropic account"
-        }
-      }
     },
     {
       "parameters": {},
@@ -1222,31 +1179,6 @@
     },
     {
       "parameters": {
-        "model": {
-          "__rl": true,
-          "value": "o3-mini",
-          "mode": "list",
-          "cachedResultName": "o3-mini"
-        },
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1.2,
-      "position": [
-        20,
-        1700
-      ],
-      "id": "ba165ee2-e8e7-4b74-8023-a4d5d56a9270",
-      "name": "OpenAI Chat Model3",
-      "credentials": {
-        "openAiApi": {
-          "id": "PmqmzdRFH1SO1Yvi",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "fieldToSplitOut": "tag",
         "options": {}
       },
@@ -1319,26 +1251,6 @@
         1560
       ],
       "typeVersion": 1.5
-    },
-    {
-      "parameters": {
-        "modelName": "models/gemini-2.0-flash",
-        "options": {}
-      },
-      "id": "1fb063fc-0a91-4186-8a91-757fdd0ffb14",
-      "name": "Google Gemini Chat Model1",
-      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
-      "position": [
-        1200,
-        1700
-      ],
-      "typeVersion": 1,
-      "credentials": {
-        "googlePalmApi": {
-          "id": "og4gMnGbp8Uy7toF",
-          "name": "Google Gemini(PaLM) Api account"
-        }
-      }
     },
     {
       "parameters": {
@@ -1502,6 +1414,86 @@
       "typeVersion": 1,
       "id": "e5e85660-630b-4005-afcd-989adaf84d7b",
       "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "model": "openai/o3-mini",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        260,
+        960
+      ],
+      "id": "2a2e6388-dbf5-4eab-a5a4-5e46a80c7c68",
+      "name": "O3 mini",
+      "credentials": {
+        "openRouterApi": {
+          "id": "pV44amjL1nJfCXDj",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "google/gemini-2.5-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        1720
+      ],
+      "id": "1df10ed1-9e74-4bc5-a535-0b98bf551fe6",
+      "name": "Gemini 2.5 flash",
+      "credentials": {
+        "openRouterApi": {
+          "id": "pV44amjL1nJfCXDj",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "anthropic/claude-sonnet-4",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        260,
+        1240
+      ],
+      "id": "b05aed67-6394-4b5f-951f-652ab610bb5d",
+      "name": "Claude 4 Sonnet",
+      "credentials": {
+        "openRouterApi": {
+          "id": "pV44amjL1nJfCXDj",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "openai/o3-mini",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        0,
+        1700
+      ],
+      "id": "ee3ec3f6-862e-4ad2-93e2-bc76db9dd581",
+      "name": "O3 mini1",
+      "credentials": {
+        "openRouterApi": {
+          "id": "pV44amjL1nJfCXDj",
+          "name": "OpenRouter account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -1520,6 +1512,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-05-19T16:56:49.000Z",
-  "versionId": "82c9fa3f-f530-4c71-8485-e785a99f8a8c"
+  "updatedAt": "2025-06-25T15:42:12.000Z",
+  "versionId": "e425d80c-0711-49ed-8895-912b87295734"
 }
