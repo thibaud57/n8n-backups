@@ -329,17 +329,6 @@
         ]
       ]
     },
-    "OpenAI Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "DeepResearch Learnings",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Parse JSON blocks": {
       "main": [
         [
@@ -406,50 +395,6 @@
           {
             "node": "Research Request1",
             "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenAI Chat Model1": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "DeepResearch Report",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenAI Chat Model2": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Clarifying Questions",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenAI Chat Model3": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Generate SERP Queries",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenAI Chat Model4": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Report Page Generator",
-            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -617,17 +562,6 @@
         ]
       ]
     },
-    "Google Gemini Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Notion Block Generator",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Structured Output Parser": {
       "ai_outputParser": [
         [
@@ -689,6 +623,72 @@
           {
             "node": "Set Variables",
             "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "gemini 2.5 flash": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Notion Block Generator",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "o3 mini": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Clarifying Questions",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "o3 mini1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Report Page Generator",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "o3 mini2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Generate SERP Queries",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "o3 mini3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "DeepResearch Learnings",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "o3 mini4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "DeepResearch Report",
+            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -763,78 +763,6 @@
         960
       ],
       "typeVersion": 3.4
-    },
-    {
-      "parameters": {
-        "model": {
-          "__rl": true,
-          "mode": "id",
-          "value": "o3-mini"
-        },
-        "options": {}
-      },
-      "id": "c6921ea3-f874-430d-9a86-261005603678",
-      "name": "OpenAI Chat Model",
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "position": [
-        3760,
-        2600
-      ],
-      "typeVersion": 1.2,
-      "credentials": {
-        "openAiApi": {
-          "id": "PmqmzdRFH1SO1Yvi",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "model": {
-          "__rl": true,
-          "mode": "id",
-          "value": "o3-mini"
-        },
-        "options": {}
-      },
-      "id": "3e268857-b4bc-47d9-a933-b72019a1c15a",
-      "name": "OpenAI Chat Model1",
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "position": [
-        1940,
-        3180
-      ],
-      "typeVersion": 1.2,
-      "credentials": {
-        "openAiApi": {
-          "id": "PmqmzdRFH1SO1Yvi",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "model": {
-          "__rl": true,
-          "mode": "id",
-          "value": "o3-mini"
-        },
-        "options": {}
-      },
-      "id": "0bf3dbef-73ec-4cba-82a9-243fd3f13e34",
-      "name": "OpenAI Chat Model2",
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "position": [
-        1740,
-        1120
-      ],
-      "typeVersion": 1.2,
-      "credentials": {
-        "openAiApi": {
-          "id": "PmqmzdRFH1SO1Yvi",
-          "name": "OpenAi account"
-        }
-      }
     },
     {
       "parameters": {
@@ -913,30 +841,6 @@
         2400
       ],
       "typeVersion": 1.2
-    },
-    {
-      "parameters": {
-        "model": {
-          "__rl": true,
-          "mode": "id",
-          "value": "o3-mini"
-        },
-        "options": {}
-      },
-      "id": "17c02015-cde0-46a2-aed7-5d5cd634d2f5",
-      "name": "OpenAI Chat Model3",
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "position": [
-        1760,
-        2400
-      ],
-      "typeVersion": 1.2,
-      "credentials": {
-        "openAiApi": {
-          "id": "PmqmzdRFH1SO1Yvi",
-          "name": "OpenAi account"
-        }
-      }
     },
     {
       "parameters": {
@@ -1478,30 +1382,6 @@
     },
     {
       "parameters": {
-        "model": {
-          "__rl": true,
-          "mode": "id",
-          "value": "o3-mini"
-        },
-        "options": {}
-      },
-      "id": "dabee010-69a3-409c-9af1-d791da52c6be",
-      "name": "OpenAI Chat Model4",
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "position": [
-        2780,
-        1140
-      ],
-      "typeVersion": 1.2,
-      "credentials": {
-        "openAiApi": {
-          "id": "PmqmzdRFH1SO1Yvi",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "assignments": {
           "assignments": [
             {
@@ -1899,26 +1779,6 @@
         3020
       ],
       "typeVersion": 1.5
-    },
-    {
-      "parameters": {
-        "modelName": "models/gemini-2.0-flash",
-        "options": {}
-      },
-      "id": "5b057005-66d2-4c32-bd24-9374212b5f23",
-      "name": "Google Gemini Chat Model",
-      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
-      "position": [
-        2880,
-        3180
-      ],
-      "typeVersion": 1,
-      "credentials": {
-        "googlePalmApi": {
-          "id": "og4gMnGbp8Uy7toF",
-          "name": "Google Gemini(PaLM) Api account"
-        }
-      }
     },
     {
       "parameters": {
@@ -2807,6 +2667,126 @@
       ],
       "webhookId": "71fc0356-29ff-4f00-9c71-2a337f5a544c",
       "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "model": "google/gemini-2.5-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        2900,
+        3180
+      ],
+      "id": "c33f8b3c-23af-4a10-a1d9-9aa49c5fc805",
+      "name": "gemini 2.5 flash",
+      "credentials": {
+        "openRouterApi": {
+          "id": "pV44amjL1nJfCXDj",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "openai/o3-mini",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        1120
+      ],
+      "id": "f6038e92-2655-40f2-b85e-ac24f42fb132",
+      "name": "o3 mini",
+      "credentials": {
+        "openRouterApi": {
+          "id": "pV44amjL1nJfCXDj",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "openai/o3-mini",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        2780,
+        1140
+      ],
+      "id": "f6316b30-a297-4936-a95d-8285d02adcfe",
+      "name": "o3 mini1",
+      "credentials": {
+        "openRouterApi": {
+          "id": "pV44amjL1nJfCXDj",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "openai/o3-mini",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        2400
+      ],
+      "id": "869ec409-ae74-4230-ad4a-6d76d4999f9c",
+      "name": "o3 mini2",
+      "credentials": {
+        "openRouterApi": {
+          "id": "pV44amjL1nJfCXDj",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "openai/o3-mini",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        3760,
+        2600
+      ],
+      "id": "6cfa6540-c3eb-454d-874a-ce9b25567ca1",
+      "name": "o3 mini3",
+      "credentials": {
+        "openRouterApi": {
+          "id": "pV44amjL1nJfCXDj",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "openai/o3-mini",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        1940,
+        3180
+      ],
+      "id": "f7d10804-462d-48f8-978f-583bd4b50bf9",
+      "name": "o3 mini4",
+      "credentials": {
+        "openRouterApi": {
+          "id": "pV44amjL1nJfCXDj",
+          "name": "OpenRouter account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -2831,6 +2811,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-05-19T16:56:59.000Z",
-  "versionId": "de9102d1-ae76-44de-9d81-33b9bcc13c65"
+  "updatedAt": "2025-07-07T16:38:47.000Z",
+  "versionId": "0c590cc3-a9b5-4f77-a3e1-a18141c88631"
 }
