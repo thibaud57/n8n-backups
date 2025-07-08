@@ -1,7 +1,7 @@
 {
   "active": false,
   "connections": {
-    "When chat message received": {
+    "When Executed by Another Workflow": {
       "main": [
         [
           {
@@ -21,21 +21,26 @@
   "nodes": [
     {
       "parameters": {
-        "options": {}
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "url"
+            }
+          ]
+        }
       },
-      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1.1,
       "position": [
-        0,
+        -420,
         0
       ],
-      "id": "c928d26d-37b9-493a-8574-ceadcadecfac",
-      "name": "When chat message received",
-      "webhookId": "fa1a22f7-e1c4-42fc-abca-65cd91ff479a"
+      "id": "eb2bc30b-468b-44b7-926e-05f26ebff141",
+      "name": "When Executed by Another Workflow"
     },
     {
       "parameters": {
-        "url": "=http://techno-scraper:8000/api/beatport/search/{{ $json.chatInput }}",
+        "url": "=http://techno-scraper:8000/{{ $json.url }}",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "sendQuery": true,
@@ -43,7 +48,19 @@
           "parameters": [
             {
               "name": "limit",
-              "value": "1"
+              "value": "={{ $json.pagination.limit || 25 }}"
+            },
+            {
+              "name": "entity_type",
+              "value": "={{ $ifEmpty($json.queryParams.entityType, null) }}"
+            },
+            {
+              "name": "entity_id",
+              "value": "={{ $ifEmpty($json.queryParams.entityId, null) }}"
+            },
+            {
+              "name": "start_date",
+              "value": "={{ $ifEmpty($json.queryParams.start_date, null) }}"
             }
           ]
         },
@@ -52,10 +69,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        220,
+        -200,
         0
       ],
-      "id": "1f9235ae-f5e4-4c72-8807-832347782495",
+      "id": "8cf15268-916c-4409-b515-936b43c3bb67",
       "name": "HTTP Request",
       "credentials": {
         "httpHeaderAuth": {
@@ -74,6 +91,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-05-19T16:56:12.000Z",
-  "versionId": "a1e4cc68-927c-458c-a832-d77d786c0949"
+  "updatedAt": "2025-07-07T19:50:26.000Z",
+  "versionId": "450cecd8-e85f-4b2b-83b3-debb79bfd59c"
 }
