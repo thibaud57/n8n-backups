@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "Calculator": {
       "ai_tool": [
@@ -15,7 +15,7 @@
   },
   "createdAt": "2025-04-16T18:24:40.418Z",
   "id": "o36lU6OHREGA41fO",
-  "isArchived": false,
+  "isArchived": true,
   "meta": null,
   "name": "Mcp test",
   "nodes": [
@@ -61,6 +61,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-05-19T16:58:38.000Z",
-  "versionId": "f434b0a0-edc0-4466-a6ee-37c64239e7bd"
+  "updatedAt": "2025-07-07T16:39:24.000Z",
+  "versionId": "bd1adaef-5f34-4ea5-8ad2-543decd52e0a"
 }
