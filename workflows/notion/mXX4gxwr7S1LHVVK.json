@@ -369,17 +369,6 @@
         ]
       ]
     },
-    "O3 mini": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Gemini 2.5 flash": {
       "ai_languageModel": [
         [
@@ -402,7 +391,18 @@
         ]
       ]
     },
-    "O3 mini1": {
+    "4.1 mini": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "O3 mini": {
       "ai_languageModel": [
         [
           {
@@ -1417,26 +1417,6 @@
     },
     {
       "parameters": {
-        "model": "openai/o3-mini",
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
-      "typeVersion": 1,
-      "position": [
-        260,
-        960
-      ],
-      "id": "2a2e6388-dbf5-4eab-a5a4-5e46a80c7c68",
-      "name": "O3 mini",
-      "credentials": {
-        "openRouterApi": {
-          "id": "pV44amjL1nJfCXDj",
-          "name": "OpenRouter account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "model": "google/gemini-2.5-flash",
         "options": {}
       },
@@ -1477,6 +1457,25 @@
     },
     {
       "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        260,
+        960
+      ],
+      "id": "2a2e6388-dbf5-4eab-a5a4-5e46a80c7c68",
+      "name": "4.1 mini",
+      "credentials": {
+        "openRouterApi": {
+          "id": "pV44amjL1nJfCXDj",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
         "model": "openai/o3-mini",
         "options": {}
       },
@@ -1487,7 +1486,7 @@
         1700
       ],
       "id": "ee3ec3f6-862e-4ad2-93e2-bc76db9dd581",
-      "name": "O3 mini1",
+      "name": "O3 mini",
       "credentials": {
         "openRouterApi": {
           "id": "pV44amjL1nJfCXDj",
@@ -1512,6 +1511,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-06-25T15:42:12.000Z",
-  "versionId": "e425d80c-0711-49ed-8895-912b87295734"
+  "updatedAt": "2025-07-07T16:29:53.000Z",
+  "versionId": "d3007fb1-d51e-4597-b1d9-742f76c4ca99"
 }
