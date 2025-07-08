@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Error Trigger": {
       "main": [
@@ -23,23 +23,23 @@
         ]
       ]
     },
-    "OpenAI Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Information Extractor",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Map error": {
       "main": [
         [
           {
             "node": "Information Extractor",
             "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "gpt 4.1 mini": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -111,30 +111,6 @@
     },
     {
       "parameters": {
-        "model": {
-          "__rl": true,
-          "mode": "list",
-          "value": "gpt-4o-mini"
-        },
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1.2,
-      "position": [
-        180,
-        140
-      ],
-      "id": "a470e19f-a9cc-4bde-b76e-648bd7c0e7de",
-      "name": "OpenAI Chat Model",
-      "credentials": {
-        "openAiApi": {
-          "id": "PmqmzdRFH1SO1Yvi",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "assignments": {
           "assignments": [
             {
@@ -155,6 +131,25 @@
       ],
       "id": "a2337e51-d8c5-49be-9654-1c51da4c70f8",
       "name": "Map error"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        160,
+        160
+      ],
+      "id": "ba27f564-94b7-4e24-bf3d-0ff6aad9ee01",
+      "name": "gpt 4.1 mini",
+      "credentials": {
+        "openRouterApi": {
+          "id": "pV44amjL1nJfCXDj",
+          "name": "OpenRouter account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -171,6 +166,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-05-19T16:54:18.000Z",
-  "versionId": "0f2c4805-392b-4b8b-985b-79f6ebff4889"
+  "updatedAt": "2025-07-07T16:39:26.000Z",
+  "versionId": "1f92702d-11d5-410d-8396-ca21f85ca778"
 }
