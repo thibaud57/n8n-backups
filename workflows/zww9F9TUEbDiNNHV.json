@@ -44,26 +44,6 @@
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "sendQuery": true,
-        "queryParameters": {
-          "parameters": [
-            {
-              "name": "limit",
-              "value": "={{ $json.pagination.limit || 25 }}"
-            },
-            {
-              "name": "entity_type",
-              "value": "={{ $ifEmpty($json.queryParams.entityType, null) }}"
-            },
-            {
-              "name": "entity_id",
-              "value": "={{ $ifEmpty($json.queryParams.entityId, null) }}"
-            },
-            {
-              "name": "start_date",
-              "value": "={{ $ifEmpty($json.queryParams.start_date, null) }}"
-            }
-          ]
-        },
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -91,6 +71,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-07-07T19:50:26.000Z",
-  "versionId": "450cecd8-e85f-4b2b-83b3-debb79bfd59c"
+  "updatedAt": "2025-07-10T11:50:49.000Z",
+  "versionId": "d0d425cc-82bf-4be2-8a3a-a2eb25553762"
 }
