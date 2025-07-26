@@ -24,7 +24,7 @@
         "workflowInputs": {
           "values": [
             {
-              "name": "url"
+              "name": "urlEndpoint"
             }
           ]
         }
@@ -32,7 +32,7 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1.1,
       "position": [
-        -420,
+        -416,
         0
       ],
       "id": "eb2bc30b-468b-44b7-926e-05f26ebff141",
@@ -40,20 +40,26 @@
     },
     {
       "parameters": {
-        "url": "=http://techno-scraper:8000/{{ $json.url }}",
+        "url": "=http://techno-scraper:8000/{{ $json.urlEndpoint }}",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {}
+          ]
+        },
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -200,
+        -208,
         0
       ],
       "id": "8cf15268-916c-4409-b515-936b43c3bb67",
       "name": "HTTP Request",
+      "retryOnFail": false,
       "credentials": {
         "httpHeaderAuth": {
           "id": "lcTZOPtCaK63felb",
@@ -71,6 +77,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-07-10T11:50:49.000Z",
-  "versionId": "d0d425cc-82bf-4be2-8a3a-a2eb25553762"
+  "updatedAt": "2025-07-25T14:15:06.000Z",
+  "versionId": "4cb809a0-78f8-4597-871c-fb64a245be8e"
 }
