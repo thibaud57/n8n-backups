@@ -613,6 +613,7 @@
     },
     {
       "parameters": {
+        "authentication": "oAuth2",
         "resource": "file",
         "operation": "get",
         "owner": {
@@ -640,8 +641,8 @@
       "alwaysOutputData": true,
       "webhookId": "e88663b3-ba89-4def-bdff-c09969c2265d",
       "credentials": {
-        "githubApi": {
-          "id": "FAMXGnTH2WFZUCWE",
+        "githubOAuth2Api": {
+          "id": "5o1CitHdZym88BTn",
           "name": "GitHub account"
         }
       },
@@ -826,6 +827,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-08-04T12:50:15.000Z",
-  "versionId": "f0e1921b-d8ea-4100-a29b-cb7019564a68"
+  "updatedAt": "2025-08-04T12:50:29.000Z",
+  "versionId": "1196d29c-aaf2-42de-8919-0e2d98d5edaa"
 }
