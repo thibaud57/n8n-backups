@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "/": {
       "main": [
@@ -815,9 +815,15 @@
   ],
   "pinData": {},
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "5i3XCsHa1o3p6RSV"
   },
-  "staticData": null,
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
   "tags": [
     {
       "createdAt": "2025-08-04T12:43:54.496Z",
@@ -826,7 +832,7 @@
       "name": "github"
     }
   ],
-  "triggerCount": 0,
-  "updatedAt": "2025-08-04T12:50:29.000Z",
-  "versionId": "1196d29c-aaf2-42de-8919-0e2d98d5edaa"
+  "triggerCount": 1,
+  "updatedAt": "2025-08-04T13:01:27.000Z",
+  "versionId": "f660a6c8-e8a5-4e2c-927f-0409c4f8dc39"
 }
