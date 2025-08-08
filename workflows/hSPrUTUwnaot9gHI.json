@@ -1,0 +1,80 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-07T11:53:08.620Z",
+  "id": "hSPrUTUwnaot9gHI",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "d751caad-b7e1-4061-931c-f9d988e5951f",
+        "authentication": "headerAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "90e6c937-e514-4421-aa42-77514f834f21",
+      "name": "Webhook",
+      "webhookId": "d751caad-b7e1-4061-931c-f9d988e5951f",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "VsDSyXuKluTZ8Ebf",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "1868572637",
+        "text": "={{ $json.query.message }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "83f71e9a-a8e5-4eb9-8d7c-8089c9953896",
+      "name": "Send a text message",
+      "webhookId": "2caf8cb5-16b8-4782-8fdc-30130ba2c520",
+      "credentials": {
+        "telegramApi": {
+          "id": "75LVnc30aHnyDRba",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-08-07T12:06:25.000Z",
+  "versionId": "1564db57-97dd-496c-ab79-a828281592dd"
+}
