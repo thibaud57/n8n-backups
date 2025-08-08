@@ -1,0 +1,56 @@
+{
+  "active": true,
+  "connections": {},
+  "createdAt": "2025-08-07T10:40:31.873Z",
+  "id": "zanBULRkuqdcPkC3",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "MCP Server n8n",
+  "nodes": [
+    {
+      "parameters": {
+        "authentication": "bearerAuth",
+        "path": "a59a9ae4-6a23-4c3d-92bc-f177b3d54027"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 2,
+      "position": [
+        -64,
+        -32
+      ],
+      "id": "eb776167-0c38-433a-ae06-8ad8d3f21b6d",
+      "name": "MCP Server Trigger",
+      "webhookId": "a59a9ae4-6a23-4c3d-92bc-f177b3d54027",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "t2A0dbXvnY4Mf83E",
+          "name": "Bearer Auth account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-08-07T10:22:01.636Z",
+      "updatedAt": "2025-08-07T10:22:01.636Z",
+      "id": "wirLDhY1stP4zoD9",
+      "name": "n8n"
+    },
+    {
+      "createdAt": "2025-08-07T11:47:19.867Z",
+      "updatedAt": "2025-08-07T11:47:19.867Z",
+      "id": "z8TkTHTIC3VG0wmb",
+      "name": "mcp"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2025-08-07T11:47:46.000Z",
+  "versionId": "5ab23476-0677-4223-bb6c-1bc6c15eac07"
+}
