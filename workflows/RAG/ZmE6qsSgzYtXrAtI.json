@@ -2014,15 +2014,9 @@
       "updatedAt": "2025-08-07T10:27:20.543Z",
       "id": "7c2931Xd6Slzbhhx",
       "name": "RAG"
-    },
-    {
-      "createdAt": "2025-08-07T10:28:19.464Z",
-      "updatedAt": "2025-08-07T10:28:19.464Z",
-      "id": "kKBvSB2A2g4y2lnw",
-      "name": "drive"
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-08-07T10:29:28.000Z",
-  "versionId": "6f662186-2b50-4b1d-9c67-4c4637c19716"
+  "updatedAt": "2025-08-08T11:25:36.000Z",
+  "versionId": "67ecd1f1-0dfe-44cb-88a9-47e90fa3b167"
 }
