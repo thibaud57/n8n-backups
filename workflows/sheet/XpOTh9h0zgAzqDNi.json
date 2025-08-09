@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "Google Sheets Trigger": {
       "main": [
@@ -863,7 +863,8 @@
       ],
       "id": "841a848b-d904-4ec8-8009-682810209c88",
       "name": "Techno scraper",
-      "retryOnFail": true
+      "retryOnFail": true,
+      "disabled": true
     },
     {
       "parameters": {
@@ -1462,6 +1463,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-08-07T10:26:03.000Z",
-  "versionId": "6d83a0bc-d533-42c3-b668-1ecb7d1a23d3"
+  "updatedAt": "2025-08-08T11:21:34.000Z",
+  "versionId": "b01b290b-1409-4ad6-8be7-31ed56f45114"
 }
