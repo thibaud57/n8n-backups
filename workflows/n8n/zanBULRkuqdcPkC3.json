@@ -1,6 +1,18 @@
 {
-  "active": true,
-  "connections": {},
+  "active": false,
+  "connections": {
+    "Call n8n Workflow Tool1": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
   "createdAt": "2025-08-07T10:40:31.873Z",
   "id": "zanBULRkuqdcPkC3",
   "isArchived": false,
@@ -17,10 +29,10 @@
       "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
       "typeVersion": 2,
       "position": [
-        -64,
-        -32
+        -224,
+        240
       ],
-      "id": "eb776167-0c38-433a-ae06-8ad8d3f21b6d",
+      "id": "49be488d-0e6d-44bf-b274-fcac8b6af5fe",
       "name": "MCP Server Trigger",
       "webhookId": "a59a9ae4-6a23-4c3d-92bc-f177b3d54027",
       "credentials": {
@@ -29,6 +41,66 @@
           "name": "Bearer Auth account"
         }
       }
+    },
+    {
+      "parameters": {},
+      "id": "1c15cc38-9f5d-4edd-8578-210dbf92e076",
+      "name": "Call n8n Workflow Tool",
+      "type": "n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        0,
+        432
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "883e9934-bcc9-4027-bb7d-befeb5c966fe",
+      "name": "MCP Server Trigger1",
+      "type": "n8n-nodes-langchain.mcpServerTrigger",
+      "typeVersion": 1,
+      "position": [
+        80,
+        496
+      ],
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "filters": {
+          "tags": "mcp"
+        },
+        "requestOptions": {}
+      },
+      "id": "a9f78331-de6a-4bec-b028-2887cd4c3299",
+      "name": "Get MCP-tagged Workflows",
+      "type": "n8n-nodes-base.n8n",
+      "position": [
+        256,
+        384
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "n8nApi": {
+          "id": "7AYQ9PLgyGpdKAwL",
+          "name": "n8n account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "description": "Call this tool to call a n8n workflow with his name",
+        "source": "parameter",
+        "workflowJson": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Workflow_JSON', ``, 'json') }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.2,
+      "position": [
+        -144,
+        448
+      ],
+      "id": "138b520e-a078-455e-91be-b0855d34b6ae",
+      "name": "Call n8n Workflow Tool1"
     }
   ],
   "pinData": {},
@@ -42,15 +114,9 @@
       "updatedAt": "2025-08-07T10:22:01.636Z",
       "id": "wirLDhY1stP4zoD9",
       "name": "n8n"
-    },
-    {
-      "createdAt": "2025-08-07T11:47:19.867Z",
-      "updatedAt": "2025-08-07T11:47:19.867Z",
-      "id": "z8TkTHTIC3VG0wmb",
-      "name": "mcp"
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-08-07T11:47:46.000Z",
-  "versionId": "5ab23476-0677-4223-bb6c-1bc6c15eac07"
+  "updatedAt": "2025-08-08T11:25:45.000Z",
+  "versionId": "865f7a06-217b-4af4-9b72-2ce2031baef6"
 }
