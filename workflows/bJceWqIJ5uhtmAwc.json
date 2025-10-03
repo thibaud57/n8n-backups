@@ -1,0 +1,84 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Call 'My workflow'",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-02T13:41:15.328Z",
+  "id": "bJceWqIJ5uhtmAwc",
+  "isArchived": false,
+  "meta": null,
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "c6f8c582-58d8-497a-bac3-631848f654e6",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "11057186-3a6b-4279-b962-d7fa6f3c7188",
+      "name": "Webhook",
+      "webhookId": "c6f8c582-58d8-497a-bac3-631848f654e6"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "bJceWqIJ5uhtmAwc",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/bJceWqIJ5uhtmAwc",
+          "cachedResultName": "My workflow"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "707262ed-009b-41f0-86ce-b49ad4846e4f",
+      "name": "Call 'My workflow'"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-10-02T13:41:15.334Z",
+      "updatedAt": "2025-10-02T13:41:15.334Z",
+      "role": "workflow:owner",
+      "workflowId": "bJceWqIJ5uhtmAwc",
+      "projectId": "TBUFy0KozocPEXEX"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-10-02T14:11:26.000Z",
+  "versionId": "b7496f65-f297-456e-aa1a-7f214f8d43c4"
+}
