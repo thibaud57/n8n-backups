@@ -2007,6 +2007,15 @@
     "callerPolicy": "workflowsFromSameOwner",
     "errorWorkflow": "zSl3wxrgtLrk7m2j"
   },
+  "shared": [
+    {
+      "createdAt": "2025-08-07T10:28:20.575Z",
+      "updatedAt": "2025-08-07T10:28:20.575Z",
+      "role": "workflow:owner",
+      "workflowId": "ZmE6qsSgzYtXrAtI",
+      "projectId": "TBUFy0KozocPEXEX"
+    }
+  ],
   "staticData": null,
   "tags": [
     {
