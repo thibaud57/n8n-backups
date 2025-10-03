@@ -508,6 +508,15 @@
     "callerPolicy": "workflowsFromSameOwner",
     "errorWorkflow": "zSl3wxrgtLrk7m2j"
   },
+  "shared": [
+    {
+      "createdAt": "2025-08-07T10:27:07.487Z",
+      "updatedAt": "2025-08-07T10:27:07.487Z",
+      "role": "workflow:owner",
+      "workflowId": "Rs3XS02XjRb1kyCn",
+      "projectId": "TBUFy0KozocPEXEX"
+    }
+  ],
   "staticData": null,
   "tags": [
     {
