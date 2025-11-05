@@ -23,21 +23,11 @@
         ]
       ]
     },
-    "LabelSheet Subworkflow": {
+    "Constants": {
       "main": [
         [
           {
-            "node": "Agent Soundcloud",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Agent Beatport",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Agent Bandcamp",
+            "node": "Mapping",
             "type": "main",
             "index": 0
           }
@@ -55,40 +45,90 @@
         ],
         [
           {
-            "node": "Call 'Label Sheet'",
+            "node": "Constants",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "5 mini": {
+    "Mapping": {
+      "main": [
+        [
+          {
+            "node": "Techno Scraper Sub-workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mapping 2": {
+      "main": [
+        [
+          {
+            "node": "Google Sheet Validation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Google Sheet Validation",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "gpt 5 mini": {
       "ai_languageModel": [
         [
           {
-            "node": "Agent Soundcloud",
-            "type": "ai_languageModel",
-            "index": 0
-          },
-          {
-            "node": "Agent Beatport",
-            "type": "ai_languageModel",
-            "index": 0
-          },
-          {
-            "node": "Agent Bandcamp",
-            "type": "ai_languageModel",
-            "index": 0
-          },
-          {
-            "node": "Google Sheet Validation Agent",
+            "node": "Google Sheet Validation",
             "type": "ai_languageModel",
             "index": 0
           }
         ]
       ]
     },
-    "Agent Soundcloud": {
+    "Techno Scraper Sub-workflow": {
+      "main": [
+        [
+          {
+            "node": "Wait for Webhook Soundcloud",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Wait for Webhook Beatport",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Wait for Webhook Bandcamp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Mapping 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait for Webhook Soundcloud": {
       "main": [
         [
           {
@@ -99,51 +139,7 @@
         ]
       ]
     },
-    "Sc Output Parser": {
-      "ai_outputParser": [
-        [
-          {
-            "node": "Agent Soundcloud",
-            "type": "ai_outputParser",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Sc MCP Client": {
-      "ai_tool": [
-        [
-          {
-            "node": "Agent Soundcloud",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Bp Output Parser": {
-      "ai_outputParser": [
-        [
-          {
-            "node": "Agent Beatport",
-            "type": "ai_outputParser",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Sc MCP Client1": {
-      "ai_tool": [
-        [
-          {
-            "node": "Agent Beatport",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Agent Beatport": {
+    "Wait for Webhook Beatport": {
       "main": [
         [
           {
@@ -154,29 +150,7 @@
         ]
       ]
     },
-    "Bc MCP Client": {
-      "ai_tool": [
-        [
-          {
-            "node": "Agent Bandcamp",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Bc Output Parser": {
-      "ai_outputParser": [
-        [
-          {
-            "node": "Agent Bandcamp",
-            "type": "ai_outputParser",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Agent Bandcamp": {
+    "Wait for Webhook Bandcamp": {
       "main": [
         [
           {
@@ -187,45 +161,7 @@
         ]
       ]
     },
-    "Merge": {
-      "main": [
-        [
-          {
-            "node": "Code in JavaScript",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Code in JavaScript": {
-      "main": [
-        [
-          {
-            "node": "Google Sheet Validation Agent",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Google Sheet Output Parser": {
-      "ai_outputParser": [
-        [
-          {
-            "node": "Google Sheet Validation Agent",
-            "type": "ai_outputParser",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Google Sheet Validation Agent": {
-      "main": [
-        []
-      ]
-    },
-    "Call 'Label Sheet'": {
+    "Google Sheet Validation": {
       "main": [
         [
           {
@@ -322,46 +258,11 @@
       "type": "n8n-nodes-base.filter",
       "typeVersion": 2.2,
       "position": [
-        112,
+        144,
         -112
       ],
       "id": "1c8d66c3-5a13-40de-93e0-f3133a189939",
       "name": "Filter new data"
-    },
-    {
-      "parameters": {
-        "workflowInputs": {
-          "values": [
-            {
-              "name": "name"
-            },
-            {
-              "name": "date"
-            }
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.executeWorkflowTrigger",
-      "typeVersion": 1.1,
-      "position": [
-        -80,
-        720
-      ],
-      "id": "4924ae6c-f06a-477a-9559-e3647e842099",
-      "name": "LabelSheet Subworkflow"
-    },
-    {
-      "parameters": {
-        "options": {}
-      },
-      "type": "n8n-nodes-base.splitInBatches",
-      "typeVersion": 3,
-      "position": [
-        304,
-        -112
-      ],
-      "id": "b4afdb09-2bb4-44b9-8b46-7d5ee9496767",
-      "name": "Loop Over Items"
     },
     {
       "parameters": {
@@ -630,8 +531,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.6,
       "position": [
-        512,
-        -240
+        368,
+        -192
       ],
       "id": "f5025a78-e3d4-4ab3-8c0c-a1b422c10982",
       "name": "Update row in sheet",
@@ -644,35 +545,186 @@
     },
     {
       "parameters": {
-        "content": "## Google Sheet",
-        "height": 627,
-        "width": 1238,
-        "color": 4
+        "assignments": {
+          "assignments": [
+            {
+              "id": "78317968-ecbb-43b7-b5d2-ad716e7f5b54",
+              "name": "labelName",
+              "value": "={{ $json.Nom }}",
+              "type": "string"
+            },
+            {
+              "id": "606797af-fb54-4cfe-83d0-f3285affaa75",
+              "name": "date",
+              "value": "={{ $today.format('yyyy-MM-dd') }}",
+              "type": "string"
+            },
+            {
+              "id": "1f7f44fe-633b-498a-951a-a67976f454c3",
+              "name": "soundcloudPrompt",
+              "value": "# 🎵 Agent SoundCloud - Extraction d'informations label  ## 🎯 Objectif Extraire les informations disponibles sur **SoundCloud** pour le label.  ## 📥 Données d'entrée - **Nom du label** (fourni dans le user prompt)  ## 🛠️ Processus  ### 1. Rechercher le profil SoundCloud  Utiliser le tool **soundcloud_search_profiles** avec ces paramètres : - `query`: Le nom exact du label (fourni en entrée) - `page`: 1 - `limit`: 10  Le tool retourne une liste de profils avec ces champs : - `id`: ID utilisateur SoundCloud - `name`: Nom du profil - `url`: URL du profil - `avatar_url`: Photo de profil - `bio`: Biographie/description - `location`: Localisation - `followers_count`: Nombre de followers - `social_links`: Array de liens sociaux (Facebook, Instagram, Bandcamp, etc.)  ### 2. Sélectionner le profil le plus pertinent  Parmi les résultats, choisir le profil le plus pertinent selon cette logique :  **Critères de sélection (par ordre de priorité) :**  1. **Correspondance du nom**    - Le nom doit correspondre exactement ou très proche au nom du label    - Les labels peuvent avoir \"Records\", \"Recordings\", \"Label\", \"Music\" ajouté au nom    - Ignorer les profils avec des noms trop éloignés  2. **Bio renseignée**    - Préférer les profils avec une bio complète    - Une bio mentionnant l'activité du label (styles musicaux, artistes signés, collectif) est un bon indicateur  3. **Présence de social_links**    - Les profils officiels ont généralement des liens vers Instagram, Facebook, etc.    - Plus il y a de liens sociaux, plus le profil est légitime  4. **Nombre de followers**    - À pertinence égale, choisir le profil avec le plus de followers  ⚠️ **Important** : Ne PAS choisir automatiquement le premier résultat. Analyser plusieurs profils. ✅ Si aucun profil ne semble suffisamment pertinent, ne retourner aucune donnée.  ### 3. Extraire les informations  Une fois le profil pertinent sélectionné, extraire :  #### **Pays (country)** - Extraire depuis le champ `location` - Si mentionné dans la bio, utiliser cette info - Laisser vide si introuvable  #### **Email demo (emailDemo)**  Extraction depuis la bio selon ces règles (par ordre de priorité) :  1. **Email contenant \"demo\"**    - Chercher un email avec \"demo\" (ex: demo@label.com, senddemos@label.com)    - Priorité absolue si trouvé  2. **Gestion de l'obfuscation**    - Si l'email est obfusqué : `demo(at)label.com`, `demo[at]gmail(dot)com`    - Corriger et retourner formaté : `demo@label.com`  3. **Mentions particulières**    - Si la bio contient \"do not send demos\", \"we don't accept demos\" → NE PAS extraire d'email    - Si ambiguïté, laisser vide  4. **Formulaire**    - Si lien vers formulaire (Google Form, Typeform, etc.) → retourner l'URL complète    - Si formulaire mentionné mais URL absente → retourner \"FORM\"  5. **Email générique**    - Si aucun email demo trouvé mais email générique existe (contact@label.com)    - Vérifier qu'il n'y a pas d'interdiction d'envoi de démos    - Sinon, retourner cet email  6. **Si rien trouvé** → Laisser le champ vide  #### **Nombre de followers (scFollowers)** - Extraire depuis `followers_count` - Retourner 0 si profil non trouvé  #### **Liens (soundcloudLink, facebookLink, instagramLink, beatportLink, bandcampLink)** - `soundcloudLink`: Le champ `url` du profil - Les autres liens : extraire depuis `social_links` array   - Chercher `platform` = \"facebook\" → extraire `url`   - Chercher `platform` = \"instagram\" → extraire `url`   - Chercher `platform` = \"beatport\" → extraire `url`   - Chercher `platform` = \"bandcamp\" → extraire `url` - Laisser vide si non trouvé  ## ❗ Règles Importantes  🔴 **Ne jamais inventer une information.** ✔️ Si une donnée est introuvable, **ne pas remplir le champ** plutôt que de générer une fausse information.  ## 📤 Format de sortie  Retourner uniquement un JSON structuré :  ```json {   \"country\": \"Valeur ou vide\",   \"emailDemo\": \"Valeur ou vide\",   \"scFollowers\": 0,   \"soundcloudLink\": \"Valeur ou vide\",   \"facebookLink\": \"Valeur ou vide\",   \"instagramLink\": \"Valeur ou vide\",   \"beatportLink\": \"Valeur ou vide\",   \"bandcampLink\": \"Valeur ou vide\" }  Ne pas ajouter de commentaires ni d'explications, uniquement le JSON.",
+              "type": "string"
+            },
+            {
+              "id": "6c9b1ceb-7c6f-4edf-a9b0-d846ec6b4d5a",
+              "name": "soundcloudParser",
+              "value": "={\n  \"type\": \"object\",\n  \"properties\": {\n    \"country\": {\n      \"type\": \"string\",\n      \"description\": \"Pays d'origine du label (champ 'location' ou bio SoundCloud). Chaîne vide si introuvable.\"\n    },\n    \"emailDemo\": {\n      \"type\": \"string\",\n      \"description\": \"Email/formulaire pour démos (bio SoundCloud). Email, URL de formulaire, 'FORM', ou chaîne vide.\"\n    },\n    \"scFollowers\": {\n      \"type\": \"number\",\n      \"description\": \"Nombre de followers SoundCloud (champ 'followers_count'). Retourner 0 si profil introuvable.\",\n      \"minimum\": 0\n    },\n    \"soundcloudLink\": {\n      \"type\": \"string\",\n      \"description\": \"URL du profil SoundCloud. Chaîne vide si profil introuvable.\"\n    },\n    \"facebookLink\": {\n      \"type\": \"string\",\n      \"description\": \"URL Facebook (social_links platform='facebook'). Chaîne vide si non trouvé.\"\n    },\n    \"instagramLink\": {\n      \"type\": \"string\",\n      \"description\": \"URL Instagram (social_links platform='instagram'). Chaîne vide si non trouvé.\"\n    },\n    \"beatportLink\": {\n      \"type\": \"string\",\n      \"description\": \"URL Beatport (social_links platform='beatport'). Chaîne vide si non trouvé.\"\n    },\n    \"bandcampLink\": {\n      \"type\": \"string\",\n      \"description\": \"URL Bandcamp (social_links platform='bandcamp'). Chaîne vide si non trouvé.\"\n    }\n  },\n  \"required\": [\"scFollowers\"]\n}",
+              "type": "object"
+            },
+            {
+              "id": "ae0ee796-525f-45ac-b7d0-c9d1af4bbe60",
+              "name": "beatportPrompt",
+              "value": "# 🎧 Agent Beatport - Extraction d'informations label  ## 🎯 Objectif Extraire les informations sur **Beatport** concernant le label.  ## 📥 Données d'entrée - **Nom du label** (fourni dans le user prompt) - **Date du jour** (format YYYY-MM-DD, fourni dans le user prompt)  ## 🛠️ Processus  ### 1. Rechercher le label sur Beatport  Utiliser le tool **beatport_search** avec ces paramètres : - `query`: Le nom exact du label - `page`: 1 - `limit`: 10 - `entity_type`: \"label\"  Le tool retourne un objet avec : - `labels`: Array de labels trouvés, chaque label contient :   - `id`: ID numérique du label   - `name`: Nom du label   - `url`: URL de la page Beatport   - `avatar_url`: Logo du label  ### 2. Sélectionner le label le plus pertinent  Parmi les résultats, choisir le label le plus pertinent selon cette logique :  **Critères de sélection (par ordre de priorité) :**  1. **Correspondance exacte du nom**    - Le nom doit correspondre exactement ou très fortement au nom recherché    - Accepter les variantes courantes (avec/sans \"Records\", \"Recordings\", etc.)  2. **Présence d'un avatar**    - Les labels officiels ont généralement un logo  3. **URL propre**    - En cas d'ambiguïté, choisir celui avec une URL propre (pas de chiffres bizarres dans le slug)    - Si plusieurs candidats, prendre le premier  ⚠️ **Important** : Ne PAS choisir automatiquement le premier résultat si le nom ne correspond pas. ✅ Si aucun label ne semble suffisamment pertinent, ne retourner aucune donnée.  Une fois le label sélectionné, extraire : - `entity_id`: Le champ `id` (ex: 22038) - `entity_slug`: Extraire depuis l'URL (ex: \"drumzone-records\" depuis https://www.beatport.com/label/drumzone-records/22038) - `beatportLink`: Le champ `url`  ### 3. Récupérer les releases sur 1 an  Utiliser le tool **beatport_get_label_releases** avec ces paramètres : - `entity_slug`: Le slug extrait à l'étape 2 - `entity_id`: L'ID extrait à l'étape 2 (convertir en string) - `page`: 1 - `limit`: 50 - `start_date`: Date du jour MOINS 1 an (calculer : date - 365 jours, format YYYY-MM-DD)  **Exemple** : Si date = \"2025-07-01\", alors start_date = \"2024-07-01\"  Le tool retourne : - `releases`: Array de releases - `facets`: Objet contenant les statistiques de genres  ### 4. Analyser et extraire les données  #### **Genre musical (genre)**  Extraire depuis `facets.fields.genre` : - C'est un array de `{ name: \"Genre Name\", count: 10 }` - Prendre le genre avec le **count le plus élevé** - En cas d'égalité, utiliser l'ordre de priorité du tableau ci-dessous (du haut vers le bas)  **Mapping beatportGenre → genre :**  | beatportGenre (name dans facets)        | genre (à retourner) | |------------------------------------------|---------------------| | Techno (Peak Time / Driving)             | Peak Time           | | Techno (Raw / Deep / Hypnotic)           | Techno              | | Progressive House                        | Progressive         | | Melodic House & Techno                   | Melodic             | | Minimal / Deep Tech                      | Deep House          | | Deep House                               | Deep House          | | Downtempo                                | Deep House          | | Trance (Main Floor)                      | Trance              | | Trance (Raw / Deep / Hypnotic)           | Trance              |  **Exemple** : ```json \"facets\": {   \"fields\": {     \"genre\": [       { \"name\": \"Techno (Peak Time / Driving)\", \"count\": 32 },       { \"name\": \"DJ Tools\", \"count\": 21 },       { \"name\": \"Deep House\", \"count\": 5 }     ]   } } ``` → beatportGenre = \"Techno (Peak Time / Driving)\" (count le plus élevé) → genre = \"Peak Time\" (selon mapping)  #### **Label actif (isActive)**  - Compter le nombre de releases dans l'array `releases` - Si **≥ 10 releases** → isActive = true - Sinon → isActive = false  #### **Label ouvert aux nouveaux artistes (isOpenNew)**  - Pour chaque release dans `releases`, extraire les artistes - Compter le nombre **d'artistes uniques** (par nom ou par ID si disponible) - Si **≥ 3 artistes différents** → isOpenNew = true - Sinon → isOpenNew = false  ## ❗ Règles Importantes  🔴 **Ne jamais inventer une information.** ✔️ Si une donnée est introuvable, **ne pas remplir le champ** plutôt que de générer une fausse information.  ## 📤 Format de sortie  Retourner uniquement un JSON structuré :  ```json {   \"genre\": \"Valeur ou vide\",   \"isActive\": true,   \"isOpenNew\": false,   \"beatportLink\": \"Valeur ou vide\" } ```  Ne pas ajouter de commentaires ni d'explications, uniquement le JSON.",
+              "type": "string"
+            },
+            {
+              "id": "50bfb001-8c73-4454-92a9-de3b7caa07ed",
+              "name": "beatportParser",
+              "value": "={\n  \"type\": \"object\",\n  \"properties\": {\n    \"genre\": {\n      \"type\": \"string\",\n      \"description\": \"Genre musical principal du label (facets Beatport mappé selon le tableau). Chaîne vide si pas de releases ou facets vides.\"\n    },\n    \"isActive\": {\n      \"type\": \"boolean\",\n      \"description\": \"True si le label a au moins 10 releases sur 12 mois, false sinon. Ce champ est toujours calculable.\"\n    },\n    \"isOpenNew\": {\n      \"type\": \"boolean\",\n      \"description\": \"True si au moins 3 artistes uniques sur les releases, false sinon. Ce champ est toujours calculable.\"\n    },\n    \"beatportLink\": {\n      \"type\": \"string\",\n      \"description\": \"URL de la page Beatport du label. Chaîne vide si label introuvable.\"\n    }\n  },\n  \"required\": [\"isActive\", \"isOpenNew\"]\n}",
+              "type": "object"
+            },
+            {
+              "id": "cf0ed7a0-a690-4b18-b24a-6ce4fcd6866b",
+              "name": "bandcampPrompt",
+              "value": "# 🎸 Agent Bandcamp - Extraction d'informations label  ## 🎯 Objectif Extraire les informations sur **Bandcamp** concernant le label.  ## 📥 Données d'entrée - **Nom du label** (fourni dans le user prompt)  ## 🛠️ Processus  ### 1. Rechercher le label sur Bandcamp  Utiliser le tool **bandcamp_search** avec ces paramètres : - `query`: Le nom exact du label - `page`: 1 - `entity_type`: \"bands\"  Le tool retourne un objet avec : - `bands`: Array de labels/artistes trouvés, chaque élément contient :   - `id`: ID Bandcamp   - `name`: Nom du label/artiste   - `url`: URL de la page Bandcamp   - `avatar_url`: Logo/image   - `location`: Localisation   - `genre`: Genre musical  ### 2. Sélectionner le label le plus pertinent  Parmi les résultats, choisir le label le plus pertinent selon cette logique :  **Critères de sélection (par ordre de priorité) :**  1. **Correspondance exacte du nom**    - Le nom doit correspondre exactement ou très fortement au nom recherché    - Accepter les variantes courantes (avec/sans \"Records\", \"Recordings\", etc.)  2. **Présence d'un avatar**    - Les labels officiels ont généralement un logo  3. **URL propre**    - Préférer les URLs courtes et propres (ex: `labelname.bandcamp.com`)    - Éviter les URLs avec beaucoup de chiffres ou caractères bizarres  4. **Genre cohérent**    - Si le champ `genre` est renseigné, vérifier qu'il correspond au style attendu  ⚠️ **Important** : Ne PAS choisir automatiquement le premier résultat si le nom ne correspond pas. ✅ Si aucun label ne semble suffisamment pertinent, ne retourner aucune donnée.  ### 3. Extraire les informations  Une fois le label sélectionné, extraire :  #### **Lien Bandcamp (bandcampLink)** - Extraire depuis le champ `url` du profil sélectionné - Laisser vide si aucun profil pertinent trouvé  #### **Vinyle (vinyle)** - ⚠️ **Non disponible actuellement** avec le tool de recherche - Laisser ce champ vide pour l'instant - Note: Nécessiterait un scraping de la page détaillée du label  ## ❗ Règles Importantes  🔴 **Ne jamais inventer une information.** ✔️ Si une donnée est introuvable, **ne pas remplir le champ** plutôt que de générer une fausse information.  ## 📤 Format de sortie  Retourner uniquement un JSON structuré :  ```json {   \"vinyle\": false,   \"bandcampLink\": \"Valeur ou vide\" }  Ne pas ajouter de commentaires ni d'explications, uniquement le JSON.",
+              "type": "string"
+            },
+            {
+              "id": "3d9d4e1a-7863-4516-bc7a-8b5231dea861",
+              "name": "bandcampParser",
+              "value": "={\n  \"type\": \"object\",\n  \"properties\": {\n    \"vinyle\": {\n      \"type\": \"boolean\",\n      \"description\": \"True si le label vend des vinyles. False par défaut car cette information n'est pas disponible via l'API de recherche Bandcamp actuelle.\"\n    },\n    \"bandcampLink\": {\n      \"type\": \"string\",\n      \"description\": \"URL de la page Bandcamp du label. Chaîne vide si label introuvable.\"\n    }\n  },\n  \"required\": []\n}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
       },
-      "id": "475f2804-076f-483c-902e-643763756aa8",
-      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        608,
+        -192
+      ],
+      "id": "57d2b753-0f22-4a08-8f19-201b77e52631",
+      "name": "Constants"
+    },
+    {
+      "parameters": {
+        "options": {
+          "reset": false
+        }
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        368,
+        0
+      ],
+      "id": "67c3ab0c-5222-4f60-a904-654e14ce2e98",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "content": "## Constants\nSet the constants for sub-workflow",
+        "height": 579,
+        "width": 230,
+        "color": 7
+      },
+      "id": "569dedb2-f62b-4fea-8ba4-3c746d97a7e5",
+      "name": "Sticky Note",
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        -128,
-        -288
+        528,
+        -304
       ],
       "typeVersion": 1
     },
     {
       "parameters": {
-        "content": "## Techno Scraper",
-        "height": 851,
-        "width": 1238,
-        "color": 7
+        "content": "## Google Sheet",
+        "height": 579,
+        "width": 646,
+        "color": 4
       },
-      "id": "76571f34-d37c-45f5-990e-0294b7128512",
-      "name": "Sticky Note",
+      "id": "7c7a89d5-2380-4f86-9834-8c07a78531c3",
+      "name": "Sticky Note1",
       "type": "n8n-nodes-base.stickyNote",
       "position": [
         -128,
-        368
+        -304
       ],
       "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Techno Scraper MCP\n- Run parallel execution\n- Wait for response by webhook",
+        "height": 579,
+        "width": 662,
+        "color": 2
+      },
+      "id": "b8503bc8-bc6e-4e54-a3f2-dc5975b23015",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        768,
+        -304
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n{type:\"Soundcloud\",prompt:$input.first().json.soundcloudPrompt,parser:JSON.stringify($input.first().json.soundcloudParser)},\n{type:\"Beatport\",prompt:$input.first().json.beatportPrompt,parser:JSON.stringify($input.first().json.beatportParser)}, {type:\"Bandcamp\",prompt:$input.first().json.bandcampPrompt,parser:JSON.stringify($input.first().json.bandcampParser)}\n]"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        608,
+        0
+      ],
+      "id": "d8e73aba-d773-4a0a-a9ad-536d4256d093",
+      "name": "Mapping"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Récupérer tous les items\nconst items = $input.all();\n\n// Extraire les résultats des webhooks (2 premiers items ont body.result)\nconst webhookResults = items\n  .filter(item => item.json.body && item.json.body.result)\n  .map(item => item.json.body.result);\n\n// Identifier chaque source par les champs présents\nconst soundcloudData = webhookResults.find(data => data.scFollowers !== undefined) || {};\nconst beatportData = webhookResults.find(data => data.isActive !== undefined) || {};\nconst bandcampData = webhookResults.find(data => data.vinyle !== undefined) || {};\n\n// Récupérer le nom du label depuis les metadata (items qui ont labelName)\nconst metadataItem = items.find(item => item.json.labelName);\nconst labelName = metadataItem ? metadataItem.json.labelName : \"Unknown\";\n\n// Retourner l'objet structuré\nreturn {\n  name: labelName,\n  soundcloud: soundcloudData,\n  beatport: beatportData,\n  bandcamp: bandcampData\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1536,
+        -192
+      ],
+      "id": "ee4526be-c1f8-4c2b-90fb-441e1f35ba4a",
+      "name": "Mapping 2"
+    },
+    {
+      "parameters": {
+        "content": "## Google Sheet Validation\nRun an agent to map and validate data for Google Sheet",
+        "height": 579,
+        "width": 342,
+        "color": 4
+      },
+      "id": "b9ec4eec-40a4-41bc-8e24-e3c2fb3dc6e8",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1440,
+        -304
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"name\": \"Nom du label\",\n  \"country\": \"Valeur si trouvée, sinon champ vide\",\n  \"genre\": \"Valeur si trouvée, sinon champ vide\",\n  \"isActive\": \"Oui/Non si trouvé, sinon champ vide\",\n  \"isOpenNew\": \"Oui/Non si trouvé, sinon champ vide\",\n  \"emailDemo\": \"Valeur si trouvée, sinon champ vide\",\n  \"vinyle\": \"Oui/Non si trouvé, sinon champ vide\",\n  \"scFollowers\": \"Valeur numérique si trouvée, sinon champ vide\",\n  \"soundcloudLink\": \"URL si trouvée, sinon champ vide\",\n  \"facebookLink\": \"URL si trouvée, sinon champ vide\",\n  \"instagramLink\": \"URL si trouvée, sinon champ vide\",\n  \"beatportLink\": \"URL si trouvée, sinon champ vide\",\n  \"bandcampLink\": \"URL si trouvée, sinon champ vide\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        1648,
+        160
+      ],
+      "id": "90614e4a-1f91-4439-8ea2-80f08378d488",
+      "name": "Output Parser"
     },
     {
       "parameters": {
@@ -682,11 +734,11 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
       "typeVersion": 1,
       "position": [
-        528,
-        864
+        1504,
+        160
       ],
-      "id": "f3b03668-1688-41ca-b590-b66576830ce8",
-      "name": "5 mini",
+      "id": "42b6e012-4c02-4e63-a47e-c81223a4dd52",
+      "name": "gpt 5 mini",
       "credentials": {
         "openRouterApi": {
           "id": "zb2293xtkSB2aBnr",
@@ -696,259 +748,31 @@
     },
     {
       "parameters": {
-        "promptType": "define",
-        "text": "=Nom du label: {{ $json.name }}",
-        "hasOutputParser": true,
-        "options": {
-          "systemMessage": "=# 🎵 Agent SoundCloud - Extraction d'informations label\n\n## 🎯 Objectif\nExtraire les informations disponibles sur **SoundCloud** pour le label.\n\n## 📥 Données d'entrée\n- **Nom du label** (fourni dans le user prompt)\n\n## 🛠️ Processus\n\n### 1. Rechercher le profil SoundCloud\n\nUtiliser le tool **soundcloud_search_profiles** avec ces paramètres :\n- `query`: Le nom exact du label (fourni en entrée)\n- `page`: 1\n- `limit`: 10\n\nLe tool retourne une liste de profils avec ces champs :\n- `id`: ID utilisateur SoundCloud\n- `name`: Nom du profil\n- `url`: URL du profil\n- `avatar_url`: Photo de profil\n- `bio`: Biographie/description\n- `location`: Localisation\n- `followers_count`: Nombre de followers\n- `social_links`: Array de liens sociaux (Facebook, Instagram, Bandcamp, etc.)\n\n### 2. Sélectionner le profil le plus pertinent\n\nParmi les résultats, choisir le profil le plus pertinent selon cette logique :\n\n**Critères de sélection (par ordre de priorité) :**\n\n1. **Correspondance du nom**\n   - Le nom doit correspondre exactement ou très proche au nom du label\n   - Les labels peuvent avoir \"Records\", \"Recordings\", \"Label\", \"Music\" ajouté au nom\n   - Ignorer les profils avec des noms trop éloignés\n\n2. **Bio renseignée**\n   - Préférer les profils avec une bio complète\n   - Une bio mentionnant l'activité du label (styles musicaux, artistes signés, collectif) est un bon indicateur\n\n3. **Présence de social_links**\n   - Les profils officiels ont généralement des liens vers Instagram, Facebook, etc.\n   - Plus il y a de liens sociaux, plus le profil est légitime\n\n4. **Nombre de followers**\n   - À pertinence égale, choisir le profil avec le plus de followers\n\n⚠️ **Important** : Ne PAS choisir automatiquement le premier résultat. Analyser plusieurs profils.\n✅ Si aucun profil ne semble suffisamment pertinent, ne retourner aucune donnée.\n\n### 3. Extraire les informations\n\nUne fois le profil pertinent sélectionné, extraire :\n\n#### **Pays (country)**\n- Extraire depuis le champ `location`\n- Si mentionné dans la bio, utiliser cette info\n- Laisser vide si introuvable\n\n#### **Email demo (emailDemo)**\n\nExtraction depuis la bio selon ces règles (par ordre de priorité) :\n\n1. **Email contenant \"demo\"**\n   - Chercher un email avec \"demo\" (ex: demo@label.com, senddemos@label.com)\n   - Priorité absolue si trouvé\n\n2. **Gestion de l'obfuscation**\n   - Si l'email est obfusqué : `demo(at)label.com`, `demo[at]gmail(dot)com`\n   - Corriger et retourner formaté : `demo@label.com`\n\n3. **Mentions particulières**\n   - Si la bio contient \"do not send demos\", \"we don't accept demos\" → NE PAS extraire d'email\n   - Si ambiguïté, laisser vide\n\n4. **Formulaire**\n   - Si lien vers formulaire (Google Form, Typeform, etc.) → retourner l'URL complète\n   - Si formulaire mentionné mais URL absente → retourner \"FORM\"\n\n5. **Email générique**\n   - Si aucun email demo trouvé mais email générique existe (contact@label.com)\n   - Vérifier qu'il n'y a pas d'interdiction d'envoi de démos\n   - Sinon, retourner cet email\n\n6. **Si rien trouvé** → Laisser le champ vide\n\n#### **Nombre de followers (scFollowers)**\n- Extraire depuis `followers_count`\n- Retourner 0 si profil non trouvé\n\n#### **Liens (soundcloudLink, facebookLink, instagramLink, beatportLink, bandcampLink)**\n- `soundcloudLink`: Le champ `url` du profil\n- Les autres liens : extraire depuis `social_links` array\n  - Chercher `platform` = \"facebook\" → extraire `url`\n  - Chercher `platform` = \"instagram\" → extraire `url`\n  - Chercher `platform` = \"beatport\" → extraire `url`\n  - Chercher `platform` = \"bandcamp\" → extraire `url`\n- Laisser vide si non trouvé\n\n## ❗ Règles Importantes\n\n🔴 **Ne jamais inventer une information.**\n✔️ Si une donnée est introuvable, **ne pas remplir le champ** plutôt que de générer une fausse information.\n\n## 📤 Format de sortie\n\nRetourner uniquement un JSON structuré :\n\n```json\n{\n  \"country\": \"Valeur ou vide\",\n  \"emailDemo\": \"Valeur ou vide\",\n  \"scFollowers\": 0,\n  \"soundcloudLink\": \"Valeur ou vide\",\n  \"facebookLink\": \"Valeur ou vide\",\n  \"instagramLink\": \"Valeur ou vide\",\n  \"beatportLink\": \"Valeur ou vide\",\n  \"bandcampLink\": \"Valeur ou vide\"\n}\n\nNe pas ajouter de commentaires ni d'explications, uniquement le JSON."
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 1.8,
-      "position": [
-        144,
-        432
-      ],
-      "id": "972bafef-8b3e-46fe-b054-feba7149c94f",
-      "name": "Agent Soundcloud",
-      "executeOnce": false
-    },
-    {
-      "parameters": {
-        "promptType": "define",
-        "text": "=Nom du label: {{ $json.name }}\nDate du jour: {{ $json.date }}",
-        "hasOutputParser": true,
-        "options": {
-          "systemMessage": "=# 🎧 Agent Beatport - Extraction d'informations label\n\n## 🎯 Objectif\nExtraire les informations sur **Beatport** concernant le label.\n\n## 📥 Données d'entrée\n- **Nom du label** (fourni dans le user prompt)\n- **Date du jour** (format YYYY-MM-DD, fourni dans le user prompt)\n\n## 🛠️ Processus\n\n### 1. Rechercher le label sur Beatport\n\nUtiliser le tool **beatport_search** avec ces paramètres :\n- `query`: Le nom exact du label\n- `page`: 1\n- `limit`: 10\n- `entity_type`: \"label\"\n\nLe tool retourne un objet avec :\n- `labels`: Array de labels trouvés, chaque label contient :\n  - `id`: ID numérique du label\n  - `name`: Nom du label\n  - `url`: URL de la page Beatport\n  - `avatar_url`: Logo du label\n\n### 2. Sélectionner le label le plus pertinent\n\nParmi les résultats, choisir le label le plus pertinent selon cette logique :\n\n**Critères de sélection (par ordre de priorité) :**\n\n1. **Correspondance exacte du nom**\n   - Le nom doit correspondre exactement ou très fortement au nom recherché\n   - Accepter les variantes courantes (avec/sans \"Records\", \"Recordings\", etc.)\n\n2. **Présence d'un avatar**\n   - Les labels officiels ont généralement un logo\n\n3. **URL propre**\n   - En cas d'ambiguïté, choisir celui avec une URL propre (pas de chiffres bizarres dans le slug)\n   - Si plusieurs candidats, prendre le premier\n\n⚠️ **Important** : Ne PAS choisir automatiquement le premier résultat si le nom ne correspond pas.\n✅ Si aucun label ne semble suffisamment pertinent, ne retourner aucune donnée.\n\nUne fois le label sélectionné, extraire :\n- `entity_id`: Le champ `id` (ex: 22038)\n- `entity_slug`: Extraire depuis l'URL (ex: \"drumzone-records\" depuis https://www.beatport.com/label/drumzone-records/22038)\n- `beatportLink`: Le champ `url`\n\n### 3. Récupérer les releases sur 1 an\n\nUtiliser le tool **beatport_get_label_releases** avec ces paramètres :\n- `entity_slug`: Le slug extrait à l'étape 2\n- `entity_id`: L'ID extrait à l'étape 2 (convertir en string)\n- `page`: 1\n- `limit`: 50\n- `start_date`: Date du jour MOINS 1 an (calculer : date - 365 jours, format YYYY-MM-DD)\n\n**Exemple** : Si date = \"2025-07-01\", alors start_date = \"2024-07-01\"\n\nLe tool retourne :\n- `releases`: Array de releases\n- `facets`: Objet contenant les statistiques de genres\n\n### 4. Analyser et extraire les données\n\n#### **Genre musical (genre)**\n\nExtraire depuis `facets.fields.genre` :\n- C'est un array de `{ name: \"Genre Name\", count: 10 }`\n- Prendre le genre avec le **count le plus élevé**\n- En cas d'égalité, utiliser l'ordre de priorité du tableau ci-dessous (du haut vers le bas)\n\n**Mapping beatportGenre → genre :**\n\n| beatportGenre (name dans facets)        | genre (à retourner) |\n|------------------------------------------|---------------------|\n| Techno (Peak Time / Driving)             | Peak Time           |\n| Techno (Raw / Deep / Hypnotic)           | Techno              |\n| Progressive House                        | Progressive         |\n| Melodic House & Techno                   | Melodic             |\n| Minimal / Deep Tech                      | Deep House          |\n| Deep House                               | Deep House          |\n| Downtempo                                | Deep House          |\n| Trance (Main Floor)                      | Trance              |\n| Trance (Raw / Deep / Hypnotic)           | Trance              |\n\n**Exemple** :\n```json\n\"facets\": {\n  \"fields\": {\n    \"genre\": [\n      { \"name\": \"Techno (Peak Time / Driving)\", \"count\": 32 },\n      { \"name\": \"DJ Tools\", \"count\": 21 },\n      { \"name\": \"Deep House\", \"count\": 5 }\n    ]\n  }\n}\n```\n→ beatportGenre = \"Techno (Peak Time / Driving)\" (count le plus élevé)\n→ genre = \"Peak Time\" (selon mapping)\n\n#### **Label actif (isActive)**\n\n- Compter le nombre de releases dans l'array `releases`\n- Si **≥ 10 releases** → isActive = true\n- Sinon → isActive = false\n\n#### **Label ouvert aux nouveaux artistes (isOpenNew)**\n\n- Pour chaque release dans `releases`, extraire les artistes\n- Compter le nombre **d'artistes uniques** (par nom ou par ID si disponible)\n- Si **≥ 3 artistes différents** → isOpenNew = true\n- Sinon → isOpenNew = false\n\n## ❗ Règles Importantes\n\n🔴 **Ne jamais inventer une information.**\n✔️ Si une donnée est introuvable, **ne pas remplir le champ** plutôt que de générer une fausse information.\n\n## 📤 Format de sortie\n\nRetourner uniquement un JSON structuré :\n\n```json\n{\n  \"genre\": \"Valeur ou vide\",\n  \"isActive\": true,\n  \"isOpenNew\": false,\n  \"beatportLink\": \"Valeur ou vide\"\n}\n```\n\nNe pas ajouter de commentaires ni d'explications, uniquement le JSON."
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 2.2,
-      "position": [
-        160,
-        672
-      ],
-      "id": "7bdd7bbf-de99-443a-8349-cf3621382881",
-      "name": "Agent Beatport",
-      "alwaysOutputData": false,
-      "retryOnFail": false
-    },
-    {
-      "parameters": {
-        "schemaType": "manual",
-        "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"country\": {\n      \"type\": \"string\",\n      \"description\": \"Pays d'origine du label (champ 'location' ou bio SoundCloud). Chaîne vide si introuvable.\"\n    },\n    \"emailDemo\": {\n      \"type\": \"string\",\n      \"description\": \"Email/formulaire pour démos (bio SoundCloud). Email, URL de formulaire, 'FORM', ou chaîne vide.\"\n    },\n    \"scFollowers\": {\n      \"type\": \"number\",\n      \"description\": \"Nombre de followers SoundCloud (champ 'followers_count'). Retourner 0 si profil introuvable.\",\n      \"minimum\": 0\n    },\n    \"soundcloudLink\": {\n      \"type\": \"string\",\n      \"description\": \"URL du profil SoundCloud. Chaîne vide si profil introuvable.\"\n    },\n    \"facebookLink\": {\n      \"type\": \"string\",\n      \"description\": \"URL Facebook (social_links platform='facebook'). Chaîne vide si non trouvé.\"\n    },\n    \"instagramLink\": {\n      \"type\": \"string\",\n      \"description\": \"URL Instagram (social_links platform='instagram'). Chaîne vide si non trouvé.\"\n    },\n    \"beatportLink\": {\n      \"type\": \"string\",\n      \"description\": \"URL Beatport (social_links platform='beatport'). Chaîne vide si non trouvé.\"\n    },\n    \"bandcampLink\": {\n      \"type\": \"string\",\n      \"description\": \"URL Bandcamp (social_links platform='bandcamp'). Chaîne vide si non trouvé.\"\n    }\n  },\n  \"required\": [\"scFollowers\"]\n}"
-      },
-      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
-      "typeVersion": 1.2,
-      "position": [
-        304,
-        560
-      ],
-      "id": "8b18623a-eebf-4169-9085-2f3839481a0b",
-      "name": "Sc Output Parser"
-    },
-    {
-      "parameters": {
-        "endpointUrl": "http://techno-scraper-mcp:8080/sse",
-        "authentication": "headerAuth",
-        "include": "selected",
-        "includeTools": [
-          "soundcloud_search_profiles",
-          "soundcloud_get_profile"
-        ],
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
-      "typeVersion": 1.1,
-      "position": [
-        208,
-        560
-      ],
-      "id": "3cec57ab-9d1c-4f94-91dc-fba759dc2f9d",
-      "name": "Sc MCP Client",
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "bulfwAb0SuH0gpD8",
-          "name": "Techno scrapper auth"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "schemaType": "manual",
-        "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"genre\": {\n      \"type\": \"string\",\n      \"description\": \"Genre musical principal du label (facets Beatport mappé selon le tableau). Chaîne vide si pas de releases ou facets vides.\"\n    },\n    \"isActive\": {\n      \"type\": \"boolean\",\n      \"description\": \"True si le label a au moins 10 releases sur 12 mois, false sinon. Ce champ est toujours calculable.\"\n    },\n    \"isOpenNew\": {\n      \"type\": \"boolean\",\n      \"description\": \"True si au moins 3 artistes uniques sur les releases, false sinon. Ce champ est toujours calculable.\"\n    },\n    \"beatportLink\": {\n      \"type\": \"string\",\n      \"description\": \"URL de la page Beatport du label. Chaîne vide si label introuvable.\"\n    }\n  },\n  \"required\": [\"isActive\", \"isOpenNew\"]\n}"
-      },
-      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
-      "typeVersion": 1.3,
-      "position": [
-        288,
-        816
-      ],
-      "id": "c62b5082-2e03-4ff5-8b9a-367fdf58dc87",
-      "name": "Bp Output Parser"
-    },
-    {
-      "parameters": {
-        "endpointUrl": "http://techno-scraper-mcp:8080/sse",
-        "authentication": "headerAuth",
-        "include": "selected",
-        "includeTools": [
-          "beatport_search",
-          "beatport_get_label_releases"
-        ],
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
-      "typeVersion": 1.1,
-      "position": [
-        176,
-        816
-      ],
-      "id": "c72841cb-d809-4f23-a604-e644f1f23fc0",
-      "name": "Sc MCP Client1",
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "bulfwAb0SuH0gpD8",
-          "name": "Techno scrapper auth"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "promptType": "define",
-        "text": "=Nom du label: {{ $json.name }}",
-        "hasOutputParser": true,
-        "options": {
-          "systemMessage": "=# 🎸 Agent Bandcamp - Extraction d'informations label\n\n## 🎯 Objectif\nExtraire les informations sur **Bandcamp** concernant le label.\n\n## 📥 Données d'entrée\n- **Nom du label** (fourni dans le user prompt)\n\n## 🛠️ Processus\n\n### 1. Rechercher le label sur Bandcamp\n\nUtiliser le tool **bandcamp_search** avec ces paramètres :\n- `query`: Le nom exact du label\n- `page`: 1\n- `entity_type`: \"bands\"\n\nLe tool retourne un objet avec :\n- `bands`: Array de labels/artistes trouvés, chaque élément contient :\n  - `id`: ID Bandcamp\n  - `name`: Nom du label/artiste\n  - `url`: URL de la page Bandcamp\n  - `avatar_url`: Logo/image\n  - `location`: Localisation\n  - `genre`: Genre musical\n\n### 2. Sélectionner le label le plus pertinent\n\nParmi les résultats, choisir le label le plus pertinent selon cette logique :\n\n**Critères de sélection (par ordre de priorité) :**\n\n1. **Correspondance exacte du nom**\n   - Le nom doit correspondre exactement ou très fortement au nom recherché\n   - Accepter les variantes courantes (avec/sans \"Records\", \"Recordings\", etc.)\n\n2. **Présence d'un avatar**\n   - Les labels officiels ont généralement un logo\n\n3. **URL propre**\n   - Préférer les URLs courtes et propres (ex: `labelname.bandcamp.com`)\n   - Éviter les URLs avec beaucoup de chiffres ou caractères bizarres\n\n4. **Genre cohérent**\n   - Si le champ `genre` est renseigné, vérifier qu'il correspond au style attendu\n\n⚠️ **Important** : Ne PAS choisir automatiquement le premier résultat si le nom ne correspond pas.\n✅ Si aucun label ne semble suffisamment pertinent, ne retourner aucune donnée.\n\n### 3. Extraire les informations\n\nUne fois le label sélectionné, extraire :\n\n#### **Lien Bandcamp (bandcampLink)**\n- Extraire depuis le champ `url` du profil sélectionné\n- Laisser vide si aucun profil pertinent trouvé\n\n#### **Vinyle (vinyle)**\n- ⚠️ **Non disponible actuellement** avec le tool de recherche\n- Laisser ce champ vide pour l'instant\n- Note: Nécessiterait un scraping de la page détaillée du label\n\n## ❗ Règles Importantes\n\n🔴 **Ne jamais inventer une information.**\n✔️ Si une donnée est introuvable, **ne pas remplir le champ** plutôt que de générer une fausse information.\n\n## 📤 Format de sortie\n\nRetourner uniquement un JSON structuré :\n\n```json\n{\n  \"vinyle\": false,\n  \"bandcampLink\": \"Valeur ou vide\"\n}\n\nNe pas ajouter de commentaires ni d'explications, uniquement le JSON."
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 2.2,
-      "position": [
-        160,
-        960
-      ],
-      "id": "e80e9ea1-9f96-45a0-bfb0-3f44d518d227",
-      "name": "Agent Bandcamp",
-      "alwaysOutputData": false,
-      "retryOnFail": false
-    },
-    {
-      "parameters": {
-        "endpointUrl": "http://techno-scraper-mcp:8080/sse",
-        "authentication": "headerAuth",
-        "include": "selected",
-        "includeTools": [
-          "bandcamp_search"
-        ],
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
-      "typeVersion": 1.1,
-      "position": [
-        176,
-        1120
-      ],
-      "id": "f9bc25ec-c7df-49d2-aeec-4227210a847d",
-      "name": "Bc MCP Client",
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "bulfwAb0SuH0gpD8",
-          "name": "Techno scrapper auth"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "schemaType": "manual",
-        "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"vinyle\": {\n      \"type\": \"boolean\",\n      \"description\": \"True si le label vend des vinyles. False par défaut car cette information n'est pas disponible via l'API de recherche Bandcamp actuelle.\"\n    },\n    \"bandcampLink\": {\n      \"type\": \"string\",\n      \"description\": \"URL de la page Bandcamp du label. Chaîne vide si label introuvable.\"\n    }\n  },\n  \"required\": []\n}"
-      },
-      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
-      "typeVersion": 1.3,
-      "position": [
-        320,
-        1120
-      ],
-      "id": "9de5bbfe-1297-4f8c-b0e9-521962cef5d6",
-      "name": "Bc Output Parser"
-    },
-    {
-      "parameters": {
-        "numberInputs": 3
-      },
-      "type": "n8n-nodes-base.merge",
-      "typeVersion": 3.2,
-      "position": [
-        688,
-        528
-      ],
-      "id": "6d5df22f-1231-400b-b735-9d4b6a88b012",
-      "name": "Merge"
-    },
-    {
-      "parameters": {
-        "jsCode": "// Le merge retourne un array avec les 3 outputs\nconst items = $input.all();\n\n// Extraire les données de chaque item\nconst allData = items.map(item => item.json.output || item.json);\n\n// Identifier chaque source par leur posiiton dans le tableau\nconst soundcloudData = allData[0] || {};\nconst beatportData = allData[1] || {};\nconst bandcampData = allData[2] || {};\n\n// Récupérer le nom du label depuis le Google Sheet Trigger\nconst labelName = $('LabelSheet Subworkflow').first().json.name;\n\n// Retourner l'objet structuré\nreturn {\n  name: labelName,\n  soundcloud: soundcloudData,\n  beatport: beatportData,\n  bandcamp: bandcampData\n};"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        896,
-        528
-      ],
-      "id": "566bba25-47b3-42f0-a57c-499c20774d3a",
-      "name": "Code in JavaScript"
-    },
-    {
-      "parameters": {
-        "jsonSchemaExample": "{\n  \"name\": \"Nom du label\",\n  \"country\": \"Valeur si trouvée, sinon champ vide\",\n  \"genre\": \"Valeur si trouvée, sinon champ vide\",\n  \"isActive\": \"Oui/Non si trouvé, sinon champ vide\",\n  \"isOpenNew\": \"Oui/Non si trouvé, sinon champ vide\",\n  \"emailDemo\": \"Valeur si trouvée, sinon champ vide\",\n  \"vinyle\": \"Oui/Non si trouvé, sinon champ vide\",\n  \"scFollowers\": \"Valeur numérique si trouvée, sinon champ vide\",\n  \"soundcloudLink\": \"URL si trouvée, sinon champ vide\",\n  \"facebookLink\": \"URL si trouvée, sinon champ vide\",\n  \"instagramLink\": \"URL si trouvée, sinon champ vide\",\n  \"beatportLink\": \"URL si trouvée, sinon champ vide\",\n  \"bandcampLink\": \"URL si trouvée, sinon champ vide\"\n}"
-      },
-      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
-      "typeVersion": 1.3,
-      "position": [
-        1088,
-        928
-      ],
-      "id": "2568a572-55d8-49ce-b5ba-959ffb35e141",
-      "name": "Google Sheet Output Parser"
-    },
-    {
-      "parameters": {
-        "promptType": "define",
-        "text": "=Nom du label: {{ $json.name }}\nDonnées SoundCloud: {{ JSON.stringify($json.soundcloud) }}\nDonnées Beatport: {{ JSON.stringify($json.beatport) }}\nDonnées Bandcamp: {{ JSON.stringify($json.bandcamp) }}",
-        "hasOutputParser": true,
-        "options": {
-          "systemMessage": "=# 🔍 Agent de Validation et Fusion - Labels Musicaux\n\n## 🎯 Objectif\nFusionner et valider les données extraites des 3 sources (SoundCloud, Beatport, Bandcamp) en appliquant des règles de priorité pour produire un JSON final destiné au Google Sheet.\n\n## 📥 Données d'entrée\nL'agent reçoit en entrée :\n- **Le nom du label**\n- **Données SoundCloud** (country, emailDemo, scFollowers, liens sociaux)\n- **Données Beatport** (genre, isActive, isOpenNew, beatportLink)\n- **Données Bandcamp** (vinyle, bandcampLink)\n\n## 🛠️ Processus\n\n### 1. Récupération des données\nLes 3 agents (SoundCloud, Beatport, Bandcamp) ont déjà terminé leur extraction en parallèle.\nLeurs outputs sont fournis dans les données d'entrée.\n\n### 2. Application des règles de fusion\n\n#### **Champs uniques (copie directe)**\n- `emailDemo` → SoundCloud\n- `scFollowers` → SoundCloud\n- `soundcloudLink` → SoundCloud\n- `facebookLink` → SoundCloud\n- `instagramLink` → SoundCloud\n- `genre` → Beatport\n- `isActive` → Beatport\n- `isOpenNew` → Beatport\n- `vinyle` → Bandcamp\n\n#### **Champs avec priorités**\n\n**country** :\n1. SoundCloud (champ `country`) si non vide\n2. Sinon, Bandcamp (champ `location`) si disponible\n3. Sinon, laisser vide\n\n**beatportLink** :\n1. Beatport (champ `beatportLink`) si non vide\n2. Sinon, SoundCloud social_links (champ `beatportLink`) si disponible\n3. Sinon, laisser vide\n\n**bandcampLink** :\n1. Bandcamp (champ `bandcampLink`) si non vide\n2. Sinon, SoundCloud social_links (champ `bandcampLink`) si disponible\n3. Sinon, laisser vide\n\n### 3. Règles de validation\n- **Ne jamais inventer** : Si un champ est vide dans toutes les sources, le laisser vide\n- **Priorité à la source spécialisée** : SoundCloud pour les liens sociaux, Beatport pour le genre et l'activité\n\n## 📤 Format de sortie\n\nRetourner uniquement un JSON structuré :\n\n```json\n{\n  \"name\": \"{{ $json.name }}\",\n  \"country\": \"Valeur si trouvée, sinon champ vide\",\n  \"genre\": \"Valeur si trouvée, sinon champ vide\",\n  \"isActive\": \"Oui/Non si trouvé, sinon champ vide\",\n  \"isOpenNew\": \"Oui/Non si trouvé, sinon champ vide\",\n  \"emailDemo\": \"Valeur si trouvée, sinon champ vide\",\n  \"vinyle\": \"Oui/Non si trouvé, sinon champ vide\",\n  \"scFollowers\": \"Valeur numérique si trouvée, sinon champ vide\",\n  \"soundcloudLink\": \"URL si trouvée, sinon champ vide\",\n  \"facebookLink\": \"URL si trouvée, sinon champ vide\",\n  \"instagramLink\": \"URL si trouvée, sinon champ vide\",\n  \"beatportLink\": \"URL si trouvée, sinon champ vide\",\n  \"bandcampLink\": \"URL si trouvée, sinon champ vide\"\n}\n\nNe pas ajouter de commentaires ni d'explications, uniquement le JSON."
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 2.2,
-      "position": [
-        928,
-        784
-      ],
-      "id": "8268badc-0cbc-4eff-a2b9-b6d09684d37d",
-      "name": "Google Sheet Validation Agent"
-    },
-    {
-      "parameters": {
         "workflowId": {
           "__rl": true,
-          "value": "kXwHMuZluC7KJuaC",
+          "value": "Mitkczrl445MAz26",
           "mode": "list",
-          "cachedResultUrl": "/workflow/kXwHMuZluC7KJuaC",
-          "cachedResultName": "Label Sheet"
+          "cachedResultUrl": "/workflow/Mitkczrl445MAz26",
+          "cachedResultName": "Techno Scraper MCP"
         },
         "workflowInputs": {
           "mappingMode": "defineBelow",
           "value": {
-            "name": "={{ $json.Nom }}",
-            "date": "={{ $today }}"
+            "prompt": "={{ $json.prompt }}",
+            "labelName": "={{ $('Constants').first().json.labelName }}",
+            "date": "={{ $('Constants').first().json.date }}",
+            "parser": "={{ $json.parser }}",
+            "webhookUrl": "={{ $execution.resumeUrl }}/{{ $json.type }}"
           },
-          "matchingColumns": [],
+          "matchingColumns": [
+            "labelName_firstItem",
+            "date_firstItem",
+            "prompt"
+          ],
           "schema": [
             {
-              "id": "name",
-              "displayName": "name",
+              "id": "labelName",
+              "displayName": "labelName",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -965,22 +789,142 @@
               "canBeUsedToMatch": true,
               "type": "string",
               "removed": false
+            },
+            {
+              "id": "prompt",
+              "displayName": "prompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "parser",
+              "displayName": "parser",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "webhookUrl",
+              "displayName": "webhookUrl",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
             }
           ],
           "attemptToConvertTypes": false,
           "convertFieldsToString": true
         },
         "mode": "each",
-        "options": {}
+        "options": {
+          "waitForSubWorkflow": false
+        }
       },
       "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1.3,
+      "typeVersion": 1.2,
       "position": [
-        512,
-        -96
+        848,
+        -112
       ],
-      "id": "6c6b9ca1-ffa7-4f12-8f42-d446fca249ae",
-      "name": "Call 'Label Sheet'"
+      "name": "Techno Scraper Sub-workflow",
+      "id": "781737f8-72f9-4781-a338-d5b9730ec4e4"
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1312,
+        -128
+      ],
+      "id": "3290dcee-e19b-4199-8ed0-1cdd82a2f058",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "resume": "webhook",
+        "limitWaitTime": true,
+        "resumeUnit": "minutes",
+        "options": {
+          "webhookSuffix": "Soundcloud"
+        }
+      },
+      "id": "e18c5681-165b-4f01-b6a3-712095a80a38",
+      "name": "Wait for Webhook Soundcloud",
+      "type": "n8n-nodes-base.wait",
+      "position": [
+        1072,
+        -288
+      ],
+      "webhookId": "5dc5c78d-ff81-4418-84ac-7521000687cc",
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "resume": "webhook",
+        "limitWaitTime": true,
+        "resumeUnit": "minutes",
+        "options": {
+          "webhookSuffix": "Beatport"
+        }
+      },
+      "id": "8e443e69-8305-4b16-833b-df0cc62b9b04",
+      "name": "Wait for Webhook Beatport",
+      "type": "n8n-nodes-base.wait",
+      "position": [
+        1072,
+        -112
+      ],
+      "webhookId": "5dc5c78d-ff81-4418-84ac-7521000687cc",
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "resume": "webhook",
+        "limitWaitTime": true,
+        "resumeUnit": "minutes",
+        "options": {
+          "webhookSuffix": "Bandcamp"
+        }
+      },
+      "id": "169868da-385a-42df-a0d8-e6b053f24e28",
+      "name": "Wait for Webhook Bandcamp",
+      "type": "n8n-nodes-base.wait",
+      "position": [
+        1072,
+        64
+      ],
+      "webhookId": "5dc5c78d-ff81-4418-84ac-7521000687cc",
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Nom du label: {{ $json.name }}\nDonnées SoundCloud: {{ JSON.stringify($json.soundcloud) }}\nDonnées Beatport: {{ JSON.stringify($json.beatport) }}\nDonnées Bandcamp: {{ JSON.stringify($json.bandcamp) }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=# 🔍 Agent de Validation et Fusion - Labels Musicaux\n\n## 🎯 Objectif\nFusionner et valider les données extraites des 3 sources (SoundCloud, Beatport, Bandcamp) en appliquant des règles de priorité pour produire un JSON final destiné au Google Sheet.\n\n## 📥 Données d'entrée\nL'agent reçoit en entrée :\n- **Le nom du label**\n- **Données SoundCloud** (country, emailDemo, scFollowers, liens sociaux)\n- **Données Beatport** (genre, isActive, isOpenNew, beatportLink)\n- **Données Bandcamp** (vinyle, bandcampLink)\n\n## 🛠️ Processus\n\n### 1. Récupération des données\nLes 3 agents (SoundCloud, Beatport, Bandcamp) ont déjà terminé leur extraction en parallèle.\nLeurs outputs sont fournis dans les données d'entrée.\n\n### 2. Application des règles de fusion\n\n#### **Champs uniques (copie directe)**\n- `emailDemo` → SoundCloud\n- `scFollowers` → SoundCloud\n- `soundcloudLink` → SoundCloud\n- `facebookLink` → SoundCloud\n- `instagramLink` → SoundCloud\n- `genre` → Beatport\n- `isActive` → Beatport\n- `isOpenNew` → Beatport\n- `vinyle` → Bandcamp\n\n#### **Champs avec priorités**\n\n**country** :\n1. SoundCloud (champ `country`) si non vide\n2. Sinon, Bandcamp (champ `location`) si disponible\n3. Sinon, laisser vide\n\n**beatportLink** :\n1. Beatport (champ `beatportLink`) si non vide\n2. Sinon, SoundCloud social_links (champ `beatportLink`) si disponible\n3. Sinon, laisser vide\n\n**bandcampLink** :\n1. Bandcamp (champ `bandcampLink`) si non vide\n2. Sinon, SoundCloud social_links (champ `bandcampLink`) si disponible\n3. Sinon, laisser vide\n\n### 3. Règles de validation\n- **Ne jamais inventer** : Si un champ est vide dans toutes les sources, le laisser vide\n- **Priorité à la source spécialisée** : SoundCloud pour les liens sociaux, Beatport pour le genre et l'activité\n\n## 📤 Format de sortie\n\nRetourner uniquement un JSON structuré :\n\n```json\n{\n  \"name\": \"{{ $json.name }}\",\n  \"country\": \"Valeur si trouvée, sinon champ vide\",\n  \"genre\": \"Valeur si trouvée, sinon champ vide\",\n  \"isActive\": \"Oui/Non si trouvé, sinon champ vide\",\n  \"isOpenNew\": \"Oui/Non si trouvé, sinon champ vide\",\n  \"emailDemo\": \"Valeur si trouvée, sinon champ vide\",\n  \"vinyle\": \"Oui/Non si trouvé, sinon champ vide\",\n  \"scFollowers\": \"Valeur numérique si trouvée, sinon champ vide\",\n  \"soundcloudLink\": \"URL si trouvée, sinon champ vide\",\n  \"facebookLink\": \"URL si trouvée, sinon champ vide\",\n  \"instagramLink\": \"URL si trouvée, sinon champ vide\",\n  \"beatportLink\": \"URL si trouvée, sinon champ vide\",\n  \"bandcampLink\": \"URL si trouvée, sinon champ vide\"\n}\n\nNe pas ajouter de commentaires ni d'explications, uniquement le JSON."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        1504,
+        0
+      ],
+      "id": "96f61348-b355-4671-9243-c6be2cbe35fa",
+      "name": "Google Sheet Validation"
     }
   ],
   "pinData": {},
@@ -1015,6 +959,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-11-03T17:58:29.000Z",
-  "versionId": "db0146bc-1397-4dd3-9f70-50902f3ee069"
+  "updatedAt": "2025-11-04T13:23:54.000Z",
+  "versionId": "4f348648-05da-4c12-82db-4b4d3192919a"
 }
