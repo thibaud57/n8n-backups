@@ -808,14 +808,16 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "position": [
         992,
-        448
+        480
       ],
       "typeVersion": 1.2
     }
   ],
   "pinData": {},
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "zSl3wxrgtLrk7m2j"
   },
   "shared": [
     {
@@ -840,6 +842,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-08-07T10:31:18.000Z",
-  "versionId": "899c9fc2-b9ca-474c-b295-d9d5774e319b"
+  "updatedAt": "2025-11-10T15:46:41.000Z",
+  "versionId": "9b80c806-2f6e-4a0a-bf31-bf4c3ff36af4"
 }
