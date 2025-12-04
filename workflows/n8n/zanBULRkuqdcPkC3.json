@@ -1,5 +1,7 @@
 {
   "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
   "connections": {
     "Call n8n Workflow Tool1": {
       "ai_tool": [
@@ -109,8 +111,8 @@
   },
   "shared": [
     {
-      "createdAt": "2025-08-07T10:40:31.877Z",
       "updatedAt": "2025-08-07T10:40:31.877Z",
+      "createdAt": "2025-08-07T10:40:31.877Z",
       "role": "workflow:owner",
       "workflowId": "zanBULRkuqdcPkC3",
       "projectId": "TBUFy0KozocPEXEX"
@@ -119,8 +121,8 @@
   "staticData": null,
   "tags": [
     {
-      "createdAt": "2025-08-07T10:22:01.636Z",
       "updatedAt": "2025-08-07T10:22:01.636Z",
+      "createdAt": "2025-08-07T10:22:01.636Z",
       "id": "wirLDhY1stP4zoD9",
       "name": "n8n"
     }
