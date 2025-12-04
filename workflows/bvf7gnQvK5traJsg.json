@@ -1,5 +1,7 @@
 {
   "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
   "connections": {
     "Item Ref": {
       "main": [
@@ -2763,8 +2765,8 @@
   },
   "shared": [
     {
-      "createdAt": "2025-11-30T21:47:15.006Z",
       "updatedAt": "2025-11-30T21:47:15.006Z",
+      "createdAt": "2025-11-30T21:47:15.006Z",
       "role": "workflow:owner",
       "workflowId": "bvf7gnQvK5traJsg",
       "projectId": "TBUFy0KozocPEXEX"
