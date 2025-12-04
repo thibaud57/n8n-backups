@@ -1,5 +1,7 @@
 {
   "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
   "connections": {
     "Structured Output Parser": {
       "ai_outputParser": [
@@ -2823,8 +2825,8 @@
   },
   "shared": [
     {
-      "createdAt": "2025-12-01T00:46:31.064Z",
       "updatedAt": "2025-12-01T00:46:31.064Z",
+      "createdAt": "2025-12-01T00:46:31.064Z",
       "role": "workflow:owner",
       "workflowId": "t2TUb7pF2E0VaE7Y",
       "projectId": "TBUFy0KozocPEXEX"
