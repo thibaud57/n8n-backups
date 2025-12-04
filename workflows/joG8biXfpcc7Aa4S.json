@@ -1,5 +1,7 @@
 {
   "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
   "connections": {
     "Create Row": {
       "main": [
@@ -2819,8 +2821,8 @@
   },
   "shared": [
     {
-      "createdAt": "2025-11-30T23:13:31.673Z",
       "updatedAt": "2025-11-30T23:13:31.673Z",
+      "createdAt": "2025-11-30T23:13:31.673Z",
       "role": "workflow:owner",
       "workflowId": "joG8biXfpcc7Aa4S",
       "projectId": "TBUFy0KozocPEXEX"
