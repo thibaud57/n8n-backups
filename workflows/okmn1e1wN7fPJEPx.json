@@ -1,5 +1,76 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2025-12-03T17:30:58.237Z",
+    "createdAt": "2025-12-03T17:30:58.237Z",
+    "versionId": "88c9ac26-4dba-4a6d-b00e-3f6fdcf8122c",
+    "workflowId": "okmn1e1wN7fPJEPx",
+    "nodes": [
+      {
+        "parameters": {
+          "path": "d751caad-b7e1-4061-931c-f9d988e5951f",
+          "authentication": "headerAuth",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2.1,
+        "position": [
+          512,
+          272
+        ],
+        "id": "ba400915-6c20-4998-b7e1-fd6c6575a3c6",
+        "name": "Webhook",
+        "webhookId": "d751caad-b7e1-4061-931c-f9d988e5951f",
+        "credentials": {
+          "httpHeaderAuth": {
+            "id": "JhIyihFJWkPGXbwL",
+            "name": "Header Auth n8n MCP"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "chatId": "1868572637",
+          "text": "={{ $json.query.message }}",
+          "additionalFields": {
+            "appendAttribution": false
+          }
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          720,
+          272
+        ],
+        "id": "3485873c-7c0b-4f4a-8f99-eb8abc9300d5",
+        "name": "Send a text message",
+        "webhookId": "2caf8cb5-16b8-4782-8fdc-30130ba2c520",
+        "credentials": {
+          "telegramApi": {
+            "id": "75LVnc30aHnyDRba",
+            "name": "Telegram account"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Send a text message",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null
+  },
+  "activeVersionId": "88c9ac26-4dba-4a6d-b00e-3f6fdcf8122c",
   "connections": {
     "Webhook": {
       "main": [
@@ -74,8 +145,8 @@
   },
   "shared": [
     {
-      "createdAt": "2025-08-08T11:29:08.907Z",
       "updatedAt": "2025-08-08T11:29:08.907Z",
+      "createdAt": "2025-08-08T11:29:08.907Z",
       "role": "workflow:owner",
       "workflowId": "okmn1e1wN7fPJEPx",
       "projectId": "TBUFy0KozocPEXEX"
