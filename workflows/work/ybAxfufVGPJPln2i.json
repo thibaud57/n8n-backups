@@ -1,5 +1,423 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2025-12-03T17:30:58.237Z",
+    "createdAt": "2025-12-03T17:30:58.237Z",
+    "versionId": "8ce509f1-45d7-4041-8f2e-8699998cfccb",
+    "workflowId": "ybAxfufVGPJPln2i",
+    "nodes": [
+      {
+        "parameters": {
+          "model": "anthropic/claude-sonnet-4.5",
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+        "typeVersion": 1,
+        "position": [
+          560,
+          -320
+        ],
+        "id": "4e0d4759-32a6-4895-adf1-aecfcaac910b",
+        "name": "Claude Sonnet 4.5",
+        "credentials": {
+          "openRouterApi": {
+            "id": "zb2293xtkSB2aBnr",
+            "name": "OpenRouter account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsonParameters": true,
+          "additionalFieldsJson": "={{ $('Format').item.json.toJsonString() }}"
+        },
+        "type": "n8n-nodes-ticktick.tickTick",
+        "typeVersion": 1,
+        "position": [
+          1808,
+          -384
+        ],
+        "id": "bd1410b2-72e3-4fbb-955f-c33e7b0f915b",
+        "name": "Create a task",
+        "credentials": {
+          "tickTickOAuth2Api": {
+            "id": "7PlyyXWmkuR1UFvy",
+            "name": "TickTick account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsCode": "const lead = $input.first().json;\n\n// Nettoyer les notes\nconst cleanedNotes = (lead.Notes || '')\n  .replace(/\\n/g, ' ')\n  .replace(/\\r/g, '')\n  .replace(/\\t/g, ' ')\n  .replace(/\"/g, '\\\\\"')\n  .replace(/\\\\/g, '\\\\\\\\')\n  .trim();\n\nreturn {\n  name: lead['Nom Contact'],\n  poste: lead.Poste,\n  statut: lead.Statut,\n  nextStep: lead['Next Step'],\n  interet: lead['Intérêt'],\n  dateTache: lead['Date Prochaine Tache'].start,\n  notes: cleanedNotes\n};"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          112,
+          -332
+        ],
+        "id": "7b0b45d4-689a-4793-af99-ce10b8c30d14",
+        "name": "Mapping"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "9265f2c9-a9cc-4e59-850c-05c2cc95a9ea",
+                "leftValue": "={{ $json.dateTache }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "dateTime",
+                  "operation": "exists",
+                  "singleValue": true
+                }
+              },
+              {
+                "id": "2934ee93-d21d-4484-a1d9-03fc60430eb1",
+                "leftValue": "={{ $json.dateTache }}",
+                "rightValue": "={{ $now }}",
+                "operator": {
+                  "type": "dateTime",
+                  "operation": "after"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          336,
+          -332
+        ],
+        "id": "60216e84-36ee-474d-8a30-c52947473b27",
+        "name": "Is Valid"
+      },
+      {
+        "parameters": {
+          "resource": "project",
+          "operation": "get",
+          "projectId": "66ba4bbedb643ca0adb34ab0",
+          "projectData": true
+        },
+        "type": "n8n-nodes-ticktick.tickTick",
+        "typeVersion": 1,
+        "position": [
+          1136,
+          -480
+        ],
+        "id": "194a3688-d114-43f9-9008-8ff627e38e4e",
+        "name": "Get a task by title",
+        "alwaysOutputData": false,
+        "credentials": {
+          "tickTickOAuth2Api": {
+            "id": "7PlyyXWmkuR1UFvy",
+            "name": "TickTick account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsCode": "const tasks = $input.first().json.tasks;\nconst targetTitle = $('Format').first().json.title;\n\nconst foundTask = tasks.find(task => task.title === targetTitle);\n\nreturn foundTask ? {id: foundTask.id} : {id: null};"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1360,
+          -480
+        ],
+        "id": "13f6cac0-34ae-4dcd-9db9-67b9f454c944",
+        "name": "Extract task if found"
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "projectId": "66ba4bbedb643ca0adb34ab0",
+          "taskId": "={{ $json.id }}",
+          "title": "={{ $('Format').item.json.title }}",
+          "additionalFields": {
+            "content": "={{ $('Format').item.json.content }}",
+            "startDate": "={{ $('Format').item.json.startDate }}"
+          }
+        },
+        "type": "n8n-nodes-ticktick.tickTick",
+        "typeVersion": 1,
+        "position": [
+          1808,
+          -576
+        ],
+        "id": "dce5e387-d2e6-4607-a318-528774114f5c",
+        "name": "Update a task",
+        "credentials": {
+          "tickTickOAuth2Api": {
+            "id": "7PlyyXWmkuR1UFvy",
+            "name": "TickTick account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "10d7af64-82f5-40d2-b3aa-ae73ff039899",
+                "leftValue": "={{ $json.id }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "exists",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          1584,
+          -480
+        ],
+        "id": "1d55aa79-261d-4491-a4f4-f37a7984a4dc",
+        "name": "If task id exists"
+      },
+      {
+        "parameters": {
+          "jsCode": "// Déclaration des constantes\nconst TRAVAIL_PROJECT_ID = '66ba4bbedb643ca0adb34ab0';\nconst value = $('Mapping').first().json;\nconst output = $input.first().json.output;\n\n// Format content\nconst content = `\nMessage suggéré:\n\n${output.message}\n\n---\n\nNotes:\n\n${value.notes}\n`;\n\nreturn {\n  projectId: TRAVAIL_PROJECT_ID,\n  title: `${output.title}: ${value.name}`,\n  content: content.trim(),\n  startDate: `${value.dateTache}T12:00:00+0100`,\n  tags: [\"🤖Auto\", \"🕒-5mn\"],\n};"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          912,
+          -480
+        ],
+        "id": "fd578836-eed1-48cc-9704-ca9e1005d4ea",
+        "name": "Format"
+      },
+      {
+        "parameters": {
+          "pollTimes": {
+            "item": [
+              {
+                "mode": "everyMinute"
+              }
+            ]
+          },
+          "event": "pagedUpdatedInDatabase",
+          "databaseId": {
+            "__rl": true,
+            "value": "b36dfa00-e0b7-42bf-9bad-4a94ce044943",
+            "mode": "list",
+            "cachedResultName": "Pipeline Leads",
+            "cachedResultUrl": "https://www.notion.so/b36dfa00e0b742bf9bad4a94ce044943"
+          }
+        },
+        "type": "n8n-nodes-base.notionTrigger",
+        "typeVersion": 1,
+        "position": [
+          -112,
+          -332
+        ],
+        "id": "8c9a4a8d-b22d-476f-a5f3-32a72f0657cd",
+        "name": "Notion Trigger",
+        "credentials": {
+          "notionApi": {
+            "id": "62MjEeirg4hzemTI",
+            "name": "Notion account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "=Nom Contact: {{ $('Mapping').item.json.name }}\nPoste: {{ $('Mapping').item.json.poste }}\nStatut: {{ $('Mapping').item.json.statut }}\nNext Step: {{ $('Mapping').item.json.nextStep }}\nIntéret: {{ $('Mapping').item.json.interet }}\nDate Tache: {{ $('Mapping').item.json.dateTache }}\nNotes: {{ $('Mapping').item.json.notes }}",
+          "hasOutputParser": true,
+          "options": {
+            "systemMessage": "=Tu es un assistant spécialisé dans la rédaction de messages professionnels pour du networking B2B et recherche d'opportunités.\n\n# Contexte\nL'utilisateur maintient un CRM de leads professionnels dans Notion. Chaque lead a un statut, un niveau d'intérêt, et des notes contextuelles. Tu dois générer un message de relance adapté au contexte.\n\n# Données du lead\nLes informations suivantes te sont fournies :\n- Nom du contact\n- Poste occupé\n- Statut actuel de la relation\n- Prochaine action prévue (Next Step)\n- Niveau d'intérêt\n- Date de la prochaine tache\n- Notes contextuelles (historique des échanges, contexte métier, informations clés)\n\n# Règles de rédaction\n\n## Ton et vouvoiement/tutoiement\n- Analyse les notes pour détecter le ton établi dans les échanges précédents\n- Si les Notes sont vides ou absentes : adapte le message en conséquence (premier contact neutre, pas de références à des échanges passés)\n- Si aucun historique : vouvoie par défaut les postes C-level (CEO, CTO, CFO, etc.), tutoie les autres\n- Utilise le prénom uniquement (sauf si les notes indiquent un contexte très formel)\n\n## Structure du message\n- Court et direct (3-5 phrases maximum)\n- Commence par un contexte minimal si nécessaire\n- Une question claire ou un CTA précis\n- Signature simple (prénom uniquement)\n\n## Adaptation au contexte\nAnalyse le statut, le next step, l'intérêt et la date de la prochaine tâche pour adapter le ton, le contenu du message et son titre.\n\n### Statut de la relation\n- **🆕 Nouveau** : premier message, propose un échange pour se connaître\n- **💬 Discussion** : continue la conversation naturellement en référençant les échanges précédents\n- **📅 RDV planifié** : confirme le RDV ou relance si la date approche\n- **✅ Deal** : message de suivi post-deal (onboarding, start date, collaboration, etc.)\n- **❌ Perdu** : maintien la relation pour opportunités futures\n- **🧊 Stand-by** : relance douce après une période d'inactivité, donne une porte de sortie facile\n\n### Prochaine action (Next Step)\n- **📧 DM/Email à envoyer** : propose une prochaine étape concrète (call, échange, meeting)\n- **🤝 LinkedIn à connecter** : message de connexion personnalisé avec contexte\n- **📞 Call à booker** : propose des créneaux ou demande disponibilité\n- **⏳ En attente** : relance douce sur l'avancement sans être pressant\n- **✅ Fait** : message de suivi ou remerciement si pertinent\n- **❌ Pas pertinent** : message de clôture courtois et professionnel\n\n### Niveau d'intérêt\n- **🔥 Hot** : montre de l'enthousiasme et de la réactivité sans être lourd\n- **🟡 Warm** : reste professionnel et courtois, ton équilibré\n- **❄️ Cold** : sois bref, direct, et donne une porte de sortie facile\n- **❓ Unknown** : approche neutre et professionnelle, jauge l'intérêt\n\n### Date\n- **Si une date d'événement est mentionnée dans les Notes** (ex: \"RDV le 18/11\", \"Repas mardi 18\"), compare-la avec la Date Prochaine Tâche pour adapter le timing du message\nExemples :\n  - Date Prochaine Tâche : 17/11, Notes : \"Repas le 18\" → Message : \"à demain\" ou \"pour demain\"\n  - Date Prochaine Tâche : 15/11, Notes : \"RDV le 18\" → Message : \"dans 3 jours\" ou \"mercredi prochain\"\n  - Date Prochaine Tâche : 18/11, Notes : \"Call le 18\" → Message : \"aujourd'hui\" ou \"ce matin/cet après-midi\"\n- Si aucune date précise n'est dans les Notes, reste vague sur le timing\n\n## Style\n- Authentique, pas corporate\n- Pas de formules creuses (\"J'espère que ce message vous trouve bien\")\n- Pas de sur-motivation (\"Je serais ravi de...\", \"Ce serait un honneur...\")\n- Évite les points d'exclamation excessifs et les émojis\n- Utilise les informations des notes pour personnaliser (références à des échanges précédents, contexte métier, etc.)\n- Signe avec mon prénom (Thibaud)\n\n## Titre du message\nLe titre doit être **strictement choisi** parmi cette liste selon le Next Step :\n\n| Next Step | Titre à utiliser |\n|-----------|------------------|\n| 📧 DM/Email à envoyer (Statut 🆕 Nouveau) | **Premier contact** |\n| 📧 DM/Email à envoyer (autres statuts) | **Relance** |\n| 🤝 LinkedIn à connecter | **Demande de connexion** |\n| 📞 Call à booker | **Proposition de call** |\n| ⏳ En attente | **Relance** |\n| ✅ Fait | **Suivi** |\n| ❌ Pas pertinent | **Clôture** |\n\n**IMPORTANT : N'invente pas de titre, utilise uniquement ceux de la liste ci-dessus.**\n\n# Format de sortie\nFournis ta réponse en JSON uniquement :\n```json\n{\n  \"title\": \"Le titre du message\",\n  \"message\": \"Le contenu du message prêt à copier-coller\"\n}\n```\n\nPas d'introduction ni explication supplémentaire."
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 2.2,
+        "position": [
+          560,
+          -480
+        ],
+        "id": "105ddde6-58e1-432e-ab00-ba46b16bc2a4",
+        "name": "AI Agent"
+      },
+      {
+        "parameters": {
+          "jsonSchemaExample": "{\n\t\"title\": \"Titre\",\n\t\"message\": \"Contenu du message\"\n}"
+        },
+        "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+        "typeVersion": 1.3,
+        "position": [
+          704,
+          -320
+        ],
+        "id": "028eab91-de80-4a4b-a2e1-5bf204c52bfc",
+        "name": "Structured Output Parser"
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.noOp",
+        "typeVersion": 1,
+        "position": [
+          560,
+          -176
+        ],
+        "id": "5275234b-da8b-45a6-8783-a8a13a24d83c",
+        "name": "No Operation, do nothing"
+      }
+    ],
+    "connections": {
+      "Claude Sonnet 4.5": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Mapping": {
+        "main": [
+          [
+            {
+              "node": "Is Valid",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Is Valid": {
+        "main": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "No Operation, do nothing",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Get a task by title": {
+        "main": [
+          [
+            {
+              "node": "Extract task if found",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Extract task if found": {
+        "main": [
+          [
+            {
+              "node": "If task id exists",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If task id exists": {
+        "main": [
+          [
+            {
+              "node": "Update a task",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Create a task",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Format": {
+        "main": [
+          [
+            {
+              "node": "Get a task by title",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Notion Trigger": {
+        "main": [
+          [
+            {
+              "node": "Mapping",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "AI Agent": {
+        "main": [
+          [
+            {
+              "node": "Format",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Structured Output Parser": {
+        "ai_outputParser": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_outputParser",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null
+  },
+  "activeVersionId": "8ce509f1-45d7-4041-8f2e-8699998cfccb",
   "connections": {
     "Claude Sonnet 4.5": {
       "ai_languageModel": [
@@ -423,8 +841,8 @@
   },
   "shared": [
     {
-      "createdAt": "2025-11-11T12:54:42.916Z",
       "updatedAt": "2025-11-11T12:54:42.916Z",
+      "createdAt": "2025-11-11T12:54:42.916Z",
       "role": "workflow:owner",
       "workflowId": "ybAxfufVGPJPln2i",
       "projectId": "TBUFy0KozocPEXEX"
@@ -432,7 +850,7 @@
   ],
   "staticData": {
     "node:Notion Trigger": {
-      "lastTimeChecked": "2025-12-03T03:01:00.000Z",
+      "lastTimeChecked": "2025-12-03T17:31:00.000Z",
       "possibleDuplicates": [
         "2b982fe2-6406-8147-8365-fb139859dcfa"
       ]
@@ -440,8 +858,8 @@
   },
   "tags": [
     {
-      "createdAt": "2025-11-11T12:50:13.688Z",
       "updatedAt": "2025-11-11T12:50:13.688Z",
+      "createdAt": "2025-11-11T12:50:13.688Z",
       "id": "xHtq7NpvAtN0PkNm",
       "name": "work"
     }
