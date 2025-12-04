@@ -1,5 +1,7 @@
 {
-  "active": true,
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
   "connections": {
     "Claude Sonnet 4.5": {
       "ai_languageModel": [
@@ -513,8 +515,8 @@
   },
   "shared": [
     {
-      "createdAt": "2025-11-11T13:11:00.941Z",
       "updatedAt": "2025-11-11T13:11:00.941Z",
+      "createdAt": "2025-11-11T13:11:00.941Z",
       "role": "workflow:owner",
       "workflowId": "JZo9dez6bDZcSIq0",
       "projectId": "TBUFy0KozocPEXEX"
@@ -527,13 +529,13 @@
   },
   "tags": [
     {
-      "createdAt": "2025-11-11T12:50:13.688Z",
       "updatedAt": "2025-11-11T12:50:13.688Z",
+      "createdAt": "2025-11-11T12:50:13.688Z",
       "id": "xHtq7NpvAtN0PkNm",
       "name": "work"
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-11-13T17:03:18.000Z",
+  "updatedAt": "2025-12-03T17:22:08.000Z",
   "versionId": "5cb20fae-b6f2-4ab5-b073-2140e66f87cb"
 }
