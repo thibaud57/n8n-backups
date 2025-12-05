@@ -1,7 +1,465 @@
 {
-  "active": false,
-  "activeVersion": null,
-  "activeVersionId": null,
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2025-12-04T19:47:32.464Z",
+    "createdAt": "2025-12-04T19:47:32.464Z",
+    "versionId": "a71e6f6b-6aae-457d-aae5-6dbe395d92c8",
+    "workflowId": "JZo9dez6bDZcSIq0",
+    "nodes": [
+      {
+        "parameters": {
+          "model": "anthropic/claude-sonnet-4.5",
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+        "typeVersion": 1,
+        "position": [
+          -1184,
+          360
+        ],
+        "id": "dab70d8b-19b6-4515-8635-3a0ac388bb5b",
+        "name": "Claude Sonnet 4.5",
+        "credentials": {
+          "openRouterApi": {
+            "id": "zb2293xtkSB2aBnr",
+            "name": "OpenRouter account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "authentication": "tickTickOAuth2Api",
+          "jsonParameters": true,
+          "additionalFieldsJson": "={{ $('Format').item.json.toJsonString() }}"
+        },
+        "type": "n8n-nodes-ticktick.tickTick",
+        "typeVersion": 1,
+        "position": [
+          176,
+          240
+        ],
+        "id": "148c342f-5f7d-4082-bf6d-b8e110d81241",
+        "name": "Create a task",
+        "credentials": {
+          "tickTickOAuth2Api": {
+            "id": "7PlyyXWmkuR1UFvy",
+            "name": "TickTick account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsCode": "const entretien = $input.first().json;\nconst entreprise = entretien['Entreprise'];\n\nreturn {\n  title: `Entretien: ${entreprise}`,\n  pageId: entretien.id,\n  entreprise: entreprise,\n  contrat: entretien.Contrat,\n  typeEntretien: entretien['Type Entretien'],\n  dateEntretien: entretien['Date Entretien'].start\n};"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -1408,
+          136
+        ],
+        "id": "ecf8ff40-f7bf-45ba-b01d-42323d3fe47b",
+        "name": "Mapping"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "55d404df-1c05-4410-b451-6dcd5b9547e0",
+                "leftValue": "={{ $json[\"Est un template\"] }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "boolean",
+                  "operation": "false",
+                  "singleValue": true
+                }
+              },
+              {
+                "id": "date-future",
+                "leftValue": "={{ $json['Date Entretien'].start }}",
+                "rightValue": "={{ $now }}",
+                "operator": {
+                  "type": "dateTime",
+                  "operation": "after"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -1632,
+          232
+        ],
+        "id": "af963c7b-a1ef-4516-8eb9-29b524ad7b2a",
+        "name": "Is Valid",
+        "disabled": true
+      },
+      {
+        "parameters": {
+          "authentication": "tickTickOAuth2Api",
+          "resource": "project",
+          "operation": "get",
+          "projectId": "66ba4bbedb643ca0adb34ab0",
+          "projectData": true
+        },
+        "type": "n8n-nodes-ticktick.tickTick",
+        "typeVersion": 1,
+        "position": [
+          -496,
+          136
+        ],
+        "id": "0ffae71f-467b-4a20-b5a0-1f5dae805913",
+        "name": "Get Tasks TickTick",
+        "alwaysOutputData": false,
+        "credentials": {
+          "tickTickOAuth2Api": {
+            "id": "7PlyyXWmkuR1UFvy",
+            "name": "TickTick account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsCode": "const tasks = $input.first().json.tasks;\nconst targetTitle = $('Format').first().json.title;\n\nconst foundTask = tasks.find(task => task.title === targetTitle);\n\nreturn foundTask ? {id: foundTask.id} : {id: null};"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -272,
+          136
+        ],
+        "id": "ec90ee73-3b89-441d-9694-f2db38710895",
+        "name": "Extract Task If Found"
+      },
+      {
+        "parameters": {
+          "authentication": "tickTickOAuth2Api",
+          "operation": "update",
+          "projectId": "66ba4bbedb643ca0adb34ab0",
+          "taskId": "={{ $json.id }}",
+          "title": "={{ $('Format').item.json.title }}",
+          "additionalFields": {
+            "content": "={{ $('Format').item.json.content }}",
+            "startDate": "={{ $('Format').item.json.startDate }}"
+          }
+        },
+        "type": "n8n-nodes-ticktick.tickTick",
+        "typeVersion": 1,
+        "position": [
+          176,
+          40
+        ],
+        "id": "8919167e-fcf4-4ab5-abdf-8449bf8ab140",
+        "name": "Update a task",
+        "credentials": {
+          "tickTickOAuth2Api": {
+            "id": "7PlyyXWmkuR1UFvy",
+            "name": "TickTick account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "task-id-exists",
+                "leftValue": "={{ $json.id }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "exists",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -48,
+          136
+        ],
+        "id": "b650a7f8-1886-4d00-91c7-d96bf1e3cd45",
+        "name": "If Task Exists"
+      },
+      {
+        "parameters": {
+          "jsCode": "// Déclaration des constantes\nconst mapping = $('Mapping').first().json;\nconst TRAVAIL_PROJECT_ID = '66ba4bbedb643ca0adb34ab0';\n\n// Récupération du tableau d'items produit par l'agent\nconst checklist = $input.first().json.output;\n\n// Groupement par section\nconst sections = checklist.reduce((acc, { section, title }) => {\n  (acc[section] ||= []).push(title);\n  return acc;\n}, {});\n\n// Construction du contenu formaté\nconst content =\n  `📋 Préparation Entretien ${mapping.entreprise}\\n\\n` +\n  Object.entries(sections)\n    .map(([section, titles]) => {\n      const lines = titles.map(t => `  • ${t}`).join('\\n');\n      return `${section}\\n${lines}\\n`;\n    })\n    .join('\\n');\n\n// Création des sous-tâches TickTick\nconst items = checklist.map(({ section, title }) => ({\n  title: `${section} - ${title}`,\n  status: 0\n}));\n\n// Retour final vers TickTick API\nreturn {\n  projectId: TRAVAIL_PROJECT_ID,\n  title: mapping.title,\n  content: content.trim(),\n  startDate: mapping.dateEntretien,\n  tags: [\"🤖Auto\", \"🕒1h\"],\n  items\n};"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -720,
+          136
+        ],
+        "id": "53dc9d20-3ccc-4a76-b8a7-d3491208dee3",
+        "name": "Format"
+      },
+      {
+        "parameters": {
+          "pollTimes": {
+            "item": [
+              {
+                "mode": "everyMinute"
+              }
+            ]
+          },
+          "event": "pagedUpdatedInDatabase",
+          "databaseId": {
+            "__rl": true,
+            "value": "e86c6eb7-5d79-4569-8ed4-145a90fca553",
+            "mode": "list",
+            "cachedResultName": "Pipeline Entretiens",
+            "cachedResultUrl": "https://www.notion.so/e86c6eb75d7945698ed4145a90fca553"
+          }
+        },
+        "type": "n8n-nodes-base.notionTrigger",
+        "typeVersion": 1,
+        "position": [
+          -1856,
+          232
+        ],
+        "id": "d01565d4-313e-4106-941c-e220321f6dbb",
+        "name": "Notion Trigger",
+        "credentials": {
+          "notionApi": {
+            "id": "62MjEeirg4hzemTI",
+            "name": "Notion account"
+          }
+        }
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.noOp",
+        "typeVersion": 1,
+        "position": [
+          -1408,
+          328
+        ],
+        "id": "ec3d34d9-46b1-48ff-95b5-a5d1e7fb0ed1",
+        "name": "No Operation, do nothing"
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "=Entreprise: {{ $('Mapping').first().json.entreprise }}\nContrat: {{ $('Mapping').first().json.contrat }}\nType Entretien: {{ $('Mapping').first().json.typeEntretien }}\nDate Entretien: {{ $('Mapping').first().json.dateEntretien }}\n\nblockId = {{ $('Mapping').first().json.pageId }}\n\nAppelle immédiatement le tool avec ce blockId.",
+          "hasOutputParser": true,
+          "options": {
+            "systemMessage": "=Tu disposes de ce tool :\n\n{\n  \"name\": \"Get page content\",\n  \"description\": \"Récupère le contenu d'une page Notion via son blockId\",\n  \"schema\": {\n    \"type\": \"object\",\n    \"properties\": {\n      \"blockId\": { \"type\": \"string\" }\n    },\n    \"required\": [\"blockId\"]\n  }\n}\n\nPour appeler le tool, tu dois OBLIGATOIREMENT renvoyer un JSON strict :\n\n{\n  \"tool\": \"Get page content\",\n  \"toolInput\": {\n    \"blockId\": \"<ID>\"\n  }\n}\n\nNe réponds JAMAIS autrement tant que tu n'as pas récupéré le contenu de la page.\n\n---\n\nTu es un assistant spécialisé dans la préparation d'entretiens techniques et professionnels pour un développeur fullstack senior.\n\n# Contexte\nL'utilisateur maintient un CRM d'opportunités professionnelles dans Notion. Chaque entretien a un type, une date, et un contenu détaillé (template rempli avec stack technique, contexte mission). Tu dois générer une checklist de préparation adaptée pour une tâche TickTick.\n\n# Données de l'entretien\nLes informations suivantes te sont fournies :\n- Entreprise\n- Contrat (ESN, Freelance Direct, Startup, CDI Grand Compte)\n- Type Entretien (🎯 Recruteur/RH, 💻 Technique, 🤝 Manager/Équipe, 💰 Négociation)\n- Date Entretien\n- Contenu détaillé de la page (template rempli avec stack, notes, contexte métier)\n\n# Ta mission\nGénère une **checklist de préparation concrète et actionnable** basée sur :\n1. Le **Type Entretien**\n2. Les **technologies mentionnées** dans le contenu\n3. Le **Contrat** (ESN vs Freelance vs Startup)\n4. Le **contexte spécifique** de la mission\n\n## Ton\n- Direct et actionnable\n- Pas de motivation artificielle\n- Concret et technique\n- Adapté au profil senior\n\n## Adaptation au Type Entretien\n\n### 💻 Entretien Technique\n- Identifie les technos clés mentionnées dans le contenu\n- Génère des points de révision spécifiques et concrets\n- Suggère des projets/démos pertinents à présenter\n- Inclus des concepts clés à maîtriser pour chaque techno\n- Adapte au niveau attendu (senior vs mid vs junior si mentionné)\n\n**Exemples de points de révision :**\n- Si Angular mentionné → \"Revoir Signals, RxJS avancé, performance optimization\"\n- Si n8n mentionné → \"Préparer démo workflows production (scraping, RAG, intégrations)\"\n- Si Scala/Kafka mentionné → \"Réviser Event Sourcing, CQRS, patterns réactifs\"\n- Si Python/IA mentionné → \"Préparer démo agents (Pydantic AI, Claude SDK, RAG)\"\n\n### 🎯 Entretien Recruteur/RH\n- Points à clarifier sur la mission (remote, durée, équipe)\n- Préparer pitch de présentation (2min)\n- Questions à poser sur l'ESN/entreprise\n- Vérifier profil LinkedIn à jour\n- Préparer exemples concrets de réalisations\n\n### 🤝 Entretien Manager/Équipe\n- Préparer questions sur l'organisation et méthodologie\n- Identifier fit culturel et valeurs\n- Préparer exemples de collaboration/leadership\n- Questions sur autonomie et responsabilités\n\n### 💰 Négociation\n- Préparer fourchette salariale/TJM argumentée\n- Lister avantages à négocier (remote, formation, équipement)\n- Préparer contre-arguments si offre basse\n- Alternatives à proposer (equity, bonus, flexibilité)\n\n## Adaptation au Contrat\n\n### ESN\n- Clarifier politique intercontrats\n- Comprendre choix de missions\n- Vérifier accompagnement formation\n\n### Freelance Direct\n- Clarifier TJM, délais paiement, clause résiliation\n- Préparer conditions contractuelles\n- Identifier scope précis et livrables\n\n### Startup\n- Comprendre runway et levée de fonds\n- Clarifier equity et vesting\n- Évaluer viabilité et vision produit\n\n### CDI Grand Compte\n- Comprendre process de recrutement (nombre d'étapes)\n- Clarifier évolution et perspectives\n- Vérifier politique remote et équilibre vie pro/perso\n\n# Structure de la checklist\n\nGénère une checklist avec :\n- **Sections thématiques** avec émojis pertinents\n- **Items actionnables** (verbes d'action : \"Revoir\", \"Préparer\", \"Vérifier\")\n- **Concret et spécifique** (pas de généralités)\n- **Entre 5 et 12 items** selon complexité\n\n# Format de sortie\n\nFournis UNIQUEMENT un JSON array d'items, chaque item contenant :\n- `section` : Section thématique avec emoji\n- `title` : Description de l'item\n\nPas d'introduction ni explication supplémentaire."
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 2.2,
+        "position": [
+          -1128,
+          136
+        ],
+        "id": "ba98ab68-0612-4ef8-bfee-a265576c0bc6",
+        "name": "AI Agent"
+      },
+      {
+        "parameters": {
+          "jsonSchemaExample": "[\n  {\n    \"section\": \"🎯 Objectifs\",\n    \"title\": \"Démontrer expertise n8n/IA\"\n  },\n  {\n    \"section\": \"🎯 Objectifs\",\n    \"title\": \"Présenter workflows production\"\n  },\n  {\n    \"section\": \"💻 Révisions Techniques\",\n    \"title\": \"Revoir architecture n8n avancée (webhooks, API, error handling)\"\n  },\n  {\n    \"section\": \"💻 Révisions Techniques\",\n    \"title\": \"Préparer démo scraping Crawl4AI + LLM parsing\"\n  },\n  {\n    \"section\": \"💻 Révisions Techniques\",\n    \"title\": \"Réviser patterns agentic (Pydantic AI, Claude SDK)\"\n  },\n  {\n    \"section\": \"📂 Projets à Présenter\",\n    \"title\": \"Système scraping multi-domaines\"\n  },\n  {\n    \"section\": \"📂 Projets à Présenter\",\n    \"title\": \"Workflows RAG/Knowledge Management\"\n  },\n  {\n    \"section\": \"📂 Projets à Présenter\",\n    \"title\": \"Déploiement Dokploy + n8n\"\n  },\n  {\n    \"section\": \"❓ Questions à Poser\",\n    \"title\": \"Part exacte n8n vs Node/React dans mission\"\n  },\n  {\n    \"section\": \"❓ Questions à Poser\",\n    \"title\": \"Maturité n8n équipe client (workflows existants ?)\"\n  },\n  {\n    \"section\": \"❓ Questions à Poser\",\n    \"title\": \"Budget APIs/services externes (LLMs, etc.)\"\n  }\n]"
+        },
+        "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+        "typeVersion": 1.3,
+        "position": [
+          -928,
+          360
+        ],
+        "id": "e6f71796-036c-4c4a-b708-6a89100d82ac",
+        "name": "Structured Output Parser"
+      },
+      {
+        "parameters": {
+          "resource": "block",
+          "operation": "getAll",
+          "blockId": {
+            "__rl": true,
+            "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Block', ``, 'string') }}",
+            "mode": "id"
+          },
+          "returnAll": true,
+          "fetchNestedBlocks": true
+        },
+        "type": "n8n-nodes-base.notionTool",
+        "typeVersion": 2.2,
+        "position": [
+          -1056,
+          360
+        ],
+        "id": "1fb8a8ad-903c-4efe-831e-67e9097f55f4",
+        "name": "Get page content",
+        "credentials": {
+          "notionApi": {
+            "id": "62MjEeirg4hzemTI",
+            "name": "Notion account"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Claude Sonnet 4.5": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Mapping": {
+        "main": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Is Valid": {
+        "main": [
+          [
+            {
+              "node": "Mapping",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "No Operation, do nothing",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Get Tasks TickTick": {
+        "main": [
+          [
+            {
+              "node": "Extract Task If Found",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Extract Task If Found": {
+        "main": [
+          [
+            {
+              "node": "If Task Exists",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If Task Exists": {
+        "main": [
+          [
+            {
+              "node": "Update a task",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Create a task",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Format": {
+        "main": [
+          [
+            {
+              "node": "Get Tasks TickTick",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Notion Trigger": {
+        "main": [
+          [
+            {
+              "node": "Is Valid",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "AI Agent": {
+        "main": [
+          [
+            {
+              "node": "Format",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Structured Output Parser": {
+        "ai_outputParser": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_outputParser",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Get page content": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Thibaud Geisler",
+    "name": null,
+    "description": null
+  },
+  "activeVersionId": "a71e6f6b-6aae-457d-aae5-6dbe395d92c8",
   "connections": {
     "Claude Sonnet 4.5": {
       "ai_languageModel": [
@@ -12,11 +470,6 @@
             "index": 0
           }
         ]
-      ]
-    },
-    "Agent Checklist": {
-      "main": [
-        []
       ]
     },
     "Mapping": {
@@ -99,33 +552,11 @@
         ]
       ]
     },
-    "Fetch Page Content": {
-      "main": [
-        [
-          {
-            "node": "Format Notion blocks",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Notion Trigger": {
       "main": [
         [
           {
             "node": "Is Valid",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Format Notion blocks": {
-      "main": [
-        [
-          {
-            "node": "Agent Checklist",
             "type": "main",
             "index": 0
           }
@@ -143,7 +574,18 @@
         ]
       ]
     },
-    "MCP Client": {
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get page content": {
       "ai_tool": [
         [
           {
@@ -172,7 +614,7 @@
       "typeVersion": 1,
       "position": [
         -1184,
-        368
+        360
       ],
       "id": "dab70d8b-19b6-4515-8635-3a0ac388bb5b",
       "name": "Claude Sonnet 4.5",
@@ -185,13 +627,14 @@
     },
     {
       "parameters": {
+        "authentication": "tickTickOAuth2Api",
         "jsonParameters": true,
-        "additionalFieldsJson": "={{ $json.toJsonString() }}"
+        "additionalFieldsJson": "={{ $('Format').item.json.toJsonString() }}"
       },
       "type": "n8n-nodes-ticktick.tickTick",
       "typeVersion": 1,
       "position": [
-        64,
+        176,
         240
       ],
       "id": "148c342f-5f7d-4082-bf6d-b8e110d81241",
@@ -205,35 +648,13 @@
     },
     {
       "parameters": {
-        "promptType": "define",
-        "text": "=Entreprise: {{ $('Mapping').first().json.entreprise }}\nContrat: {{ $('Mapping').first().json.contrat }}\nType Entretien: {{ $('Mapping').first().json.typeEntretien }}\nDate Entretien: {{ $('Mapping').first().json.dateEntretien }}\n\nContenu de la page:\n{{ $json.content }}",
-        "messages": {
-          "messageValues": [
-            {
-              "message": "=Tu es un assistant spécialisé dans la préparation d'entretiens techniques et professionnels pour un développeur fullstack senior.\n\n# Contexte\n\nL'utilisateur maintient un CRM d'opportunités professionnelles dans Notion. Chaque entretien a un type, une date, et un contenu détaillé (template rempli avec stack technique, contexte mission). Tu dois générer une checklist de préparation adaptée pour une tâche TickTick.\n\n# Données de l'entretien\n\nLes informations suivantes te sont fournies :\n- Entreprise\n- Contrat (ESN, Freelance Direct, Startup, CDI Grand Compte)\n- Type Entretien (🎯 Recruteur/RH, 💻 Technique, 🤝 Manager/Équipe, 💰 Négociation)\n- Date Entretien\n- Contenu détaillé de la page (template rempli avec stack, notes, contexte métier)\n\n# Ta mission\n\nGénère une **checklist de préparation concrète et actionnable** basée sur :\n1. Le **Type Entretien**\n2. Les **technologies mentionnées** dans le contenu\n3. Le **Contrat** (ESN vs Freelance vs Startup)\n4. Le **contexte spécifique** de la mission\n\n# Règles de génération\n\n## Adaptation au Type Entretien\n\n### 💻 Entretien Technique\n- Identifie les technos clés mentionnées dans le contenu\n- Génère des points de révision spécifiques et concrets\n- Suggère des projets/démos pertinents à présenter\n- Inclus des concepts clés à maîtriser pour chaque techno\n- Adapte au niveau attendu (senior vs mid vs junior si mentionné)\n\n**Exemples de points de révision :**\n- Si Angular mentionné → \"Revoir Signals, RxJS avancé, performance optimization\"\n- Si n8n mentionné → \"Préparer démo workflows production (scraping, RAG, intégrations)\"\n- Si Scala/Kafka mentionné → \"Réviser Event Sourcing, CQRS, patterns réactifs\"\n- Si Python/IA mentionné → \"Préparer démo agents (Pydantic AI, Claude SDK, RAG)\"\n\n### 🎯 Entretien Recruteur/RH\n- Points à clarifier sur la mission (remote, durée, équipe)\n- Préparer pitch de présentation (2min)\n- Questions à poser sur l'ESN/entreprise\n- Vérifier profil LinkedIn à jour\n- Préparer exemples concrets de réalisations\n\n### 🤝 Entretien Manager/Équipe\n- Préparer questions sur l'organisation et méthodologie\n- Identifier fit culturel et valeurs\n- Préparer exemples de collaboration/leadership\n- Questions sur autonomie et responsabilités\n\n### 💰 Négociation\n- Préparer fourchette salariale/TJM argumentée\n- Lister avantages à négocier (remote, formation, équipement)\n- Préparer contre-arguments si offre basse\n- Alternatives à proposer (equity, bonus, flexibilité)\n\n## Adaptation au Contrat\n\n### ESN\n- Clarifier politique intercontrats\n- Comprendre choix de missions\n- Vérifier accompagnement formation\n\n### Freelance Direct\n- Clarifier TJM, délais paiement, clause résiliation\n- Préparer conditions contractuelles\n- Identifier scope précis et livrables\n\n### Startup\n- Comprendre runway et levée de fonds\n- Clarifier equity et vesting\n- Évaluer viabilité et vision produit\n\n### CDI Grand Compte\n- Comprendre process de recrutement (nombre d'étapes)\n- Clarifier évolution et perspectives\n- Vérifier politique remote et équilibre vie pro/perso\n\n# Structure de la checklist\n\nGénère une checklist avec :\n- **Sections thématiques** avec émojis pertinents\n- **Items actionnables** (verbes d'action : \"Revoir\", \"Préparer\", \"Vérifier\")\n- **Concret et spécifique** (pas de généralités)\n- **Entre 5 et 12 items** selon complexité\n\n# Format de sortie\n\nFournis UNIQUEMENT un JSON array d'items, chaque item contenant :\n- `section` : Section thématique avec emoji\n- `title` : Description de l'item\n\n## Exemple de format attendu\n\n```json\n[\n  {\n    \"section\": \"🎯 Objectifs\",\n    \"title\": \"Démontrer expertise n8n/IA\"\n  },\n  {\n    \"section\": \"🎯 Objectifs\",\n    \"title\": \"Présenter workflows production\"\n  },\n  {\n    \"section\": \"💻 Révisions Techniques\",\n    \"title\": \"Revoir architecture n8n avancée (webhooks, API, error handling)\"\n  },\n  {\n    \"section\": \"💻 Révisions Techniques\",\n    \"title\": \"Préparer démo scraping Crawl4AI + LLM parsing\"\n  },\n  {\n    \"section\": \"💻 Révisions Techniques\",\n    \"title\": \"Réviser patterns agentic (Pydantic AI, Claude SDK)\"\n  },\n  {\n    \"section\": \"📂 Projets à Présenter\",\n    \"title\": \"Système scraping multi-domaines\"\n  },\n  {\n    \"section\": \"📂 Projets à Présenter\",\n    \"title\": \"Workflows RAG/Knowledge Management\"\n  },\n  {\n    \"section\": \"📂 Projets à Présenter\",\n    \"title\": \"Déploiement Dokploy + n8n\"\n  },\n  {\n    \"section\": \"❓ Questions à Poser\",\n    \"title\": \"Part exacte n8n vs Node/React dans mission\"\n  },\n  {\n    \"section\": \"❓ Questions à Poser\",\n    \"title\": \"Maturité n8n équipe client (workflows existants ?)\"\n  },\n  {\n    \"section\": \"❓ Questions à Poser\",\n    \"title\": \"Budget APIs/services externes (LLMs, etc.)\"\n  }\n]\n```\n\n# Ton\n\n- Direct et actionnable\n- Pas de motivation artificielle\n- Concret et technique\n- Adapté au profil senior\n\n# IMPORTANT\n\nRéponds UNIQUEMENT avec le JSON array, rien d'autre. Pas de texte avant ou après, pas de balises markdown."
-            }
-          ]
-        },
-        "batching": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.chainLlm",
-      "typeVersion": 1.7,
-      "position": [
-        -1408,
-        -192
-      ],
-      "id": "b3a29a73-be22-465b-924d-375ded15005b",
-      "name": "Agent Checklist"
-    },
-    {
-      "parameters": {
         "jsCode": "const entretien = $input.first().json;\nconst entreprise = entretien['Entreprise'];\n\nreturn {\n  title: `Entretien: ${entreprise}`,\n  pageId: entretien.id,\n  entreprise: entreprise,\n  contrat: entretien.Contrat,\n  typeEntretien: entretien['Type Entretien'],\n  dateEntretien: entretien['Date Entretien'].start\n};"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
         -1408,
-        144
+        136
       ],
       "id": "ecf8ff40-f7bf-45ba-b01d-42323d3fe47b",
       "name": "Mapping"
@@ -276,13 +697,15 @@
       "typeVersion": 2.2,
       "position": [
         -1632,
-        240
+        232
       ],
       "id": "af963c7b-a1ef-4516-8eb9-29b524ad7b2a",
-      "name": "Is Valid"
+      "name": "Is Valid",
+      "disabled": true
     },
     {
       "parameters": {
+        "authentication": "tickTickOAuth2Api",
         "resource": "project",
         "operation": "get",
         "projectId": "66ba4bbedb643ca0adb34ab0",
@@ -291,8 +714,8 @@
       "type": "n8n-nodes-ticktick.tickTick",
       "typeVersion": 1,
       "position": [
-        -608,
-        144
+        -496,
+        136
       ],
       "id": "0ffae71f-467b-4a20-b5a0-1f5dae805913",
       "name": "Get Tasks TickTick",
@@ -306,33 +729,34 @@
     },
     {
       "parameters": {
-        "jsCode": "const tasks = $input.first().json.tasks;\nconst targetTitle = $('Mapping').first().json.title;\n\nconst foundTask = tasks.find(task => task.title === targetTitle);\n\nreturn foundTask ? {id: foundTask.id} : {id: null};"
+        "jsCode": "const tasks = $input.first().json.tasks;\nconst targetTitle = $('Format').first().json.title;\n\nconst foundTask = tasks.find(task => task.title === targetTitle);\n\nreturn foundTask ? {id: foundTask.id} : {id: null};"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -384,
-        144
+        -272,
+        136
       ],
       "id": "ec90ee73-3b89-441d-9694-f2db38710895",
       "name": "Extract Task If Found"
     },
     {
       "parameters": {
+        "authentication": "tickTickOAuth2Api",
         "operation": "update",
         "projectId": "66ba4bbedb643ca0adb34ab0",
-        "taskId": "={{ $json.taskId }}",
-        "title": "={{ $json.title }}",
+        "taskId": "={{ $json.id }}",
+        "title": "={{ $('Format').item.json.title }}",
         "additionalFields": {
-          "content": "={{ $json.content }}",
-          "startDate": "={{ $json.startDate }}"
+          "content": "={{ $('Format').item.json.content }}",
+          "startDate": "={{ $('Format').item.json.startDate }}"
         }
       },
       "type": "n8n-nodes-ticktick.tickTick",
       "typeVersion": 1,
       "position": [
-        64,
-        48
+        176,
+        40
       ],
       "id": "8919167e-fcf4-4ab5-abdf-8449bf8ab140",
       "name": "Update a task",
@@ -355,7 +779,7 @@
           "conditions": [
             {
               "id": "task-id-exists",
-              "leftValue": "={{ $json.taskId }}",
+              "leftValue": "={{ $json.id }}",
               "rightValue": "",
               "operator": {
                 "type": "string",
@@ -371,51 +795,24 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -160,
-        144
+        -48,
+        136
       ],
       "id": "b650a7f8-1886-4d00-91c7-d96bf1e3cd45",
       "name": "If Task Exists"
     },
     {
       "parameters": {
-        "jsCode": "// Déclaration des constantes\nconst mapping = $('Mapping').first().json;\nconst agent = $('Agent Checklist').first().json;\nconst TRAVAIL_PROJECT_ID = '66ba4bbedb643ca0adb34ab0';\n\n// Parse le JSON de l'agent (peut avoir des backticks markdown)\nlet checklistRaw = agent.text;\nchecklistRaw = checklistRaw.replace(/```json\\n?/g, '').replace(/```\\n?/g, '').trim();\nconst checklistArray = JSON.parse(checklistRaw);\n\n// Grouper par section et formater pour TickTick items\nconst sections = {};\nchecklistArray.forEach(item => {\n  if (!sections[item.section]) {\n    sections[item.section] = [];\n  }\n  sections[item.section].push(item.title);\n});\n\n// Construire le content avec sections\nlet content = `📋 Préparation Entretien ${mapping.entreprise}\\n\\n`;\nObject.keys(sections).forEach(section => {\n  content += `${section}\\n`;\n  sections[section].forEach(item => {\n    content += `  • ${item}\\n`;\n  });\n  content += '\\n';\n});\n\n// Construire les items pour TickTick (format subtasks)\nconst items = checklistArray.map(item => ({\n  title: `${item.section} - ${item.title}`,\n  status: 0\n}));\n\nreturn {\n  projectId: TRAVAIL_PROJECT_ID,\n  taskId: $('Extract Task If Found').first().json.id,\n  title: mapping.title,\n  content: content.trim(),\n  startDate: mapping.dateEntretien,\n  tags: [\"🤖Auto\", \"🕒1h\"],\n  items: items\n};"
+        "jsCode": "// Déclaration des constantes\nconst mapping = $('Mapping').first().json;\nconst TRAVAIL_PROJECT_ID = '66ba4bbedb643ca0adb34ab0';\n\n// Récupération du tableau d'items produit par l'agent\nconst checklist = $input.first().json.output;\n\n// Groupement par section\nconst sections = checklist.reduce((acc, { section, title }) => {\n  (acc[section] ||= []).push(title);\n  return acc;\n}, {});\n\n// Construction du contenu formaté\nconst content =\n  `📋 Préparation Entretien ${mapping.entreprise}\\n\\n` +\n  Object.entries(sections)\n    .map(([section, titles]) => {\n      const lines = titles.map(t => `  • ${t}`).join('\\n');\n      return `${section}\\n${lines}\\n`;\n    })\n    .join('\\n');\n\n// Création des sous-tâches TickTick\nconst items = checklist.map(({ section, title }) => ({\n  title: `${section} - ${title}`,\n  status: 0\n}));\n\n// Retour final vers TickTick API\nreturn {\n  projectId: TRAVAIL_PROJECT_ID,\n  title: mapping.title,\n  content: content.trim(),\n  startDate: mapping.dateEntretien,\n  tags: [\"🤖Auto\", \"🕒1h\"],\n  items\n};"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -832,
-        144
+        -720,
+        136
       ],
       "id": "53dc9d20-3ccc-4a76-b8a7-d3491208dee3",
       "name": "Format"
-    },
-    {
-      "parameters": {
-        "resource": "block",
-        "operation": "getAll",
-        "blockId": {
-          "__rl": true,
-          "value": "={{ $('Mapping').item.json.pageId }}",
-          "mode": "id"
-        },
-        "returnAll": true,
-        "fetchNestedBlocks": true
-      },
-      "type": "n8n-nodes-base.notion",
-      "typeVersion": 2,
-      "position": [
-        -1856,
-        -192
-      ],
-      "id": "c9c5a048-c245-4083-b6c4-e32c3d9916d4",
-      "name": "Fetch Page Content",
-      "credentials": {
-        "notionApi": {
-          "id": "62MjEeirg4hzemTI",
-          "name": "Notion account"
-        }
-      }
     },
     {
       "parameters": {
@@ -439,7 +836,7 @@
       "typeVersion": 1,
       "position": [
         -1856,
-        240
+        232
       ],
       "id": "d01565d4-313e-4106-941c-e220321f6dbb",
       "name": "Notion Trigger",
@@ -456,55 +853,68 @@
       "typeVersion": 1,
       "position": [
         -1408,
-        336
+        328
       ],
       "id": "ec3d34d9-46b1-48ff-95b5-a5d1e7fb0ed1",
       "name": "No Operation, do nothing"
     },
     {
       "parameters": {
-        "jsCode": "const blocks = $input.all();\nlet content = '';\n\nfor (const item of blocks) {\n  const block = item.json;\n  \n  if (!block.type) continue;\n  \n  const blockData = block[block.type];\n  \n  if (blockData?.text && Array.isArray(blockData.text)) {\n    const text = blockData.text\n      .map(t => t.plain_text || '')\n      .join('');\n    \n    if (!text.trim()) continue;\n    \n    switch(block.type) {\n      case 'heading_1':\n        content += `\\n# ${text}\\n`;\n        break;\n      case 'heading_2':\n        content += `\\n## ${text}\\n`;\n        break;\n      case 'heading_3':\n        content += `\\n### ${text}\\n`;\n        break;\n      case 'bulleted_list_item':\n        content += `- ${text}\\n`;\n        break;\n      case 'to_do':\n        const checked = blockData.checked ? '[x]' : '[ ]';\n        content += `- ${checked} ${text}\\n`;\n        break;\n      default:\n        content += `${text}\\n`;\n    }\n  } else if (block.type === 'divider') {\n    content += `\\n---\\n`;\n  }\n}\n\nreturn [{json: {content: content.trim()}}];"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        -1632,
-        -192
-      ],
-      "id": "5483f95f-a799-40db-b9d6-fff0c1592d91",
-      "name": "Format Notion blocks"
-    },
-    {
-      "parameters": {
         "promptType": "define",
-        "text": "=Personnalise le template d'entretien suivant :\n\n**Page ID :** {{ $json.pageId }}\n**Entreprise :** {{ $json.entreprise }}\n**Contrat :** {{ $json.contrat }}\n**Type Entretien :** {{ $json.typeEntretien }}\n\nUtilise le Notion Tool pour :\n1. Lire la page complète\n2. Extraire \"Informations pour la personnalisation\"\n3. Si \"Entretien Lié\" existe : lire aussi cette page pour récupérer contexte/stack\n4. Personnaliser les sections vides\n5. Supprimer les blocs \"Informations\" et callouts\n6. Update la page avec le contenu personnalisé",
+        "text": "=Entreprise: {{ $('Mapping').first().json.entreprise }}\nContrat: {{ $('Mapping').first().json.contrat }}\nType Entretien: {{ $('Mapping').first().json.typeEntretien }}\nDate Entretien: {{ $('Mapping').first().json.dateEntretien }}\n\nblockId = {{ $('Mapping').first().json.pageId }}\n\nAppelle immédiatement le tool avec ce blockId.",
+        "hasOutputParser": true,
         "options": {
-          "systemMessage": "=Tu es un assistant qui personnalise automatiquement des templates de préparation d'entretiens professionnels dans Notion.\n\n# Contexte\n\nL'utilisateur clone des templates d'entretien (ESN, Startup, Freelance, Technique) et remplit manuellement une section \"Informations pour la personnalisation\" en haut de la page avec :\n- Contexte de l'entretien\n- Stack mentionnée\n- Remote policy\n- Budget évoqué\n- Notes libres\n\nQuand l'utilisateur ajoute une date d'entretien, le workflow se déclenche et tu dois personnaliser automatiquement le template.\n\n# Ta mission\n\n1. **Utiliser le Notion Tool pour lire la page d'entretien** (page_id fourni)\n2. **Extraire la section \"Informations pour la personnalisation\"**\n3. **Si propriété \"Entretien Lié\" existe** :\n   - Utiliser le Notion Tool pour lire la page liée\n   - Extraire : Stack technique, Contenu mission, Remote policy, Contrat, etc.\n   - Utiliser ces infos pour enrichir la personnalisation\n4. **Personnaliser les sections vides du template** selon les informations collectées\n5. **Supprimer les blocs suivants** :\n   - Callout jaune du début (💡 \"Personnalise ce template...\")\n   - Section complète \"Informations pour la personnalisation\"\n   - Callout rouge (⚠️ \"Indiquer la date...\")\n6. **Utiliser le Notion Tool pour UPDATE la page** avec le contenu personnalisé\n\n# Sections à personnaliser selon le template\n\n## TOUS les templates\n\n### Stack Technique\nSi stack mentionnée dans \"Informations\" ou page liée :\n- Remplir Frontend / Backend / DevOps (si applicable) / IA sections (si applicable)\n- Cocher les cases de \"Type de mission\" pertinentes\n- Remplir \"Part dans la mission\" si indiqué\n\n### Remote & Organisation\nSi remote policy mentionnée :\n- Remplir \"Mode de travail\"\n- Cocher type de politique remote\n- Remplir jours remote/présentiel\n\n### Mes Atouts\nPersonnaliser selon la stack :\n- Si n8n → Ajouter \"2 ans n8n/IA en prod perso\"\n- Si Angular → Ajouter \"Expert Angular (dont versions récentes)\"\n- Si Scala → Ajouter \"3,5 ans Scala/Event Sourcing\"\n\n### Red Flags à surveiller\nAjouter des red flags spécifiques si mentionnés dans \"Informations\"\n\n## Template ESN spécifique\n\n- Remplir \"Le Client\" (secteur, taille, localisation)\n- Remplir \"Durée & Format\" si connu\n- Remplir \"Package\" si budget évoqué\n\n## Template Startup spécifique\n\n- Remplir \"La Startup\" (nom, secteur, problème résolu)\n- Remplir \"Financement\" (stage de levée, runway, traction)\n- Remplir \"Mon Rôle\" si connu\n\n## Template Freelance spécifique\n\n- Remplir \"Le Client\" (entreprise, secteur)\n- Remplir \"TJM / Tarif\" si budget évoqué\n- Remplir \"Timing\" (durée, deadline)\n\n## Template Technique spécifique\n\n- Remplir \"Préparation par Domaine\" selon stack de la page liée\n- Suggérer \"Projets à présenter\" selon stack\n- Remplir \"Concepts clés à maîtriser\" selon technos\n\n# Règles importantes\n\n- **NE PAS modifier** ce que l'user a déjà rempli manuellement\n- **Compléter UNIQUEMENT** les sections vides\n- **Être concret et actionnable** (pas de généralités)\n- **S'adapter** au Type Entretien et Contrat\n- **Utiliser le contexte** de la page liée si disponible\n\n# Format de sortie\n\nTu dois retourner le **contenu Notion Markdown complet** de la page personnalisée, en suivant le format Notion-flavored Markdown (même format que celui retourné par le Notion Tool).\n\n**SANS les blocs suivants** :\n- Callout jaune du début\n- Section \"Informations pour la personnalisation\"\n- Callout rouge\n\n# Utilisation du Notion Tool\n\n1. **Read** : Fetch la page d'entretien avec `page_id`\n2. **Read** (si \"Entretien Lié\" existe) : Fetch la page liée\n3. **Update** : Update la page avec le contenu personnalisé\n\n# Exemple de workflow\n\n**Input page :**\n```markdown\n<callout>💡 Personnalise ce template...</callout>\n\n# Informations pour la personnalisation\n## Contexte :\n- Stack mentionnée : n8n, Node.js, React\n- Remote policy : Hybrid 2-3j remote\n\n<callout>⚠️ Indiquer la date...</callout>\n\n# 📊 Contenu Technique\n## Frontend\n- Framework/Techno :\n- Part dans la mission : %\n```\n\n**Output page (personnalisée) :**\n```markdown\n# 📊 Contenu Technique\n## Frontend\n- Framework/Techno : React\n- Part dans la mission : 30%\n\n## Backend\n- Framework/Techno : Node.js\n- Part dans la mission : 20%\n\n## IA / Automatisation\n- Outils : n8n (principal)\n- Part dans la mission : 50%\n\n# 💪 Mes Atouts\n- ✓ 2 ans n8n/IA en prod perso\n- ✓ Polyvalence fullstack (Node.js, React)\n````"
+          "systemMessage": "=Tu disposes de ce tool :\n\n{\n  \"name\": \"Get page content\",\n  \"description\": \"Récupère le contenu d'une page Notion via son blockId\",\n  \"schema\": {\n    \"type\": \"object\",\n    \"properties\": {\n      \"blockId\": { \"type\": \"string\" }\n    },\n    \"required\": [\"blockId\"]\n  }\n}\n\nPour appeler le tool, tu dois OBLIGATOIREMENT renvoyer un JSON strict :\n\n{\n  \"tool\": \"Get page content\",\n  \"toolInput\": {\n    \"blockId\": \"<ID>\"\n  }\n}\n\nNe réponds JAMAIS autrement tant que tu n'as pas récupéré le contenu de la page.\n\n---\n\nTu es un assistant spécialisé dans la préparation d'entretiens techniques et professionnels pour un développeur fullstack senior.\n\n# Contexte\nL'utilisateur maintient un CRM d'opportunités professionnelles dans Notion. Chaque entretien a un type, une date, et un contenu détaillé (template rempli avec stack technique, contexte mission). Tu dois générer une checklist de préparation adaptée pour une tâche TickTick.\n\n# Données de l'entretien\nLes informations suivantes te sont fournies :\n- Entreprise\n- Contrat (ESN, Freelance Direct, Startup, CDI Grand Compte)\n- Type Entretien (🎯 Recruteur/RH, 💻 Technique, 🤝 Manager/Équipe, 💰 Négociation)\n- Date Entretien\n- Contenu détaillé de la page (template rempli avec stack, notes, contexte métier)\n\n# Ta mission\nGénère une **checklist de préparation concrète et actionnable** basée sur :\n1. Le **Type Entretien**\n2. Les **technologies mentionnées** dans le contenu\n3. Le **Contrat** (ESN vs Freelance vs Startup)\n4. Le **contexte spécifique** de la mission\n\n## Ton\n- Direct et actionnable\n- Pas de motivation artificielle\n- Concret et technique\n- Adapté au profil senior\n\n## Adaptation au Type Entretien\n\n### 💻 Entretien Technique\n- Identifie les technos clés mentionnées dans le contenu\n- Génère des points de révision spécifiques et concrets\n- Suggère des projets/démos pertinents à présenter\n- Inclus des concepts clés à maîtriser pour chaque techno\n- Adapte au niveau attendu (senior vs mid vs junior si mentionné)\n\n**Exemples de points de révision :**\n- Si Angular mentionné → \"Revoir Signals, RxJS avancé, performance optimization\"\n- Si n8n mentionné → \"Préparer démo workflows production (scraping, RAG, intégrations)\"\n- Si Scala/Kafka mentionné → \"Réviser Event Sourcing, CQRS, patterns réactifs\"\n- Si Python/IA mentionné → \"Préparer démo agents (Pydantic AI, Claude SDK, RAG)\"\n\n### 🎯 Entretien Recruteur/RH\n- Points à clarifier sur la mission (remote, durée, équipe)\n- Préparer pitch de présentation (2min)\n- Questions à poser sur l'ESN/entreprise\n- Vérifier profil LinkedIn à jour\n- Préparer exemples concrets de réalisations\n\n### 🤝 Entretien Manager/Équipe\n- Préparer questions sur l'organisation et méthodologie\n- Identifier fit culturel et valeurs\n- Préparer exemples de collaboration/leadership\n- Questions sur autonomie et responsabilités\n\n### 💰 Négociation\n- Préparer fourchette salariale/TJM argumentée\n- Lister avantages à négocier (remote, formation, équipement)\n- Préparer contre-arguments si offre basse\n- Alternatives à proposer (equity, bonus, flexibilité)\n\n## Adaptation au Contrat\n\n### ESN\n- Clarifier politique intercontrats\n- Comprendre choix de missions\n- Vérifier accompagnement formation\n\n### Freelance Direct\n- Clarifier TJM, délais paiement, clause résiliation\n- Préparer conditions contractuelles\n- Identifier scope précis et livrables\n\n### Startup\n- Comprendre runway et levée de fonds\n- Clarifier equity et vesting\n- Évaluer viabilité et vision produit\n\n### CDI Grand Compte\n- Comprendre process de recrutement (nombre d'étapes)\n- Clarifier évolution et perspectives\n- Vérifier politique remote et équilibre vie pro/perso\n\n# Structure de la checklist\n\nGénère une checklist avec :\n- **Sections thématiques** avec émojis pertinents\n- **Items actionnables** (verbes d'action : \"Revoir\", \"Préparer\", \"Vérifier\")\n- **Concret et spécifique** (pas de généralités)\n- **Entre 5 et 12 items** selon complexité\n\n# Format de sortie\n\nFournis UNIQUEMENT un JSON array d'items, chaque item contenant :\n- `section` : Section thématique avec emoji\n- `title` : Description de l'item\n\nPas d'introduction ni explication supplémentaire."
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.2,
       "position": [
-        -1184,
-        144
+        -1128,
+        136
       ],
       "id": "ba98ab68-0612-4ef8-bfee-a265576c0bc6",
       "name": "AI Agent"
     },
     {
       "parameters": {
-        "endpointUrl": "mcp.empiricmind.fr",
-        "serverTransport": "httpStreamable",
-        "options": {}
+        "jsonSchemaExample": "[\n  {\n    \"section\": \"🎯 Objectifs\",\n    \"title\": \"Démontrer expertise n8n/IA\"\n  },\n  {\n    \"section\": \"🎯 Objectifs\",\n    \"title\": \"Présenter workflows production\"\n  },\n  {\n    \"section\": \"💻 Révisions Techniques\",\n    \"title\": \"Revoir architecture n8n avancée (webhooks, API, error handling)\"\n  },\n  {\n    \"section\": \"💻 Révisions Techniques\",\n    \"title\": \"Préparer démo scraping Crawl4AI + LLM parsing\"\n  },\n  {\n    \"section\": \"💻 Révisions Techniques\",\n    \"title\": \"Réviser patterns agentic (Pydantic AI, Claude SDK)\"\n  },\n  {\n    \"section\": \"📂 Projets à Présenter\",\n    \"title\": \"Système scraping multi-domaines\"\n  },\n  {\n    \"section\": \"📂 Projets à Présenter\",\n    \"title\": \"Workflows RAG/Knowledge Management\"\n  },\n  {\n    \"section\": \"📂 Projets à Présenter\",\n    \"title\": \"Déploiement Dokploy + n8n\"\n  },\n  {\n    \"section\": \"❓ Questions à Poser\",\n    \"title\": \"Part exacte n8n vs Node/React dans mission\"\n  },\n  {\n    \"section\": \"❓ Questions à Poser\",\n    \"title\": \"Maturité n8n équipe client (workflows existants ?)\"\n  },\n  {\n    \"section\": \"❓ Questions à Poser\",\n    \"title\": \"Budget APIs/services externes (LLMs, etc.)\"\n  }\n]"
       },
-      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
-      "typeVersion": 1.1,
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
       "position": [
-        -1040,
-        368
+        -928,
+        360
       ],
-      "id": "fc285885-7b8a-46ac-8084-338642313589",
-      "name": "MCP Client"
+      "id": "e6f71796-036c-4c4a-b708-6a89100d82ac",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "resource": "block",
+        "operation": "getAll",
+        "blockId": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Block', ``, 'string') }}",
+          "mode": "id"
+        },
+        "returnAll": true,
+        "fetchNestedBlocks": true
+      },
+      "type": "n8n-nodes-base.notionTool",
+      "typeVersion": 2.2,
+      "position": [
+        -1056,
+        360
+      ],
+      "id": "1fb8a8ad-903c-4efe-831e-67e9097f55f4",
+      "name": "Get page content",
+      "credentials": {
+        "notionApi": {
+          "id": "62MjEeirg4hzemTI",
+          "name": "Notion account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -524,7 +934,10 @@
   ],
   "staticData": {
     "node:Notion Trigger": {
-      "lastTimeChecked": "2025-12-03T03:01:00.000Z"
+      "lastTimeChecked": "2025-12-04T21:13:00.000Z",
+      "possibleDuplicates": [
+        "2bf82fe2-6406-814b-8947-cafae36e070d"
+      ]
     }
   },
   "tags": [
@@ -536,6 +949,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-12-03T17:22:08.000Z",
-  "versionId": "5cb20fae-b6f2-4ab5-b073-2140e66f87cb"
+  "updatedAt": "2025-12-04T19:47:32.000Z",
+  "versionId": "a71e6f6b-6aae-457d-aae5-6dbe395d92c8"
 }
