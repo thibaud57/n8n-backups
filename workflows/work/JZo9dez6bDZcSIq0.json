@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-12-04T19:47:32.464Z",
-    "createdAt": "2025-12-04T19:47:32.464Z",
-    "versionId": "a71e6f6b-6aae-457d-aae5-6dbe395d92c8",
+    "updatedAt": "2025-12-08T18:56:14.002Z",
+    "createdAt": "2025-12-08T18:56:14.002Z",
+    "versionId": "9f3e551c-aab9-407d-9c9f-9186bae537b8",
     "workflowId": "JZo9dez6bDZcSIq0",
     "nodes": [
       {
@@ -15,7 +15,7 @@
         "typeVersion": 1,
         "position": [
           -1184,
-          360
+          368
         ],
         "id": "dab70d8b-19b6-4515-8635-3a0ac388bb5b",
         "name": "Claude Sonnet 4.5",
@@ -55,7 +55,7 @@
         "typeVersion": 2,
         "position": [
           -1408,
-          136
+          144
         ],
         "id": "ecf8ff40-f7bf-45ba-b01d-42323d3fe47b",
         "name": "Mapping"
@@ -82,7 +82,7 @@
               },
               {
                 "id": "date-future",
-                "leftValue": "={{ $json['Date Entretien'].start }}",
+                "leftValue": "={{ $json['Date Entretien']?.start }}",
                 "rightValue": "={{ $now }}",
                 "operator": {
                   "type": "dateTime",
@@ -98,11 +98,10 @@
         "typeVersion": 2.2,
         "position": [
           -1632,
-          232
+          240
         ],
         "id": "af963c7b-a1ef-4516-8eb9-29b524ad7b2a",
-        "name": "Is Valid",
-        "disabled": true
+        "name": "Is Valid"
       },
       {
         "parameters": {
@@ -116,7 +115,7 @@
         "typeVersion": 1,
         "position": [
           -496,
-          136
+          144
         ],
         "id": "0ffae71f-467b-4a20-b5a0-1f5dae805913",
         "name": "Get Tasks TickTick",
@@ -136,7 +135,7 @@
         "typeVersion": 2,
         "position": [
           -272,
-          136
+          144
         ],
         "id": "ec90ee73-3b89-441d-9694-f2db38710895",
         "name": "Extract Task If Found"
@@ -157,7 +156,7 @@
         "typeVersion": 1,
         "position": [
           176,
-          40
+          48
         ],
         "id": "8919167e-fcf4-4ab5-abdf-8449bf8ab140",
         "name": "Update a task",
@@ -197,7 +196,7 @@
         "typeVersion": 2.2,
         "position": [
           -48,
-          136
+          144
         ],
         "id": "b650a7f8-1886-4d00-91c7-d96bf1e3cd45",
         "name": "If Task Exists"
@@ -210,7 +209,7 @@
         "typeVersion": 2,
         "position": [
           -720,
-          136
+          144
         ],
         "id": "53dc9d20-3ccc-4a76-b8a7-d3491208dee3",
         "name": "Format"
@@ -237,7 +236,7 @@
         "typeVersion": 1,
         "position": [
           -1856,
-          232
+          240
         ],
         "id": "d01565d4-313e-4106-941c-e220321f6dbb",
         "name": "Notion Trigger",
@@ -254,7 +253,7 @@
         "typeVersion": 1,
         "position": [
           -1408,
-          328
+          336
         ],
         "id": "ec3d34d9-46b1-48ff-95b5-a5d1e7fb0ed1",
         "name": "No Operation, do nothing"
@@ -271,8 +270,8 @@
         "type": "@n8n/n8n-nodes-langchain.agent",
         "typeVersion": 2.2,
         "position": [
-          -1128,
-          136
+          -1136,
+          144
         ],
         "id": "ba98ab68-0612-4ef8-bfee-a265576c0bc6",
         "name": "AI Agent"
@@ -285,7 +284,7 @@
         "typeVersion": 1.3,
         "position": [
           -928,
-          360
+          368
         ],
         "id": "e6f71796-036c-4c4a-b708-6a89100d82ac",
         "name": "Structured Output Parser"
@@ -306,7 +305,7 @@
         "typeVersion": 2.2,
         "position": [
           -1056,
-          360
+          368
         ],
         "id": "1fb8a8ad-903c-4efe-831e-67e9097f55f4",
         "name": "Get page content",
@@ -459,7 +458,7 @@
     "name": null,
     "description": null
   },
-  "activeVersionId": "a71e6f6b-6aae-457d-aae5-6dbe395d92c8",
+  "activeVersionId": "9f3e551c-aab9-407d-9c9f-9186bae537b8",
   "connections": {
     "Claude Sonnet 4.5": {
       "ai_languageModel": [
@@ -614,7 +613,7 @@
       "typeVersion": 1,
       "position": [
         -1184,
-        360
+        368
       ],
       "id": "dab70d8b-19b6-4515-8635-3a0ac388bb5b",
       "name": "Claude Sonnet 4.5",
@@ -654,7 +653,7 @@
       "typeVersion": 2,
       "position": [
         -1408,
-        136
+        144
       ],
       "id": "ecf8ff40-f7bf-45ba-b01d-42323d3fe47b",
       "name": "Mapping"
@@ -681,7 +680,7 @@
             },
             {
               "id": "date-future",
-              "leftValue": "={{ $json['Date Entretien'].start }}",
+              "leftValue": "={{ $json['Date Entretien']?.start }}",
               "rightValue": "={{ $now }}",
               "operator": {
                 "type": "dateTime",
@@ -697,11 +696,10 @@
       "typeVersion": 2.2,
       "position": [
         -1632,
-        232
+        240
       ],
       "id": "af963c7b-a1ef-4516-8eb9-29b524ad7b2a",
-      "name": "Is Valid",
-      "disabled": true
+      "name": "Is Valid"
     },
     {
       "parameters": {
@@ -715,7 +713,7 @@
       "typeVersion": 1,
       "position": [
         -496,
-        136
+        144
       ],
       "id": "0ffae71f-467b-4a20-b5a0-1f5dae805913",
       "name": "Get Tasks TickTick",
@@ -735,7 +733,7 @@
       "typeVersion": 2,
       "position": [
         -272,
-        136
+        144
       ],
       "id": "ec90ee73-3b89-441d-9694-f2db38710895",
       "name": "Extract Task If Found"
@@ -756,7 +754,7 @@
       "typeVersion": 1,
       "position": [
         176,
-        40
+        48
       ],
       "id": "8919167e-fcf4-4ab5-abdf-8449bf8ab140",
       "name": "Update a task",
@@ -796,7 +794,7 @@
       "typeVersion": 2.2,
       "position": [
         -48,
-        136
+        144
       ],
       "id": "b650a7f8-1886-4d00-91c7-d96bf1e3cd45",
       "name": "If Task Exists"
@@ -809,7 +807,7 @@
       "typeVersion": 2,
       "position": [
         -720,
-        136
+        144
       ],
       "id": "53dc9d20-3ccc-4a76-b8a7-d3491208dee3",
       "name": "Format"
@@ -836,7 +834,7 @@
       "typeVersion": 1,
       "position": [
         -1856,
-        232
+        240
       ],
       "id": "d01565d4-313e-4106-941c-e220321f6dbb",
       "name": "Notion Trigger",
@@ -853,7 +851,7 @@
       "typeVersion": 1,
       "position": [
         -1408,
-        328
+        336
       ],
       "id": "ec3d34d9-46b1-48ff-95b5-a5d1e7fb0ed1",
       "name": "No Operation, do nothing"
@@ -870,8 +868,8 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.2,
       "position": [
-        -1128,
-        136
+        -1136,
+        144
       ],
       "id": "ba98ab68-0612-4ef8-bfee-a265576c0bc6",
       "name": "AI Agent"
@@ -884,7 +882,7 @@
       "typeVersion": 1.3,
       "position": [
         -928,
-        360
+        368
       ],
       "id": "e6f71796-036c-4c4a-b708-6a89100d82ac",
       "name": "Structured Output Parser"
@@ -905,7 +903,7 @@
       "typeVersion": 2.2,
       "position": [
         -1056,
-        360
+        368
       ],
       "id": "1fb8a8ad-903c-4efe-831e-67e9097f55f4",
       "name": "Get page content",
@@ -934,10 +932,7 @@
   ],
   "staticData": {
     "node:Notion Trigger": {
-      "lastTimeChecked": "2025-12-04T21:13:00.000Z",
-      "possibleDuplicates": [
-        "2bf82fe2-6406-814b-8947-cafae36e070d"
-      ]
+      "lastTimeChecked": "2025-12-08T18:56:00.000Z"
     }
   },
   "tags": [
@@ -949,6 +944,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-12-04T19:47:32.000Z",
-  "versionId": "a71e6f6b-6aae-457d-aae5-6dbe395d92c8"
+  "updatedAt": "2025-12-08T18:56:14.000Z",
+  "versionId": "9f3e551c-aab9-407d-9c9f-9186bae537b8"
 }
