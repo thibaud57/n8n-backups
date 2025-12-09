@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-12-04T17:31:40.740Z",
-    "createdAt": "2025-12-04T17:31:40.740Z",
-    "versionId": "148293c0-3dbf-4230-8ab5-c9c041ebc3eb",
+    "updatedAt": "2025-12-08T18:54:38.474Z",
+    "createdAt": "2025-12-08T18:54:38.474Z",
+    "versionId": "111695e4-7efc-4eb0-b8b4-5e99e674dc6c",
     "workflowId": "ybAxfufVGPJPln2i",
     "nodes": [
       {
@@ -49,7 +49,7 @@
       },
       {
         "parameters": {
-          "jsCode": "const lead = $input.first().json;\n\n// Nettoyer les notes\nconst cleanedNotes = (lead.Notes || '')\n  .replace(/\\n/g, ' ')\n  .replace(/\\r/g, '')\n  .replace(/\\t/g, ' ')\n  .replace(/\"/g, '\\\\\"')\n  .replace(/\\\\/g, '\\\\\\\\')\n  .trim();\n\nreturn {\n  name: lead['Nom Contact'],\n  poste: lead.Poste,\n  statut: lead.Statut,\n  nextStep: lead['Next Step'],\n  interet: lead['Intérêt'],\n  dateProchainMessage: lead['Date Prochain Message'].start,\n  notes: cleanedNotes\n};"
+          "jsCode": "const lead = $input.first().json;\n\n// Nettoyer les notes\nconst cleanedNotes = (lead.Notes || '')\n  .replace(/\\n/g, ' ')\n  .replace(/\\r/g, '')\n  .replace(/\\t/g, ' ')\n  .replace(/\"/g, '\\\\\"')\n  .replace(/\\\\/g, '\\\\\\\\')\n  .trim();\n\nreturn {\n  name: lead['Nom Contact'],\n  poste: lead.Poste,\n  statut: lead.Statut,\n  nextStep: lead['Next Step'],\n  interet: lead['Intérêt'],\n  dateProchainMessage: lead['Date Prochain Message']?.start,\n  notes: cleanedNotes\n};"
         },
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
@@ -420,7 +420,7 @@
     "name": null,
     "description": null
   },
-  "activeVersionId": "148293c0-3dbf-4230-8ab5-c9c041ebc3eb",
+  "activeVersionId": "111695e4-7efc-4eb0-b8b4-5e99e674dc6c",
   "connections": {
     "Claude Sonnet 4.5": {
       "ai_languageModel": [
@@ -598,7 +598,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const lead = $input.first().json;\n\n// Nettoyer les notes\nconst cleanedNotes = (lead.Notes || '')\n  .replace(/\\n/g, ' ')\n  .replace(/\\r/g, '')\n  .replace(/\\t/g, ' ')\n  .replace(/\"/g, '\\\\\"')\n  .replace(/\\\\/g, '\\\\\\\\')\n  .trim();\n\nreturn {\n  name: lead['Nom Contact'],\n  poste: lead.Poste,\n  statut: lead.Statut,\n  nextStep: lead['Next Step'],\n  interet: lead['Intérêt'],\n  dateProchainMessage: lead['Date Prochain Message'].start,\n  notes: cleanedNotes\n};"
+        "jsCode": "const lead = $input.first().json;\n\n// Nettoyer les notes\nconst cleanedNotes = (lead.Notes || '')\n  .replace(/\\n/g, ' ')\n  .replace(/\\r/g, '')\n  .replace(/\\t/g, ' ')\n  .replace(/\"/g, '\\\\\"')\n  .replace(/\\\\/g, '\\\\\\\\')\n  .trim();\n\nreturn {\n  name: lead['Nom Contact'],\n  poste: lead.Poste,\n  statut: lead.Statut,\n  nextStep: lead['Next Step'],\n  interet: lead['Intérêt'],\n  dateProchainMessage: lead['Date Prochain Message']?.start,\n  notes: cleanedNotes\n};"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -856,13 +856,9 @@
   ],
   "staticData": {
     "node:Notion Trigger": {
-      "lastTimeChecked": "2025-12-04T20:50:00.000Z",
+      "lastTimeChecked": "2025-12-08T19:18:00.000Z",
       "possibleDuplicates": [
-        "2a482fe2-6406-81fa-b2a0-dd21150c0965",
-        "2a782fe2-6406-80a5-8429-f02bf230a900",
-        "2b282fe2-6406-80b1-bb24-d112c3eaace9",
-        "2a482fe2-6406-80ba-808b-fe844d731072",
-        "2b282fe2-6406-80da-ba27-e9ac243b7bc6"
+        "2c382fe2-6406-8040-8a58-f6dd15ff93be"
       ]
     }
   },
@@ -875,6 +871,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-12-04T17:31:40.000Z",
-  "versionId": "148293c0-3dbf-4230-8ab5-c9c041ebc3eb"
+  "updatedAt": "2025-12-08T18:54:38.000Z",
+  "versionId": "111695e4-7efc-4eb0-b8b4-5e99e674dc6c"
 }
