@@ -100,7 +100,7 @@
       "typeVersion": 1,
       "position": [
         0,
-        440
+        448
       ],
       "id": "4b2eddc3-0481-4258-a434-5115b681a6dd",
       "name": "Notion Trigger",
@@ -149,7 +149,7 @@
       "typeVersion": 2.2,
       "position": [
         224,
-        440
+        448
       ],
       "id": "137b8f8e-7fd0-4d04-baec-19123b001cf3",
       "name": "Filter"
@@ -160,14 +160,14 @@
         "text": "=Titre: {{ $json.Titre }}\nDescription: {{ $json.Description }}\nId: {{ $json.id }}",
         "hasOutputParser": true,
         "options": {
-          "systemMessage": "Tu es un agent spécialisé en deep research.\n\nTu disposes de deux outils :\n1. **DeepResearch** : pour effectuer des recherches complexes, détaillées et fiables sur n'importe quel sujet\n2. **MCP Notion** : pour écrire le contenu directement dans la page Notion\n\n# Input\nL'utilisateur te fournira deux champs :\n- \"Titre\" : titre de la recherche\n- \"Description\" : courte description du sujet à explorer\n- \"Id\" : id de la page à compléter\n\n# Workflow\n1. Utilise le tool DeepResearch pour collecter les informations les plus pertinentes, fiables et variées.\n2. Analyse et croise les sources.\n3. Synthétise les résultats de manière claire, neutre, structurée en Markdown.\n4. Utilise le tool MCP Notion pour ajouter le contenu à la page Notion dont l'ID est : {{ $json.id }}\n\n# Output\n- Utilise des titres (#, ## et ###), des listes, des tableaux si pertinent\n- À la fin, ajoute une section \"# Sources\" avec la liste des URLs utilisées\n\n# Règles\n- Ne pas inventer de données ou de sources\n- Mentionner les points de divergence entre sources si nécessaire\n- Le résultat doit être concis mais complet, orienté insights/actionable intelligence"
+          "systemMessage": "=Tu es un agent spécialisé en deep research.\n\nTu disposes de deux outils :\n1. **DeepResearch** : pour effectuer des recherches complexes, détaillées et fiables sur n'importe quel sujet\n2. **MCP Notion** : pour écrire le contenu directement dans la page Notion\n\n# Input\nL'utilisateur te fournira deux champs :\n- \"Titre\" : titre de la recherche\n- \"Description\" : courte description du sujet à explorer\n- \"Id\" : id de la page à compléter\n\n# Workflow\n1. Utilise le tool DeepResearch pour collecter les informations les plus pertinentes, fiables et variées.\n2. Analyse et croise les sources.\n3. Synthétise les résultats de manière claire, neutre, structurée en Markdown.\n4. Utilise le tool MCP Notion pour ajouter le contenu à la page Notion dont l'ID est : {{ $json.id }}\n\n# Output\n- Utilise des titres (#, ## et ###), des listes, des tableaux si pertinent\n- À la fin, ajoute une section \"# Sources\" avec la liste des URLs utilisées\n\n# Règles\n- Ne pas inventer de données ou de sources\n- Mentionner les points de divergence entre sources si nécessaire\n- Le résultat doit être concis mais complet, orienté insights/actionable intelligence"
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3,
       "position": [
-        504,
-        440
+        512,
+        448
       ],
       "id": "e19b6599-ccfa-488c-865e-2b0a78020b95",
       "name": "AI Agent"
@@ -181,7 +181,7 @@
       "typeVersion": 1,
       "position": [
         448,
-        664
+        672
       ],
       "id": "ec5c435b-6e72-4e02-ba01-3c7ba808e911",
       "name": "gpt 5.1",
@@ -208,7 +208,7 @@
       "typeVersion": 1,
       "position": [
         576,
-        664
+        672
       ],
       "id": "7dd0ade9-1705-4f8e-9d44-8067d3a66244",
       "name": "DeepResearch",
@@ -231,7 +231,7 @@
       "typeVersion": 1.2,
       "position": [
         704,
-        664
+        672
       ],
       "id": "6592febb-cd34-4cd1-a9d7-fe1f2d6b6a18",
       "name": "MCP Notion",
@@ -265,7 +265,7 @@
       "typeVersion": 2.2,
       "position": [
         912,
-        440
+        448
       ],
       "id": "0ac9b178-c5e8-41d7-aaab-5bb90d778d09",
       "name": "Update a database page",
@@ -303,6 +303,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-12-08T20:38:51.000Z",
-  "versionId": "2b72390e-7081-41d7-a573-6ad3926df9c3"
+  "updatedAt": "2025-12-09T17:55:30.000Z",
+  "versionId": "9f0aeb28-5765-477f-af0b-14389413bdfe"
 }
