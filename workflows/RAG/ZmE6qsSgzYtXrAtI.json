@@ -1,7 +1,2011 @@
 {
-  "active": false,
-  "activeVersion": null,
-  "activeVersionId": null,
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-27T14:26:23.372Z",
+    "createdAt": "2026-01-27T14:26:23.372Z",
+    "versionId": "a698d6e8-bc7c-4fa5-a133-1d31891956f2",
+    "workflowId": "ZmE6qsSgzYtXrAtI",
+    "nodes": [
+      {
+        "parameters": {
+          "url": "https://script.google.com/macros/s/AKfycbycjbJvhVVvAT8cMo6chtrU2AX2uq1XYz7vFXnrRP3uT5GPUQx2UGBcWxvL3mzNg8M4/exec",
+          "authentication": "predefinedCredentialType",
+          "nodeCredentialType": "googleDriveOAuth2Api",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "=folderId",
+                "value": "={{ $('Get folder content').item.json.id }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          384,
+          304
+        ],
+        "id": "2c43f27d-7f53-4c96-9fe5-a8ea13f85204",
+        "name": "List Docs In Folder",
+        "alwaysOutputData": true,
+        "executeOnce": true,
+        "retryOnFail": true,
+        "onError": "continueErrorOutput"
+      },
+      {
+        "parameters": {
+          "resource": "fileFolder",
+          "searchMethod": "query",
+          "queryString": "=name = '{{ $json.folderName }}'",
+          "limit": 1,
+          "filter": {
+            "whatToSearch": "folders"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleDrive",
+        "typeVersion": 3,
+        "position": [
+          128,
+          1296
+        ],
+        "id": "4e3f57f8-3312-4534-8eaf-b3081e8969ce",
+        "name": "Get folder content",
+        "executeOnce": true,
+        "alwaysOutputData": true,
+        "credentials": {
+          "googleDriveOAuth2Api": {
+            "id": "91lIGh45tyVhtOky",
+            "name": "Google Drive account"
+          }
+        },
+        "onError": "continueRegularOutput"
+      },
+      {
+        "parameters": {
+          "formTitle": "Get folder name",
+          "formDescription": "Folder name to update rag content (ex: rag_appart)",
+          "formFields": {
+            "values": [
+              {
+                "fieldLabel": "folderName",
+                "requiredField": true
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.formTrigger",
+        "typeVersion": 2.2,
+        "position": [
+          -672,
+          1264
+        ],
+        "id": "37e95f43-82e3-4937-b45a-40e56daa478c",
+        "name": "Get folderName form",
+        "webhookId": "a003fb53-fffc-42b6-8c0b-723b340e7289",
+        "disabled": true
+      },
+      {
+        "parameters": {
+          "rules": {
+            "values": [
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "leftValue": "={{ $json.mimeType }}",
+                      "rightValue": "application/pdf",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals"
+                      },
+                      "id": "c70d41c8-c71c-4965-b891-8186275edbfb"
+                    }
+                  ],
+                  "combinator": "and"
+                }
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "b193a8d9-1322-44a2-a506-54e9fcca4e80",
+                      "leftValue": "={{ $json.mimeType === 'application/vnd.google-apps.document' || $json.mimeType === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' }}",
+                      "rightValue": "=",
+                      "operator": {
+                        "type": "boolean",
+                        "operation": "true",
+                        "singleValue": true
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                }
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.switch",
+        "typeVersion": 3.2,
+        "position": [
+          960,
+          1408
+        ],
+        "id": "98398236-c7b1-41fa-85fd-f31261a8925f",
+        "name": "Switch mimeType"
+      },
+      {
+        "parameters": {
+          "operation": "pdf",
+          "binaryPropertyName": "=data",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.extractFromFile",
+        "typeVersion": 1,
+        "position": [
+          1248,
+          1312
+        ],
+        "id": "154bda69-d76d-414c-b4d9-fa24bc82087c",
+        "name": "Extract from Pdf"
+      },
+      {
+        "parameters": {
+          "mode": "insert",
+          "qdrantCollection": {
+            "__rl": true,
+            "value": "={{ $('Metadata dbName').item.json.qdrantDbName }}",
+            "mode": "id"
+          },
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
+        "typeVersion": 1,
+        "position": [
+          1648,
+          1648
+        ],
+        "id": "f111dee2-ab67-4a91-908b-81b666b05278",
+        "name": "Qdrant Vector Store"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+        "typeVersion": 1.2,
+        "position": [
+          1648,
+          1808
+        ],
+        "id": "629bd0ee-33b0-4cb4-9b91-74307ac319c6",
+        "name": "Embeddings OpenAI"
+      },
+      {
+        "parameters": {
+          "jsonMode": "expressionData",
+          "jsonData": "={{ $('Map text').first().json.text }}",
+          "options": {
+            "metadata": {
+              "metadataValues": [
+                {
+                  "name": "fileId",
+                  "value": "={{ $('Download files').item.json.id }}"
+                },
+                {
+                  "name": "fileName",
+                  "value": "={{ $('List Docs In Folder').item.json.name }}"
+                }
+              ]
+            }
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+        "typeVersion": 1,
+        "position": [
+          1824,
+          1776
+        ],
+        "id": "7ae602d3-3fd0-46e4-8501-f60cfbb596d6",
+        "name": "Default Data Loader"
+      },
+      {
+        "parameters": {
+          "chunkSize": 800,
+          "chunkOverlap": 100,
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+        "typeVersion": 1,
+        "position": [
+          1984,
+          1872
+        ],
+        "id": "bd741b6d-9ef0-40e0-b4e7-f9b453ede44a",
+        "name": "Recursive Character Text Splitter"
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-docx-converter.docxToText",
+        "typeVersion": 1,
+        "position": [
+          1248,
+          1488
+        ],
+        "id": "f50714ad-4929-4971-b8fa-91a0b98aea00",
+        "name": "DOCX to Text"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "1bf0453a-8f8c-40e2-bfad-8398a6e33a8c",
+                "leftValue": "={{ $json.id }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "exists",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          368,
+          1296
+        ],
+        "id": "8d80bf68-eec0-4153-9e40-23d689cef9b3",
+        "name": "If folder id exists"
+      },
+      {
+        "parameters": {
+          "formFields": {
+            "values": [
+              {
+                "fieldLabel": "folderName",
+                "placeholder": "rag_appart"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.form",
+        "typeVersion": 1,
+        "position": [
+          368,
+          1504
+        ],
+        "id": "13751bab-befb-4b61-b497-8b5a0546331f",
+        "name": "Get folderName form 2",
+        "webhookId": "cd718a60-097d-4560-b134-65ceab263156"
+      },
+      {
+        "parameters": {
+          "errorMessage": "Aucun résultat, veuillez vérifier !"
+        },
+        "type": "n8n-nodes-base.stopAndError",
+        "typeVersion": 1,
+        "position": [
+          384,
+          544
+        ],
+        "id": "44c2cbbd-82ff-4a60-b7b4-83e882e8341d",
+        "name": "Not Found Error"
+      },
+      {
+        "parameters": {
+          "operation": "download",
+          "fileId": {
+            "__rl": true,
+            "value": "={{ $('Loop Over Items').item.json.id }}",
+            "mode": "id"
+          },
+          "options": {
+            "binaryPropertyName": "data"
+          }
+        },
+        "type": "n8n-nodes-base.googleDrive",
+        "typeVersion": 3,
+        "position": [
+          800,
+          1408
+        ],
+        "id": "50e97cd4-e010-4537-9bac-766ccfa95b63",
+        "name": "Download files",
+        "retryOnFail": true,
+        "credentials": {
+          "googleDriveOAuth2Api": {
+            "id": "91lIGh45tyVhtOky",
+            "name": "Google Drive account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "n8n-nodes-base.splitInBatches",
+        "typeVersion": 3,
+        "position": [
+          768,
+          352
+        ],
+        "id": "38dc9d28-c833-4673-9640-cfe8f79bf917",
+        "name": "Loop Over Items"
+      },
+      {
+        "parameters": {
+          "operation": "executeQuery",
+          "query": "CREATE TABLE IF NOT EXISTS {{ $json.postgresDbName }} (\n    id TEXT PRIMARY KEY,\n    title TEXT,\n    \"createdAt\" TIMESTAMPTZ,\n    \"updatedAt\" TIMESTAMPTZ,\n    \"theme\" TEXT,\n    \"topics\" TEXT,\n    \"painPoints\" TEXT,\n    \"keywords\" TEXT\n);",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.postgres",
+        "typeVersion": 2.5,
+        "position": [
+          80,
+          304
+        ],
+        "id": "80270d7f-c9e3-4946-bde5-3f8a135891c3",
+        "name": "Create table if not exists"
+      },
+      {
+        "parameters": {
+          "operation": "executeQuery",
+          "query": "SELECT id, \"createdAt\", \"updatedAt\" \nFROM {{ $('Metadata dbName').item.json.postgresDbName }}\nWHERE id = '{{ $('Loop Over Items').item.json.id }}'",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.postgres",
+        "typeVersion": 2.5,
+        "position": [
+          1056,
+          368
+        ],
+        "id": "d4326972-1e80-44c1-bdbc-a1ed04d06bd0",
+        "name": "Query file id",
+        "alwaysOutputData": true
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "6a0f1d8e-2473-4933-8292-7ed98edba132",
+                "leftValue": "={{ $json.id }}",
+                "rightValue": "={{ $('Loop Over Items').item.json.id }}",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          1280,
+          368
+        ],
+        "id": "0f502075-33bb-4d6d-8f89-4a5addf5e31d",
+        "name": "If exists"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "c72db11d-3dc1-4a5d-9b02-0cf5e58f2370",
+                "leftValue": "={{ $('Loop Over Items').item.json.createdAt }}",
+                "rightValue": "={{ $('Query file id').item.json.createdAt }}",
+                "operator": {
+                  "type": "dateTime",
+                  "operation": "after"
+                }
+              },
+              {
+                "id": "0ec123dc-5720-4bd1-8976-6ff59f711141",
+                "leftValue": "={{ $('Loop Over Items').item.json.updatedAt }}",
+                "rightValue": "={{ $('Query file id').item.json.updatedAt }}",
+                "operator": {
+                  "type": "dateTime",
+                  "operation": "after"
+                }
+              }
+            ],
+            "combinator": "or"
+          },
+          "options": {
+            "ignoreCase": false
+          }
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          1520,
+          352
+        ],
+        "id": "d6156288-b63d-4ec0-88df-15e7f9189cac",
+        "name": "If date is after",
+        "alwaysOutputData": false
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "=http://qdrant:6333/collections/{{ $('Metadata dbName').item.json.qdrantDbName }}/points/delete",
+          "authentication": "predefinedCredentialType",
+          "nodeCredentialType": "qdrantApi",
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"filter\": {\n    \"must\": [\n      {\n        \"key\": \"metadata.fileId\",\n        \"match\": {\n          \"value\": \"{{ $('List Docs In Folder').item.json.id }}\"\n        }\n      }\n    ]\n  }\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          1856,
+          352
+        ],
+        "id": "d0be0542-c7ed-4e8a-a340-b2ecbc703a7f",
+        "name": "Delete Qdrant metadata.fileId"
+      },
+      {
+        "parameters": {
+          "operation": "executeQuery",
+          "query": "INSERT INTO {{ $('Metadata dbName').item.json.postgresDbName }}\n(id, title, \"createdAt\", \"updatedAt\") \nVALUES \n('{{ $('Loop Over Items').item.json.id }}', '{{ $('Loop Over Items').item.json.name }}', '{{ $('Loop Over Items').item.json.createdAt }}', '{{ $('Loop Over Items').item.json.updatedAt }}');",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.postgres",
+        "typeVersion": 2.5,
+        "position": [
+          1280,
+          608
+        ],
+        "id": "0d4b5795-3fea-4eba-b63a-9a2973b4c06b",
+        "name": "Create metadata row"
+      },
+      {
+        "parameters": {
+          "operation": "executeQuery",
+          "query": "UPDATE {{ $('Metadata dbName').item.json.postgresDbName }}\nSET \n    title = '{{ $('List Docs In Folder').item.json.name }}',\n    \"createdAt\" = '{{ $('List Docs In Folder').item.json.createdAt }}',\n    \"updatedAt\" = '{{ $('List Docs In Folder').item.json.updatedAt }}'\nWHERE \n    id = '{{ $('Loop Over Items').item.json.id }}';",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.postgres",
+        "typeVersion": 2.5,
+        "position": [
+          1856,
+          608
+        ],
+        "id": "5b350438-3539-4f99-ac31-255fd8e72f9e",
+        "name": "Update metadata row"
+      },
+      {
+        "parameters": {
+          "content": "# Step 2: Metadata table (PostGres)",
+          "height": 860,
+          "width": 2200,
+          "color": 7
+        },
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -64,
+          64
+        ],
+        "id": "7d0eeb9a-cfa8-4f7c-a5ba-33e3ac731ea0",
+        "name": "Sticky Note1"
+      },
+      {
+        "parameters": {
+          "content": "# Step 1: Get files from Drive's folder by name",
+          "height": 1000,
+          "width": 700,
+          "color": 7
+        },
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -64,
+          992
+        ],
+        "id": "3739c7b0-6db1-47fa-b4a2-400a2bccafab",
+        "name": "Sticky Note"
+      },
+      {
+        "parameters": {
+          "content": "# Step 3: Insert into vector store (Qdrant)",
+          "height": 1000,
+          "width": 1460,
+          "color": 7
+        },
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          688,
+          992
+        ],
+        "id": "1422e91e-f347-453a-be4e-f15f13ccb1e5",
+        "name": "Sticky Note2"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "1206608d-dc8f-4aa4-9579-12616a719eeb",
+                "name": "id",
+                "value": "={{ $('List Docs In Folder').item.json.id }}",
+                "type": "string"
+              },
+              {
+                "id": "ae3799fd-49a9-45b9-9ce7-122e0662991d",
+                "name": "name",
+                "value": "={{ $('List Docs In Folder').item.json.name }}",
+                "type": "string"
+              },
+              {
+                "id": "0d7aae65-4ead-481a-8307-76e424b02bd5",
+                "name": "mimeType",
+                "value": "={{ $('List Docs In Folder').item.json.mimeType }}",
+                "type": "string"
+              },
+              {
+                "id": "a773e170-f166-4684-b4c2-68a49096db56",
+                "name": "url",
+                "value": "={{ $('List Docs In Folder').item.json.url }}",
+                "type": "string"
+              },
+              {
+                "id": "18f6bb69-6b26-4c0c-97fc-8a47c5c90391",
+                "name": "createdAt",
+                "value": "={{ $('List Docs In Folder').item.json.createdAt }}",
+                "type": "string"
+              },
+              {
+                "id": "1b614e13-8093-4523-aa10-743d626557ca",
+                "name": "updatedAt",
+                "value": "={{ $('List Docs In Folder').item.json.updatedAt }}",
+                "type": "string"
+              }
+            ]
+          },
+          "includeOtherFields": true,
+          "include": "except",
+          "excludeFields": "success",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          944,
+          608
+        ],
+        "id": "28d46be6-1af9-40a3-835c-ffca9180198f",
+        "name": "Add general fields"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "n8n-nodes-base.splitInBatches",
+        "typeVersion": 3,
+        "position": [
+          720,
+          1072
+        ],
+        "id": "33b7d767-11a6-4425-ae3b-4af2311403f8",
+        "name": "Loop Over Items 2"
+      },
+      {
+        "parameters": {
+          "modelName": "models/gemini-2.5-pro-exp-03-25",
+          "options": {
+            "temperature": 0.4
+          }
+        },
+        "id": "3aa72a5c-1585-43ed-814a-29050590cad4",
+        "name": "Google Gemini Chat Model",
+        "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+        "position": [
+          1680,
+          1312
+        ],
+        "typeVersion": 1
+      },
+      {
+        "parameters": {
+          "operation": "executeQuery",
+          "query": "{{ $json.query }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.postgres",
+        "typeVersion": 2.5,
+        "position": [
+          1936,
+          1328
+        ],
+        "id": "79f79fdb-0615-4b02-b62b-c842f66cd21d",
+        "name": "Postgres"
+      },
+      {
+        "parameters": {
+          "content": "## Triggers",
+          "height": 660,
+          "width": 620,
+          "color": 4
+        },
+        "id": "f4caf4dd-37b3-426e-8d98-d2228c366ded",
+        "name": "Sticky Note8",
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          -720,
+          1152
+        ],
+        "typeVersion": 1
+      },
+      {
+        "parameters": {
+          "content": "## Get the folder\n- Search for the folder by name\n- Ask the user again if couldn't find",
+          "height": 660,
+          "width": 500
+        },
+        "id": "855ed2a3-8214-4243-9b25-dfd9825f246f",
+        "name": "Sticky Note3",
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          48,
+          1152
+        ],
+        "typeVersion": 1
+      },
+      {
+        "parameters": {
+          "content": "## Google Drive\n- List all docs in folder (recursive)",
+          "height": 600,
+          "width": 300,
+          "color": 2
+        },
+        "id": "c1e1c51c-b5ff-435f-88b3-2ec7222de6df",
+        "name": "Sticky Note15",
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          304,
+          192
+        ],
+        "typeVersion": 1
+      },
+      {
+        "parameters": {
+          "content": "## Postgres\n- Create table if not exists",
+          "height": 280,
+          "width": 300,
+          "color": 5
+        },
+        "id": "77d45f34-38af-4ae1-a7ad-2d2cbdc35914",
+        "name": "Sticky Note16",
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          -16,
+          192
+        ],
+        "typeVersion": 1
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "66da3861-2945-403a-9463-c0177407ebf1",
+                "name": "postgresDbName",
+                "value": "=n8n_{{ $('Get folder content').item.json.name.toLowerCase() }}_metadata",
+                "type": "string"
+              },
+              {
+                "id": "28492a8e-d548-4b47-9486-0e841500dc42",
+                "name": "qdrantDbName",
+                "value": "=n8n_{{ $('Get folder content').item.json.name.toLowerCase() }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          80,
+          608
+        ],
+        "id": "86d2344a-a10f-4699-82e8-c8def4132a96",
+        "name": "Metadata dbName"
+      },
+      {
+        "parameters": {
+          "content": "## Postgres (metadata)\n- Perform batch treatment on files\n- If a file is found on metadata's table we look for the date\n- If createdAt or updatedAt is newer we perfom safe upsert on file\n- We skip other items (no need to update them)",
+          "height": 600,
+          "width": 1040,
+          "color": 5
+        },
+        "id": "7eb073e7-fe7d-4fb4-9b57-3def65c6eca5",
+        "name": "Sticky Note17",
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          688,
+          192
+        ],
+        "typeVersion": 1
+      },
+      {
+        "parameters": {
+          "content": "## Map db names\n- postgresDbName\n- qdrantDbName",
+          "height": 300,
+          "width": 300,
+          "color": 6
+        },
+        "id": "d962ad8b-64d8-4532-ba7a-13db30faa6bc",
+        "name": "Sticky Note18",
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          -16,
+          496
+        ],
+        "typeVersion": 1
+      },
+      {
+        "parameters": {
+          "content": "## Qdrant\n- Deletion based on metadata fileId in Qdrant",
+          "height": 600,
+          "width": 300,
+          "color": 3
+        },
+        "id": "f6ac570b-fa60-4fce-8f2b-8dad5df6fb14",
+        "name": "Sticky Note19",
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          1760,
+          192
+        ],
+        "typeVersion": 1
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "3c634455-a97f-42e9-b56d-22eb9e94ab02",
+                "name": "skipItem",
+                "value": true,
+                "type": "boolean"
+              }
+            ]
+          },
+          "includeOtherFields": true,
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          1520,
+          608
+        ],
+        "id": "97f39764-0798-4d06-8118-024748582213",
+        "name": "Add skipItem"
+      },
+      {
+        "parameters": {
+          "content": "## Google Drive\n- Download file",
+          "height": 340,
+          "width": 340
+        },
+        "id": "fb7b897e-9043-48fa-aecf-9cae768004fd",
+        "name": "Sticky Note20",
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          768,
+          1264
+        ],
+        "typeVersion": 1
+      },
+      {
+        "parameters": {
+          "content": "## File extraction\n- Pdf\n- Docx, txt, ...",
+          "height": 500,
+          "width": 400,
+          "color": 6
+        },
+        "id": "a2561712-93a9-4447-b6a2-cb7d7e36b2b7",
+        "name": "Sticky Note21",
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          1168,
+          1168
+        ],
+        "typeVersion": 1
+      },
+      {
+        "parameters": {
+          "text": "={{ $json.text }}",
+          "attributes": {
+            "attributes": [
+              {
+                "name": "theme",
+                "description": "Résumer le(s) thème(s) principal(aux) abordé(s) dans le document."
+              },
+              {
+                "name": "topics",
+                "description": "Répertoriez les sujets récurrents mentionnés dans le document sous forme de tableau."
+              },
+              {
+                "name": "painPoints",
+                "description": "Résumez les frustrations ou les défis de l'utilisateur mentionnés dans la section du document sous la forme d'un tableau. (facultatif)"
+              },
+              {
+                "name": "keywords",
+                "description": "Générez une liste de 10 mots-clés maximum qui capturent l’essence du document (par exemple, « contrat », « juridique », « appartement »)."
+              }
+            ]
+          },
+          "options": {
+            "systemPromptTemplate": "=Tu es un expert en algorithmes d'extraction.\nExtrais uniquement les informations pertinentes du texte.\nSi tu ne connais pas la valeur d'un attribut à extraire, tu peux l'omettre.\n\nIMPORTANT: Ta réponse doit être UNIQUEMENT un objet JSON valide avec les champs suivants :\n- theme: le thème principal du document\n- topics: les sujets abordés dans le document\n- painPoints: les points de douleur identifiés (optionnel)\n- keywords: les mots-clés pertinents\n\nNe pas inclure de backticks (```) ou de formatage Markdown, ni la mention json. Réponds simplement avec l'objet JSON brut."
+          }
+        },
+        "id": "d850416a-2a97-41f0-b8c5-5112e118a1d9",
+        "name": "Summarize",
+        "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+        "position": [
+          1648,
+          1168
+        ],
+        "typeVersion": 1,
+        "retryOnFail": true,
+        "onError": "continueRegularOutput"
+      },
+      {
+        "parameters": {
+          "content": "## Summarizer\n- Extract relevant infos: theme, topics, painPoints, keywords\n- Insert them into metadata's table",
+          "height": 440,
+          "width": 500,
+          "color": 5
+        },
+        "id": "c6894546-5420-48e8-a5c2-10f49cd98195",
+        "name": "Sticky Note22",
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          1600,
+          1024
+        ],
+        "typeVersion": 1
+      },
+      {
+        "parameters": {
+          "content": "## Qdrant\n- Embed the text into vector store\n- Chunk size (800) / Chunk overlap (100)",
+          "height": 440,
+          "width": 500,
+          "color": 3
+        },
+        "id": "ed975f3e-ca9d-4d6c-8624-a3d2dbed5778",
+        "name": "Sticky Note23",
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          1600,
+          1504
+        ],
+        "typeVersion": 1
+      },
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "1699725a-8f47-4139-a958-67280be8f5fa",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -672,
+          1456
+        ],
+        "id": "5babed9b-d883-4218-8eb2-b85fc9ebcb3e",
+        "name": "Webhook",
+        "webhookId": "1699725a-8f47-4139-a958-67280be8f5fa"
+      },
+      {
+        "parameters": {
+          "content": "\n\n\nBatch download is prefered on files.\nBecause Google can perfrom timeout.",
+          "width": 160
+        },
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          768,
+          1632
+        ],
+        "id": "5be5080f-7fdd-4ad2-b1cc-c4bf3185c958",
+        "name": "Sticky Note4"
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.noOp",
+        "typeVersion": 1,
+        "position": [
+          1168,
+          2576
+        ],
+        "id": "58511e3d-4438-4cd0-9e68-fa1c9d0b53ea",
+        "name": "No Operation, do nothing"
+      },
+      {
+        "parameters": {
+          "jsCode": "const output = $json.output;\nconst updateFields = [];\nconst dbName = $('Metadata dbName').first().json.postgresDbName;\n\nupdateFields.push(`\"theme\" = '${output.theme.replace(/'/g, \"''\")}'`);\nupdateFields.push(`\"topics\" = '${output.topics.replace(/'/g, \"''\")}'`);\n\n// Ajouter painPoints seulement s'il existe et n'est pas undefined\nif (output.painPoints && output.painPoints !== 'undefined') {\n  updateFields.push(`\"painPoints\" = '${output.painPoints.replace(/'/g, \"''\")}'`);\n}\n\nupdateFields.push(`\"keywords\" = '${output.keywords.replace(/'/g, \"''\")}'`);\n\nconst query = `\nUPDATE ${dbName}\nSET ${updateFields.join(', ')}\nWHERE id = '${$('Loop Over Items').item.json.id}';`;\n\nreturn { query };"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1936,
+          1168
+        ],
+        "id": "202fb7a1-ffad-4b5e-ae02-73bc26b99684",
+        "name": "Build query"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "a3db721c-86b8-4665-af1a-cde6643ffa0b",
+                "name": "text",
+                "value": "={{ $json.text }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          1424,
+          1376
+        ],
+        "id": "74865238-0cf4-446d-ba44-a26e1d72a3c9",
+        "name": "Map text"
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.wait",
+        "typeVersion": 1.1,
+        "position": [
+          1088,
+          1648
+        ],
+        "id": "974ecad8-5c95-4004-995f-7639c7c43da9",
+        "name": "Wait 5s",
+        "webhookId": "ce5815e9-8531-4fb4-9bca-3090f644c73a"
+      },
+      {
+        "parameters": {
+          "content": "## Chunk params\n- Long: 1000-5000\n- Short: 500-1000\n- Items, list: 100-500\n\n## Overlap params\n1-5%",
+          "height": 220,
+          "width": 220,
+          "color": 3
+        },
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          2176,
+          1504
+        ],
+        "id": "9736ca1a-2de8-4383-af92-dbb094f6dee7",
+        "name": "Sticky Note5"
+      },
+      {
+        "parameters": {
+          "workflowInputs": {
+            "values": [
+              {
+                "name": "folderName"
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1.1,
+        "position": [
+          -672,
+          1616
+        ],
+        "id": "37b85247-d7dc-4d11-a531-b0d7788c10ff",
+        "name": "When Executed by Another Workflow"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "80742a69-4d70-46cc-a812-64c4f397c8cb",
+                "leftValue": "={{ $('Merge').item.json.source }}",
+                "rightValue": "WORKFLOW",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals",
+                  "name": "filter.operator.equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          944,
+          2384
+        ],
+        "id": "0cfb58cf-4588-475d-a58e-888d41140924",
+        "name": "If"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "42a4429b-a22b-4017-8be0-b60e16749d4a",
+                "name": "source",
+                "value": "FORM",
+                "type": "string"
+              },
+              {
+                "id": "35853db2-9085-4028-82cd-905f6a2c9c9c",
+                "name": "folderName",
+                "value": "={{ $json.folderName }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -448,
+          1264
+        ],
+        "id": "fe6e823f-cb71-4ec0-97d5-46ab5cf16205",
+        "name": "Set Source FORM"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "42a4429b-a22b-4017-8be0-b60e16749d4a",
+                "name": "source",
+                "value": "WEBHOOK",
+                "type": "string"
+              },
+              {
+                "id": "5b19b7be-9909-4187-8f6a-f9897fd8e61f",
+                "name": "folderName",
+                "value": "={{ $json.folderName }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -448,
+          1456
+        ],
+        "id": "f4fb63e4-90d5-453f-ae33-c6fec435550d",
+        "name": "Set Source WEBHOOK"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "42a4429b-a22b-4017-8be0-b60e16749d4a",
+                "name": "source",
+                "value": "WORKFLOW",
+                "type": "string"
+              },
+              {
+                "id": "7169a941-e95f-43e0-99b0-2a00a27950e1",
+                "name": "folderName",
+                "value": "={{ $json.folderName }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -448,
+          1616
+        ],
+        "id": "d8d0ee2b-96c4-401d-b51f-45432bdcdfec",
+        "name": "Set Source WORKFLOW"
+      },
+      {
+        "parameters": {
+          "rules": {
+            "values": [
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "leftValue": "={{ $('Merge').item.json.source }}",
+                      "rightValue": "FORM",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals"
+                      },
+                      "id": "a36f4867-1bcc-4a6c-9176-78a77e01a596"
+                    }
+                  ],
+                  "combinator": "and"
+                }
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "63155b24-fb50-42f5-bb85-aa6e1aaf951d",
+                      "leftValue": "={{ $('Merge').item.json.source }}",
+                      "rightValue": "WORKFLOW",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals",
+                        "name": "filter.operator.equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                }
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.switch",
+        "typeVersion": 3.2,
+        "position": [
+          128,
+          1536
+        ],
+        "id": "4543586a-52dc-4768-9fb4-f75324cdf36e",
+        "name": "Switch Source"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "b48fb769-a6c6-40ae-aed4-834036d402d3",
+                "name": "message",
+                "value": "=Impossible de trouver le dossier: {{ $('Merge').item.json.folderName }} veuillez réessayer !",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          720,
+          2576
+        ],
+        "id": "16fa5892-8a98-442c-8fa4-a5e6cc055fca",
+        "name": "Set Not Found Message"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "7211bd87-a15f-442c-ace3-a51da512b215",
+                "name": "message",
+                "value": "=Mise à jour du dossier: {{ $('Merge').item.json.folderName }} avec succès !",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          720,
+          2384
+        ],
+        "id": "1e083990-41ea-4ff1-91f3-9494d0c401ed",
+        "name": "Set Done Message"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "505cc1da-27a0-4456-b96d-946245c186f5",
+                "name": "message",
+                "value": "={{ $json.message }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          1168,
+          2192
+        ],
+        "id": "95c72754-dfe8-4dca-b1a0-335e04ef2f3f",
+        "name": "Response"
+      },
+      {
+        "parameters": {
+          "numberInputs": 3
+        },
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3.1,
+        "position": [
+          -240,
+          1456
+        ],
+        "id": "690df9fa-ef4e-478f-b656-3fd8bfc45ddc",
+        "name": "Merge"
+      },
+      {
+        "parameters": {
+          "content": "# Final\nSend a message to the user if he's coming from the Telegram Workflow",
+          "height": 700,
+          "width": 680,
+          "color": 7
+        },
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          688,
+          2064
+        ],
+        "id": "c6e27620-0a68-4cbe-87fd-80a8e897d6ad",
+        "name": "Sticky Note6"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "b48fb769-a6c6-40ae-aed4-834036d402d3",
+                "name": "message",
+                "value": "=Aucun élément à mettre à jour dans le dossier: {{ $('Merge').item.json.folderName }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          720,
+          2192
+        ],
+        "id": "8c5ce574-2d80-43c4-b26f-f43bf8dd75f8",
+        "name": "Set Nothing to perform Message"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "f56ac961-984f-4152-b912-794308eb9be3",
+                "leftValue": "={{ $json.skipItem }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "boolean",
+                  "operation": "false",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "looseTypeValidation": "=",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.filter",
+        "typeVersion": 2.2,
+        "position": [
+          1424,
+          992
+        ],
+        "id": "047967c4-cda3-473f-9fa9-c81cd51403c7",
+        "name": "Filter skipItem",
+        "alwaysOutputData": false
+      },
+      {
+        "parameters": {
+          "fieldsToAggregate": {
+            "fieldToAggregate": [
+              {}
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.aggregate",
+        "typeVersion": 1,
+        "position": [
+          1424,
+          816
+        ],
+        "id": "90b27451-c7f4-44ec-83f3-2d522b737681",
+        "name": "Aggregate"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "66ed9108-8757-4933-8c79-d4731b98b06f",
+                "leftValue": "={{ $input.all().every(item => item.json.skipItem) }}",
+                "rightValue": "={{ $input.all().length }}",
+                "operator": {
+                  "type": "boolean",
+                  "operation": "true",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          768,
+          832
+        ],
+        "id": "f2a63d8e-38bd-4517-bdcb-0cde2828ef6c",
+        "name": "If every skipItem"
+      }
+    ],
+    "connections": {
+      "List Docs In Folder": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Not Found Error",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Get folder content": {
+        "main": [
+          [
+            {
+              "node": "If folder id exists",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Get folderName form": {
+        "main": [
+          [
+            {
+              "node": "Set Source FORM",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Switch mimeType": {
+        "main": [
+          [
+            {
+              "node": "Extract from Pdf",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Extract from Pdf": {
+        "main": [
+          [
+            {
+              "node": "Map text",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Embeddings OpenAI": {
+        "ai_embedding": [
+          [
+            {
+              "node": "Qdrant Vector Store",
+              "type": "ai_embedding",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Default Data Loader": {
+        "ai_document": [
+          [
+            {
+              "node": "Qdrant Vector Store",
+              "type": "ai_document",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Recursive Character Text Splitter": {
+        "ai_textSplitter": [
+          [
+            {
+              "node": "Default Data Loader",
+              "type": "ai_textSplitter",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If folder id exists": {
+        "main": [
+          [
+            {
+              "node": "Metadata dbName",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Switch Source",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Get folderName form 2": {
+        "main": [
+          [
+            {
+              "node": "Get folder content",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Download files": {
+        "main": [
+          [
+            {
+              "node": "Switch mimeType",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Loop Over Items": {
+        "main": [
+          [
+            {
+              "node": "If every skipItem",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Query file id",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Create table if not exists": {
+        "main": [
+          [
+            {
+              "node": "List Docs In Folder",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Query file id": {
+        "main": [
+          [
+            {
+              "node": "If exists",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If exists": {
+        "main": [
+          [
+            {
+              "node": "If date is after",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Create metadata row",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If date is after": {
+        "main": [
+          [
+            {
+              "node": "Delete Qdrant metadata.fileId",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Add skipItem",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Delete Qdrant metadata.fileId": {
+        "main": [
+          [
+            {
+              "node": "Update metadata row",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Create metadata row": {
+        "main": [
+          [
+            {
+              "node": "Add general fields",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Update metadata row": {
+        "main": [
+          [
+            {
+              "node": "Add general fields",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Add general fields": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Loop Over Items 2": {
+        "main": [
+          [
+            {
+              "node": "Set Done Message",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Download files",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Google Gemini Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "Summarize",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Qdrant Vector Store": {
+        "main": [
+          [
+            {
+              "node": "Wait 5s",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Postgres": {
+        "main": [
+          [
+            {
+              "node": "Qdrant Vector Store",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Metadata dbName": {
+        "main": [
+          [
+            {
+              "node": "Create table if not exists",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Add skipItem": {
+        "main": [
+          [
+            {
+              "node": "Add general fields",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Summarize": {
+        "main": [
+          [
+            {
+              "node": "Build query",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Set Source WEBHOOK",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Build query": {
+        "main": [
+          [
+            {
+              "node": "Postgres",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Map text": {
+        "main": [
+          [
+            {
+              "node": "Summarize",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Wait 5s": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items 2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "When Executed by Another Workflow": {
+        "main": [
+          [
+            {
+              "node": "Set Source WORKFLOW",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If": {
+        "main": [
+          [
+            {
+              "node": "Response",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "No Operation, do nothing",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Set Source FORM": {
+        "main": [
+          [
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Set Source WEBHOOK": {
+        "main": [
+          [
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "Set Source WORKFLOW": {
+        "main": [
+          [
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 2
+            }
+          ]
+        ]
+      },
+      "Switch Source": {
+        "main": [
+          [
+            {
+              "node": "Get folderName form 2",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Set Not Found Message",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Set Not Found Message": {
+        "main": [
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Set Done Message": {
+        "main": [
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge": {
+        "main": [
+          [
+            {
+              "node": "Get folder content",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Set Nothing to perform Message": {
+        "main": [
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Filter skipItem": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items 2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Aggregate": {
+        "main": [
+          [
+            {
+              "node": "Set Nothing to perform Message",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If every skipItem": {
+        "main": [
+          [
+            {
+              "node": "Aggregate",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Filter skipItem",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "a698d6e8-bc7c-4fa5-a133-1d31891956f2",
   "connections": {
     "List Docs In Folder": {
       "main": [
@@ -639,7 +2643,8 @@
       ],
       "id": "37e95f43-82e3-4937-b45a-40e56daa478c",
       "name": "Get folderName form",
-      "webhookId": "a003fb53-fffc-42b6-8c0b-723b340e7289"
+      "webhookId": "a003fb53-fffc-42b6-8c0b-723b340e7289",
+      "disabled": true
     },
     {
       "parameters": {
@@ -2029,5 +4034,5 @@
   ],
   "triggerCount": 0,
   "updatedAt": "2025-08-08T11:25:36.000Z",
-  "versionId": "67ecd1f1-0dfe-44cb-88a9-47e90fa3b167"
+  "versionId": "a698d6e8-bc7c-4fa5-a133-1d31891956f2"
 }
