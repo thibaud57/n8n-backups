@@ -1,7 +1,1471 @@
 {
-  "active": false,
-  "activeVersion": null,
-  "activeVersionId": null,
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-27T14:26:23.366Z",
+    "createdAt": "2026-01-27T14:26:23.366Z",
+    "versionId": "eb3d9d0d-5a3a-4724-9c43-5e1d369b17bd",
+    "workflowId": "XpOTh9h0zgAzqDNi",
+    "nodes": [
+      {
+        "parameters": {
+          "pollTimes": {
+            "item": [
+              {
+                "mode": "everyMinute"
+              }
+            ]
+          },
+          "documentId": {
+            "__rl": true,
+            "value": "134ilr5ikGxh3nvTAy4jJL5JZvwZLmCTqpgN8cgZ85yU",
+            "mode": "list",
+            "cachedResultName": "Labels",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/134ilr5ikGxh3nvTAy4jJL5JZvwZLmCTqpgN8cgZ85yU/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Labels",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/134ilr5ikGxh3nvTAy4jJL5JZvwZLmCTqpgN8cgZ85yU/edit#gid=0"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheetsTrigger",
+        "typeVersion": 1,
+        "position": [
+          -80,
+          -112
+        ],
+        "id": "fdb30c55-c1ae-4de4-92ef-ea91f8815ab6",
+        "name": "Google Sheets Trigger",
+        "credentials": {
+          "googleSheetsTriggerOAuth2Api": {
+            "id": "bAIXuhfKCVK465E7",
+            "name": "Google Sheets Trigger account"
+          }
+        },
+        "disabled": true
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "c9617af9-d01b-4184-a5cf-9f9497403471",
+                "leftValue": "={{ $json.N8N }}",
+                "rightValue": "=Oui",
+                "operator": {
+                  "type": "string",
+                  "operation": "notEquals"
+                }
+              },
+              {
+                "id": "d7ce151c-204d-449e-a77f-5dc42861c901",
+                "leftValue": "={{ $json.Nom.toString() }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "notEmpty",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.filter",
+        "typeVersion": 2.2,
+        "position": [
+          112,
+          -112
+        ],
+        "id": "679827b4-cb1f-4702-aec9-de31463c8869",
+        "name": "Filter new data"
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "=Nom du label: {{ $json.Nom }}\nDate du jour: {{ $today }}",
+          "hasOutputParser": true,
+          "options": {
+            "systemMessage": "=# 🏷️ Agent IA de Remplissage Automatique pour Google Sheet – Labels Musicaux  \n\n## 🎯 Objectif  \nAutomatiser la collecte et le remplissage des informations d’un label musical dans un **Google Sheet**.\n\nAfin de répartir la charge et d'améliorer l'efficacité du processus, nous orchestrons et distribuons les tâches à plusieurs **sous-agents spécialisés** (SoundCloud, Beatport). Chaque sous-agent est responsable de l’extraction des données sur sa plateforme respective.\n\n\nTon but est donc de coordonner l’exécution des sous-agents et rassembler les données extraites dans un format JSON structuré.  \n\n---\n\n## 📥 Données d’entrée  \nL’agent reçoit en entrée :  \n- **Le nom du label** *(exemple : \"Afterlife Recordings\")* \n- **La date du jour** *(exemple : \"[DateTime: 2025-03-23T00:00:00.000+01:00]\")* \n\n---\n\n### **🛠️ Processus**  \n1. Transmettre les inputs aux sous agents en indiquant **name** pour le nom du label et **date** au format (YYYY-MM-DD).\n2. Récupérer leur outputs. Lorsqu'un agent à terminer sa tache il renvoi **isAgentDone: true**.\nLes agents s'executent en parallèle, il est primordial que chaque agent renvoi isAgentDone à true pour chaque nom de label à scraper avant de passer à la suite.\n3. **Fusionner les résultats** dans un JSON unique une fois que tous les agents ont fini leur taches.\n\n---\n\n## 📥 Format de sortie  \n{\n  \"name\": \"{{ $json.Nom }}\"\n  \"country\": \"Valeur si trouvée, sinon champ vide\",\n  \"genre\": \"Valeur si trouvée, sinon champ vide\",\n  \"isActive\": \"Oui/Non si trouvé, sinon champ vide\",\n  \"isOpenNew\": \"Oui/Non si trouvé, sinon champ vide\",\n  \"emailDemo\": \"Valeur si trouvée, sinon champ vide\",\n  \"vinyle\": \"Oui/Non si trouvé, sinon champ vide\",\n  \"scFollowers\": \"Valeur numérique si trouvée, sinon champ vide\",\n  \"soundcloudLink\": \"URL si trouvée, sinon champ vide\",\n  \"facebookLink\": \"URL si trouvée, sinon champ vide\",\n  \"instagramLink\": \"URL si trouvée, sinon champ vide\",\n  \"beatportLink\": \"URL si trouvée, sinon champ vide\",\n  \"bandcampLink\": \"URL si trouvée, sinon champ vide\"\n}\n\n---\n\n## ✅ **Résumé de l'Architecture**  \n\n1. **L’agent orchestrateur** reçoit le **nom du label**.  \n2. Il délègue les recherches aux **sous-agents spécialisés** dans cet ordre précis :  \n   - **SoundCloud** (Pays, Email demo, Followers, Lien SoundCloud)  \n   - **Beatport** (Genre, Actif, Ouvert aux nouveaux, Lien Beatport)  \n3. Il attend que tous les agents finissent leur tache en cours.\n4. Il récupère et **fusionne les résultats** en un JSON final.\n\n🎯 **Finalité**\nPasser à la suite une fois que le JSON final est produit."
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 1.8,
+        "position": [
+          512,
+          -96
+        ],
+        "id": "6915f955-1f9d-4106-b853-51485bb2b914",
+        "name": "AI Agent",
+        "executeOnce": false
+      },
+      {
+        "parameters": {
+          "jsonSchemaExample": "{\n  \"name\": \"Nom du label\",\n  \"country\": \"Valeur si trouvée, sinon champ vide\",\n  \"genre\": \"Valeur si trouvée, sinon champ vide\",\n  \"isActive\": \"Oui/Non si trouvé, sinon champ vide\",\n  \"isOpenNew\": \"Oui/Non si trouvé, sinon champ vide\",\n  \"emailDemo\": \"Valeur si trouvée, sinon champ vide\",\n  \"vinyle\": \"Oui/Non si trouvé, sinon champ vide\",\n  \"scFollowers\": \"Valeur numérique si trouvée, sinon champ vide\",\n  \"soundcloudLink\": \"URL si trouvée, sinon champ vide\",\n  \"facebookLink\": \"URL si trouvée, sinon champ vide\",\n  \"instagramLink\": \"URL si trouvée, sinon champ vide\",\n  \"beatportLink\": \"URL si trouvée, sinon champ vide\",\n  \"bandcampLink\": \"URL si trouvée, sinon champ vide\"\n}"
+        },
+        "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+        "typeVersion": 1.2,
+        "position": [
+          816,
+          16
+        ],
+        "id": "caf9aa66-95b8-4968-93e5-6aa9c7a0b190",
+        "name": "Structured Output Parser"
+      },
+      {
+        "parameters": {
+          "rules": {
+            "values": [
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "leftValue": "={{ $json.agentType }}",
+                      "rightValue": "Soundcloud",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals"
+                      },
+                      "id": "dba1aff8-a1ce-43f3-bd1f-a5669382407c"
+                    }
+                  ],
+                  "combinator": "and"
+                }
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "3ec63d0e-2e77-4adf-be10-336fdcf1eafa",
+                      "leftValue": "={{ $json.agentType }}",
+                      "rightValue": "Facebook",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals",
+                        "name": "filter.operator.equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                }
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "799619c6-79d9-421e-bbef-332c30617317",
+                      "leftValue": "={{ $json.agentType }}",
+                      "rightValue": "Instagram",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals",
+                        "name": "filter.operator.equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                }
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "b36f8a60-5a56-4e99-86cc-34811d8831c5",
+                      "leftValue": "={{ $json.agentType }}",
+                      "rightValue": "Beatport",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals",
+                        "name": "filter.operator.equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                }
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "23f1bfc1-a6c3-4c97-a6bc-d1ab8267383b",
+                      "leftValue": "={{ $json.agentType }}",
+                      "rightValue": "Bandcamp",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals",
+                        "name": "filter.operator.equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                }
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.switch",
+        "typeVersion": 3.2,
+        "position": [
+          112,
+          672
+        ],
+        "id": "2d2d271e-3566-4c2e-9ea2-4619a1f84b5a",
+        "name": "Switch"
+      },
+      {
+        "parameters": {
+          "name": "Soundclould",
+          "description": "Agent Soundcloud",
+          "workflowId": {
+            "__rl": true,
+            "value": "={{ $workflow.id }}",
+            "mode": "id"
+          },
+          "workflowInputs": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "name": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('name', `Name of label`, 'string') }}",
+              "date": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('date', `Date of day formatted as YYYY-MM-DD`, 'string') }}",
+              "agentType": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('agentType', `Sub agents:\n- Soundcloud\n- Facebook\n- Instagram\n- Beatport\n- Bandcamp`, 'string') }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "agentType",
+                "displayName": "agentType",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "canBeUsedToMatch": true,
+                "type": "string",
+                "removed": false
+              },
+              {
+                "id": "name",
+                "displayName": "name",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "canBeUsedToMatch": true,
+                "type": "string",
+                "removed": false
+              },
+              {
+                "id": "date",
+                "displayName": "date",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "canBeUsedToMatch": true,
+                "type": "string",
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+        "typeVersion": 2.1,
+        "position": [
+          688,
+          176
+        ],
+        "id": "820886cd-1c52-41cb-b2d9-45c9e2af2441",
+        "name": "Soundcloud Agent",
+        "retryOnFail": true,
+        "maxTries": 3,
+        "waitBetweenTries": 3000
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "658e5e25-84ef-49c0-939d-60fb50d6679e",
+                "name": "prompt",
+                "value": "=# 🏷️ Agent SoundCloud\n\n## 🎯 Objectif\nExtraire les informations disponibles sur **SoundCloud** du label.  \n\n## 📥 Données d’entrée\n- **name** = {{ $('LabelSheet Subworkflow').item.json.name }}\n\n## 🛠️ Processus  \n\n1. Rechercher la page avec urlEndpoint: \"api/soundcloud/search-profile/{name}?page=1&limit=10\"\n-> Passer très exactement ce texte sans rien rajouter avant ou apres.\n\n2. Déterminer le profil le plus pertinent dans la liste\n\n3. Extraire :  \n  - **Pays** *(si mentionné sur la page ou dans la bio)*  \n  - **Email demo** *(description du profil)*  \n  - **Nombre de followers**  \n  - **Lien des pages des réseaux sociaux**\n\nExemple:\n{\n  ...\n  \"profiles\": [\n        {\n      \"id\": 1348418565,\n      \"name\": \"Makatao\",\n      \"url\": \"https://soundcloud.com/makatao-269203819?utm_medium=api&utm_campaign=social_sharing&utm_source=id_318628\",\n      \"avatar_url\": \"https://i1.sndcdn.com/avatars-9hmviLzfKWlzldYE-YDDyvw-large.jpg\",\n      \"bio\": \"Bio of label\",\n      \"location\": \"Germany\",\n      \"followers_count\": 500,\n      \"social_links\": [\n        {\n          \"platform\": \"instagram\",\n          \"url\": \"https://www.instagram.com/makatao.records/\"\n        },\n        {\n          \"platform\": \"bandcamp\",\n          \"url\": \"https://makatao.bandcamp.com/\"\n        }\n      ]\n    },\n    ...\n  ]\n}\n\n### 🔍 Sélection du profil le plus pertinent\nParmi les résultats renvoyés par l’API, il faut choisir le profil le plus pertinent en suivant cette logique :\n\n1. Correspondance exacte ou très proche du nom\n  - Vérifie si le nom du profil correspond exactement (ou presque) à name.\n  - Pour les labels il est probable que le terme \"records\" ou \"recordings\" soit rajouté, ou tout autre terme du style.\n  - Ignore les profils avec des noms trop éloignés.\n2. Bio renseignée\n  - Si plusieurs profils ont des noms proches, préfère ceux avec une bio remplie, surtout si elle contient des infos claires sur l’activité du label (ex : styles musicaux, mention d’un collectif, label, artistes signés, etc.).\n3. Présence sur les réseaux sociaux\n  - Donne plus de poids aux profils qui affichent des liens vers des réseaux sociaux officiels (Instagram, Facebook, etc.).\n4. Nombre de followers\n  - À pertinence égale sur les critères ci-dessus, choisis le profil avec le plus de followers, car cela indique généralement une meilleure visibilité.\n\n❌ Important : ne choisis pas le premier résultat par défaut. Prends le temps de comparer plusieurs profils dans la liste.\n✅ Si aucun profil ne semble suffisamment pertinent, ne retourne aucune donnée.\n\n### 📧 Extraction de l’Email demo (ou formulaire)\nL'objectif est d’extraire le moyen de contact pour envoyer des démos depuis la bio/description du profil.\n\nVoici l'ordre de priorité et les règles à suivre :\n1. Email contenant le mot “demo” (ou variantes dans le texte)\n  - Cherche un ou plusieurs emails dans la bio.\n  - Si au moins un email contient “demo” (ex: demo@label.com, senddemos@label.com, etc.) -> Garder cet email en priorité.\n  - Le mail peut ne pas contenir \"demo\", mais il est indiqué dans la descripion que c'est le mail destiné aux démos.\n2. Cas particuliers à gérer avant de valider un email :\n  - Si la bio contient une mention du type : \"do not send demos\" ou \"we don't accept demos\" -> Ne pas extraire d'email dans ce cas.\n  - Si l’adresse est \"obfusquée\", par exemple : demo(at)label.com ou demo[at]label.com ou demo(at)gmail(dot)com\n  -> Remplacer intelligemment : (at) -> @, (dot) -> ., etc.\n  -> Corriger et retourner un email bien formaté (demo@label.com)\n3. Formulaire à la place d’un email\n  - Si la bio contient un lien vers un formulaire (ex: Google Form, Typeform, etc.) -> Renvoyer l’URL complète si elle est identifiable (https://...)\n  - Si un formulaire est clairement mentionné mais que l’URL est absente ou illisible -> Renvoyer \"FORM\"\n4. Email générique (sans mention de demo)\n  - Si aucun email lié à des démos n’est trouvé, mais qu’il existe un email générique (ex: contact@label.com) : Vérifier que rien dans la bio n’interdit l’envoi de démos -> Dans ce cas, renvoyer cet email générique\n5. Si aucun email ni formulaire utilisable n’est trouvé, ou que tout est ambigu ou bloqué -> Laisser le champ \"Email demo\" vide.\n\n## 📤 Format de sortie \n{\n  \"country\": \"Valeur si trouvée, sinon champ vide\",\n  \"emailDemo\": \"Valeur si trouvée, sinon champ vide\",\n  \"scFollowers\": \"Valeur numérique si trouvée, sinon champ vide\",\n  \"soundcloudLink\": \"URL si trouvée, sinon champ vide\",\n  \"facebookLink\": \"URL si trouvée, sinon champ vide\",\n  \"instagramLink\": \"URL si trouvée, sinon champ vide\",\n  \"beatportLink\": \"URL si trouvée, sinon champ vide\",\n  \"bandcampLink\": \"URL si trouvée, sinon champ vide\"\n}\n",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          320,
+          400
+        ],
+        "id": "d8657eb3-cc7e-4342-9d38-fc18522eb2c9",
+        "name": "Set Soundcloud Prompt"
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "={{ $json.prompt }}",
+          "options": {
+            "systemMessage": "=## 🛠️ Procédure d’extraction des informations  \n\nL’agent suit la méthodologie suivante pour récupérer les données :  \n\nL’agent utilise **Techno scraper** pour trouver les pages officielles des labels sur différentes plateformes et en extraire les informations.\nIl va passer à l'outil l'url à scraper.\nEnsuite il doit extraire les informations pertinentes.\n\n---\n\n## ❗ Règles Importantes  \n🔴 **Ne jamais inventer une information.**  \n✔️ Si une donnée est introuvable, **ne pas remplir le champ** plutôt que de générer une fausse information.  \n\n---\n\n## 📝 Format de sortie  \nL’agent doit uniquement renvoyer un JSON formaté tel que spécifié dans son prompt contenant les champs trouvés, sans aucun commentaire ni explication supplémentaire.  \n\n---\n\n## ✅ Vérifications Finales  \nAvant de renvoyer les données :  \n- **S’assurer que toutes les informations sont correctes.**  \n- **Ne pas remplir un champ si l’information est introuvable.**  \n- **Vérifier le bon format JSON avant de retourner la réponse.**  "
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 1.8,
+        "position": [
+          512,
+          704
+        ],
+        "id": "0da145ef-ac4f-4f4e-bafe-9b7958780ead",
+        "name": "AI Agent1"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "658e5e25-84ef-49c0-939d-60fb50d6679e",
+                "name": "prompt",
+                "value": "=## 🏷️ **Agent Facebook**  \n\n### **🎯 Objectif**  \nExtraire les informations disponibles sur **Facebook** du label.  \n\n### **📥 Données d’entrée**  \n- **Nom du label**  \n\n### **🛠️ Processus**  \n1. Rechercher la page Facebook officielle via **Brave Search**.  \n2. Extraire :  \n   - **Lien de la page Facebook**  \n   - **Email demo** *(si non trouvé sur SoundCloud, rechercher dans la description du profil Facebook)*  \n\n### **📤 Format de sortie**  \n{\n  \"Facebook\": \"URL si trouvée, sinon champ vide\",\n  \"Email demo\": \"Valeur si trouvée, sinon champ vide\"\n}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          320,
+          560
+        ],
+        "id": "2ef97cf6-594f-482e-a55c-449f9a827e03",
+        "name": "Set Facebook Prompt"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "658e5e25-84ef-49c0-939d-60fb50d6679e",
+                "name": "prompt",
+                "value": "=## 🏷️ **Agent Instagram**  \n\n### **🎯 Objectif**  \nExtraire les informations disponibles sur **Instagram** du label.  \n\n### **📥 Données d’entrée**  \n- **Nom du label**  \n\n### **🛠️ Processus**  \n1. Rechercher la page Instagram officielle via **Brave Search**.  \n2. Extraire :  \n   - **Lien de la page Instagram**  \n   - **Email demo** *(si non trouvé ailleurs, rechercher dans la bio Instagram)*  \n\n### **📤 Format de sortie**  \n{\n  \"Instagram\": \"URL si trouvée, sinon champ vide\",\n  \"Email demo\": \"Valeur si trouvée, sinon champ vide\"\n}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          320,
+          720
+        ],
+        "id": "aaf6f4fd-8be0-4efb-ad6a-c28cb8aa91a5",
+        "name": "Set Instagram Prompt"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "658e5e25-84ef-49c0-939d-60fb50d6679e",
+                "name": "prompt",
+                "value": "=## 🏷️ **Agent Bandcamp**  \n\n### **🎯 Objectif**  \nExtraire les informations sur **Bandcamp** concernant le label.  \n\n### **📥 Données d’entrée**  \n- **Nom du label**  \n\n### **🛠️ Processus**  \n1. Rechercher la page Bandcamp officielle via **Brave Search**.  \n2. Extraire :  \n   - **Lien de la page Bandcamp**  \n   - **Si le label vend des vinyles** *(mention visible sur la page)*  \n\n### **📤 Format de sortie**  \n{\n  \"Vinyle\": \"true/false si trouvé, sinon champ vide\",\n  \"Bandcamp\": \"URL si trouvée, sinon champ vide\"\n}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          320,
+          1056
+        ],
+        "id": "7b9f0e7c-fd51-4088-8f34-df298079962d",
+        "name": "Set Bandcamp Prompt"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "658e5e25-84ef-49c0-939d-60fb50d6679e",
+                "name": "prompt",
+                "value": "=# 🏷️ Agent Beatport\n\n## 🎯 Objectif \nExtraire les informations sur **Beatport** concernant le label.  \n\n## 📥 Données d’entrée \n- **name** = {{ $('LabelSheet Subworkflow').item.json.name }}\n- **date** = {{ $('LabelSheet Subworkflow').item.json.date }}\n\n## 🛠️ Processus  \n\n1. Recherche du label  \nRechercher la page avec urlEndpoint: \"api/beatport/search/{name}?page=1&limit=10&entity_type=label\"\n-> Passer très exactement ce texte sans rien rajouter avant ou apres.\n\n2. Extraire des résultats l'entity_id et l'entity_slug qui semble le plus pertinent\nParmi les résultats, extraire :\n- `entity_id`\n- `entity_slug`\n- `url` (lien vers la page publique du label)\n\nExemple:\n{\n  ...\n  \"labels\": [\n        {\n      \"id\": 22038,\n      \"name\": \"Drumzone Records\",\n      \"url\": \"https://www.beatport.com/label/drumzone-records/22038\",\n      \"avatar_url\": \"https://geo-media.beatport.com/image_size/500x500/cda9862c-cf92-4d13-ac65-7e9277181f51.jpg\"\n    },\n    ...\n  ]\n}\n- **entity_id** = 22038\n- **entity_slug** = \"drumzone-records\"\n\n**Critères pour choisir le bon label :**\n1. Le nom correspond exactement ou très fortement à `name`\n2. Le label peut avoir un logo/avatar\n3. En cas d’ambiguïté, choisir celui avec le plus de releases ou une URL propre\n\n3. Récupération des releases sur 1 an  \nurlEndpoint: \"api/beatport/label/{entity_slug}/releases?entity_id={entity_id}&page=1&limit=100&start_date={date - 1 an}\"\n-> Passer très exactement ce texte sans rien rajouter avant ou apres.\n\n**Exemple pour la date:** Si on est le 2025-07-01 indiquer pour la date 2024-07-01\n\n4. Analyser et extraire les données pertinentes\n\n### 🎵 Extraction du genre musical\nExtraction depuis `facets` du `name` du `genre` avec le `count` le plus élevé.\nExemple:\n{\n  ...\n  \"facets\": {\n    \"fields\": {\n      \"genre\": [\n        {\n          \"name\": \"Techno (Peak Time / Driving)\",\n          \"count\": 32\n        },\n        {\n          \"name\": \"DJ Tools\",\n          \"count\": 21\n        },\n        {\n          \"name\": \"Deep House\",\n          \"count\": 5\n        },\n        ...\n      ]\n    }\n  }\n}\n- **beatportGenre** = Techno (Peak Time / Driving)\n- Le genre ayant le **plus d’occurrences** est retenu.\n- En cas d’égalité, utiliser l’ordre de priorité du tableau ci-dessous (du haut vers le bas).\n- **Important** : Mapper le beaportGenre avec genre tel qu'indiqué dans le tableau\n\n| beatportGenre                                    | genre            |\n|--------------------------------------------------|------------------|\n| Techno (Peak Time / Driving)                     | Peak Time        |\n| Techno (Raw / Deep / Hypnotic)                   | Techno           |\n| Progressive House                                | Progressive      |\n| Melodic House & Techno                           | Melodic          |\n| Minimal / Deep Tech, Deep House, Downtempo       | Deep House       |\n| Trance (Main Floor), Trance (Raw / Deep / Hypnotic) | Trance        |\n\nExemple: Si beatportGenre= \"Techno (Raw / Deep / Hypnotic)\" alors genre =\"Techno\"\n\n### ✅ Label actif\n- Si le nombre de releases sur 1 an **≥ 10** -> le label est **actif** (isActive)\n\n### 👥 Label ouvert aux nouveaux artistes  \n- Extraire les **noms ou ID d’artistes uniques**\n- Si le nombre **≥ 3** -> le label est **ouvert aux nouveaux artistes** (isOpenNew)\n\n\n## 📤 Format de sortie\n{\n  \"genre\": \"Valeur si trouvée, sinon champ vide\",\n  \"isActive\": true/false,\n  \"isOpenNew\": true/false,\n  \"beatportLink\": \"URL de la page principale récupérée\"\n}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          320,
+          896
+        ],
+        "id": "87df001a-bb80-4689-b9fb-df433b3e5f50",
+        "name": "Set Beatport Prompt"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+        "typeVersion": 1,
+        "position": [
+          512,
+          848
+        ],
+        "id": "995277d9-721b-4c9e-92e1-f9e1cf961f40",
+        "name": "4.1 mini",
+        "credentials": {
+          "openRouterApi": {
+            "id": "zb2293xtkSB2aBnr",
+            "name": "OpenRouter account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+        "typeVersion": 1,
+        "position": [
+          416,
+          16
+        ],
+        "id": "38811bc7-22ef-4b2a-8841-4cac78c4cc66",
+        "name": "4.1 mini1",
+        "credentials": {
+          "openRouterApi": {
+            "id": "zb2293xtkSB2aBnr",
+            "name": "OpenRouter account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "name": "Beatport",
+          "description": "Agent Beatport",
+          "workflowId": {
+            "__rl": true,
+            "value": "={{ $workflow.id }}",
+            "mode": "id"
+          },
+          "workflowInputs": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "name": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('name', `Name of label`, 'string') }}",
+              "date": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('date', `Date of day formatted as YYYY-MM-DD`, 'string') }}",
+              "agentType": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('agentType', `Sub agents:\n- Soundcloud\n- Facebook\n- Instagram\n- Beatport\n- Bandcamp`, 'string') }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "agentType",
+                "displayName": "agentType",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "canBeUsedToMatch": true,
+                "type": "string",
+                "removed": false
+              },
+              {
+                "id": "name",
+                "displayName": "name",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "canBeUsedToMatch": true,
+                "type": "string",
+                "removed": false
+              },
+              {
+                "id": "date",
+                "displayName": "date",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "canBeUsedToMatch": true,
+                "type": "string",
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+        "typeVersion": 2.1,
+        "position": [
+          416,
+          176
+        ],
+        "id": "88cf0105-6a7c-4909-88bc-64030aca84d2",
+        "name": "Beatport Agent",
+        "retryOnFail": true,
+        "maxTries": 3,
+        "waitBetweenTries": 3000,
+        "disabled": true
+      },
+      {
+        "parameters": {
+          "description": "Outil de scraping",
+          "workflowId": {
+            "__rl": true,
+            "value": "zww9F9TUEbDiNNHV",
+            "mode": "list",
+            "cachedResultName": "Techno scraper"
+          },
+          "workflowInputs": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "urlEndpoint": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('urlEndpoint', `Attention l'url endpoint doit etre renvoyé comme spécifié dans le prompt.\nPas besoin de rajouter http, https, ou tout autre texte que celui qui est indiqué dans le prompt.`, 'string') }}"
+            },
+            "matchingColumns": [
+              "url"
+            ],
+            "schema": [
+              {
+                "id": "urlEndpoint",
+                "displayName": "urlEndpoint",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "canBeUsedToMatch": true,
+                "type": "string",
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+        "typeVersion": 2.2,
+        "position": [
+          832,
+          864
+        ],
+        "id": "841a848b-d904-4ec8-8009-682810209c88",
+        "name": "Techno scraper",
+        "retryOnFail": true,
+        "disabled": true
+      },
+      {
+        "parameters": {
+          "name": "Facebook",
+          "description": "Agent Facebook",
+          "workflowId": {
+            "__rl": true,
+            "value": "={{ $workflow.id }}",
+            "mode": "id"
+          },
+          "workflowInputs": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "name": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('name', `Name of label`, 'string') }}",
+              "date": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('date', `Date of day formatted as YYYY-MM-DD`, 'string') }}",
+              "agentType": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('agentType', `Sub agents:\n- Soundcloud\n- Facebook\n- Instagram\n- Beatport\n- Bandcamp`, 'string') }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "agentType",
+                "displayName": "agentType",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "canBeUsedToMatch": true,
+                "type": "string",
+                "removed": false
+              },
+              {
+                "id": "name",
+                "displayName": "name",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "canBeUsedToMatch": true,
+                "type": "string",
+                "removed": false
+              },
+              {
+                "id": "date",
+                "displayName": "date",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "canBeUsedToMatch": true,
+                "type": "string",
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+        "typeVersion": 2.1,
+        "position": [
+          544,
+          176
+        ],
+        "id": "e2afa540-06d9-4461-b59a-1c71b62ad79f",
+        "name": "Facebook Agent",
+        "disabled": true
+      },
+      {
+        "parameters": {
+          "workflowInputs": {
+            "values": [
+              {
+                "name": "agentType"
+              },
+              {
+                "name": "name"
+              },
+              {
+                "name": "date"
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1.1,
+        "position": [
+          -80,
+          720
+        ],
+        "id": "a8b4b10e-52c5-4cbc-a684-05291ddef179",
+        "name": "LabelSheet Subworkflow"
+      },
+      {
+        "parameters": {
+          "name": "Instagram",
+          "description": "Agent Instagram",
+          "workflowId": {
+            "__rl": true,
+            "value": "={{ $workflow.id }}",
+            "mode": "id"
+          },
+          "workflowInputs": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "name": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('name', `Name of label`, 'string') }}",
+              "date": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('date', `Date of day formatted as YYYY-MM-DD`, 'string') }}",
+              "agentType": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('agentType', `Sub agents:\n- Soundcloud\n- Facebook\n- Instagram\n- Beatport\n- Bandcamp`, 'string') }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "agentType",
+                "displayName": "agentType",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "canBeUsedToMatch": true,
+                "type": "string",
+                "removed": false
+              },
+              {
+                "id": "name",
+                "displayName": "name",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "canBeUsedToMatch": true,
+                "type": "string",
+                "removed": false
+              },
+              {
+                "id": "date",
+                "displayName": "date",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "canBeUsedToMatch": true,
+                "type": "string",
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+        "typeVersion": 2.1,
+        "position": [
+          832,
+          176
+        ],
+        "id": "7adad0b4-3a81-4322-8dab-bef9723afd9d",
+        "name": "Instagram Agent",
+        "disabled": true
+      },
+      {
+        "parameters": {
+          "name": "Bandcamp",
+          "description": "Agent Bandcamp",
+          "workflowId": {
+            "__rl": true,
+            "value": "={{ $workflow.id }}",
+            "mode": "id"
+          },
+          "workflowInputs": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "name": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('name', `Name of label`, 'string') }}",
+              "date": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('date', `Date of day formatted as YYYY-MM-DD`, 'string') }}",
+              "agentType": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('agentType', `Sub agents:\n- Soundcloud\n- Facebook\n- Instagram\n- Beatport\n- Bandcamp`, 'string') }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "agentType",
+                "displayName": "agentType",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "canBeUsedToMatch": true,
+                "type": "string",
+                "removed": false
+              },
+              {
+                "id": "name",
+                "displayName": "name",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "canBeUsedToMatch": true,
+                "type": "string",
+                "removed": false
+              },
+              {
+                "id": "date",
+                "displayName": "date",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "canBeUsedToMatch": true,
+                "type": "string",
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+        "typeVersion": 2.1,
+        "position": [
+          976,
+          176
+        ],
+        "id": "ab66534d-f943-4c7d-97d8-8fbf757b2e00",
+        "name": "Bandcamp Agent",
+        "disabled": true
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "n8n-nodes-base.splitInBatches",
+        "typeVersion": 3,
+        "position": [
+          304,
+          -112
+        ],
+        "id": "0eedf417-05f6-4f3f-842c-cdd37b731996",
+        "name": "Loop Over Items"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "30a7ec73-6e38-4657-af4f-f7b12e0b08be",
+                "name": "isAgentDone",
+                "value": true,
+                "type": "boolean"
+              },
+              {
+                "id": "becd0b71-3f1e-45b6-8865-5a3b260a27ea",
+                "name": "output",
+                "value": "={{ $json.output }}",
+                "type": "object"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          864,
+          704
+        ],
+        "id": "e8a62f9d-db66-4888-873d-5fdc14e4653c",
+        "name": "Edit Fields1"
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "documentId": {
+            "__rl": true,
+            "value": "134ilr5ikGxh3nvTAy4jJL5JZvwZLmCTqpgN8cgZ85yU",
+            "mode": "list",
+            "cachedResultName": "Labels",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/134ilr5ikGxh3nvTAy4jJL5JZvwZLmCTqpgN8cgZ85yU/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Labels",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/134ilr5ikGxh3nvTAy4jJL5JZvwZLmCTqpgN8cgZ85yU/edit#gid=0"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "Pays": "={{ $json.output.country }}",
+              "Genre": "={{ $json.output.genre }}",
+              "Actif": "={{ $json.output.isActive }}",
+              "Ouvert nouveaux": "={{ $json.output.isOpenNew }}",
+              "Email demo": "={{ $json.output.emailDemo }}",
+              "Vinyle": "={{ $json.output.vinyle }}",
+              "Followers Sc": "={{ $json.output.scFollowers }}",
+              "Soundcloud": "={{ $json.output.soundcloudLink }}",
+              "Facebook": "={{ $json.output.facebookLink }}",
+              "Instagram": "={{ $json.output.instagramLink }}",
+              "Beatport": "={{ $json.output.beatportLink }}",
+              "Bandcamp": "={{ $json.output.bandcampLink }}",
+              "N8N": "Oui",
+              "Nom": "={{ $json.output.name }}"
+            },
+            "matchingColumns": [
+              "Nom"
+            ],
+            "schema": [
+              {
+                "id": "Nom",
+                "displayName": "Nom",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Pays",
+                "displayName": "Pays",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Genre",
+                "displayName": "Genre",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Actif",
+                "displayName": "Actif",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Ouvert nouveaux",
+                "displayName": "Ouvert nouveaux",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Email demo",
+                "displayName": "Email demo",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Dernier envoi",
+                "displayName": "Dernier envoi",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Nb Envoi",
+                "displayName": "Nb Envoi",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Nb Ecoute",
+                "displayName": "Nb Ecoute",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Nb Dl",
+                "displayName": "Nb Dl",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Nb rep email",
+                "displayName": "Nb rep email",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Release EM",
+                "displayName": "Release EM",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Vinyle",
+                "displayName": "Vinyle",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Followers Sc",
+                "displayName": "Followers Sc",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Soundcloud",
+                "displayName": "Soundcloud",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Facebook",
+                "displayName": "Facebook",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Instagram",
+                "displayName": "Instagram",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Beatport",
+                "displayName": "Beatport",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Bandcamp",
+                "displayName": "Bandcamp",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Top",
+                "displayName": "Top",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Songstats",
+                "displayName": "Songstats",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Beatstats",
+                "displayName": "Beatstats",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "N8N",
+                "displayName": "N8N",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "row_number",
+                "displayName": "row_number",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "number",
+                "canBeUsedToMatch": true,
+                "readOnly": true,
+                "removed": true
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.6,
+        "position": [
+          512,
+          -256
+        ],
+        "id": "25e906c3-35d6-4952-bb79-36a08ad73e30",
+        "name": "Update row in sheet",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "v8DvM58rzyod8k9i",
+            "name": "Google Sheets account"
+          }
+        },
+        "disabled": true
+      },
+      {
+        "parameters": {
+          "content": "## Google Sheet",
+          "height": 627,
+          "width": 1238,
+          "color": 4
+        },
+        "id": "2aebeee5-53f2-4d54-b909-0d10a294097a",
+        "name": "Sticky Note2",
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          -128,
+          -288
+        ],
+        "typeVersion": 1
+      },
+      {
+        "parameters": {
+          "content": "## Techno Scraper",
+          "height": 851,
+          "width": 1238,
+          "color": 7
+        },
+        "id": "5d42fe8e-ae7e-4ebe-b7fa-f0b8d2579b7b",
+        "name": "Sticky Note",
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          -128,
+          368
+        ],
+        "typeVersion": 1
+      },
+      {
+        "parameters": {
+          "url": "http://techno-scraper-api:8000/status",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequestTool",
+        "typeVersion": 4.2,
+        "position": [
+          672,
+          848
+        ],
+        "id": "9ce460ea-669d-4c81-ae17-1f4859e8218f",
+        "name": "HTTP Request"
+      }
+    ],
+    "connections": {
+      "Google Sheets Trigger": {
+        "main": [
+          [
+            {
+              "node": "Filter new data",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Filter new data": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Structured Output Parser": {
+        "ai_outputParser": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_outputParser",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Soundcloud Agent": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Switch": {
+        "main": [
+          [
+            {
+              "node": "Set Soundcloud Prompt",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Set Facebook Prompt",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Set Instagram Prompt",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Set Beatport Prompt",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Set Bandcamp Prompt",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Set Soundcloud Prompt": {
+        "main": [
+          [
+            {
+              "node": "AI Agent1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "AI Agent1": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Set Instagram Prompt": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Set Facebook Prompt": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Set Bandcamp Prompt": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Set Beatport Prompt": {
+        "main": [
+          [
+            {
+              "node": "AI Agent1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "4.1 mini": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent1",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "4.1 mini1": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Beatport Agent": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Techno scraper": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent1",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Facebook Agent": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "LabelSheet Subworkflow": {
+        "main": [
+          [
+            {
+              "node": "Switch",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Instagram Agent": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Bandcamp Agent": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "AI Agent": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Loop Over Items": {
+        "main": [
+          [
+            {
+              "node": "Update row in sheet",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "HTTP Request": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent1",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "eb3d9d0d-5a3a-4724-9c43-5e1d369b17bd",
   "connections": {
     "Google Sheets Trigger": {
       "main": [
@@ -327,7 +1791,8 @@
           "id": "bAIXuhfKCVK465E7",
           "name": "Google Sheets Trigger account"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -1494,7 +2959,7 @@
       "name": "music"
     }
   ],
-  "triggerCount": 1,
+  "triggerCount": 0,
   "updatedAt": "2025-11-03T17:44:13.000Z",
-  "versionId": "291ed85d-fb80-4292-b9f6-aa64781c2449"
+  "versionId": "eb3d9d0d-5a3a-4724-9c43-5e1d369b17bd"
 }
