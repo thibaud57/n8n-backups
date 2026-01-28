@@ -456,7 +456,8 @@
     },
     "authors": "Thibaud Geisler",
     "name": null,
-    "description": null
+    "description": null,
+    "autosaved": false
   },
   "activeVersionId": "794e1bf6-c886-4fb0-90f0-d0cd199b81c1",
   "connections": {
@@ -932,7 +933,7 @@
   ],
   "staticData": {
     "node:Notion Trigger": {
-      "lastTimeChecked": "2026-01-17T03:01:00.000Z",
+      "lastTimeChecked": "2026-01-27T14:26:00.000Z",
       "possibleDuplicates": [
         "2cc82fe2-6406-805b-bf20-cdbaa5d3d626"
       ]
