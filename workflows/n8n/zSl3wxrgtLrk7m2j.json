@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-12-03T17:30:58.237Z",
-    "createdAt": "2025-12-03T17:30:58.237Z",
-    "versionId": "437b9641-a220-49d4-bcde-452a9fd27e04",
+    "updatedAt": "2026-02-18T16:06:06.000Z",
+    "createdAt": "2026-02-18T16:06:01.658Z",
+    "versionId": "f1bb5a2f-618f-4e13-affa-c9c54ce4caa3",
     "workflowId": "zSl3wxrgtLrk7m2j",
     "nodes": [
       {
@@ -60,25 +60,6 @@
       },
       {
         "parameters": {
-          "options": {}
-        },
-        "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
-        "typeVersion": 1,
-        "position": [
-          192,
-          272
-        ],
-        "id": "13196eaf-d207-4264-a62f-c708b97a686b",
-        "name": "gpt 4.1 mini",
-        "credentials": {
-          "openRouterApi": {
-            "id": "zb2293xtkSB2aBnr",
-            "name": "OpenRouter account"
-          }
-        }
-      },
-      {
-        "parameters": {
           "sendTo": "contact@empiricmind.fr",
           "subject": "=[n8n] Erreur - Workflow: {{ $('Error Trigger').item.json.workflow.name }}",
           "emailType": "text",
@@ -100,6 +81,26 @@
           "gmailOAuth2": {
             "id": "MgAPt5sS5VxrQMNr",
             "name": "Gmail account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "model": "openai/gpt-5-nano",
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+        "typeVersion": 1,
+        "position": [
+          192,
+          272
+        ],
+        "id": "13196eaf-d207-4264-a62f-c708b97a686b",
+        "name": "gpt 5 nano",
+        "credentials": {
+          "openRouterApi": {
+            "id": "zb2293xtkSB2aBnr",
+            "name": "OpenRouter account"
           }
         }
       }
@@ -138,7 +139,7 @@
           ]
         ]
       },
-      "gpt 4.1 mini": {
+      "gpt 5 nano": {
         "ai_languageModel": [
           [
             {
@@ -150,12 +151,12 @@
         ]
       }
     },
-    "authors": "system migration",
-    "name": null,
-    "description": null,
-    "autosaved": false
+    "authors": "Thibaud Geisler",
+    "name": "Version f1bb5a2f",
+    "description": "",
+    "autosaved": true
   },
-  "activeVersionId": "437b9641-a220-49d4-bcde-452a9fd27e04",
+  "activeVersionId": "f1bb5a2f-618f-4e13-affa-c9c54ce4caa3",
   "connections": {
     "Error Trigger": {
       "main": [
@@ -190,7 +191,7 @@
         ]
       ]
     },
-    "gpt 4.1 mini": {
+    "gpt 5 nano": {
       "ai_languageModel": [
         [
           {
@@ -264,25 +265,6 @@
     },
     {
       "parameters": {
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
-      "typeVersion": 1,
-      "position": [
-        192,
-        272
-      ],
-      "id": "13196eaf-d207-4264-a62f-c708b97a686b",
-      "name": "gpt 4.1 mini",
-      "credentials": {
-        "openRouterApi": {
-          "id": "zb2293xtkSB2aBnr",
-          "name": "OpenRouter account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "sendTo": "contact@empiricmind.fr",
         "subject": "=[n8n] Erreur - Workflow: {{ $('Error Trigger').item.json.workflow.name }}",
         "emailType": "text",
@@ -304,6 +286,26 @@
         "gmailOAuth2": {
           "id": "MgAPt5sS5VxrQMNr",
           "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-5-nano",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        192,
+        272
+      ],
+      "id": "13196eaf-d207-4264-a62f-c708b97a686b",
+      "name": "gpt 5 nano",
+      "credentials": {
+        "openRouterApi": {
+          "id": "zb2293xtkSB2aBnr",
+          "name": "OpenRouter account"
         }
       }
     }
@@ -331,6 +333,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-08-07T10:34:50.000Z",
-  "versionId": "437b9641-a220-49d4-bcde-452a9fd27e04"
+  "updatedAt": "2026-02-18T16:06:01.657Z",
+  "versionId": "f1bb5a2f-618f-4e13-affa-c9c54ce4caa3"
 }
