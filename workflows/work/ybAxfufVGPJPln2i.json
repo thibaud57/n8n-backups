@@ -844,7 +844,10 @@
   "settings": {
     "executionOrder": "v1",
     "callerPolicy": "workflowsFromSameOwner",
-    "errorWorkflow": "zSl3wxrgtLrk7m2j"
+    "errorWorkflow": "zSl3wxrgtLrk7m2j",
+    "timeSavedMode": "fixed",
+    "binaryMode": "separate",
+    "availableInMCP": false
   },
   "shared": [
     {
@@ -857,7 +860,7 @@
   ],
   "staticData": {
     "node:Notion Trigger": {
-      "lastTimeChecked": "2026-02-11T15:16:00.000Z"
+      "lastTimeChecked": "2026-02-18T16:53:00.000Z"
     }
   },
   "tags": [
@@ -869,6 +872,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-12-08T18:54:38.000Z",
+  "updatedAt": "2026-02-18T16:53:45.916Z",
   "versionId": "111695e4-7efc-4eb0-b8b4-5e99e674dc6c"
 }
