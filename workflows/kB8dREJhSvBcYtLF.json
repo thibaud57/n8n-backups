@@ -1,0 +1,2780 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "Item Ref": {
+      "main": [
+        [
+          {
+            "node": "RAG Web Browser",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Row": {
+      "main": [
+        [
+          {
+            "node": "Initiate DeepResearch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Confirmation": {
+      "main": [
+        [
+          {
+            "node": "End Form",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Content?": {
+      "main": [
+        [
+          {
+            "node": "Get Markdown + URL",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Empty Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Valid Blocks": {
+      "main": [
+        [
+          {
+            "node": "Append Blocks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append Blocks": {
+      "main": [
+        [
+          {
+            "node": "For Each Block...",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTML to Array": {
+      "main": [
+        [
+          {
+            "node": "Tags to Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SERP to Items": {
+      "main": [
+        [
+          {
+            "node": "For Each Query...",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Variables": {
+      "main": [
+        [
+          {
+            "node": "Clarifying Questions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tags to Items": {
+      "main": [
+        [
+          {
+            "node": "Notion Block Generator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Valid Results": {
+      "main": [
+        [
+          {
+            "node": "Has Content?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Empty Response": {
+      "main": [
+        [
+          {
+            "node": "For Each Query...",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execution Data": {
+      "main": [
+        [
+          {
+            "node": "JobType Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "JobType Router": {
+      "main": [
+        [
+          {
+            "node": "Get Existing Row",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Generate SERP Queries",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get Existing Row1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to HTML": {
+      "main": [
+        [
+          {
+            "node": "HTML to Array",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RAG Web Browser": {
+      "main": [
+        [
+          {
+            "node": "Valid Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set In-Progress": {
+      "main": [
+        [
+          {
+            "node": "Set Initial Query",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Existing Row": {
+      "main": [
+        [
+          {
+            "node": "Set In-Progress",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Results to Items": {
+      "main": [
+        [
+          {
+            "node": "Set Next Queries",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Next Queries": {
+      "main": [
+        [
+          {
+            "node": "Generate Learnings",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Feedback to Items": {
+      "main": [
+        [
+          {
+            "node": "For Each Question...",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "For Each Block...": {
+      "main": [
+        [
+          {
+            "node": "Set Done",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Upload to Notion Page",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "For Each Query...": {
+      "main": [
+        [
+          {
+            "node": "Combine & Send back to Loop",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Item Ref",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Existing Row1": {
+      "main": [
+        [
+          {
+            "node": "DeepResearch Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Initial Query": {
+      "main": [
+        [
+          {
+            "node": "Report Page Generator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Depth Reached?": {
+      "main": [
+        [
+          {
+            "node": "Get Research Results",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "DeepResearch Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse JSON blocks": {
+      "main": [
+        [
+          {
+            "node": "Valid Blocks",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "URL Sources to Lists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Initial Query": {
+      "main": [
+        [
+          {
+            "node": "Generate Learnings",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Accumulate Results": {
+      "main": [
+        [
+          {
+            "node": "Is Depth Reached?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Learnings": {
+      "main": [
+        [
+          {
+            "node": "Accumulate Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Markdown + URL": {
+      "main": [
+        [
+          {
+            "node": "DeepResearch Learnings",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Research Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeepResearch Report": {
+      "main": [
+        [
+          {
+            "node": "Convert to HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Clarifying Questions": {
+      "main": [
+        [
+          {
+            "node": "Feedback to Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeepResearch Results": {
+      "main": [
+        [
+          {
+            "node": "Results to Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "For Each Question...": {
+      "main": [
+        [
+          {
+            "node": "Get Initial Query",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ask Clarity Questions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Research Results": {
+      "main": [
+        [
+          {
+            "node": "Generate Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "URL Sources to Lists": {
+      "main": [
+        [
+          {
+            "node": "Append Blocks",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Ask Clarity Questions": {
+      "main": [
+        [
+          {
+            "node": "For Each Question...",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate SERP Queries": {
+      "main": [
+        [
+          {
+            "node": "SERP to Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Initiate DeepResearch": {
+      "main": [
+        [
+          {
+            "node": "Confirmation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Report Page Generator": {
+      "main": [
+        [
+          {
+            "node": "Create Row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload to Notion Page": {
+      "main": [
+        [
+          {
+            "node": "For Each Block...",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeepResearch Learnings": {
+      "main": [
+        [
+          {
+            "node": "Research Goal + Learnings",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notion Block Generator": {
+      "main": [
+        [
+          {
+            "node": "Parse JSON blocks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeepResearch Subworkflow": {
+      "main": [
+        [
+          {
+            "node": "Execution Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "DeepResearch Learnings",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Research Goal + Learnings": {
+      "main": [
+        [
+          {
+            "node": "For Each Query...",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser1": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Clarifying Questions",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser2": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Generate SERP Queries",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser4": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Report Page Generator",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Research Request1": {
+      "main": [
+        [
+          {
+            "node": "Set Variables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "gemini 2.5 flash": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Notion Block Generator",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "o3 mini": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Clarifying Questions",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "o3 mini1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Report Page Generator",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "o3 mini2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Generate SERP Queries",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "o3 mini3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "DeepResearch Learnings",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "o3 mini4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "DeepResearch Report",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-03-05T21:05:21.646Z",
+  "id": "kB8dREJhSvBcYtLF",
+  "isArchived": false,
+  "meta": null,
+  "name": "Deep Research  old(fr)",
+  "nodes": [
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"learnings\": {\n      \"type\": \"array\",\n      \"description\": \"Liste d'enseignements, maximum de 3.\",\n      \"items\": { \"type\": \"string\" }\n    }\n  }\n}"
+      },
+      "id": "f8536c66-7cc0-44e1-935a-b2dd52e9148c",
+      "name": "Structured Output Parser",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "position": [
+        3184,
+        1872
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "df28b12e-7c20-4ff5-b5b8-dc773aa14d4b",
+              "name": "request_id",
+              "type": "string",
+              "value": "={{ $execution.id }}"
+            },
+            {
+              "id": "9362c1e7-717d-444a-8ea2-6b5f958c9f3f",
+              "name": "prompt",
+              "type": "string",
+              "value": "={{ $json['Que souhaitez vous rechercher ?'] }}"
+            },
+            {
+              "id": "09094be4-7844-4a9e-af82-cc8e39322398",
+              "name": "depth",
+              "type": "number",
+              "value": "={{ $json['Profondeur de recherche  (1 par défaut)'] }}"
+            },
+            {
+              "id": "3fc30a30-7806-4013-835d-97e27ddd7ae1",
+              "name": "breadth",
+              "type": "number",
+              "value": "={{ $json['Etendue de la recherche  (2 par défaut)'] }}"
+            },
+            {
+              "id": "45d12786-44f2-43fc-91e2-695b7d2805b6",
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "16e7b3ad-dfaf-4530-b8e7-e2bedc8dc427",
+      "name": "Set Variables",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        688,
+        224
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"questions\": {\n      \"type\": \"array\",\n      \"description\": \"Questions pour clarifier la direction de la recherche, maximum de 3.\",\n      \"items\": {\n          \"type\": \"string\"\n      }\n    }\n  }\n}"
+      },
+      "id": "9e121e91-66d9-4669-a87b-0def2ab89b9b",
+      "name": "Structured Output Parser1",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "position": [
+        1200,
+        384
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "formTitle": " DeepResearcher",
+        "formDescription": "=DeepResearcher est une approche multi-étapes et récursive qui utilise Internet pour résoudre des tâches de recherche complexes, accomplissant en quelques dizaines de minutes ce qui prendrait plusieurs heures à un humain.  \n\nComment l'utiliser ?\nFournissez un bref résumé du sujet de recherche ainsi que le niveau de profondeur souhaité pour l'investigation.  \n\n📌 **À noter** : Plus les valeurs sont élevées, plus le temps et le coût de la recherche augmenteront.  \n\nCe workflow est conçu pour s'exécuter de manière autonome. Une fois terminé, un rapport sera sauvegardé dans une base de données Notion dédiée.  ",
+        "formFields": {
+          "values": [
+            {
+              "fieldType": "html"
+            }
+          ]
+        },
+        "options": {
+          "buttonLabel": "Next",
+          "path": "6a4050b4-c9fa-4e68-8dec-77a1ba0ba74d",
+          "ignoreBots": true
+        }
+      },
+      "id": "ca9d1c79-73b6-484b-9ce6-a9df3f218e17",
+      "name": "On form submission",
+      "type": "n8n-nodes-base.formTrigger",
+      "position": [
+        288,
+        224
+      ],
+      "webhookId": "6a4050b4-c9fa-4e68-8dec-77a1ba0ba74d",
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Etant donné le prompt suivant de l'utilisateur, génère une liste de requêtes SERP pour rechercher le sujet.\nRéduis le nombre de mots dans chaque requête à ses mots-clés uniquement.\nRenvoie un maximum de {{ $('JobType Router').first().json.data.breadth }} requêtes, mais n'hésite pas à en renvoyer moins si le prompt original est clair. Assure-toi que chaque requête est unique et pas similaire aux autres: \n<prompt>{{ $('JobType Router').first().json.data.query.trim() }}</prompt>\n\n{{\n$('JobType Router').first().json.data.learnings.length\n  ? `Voici quelques enseignements tirés de recherches précédentes, utilise-les pour générer des requêtes plus spécifiques:\\n${$('JobType Router').first().json.data.learnings.map(text => `* ${text}`).join('\\n')}`\n  : ''\n}}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "type": "HumanMessagePromptTemplate",
+              "message": "=## Contexte\nTu es un chercheur expert. Aujourd'hui nous sommes le {{ $now.toLocaleString() }}. Suis ces instructions lorsque tu réponds :\n\n- On peut te demander de rechercher des sujets postérieurs à ta date limite de connaissance, suppose que l'utilisateur a raison lorsqu'il présente une actualité.\n- L'utilisateur est un analyste hautement expérimenté, inutile de simplifier, sois aussi détaillé que possible et assure-toi que ta réponse est correcte.\n- Sois très organisé.\n- Suggère des solutions auxquelles je n'ai pas pensé.\n- Sois proactif et anticipe mes besoins.\n- Traite-moi comme un expert dans tous les domaines.\n- Les erreurs érodent ma confiance, sois donc précis et rigoureux.\n- Fournis des explications détaillées, je suis à l'aise avec beaucoup de détails.\n- Privilégie les bons arguments aux sources d'autorité, la provenance de l'information est secondaire.\n- Prends en compte les nouvelles technologies et les idées contraires à la sagesse conventionnelle, pas seulement l'opinion majoritaire.\n- Tu peux faire des spéculations ou prédictions de haut niveau, signale-les moi simplement.\n- Effectue des recherches principalement dans des sources françaises, mais n'hésites pas à consulter des sources internationales et les traduires (suivant le besoin et le sujet)."
+            }
+          ]
+        }
+      },
+      "id": "6d9e43f2-c2fe-4b6f-85d5-d99ae79bef78",
+      "name": "Generate SERP Queries",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "position": [
+        1008,
+        1504
+      ],
+      "typeVersion": 1.5
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"queries\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"query\": {\n            \"type\": \"string\",\n            \"description\": \"The SERP query\"\n          },\n          \"researchGoal\": {\n            \"type\": \"string\",\n            \"description\": \"First talk about the goal of the research that this query is meant to accomplish, then go deeper into how to advance the research once the results are found, mention additional research directions. Be as specific as possible, especially for additional research directions.\"\n          }\n        }\n      }\n    }\n  }\n}"
+      },
+      "id": "57744042-ecc2-4e15-bfcc-66bb8f5c93ba",
+      "name": "Structured Output Parser2",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "position": [
+        1184,
+        1664
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "acb41e93-70c6-41a3-be0f-e5a74ec3ec88",
+              "name": "query",
+              "type": "string",
+              "value": "={{ $('JobType Router').first().json.data.query }}"
+            },
+            {
+              "id": "7fc54063-b610-42bc-a250-b1e8847c4d1e",
+              "name": "learnings",
+              "type": "array",
+              "value": "={{ $('JobType Router').first().json.data.learnings }}"
+            },
+            {
+              "id": "e8f1c158-56fb-41c8-8d86-96add16289bb",
+              "name": "breadth",
+              "type": "number",
+              "value": "={{ $('JobType Router').first().json.data.breadth }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "43973437-d1c2-4e01-9a29-eb40b14704b0",
+      "name": "Set Initial Query",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1456,
+        864
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "output.queries",
+        "options": {}
+      },
+      "id": "2edd631f-22de-4f6a-a0ab-173ed33304ef",
+      "name": "SERP to Items",
+      "type": "n8n-nodes-base.splitOut",
+      "position": [
+        1344,
+        1504
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {},
+      "id": "3519f87f-4b55-4d63-bb6c-1e7be8fa5d94",
+      "name": "Item Ref",
+      "type": "n8n-nodes-base.noOp",
+      "position": [
+        1824,
+        1712
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9acec2cc-64c8-4e62-bed4-c3d9ffab1379",
+              "name": "researchGoal",
+              "type": "string",
+              "value": "={{ $('Item Ref').first().json.researchGoal }}"
+            },
+            {
+              "id": "1b2d2dad-429b-4fc9-96c5-498f572a85c3",
+              "name": "learnings",
+              "type": "array",
+              "value": "={{ $json.output.learnings }}"
+            },
+            {
+              "id": "c9e34ea4-5606-46d6-8d66-cb42d772a8b4",
+              "name": "urls",
+              "type": "array",
+              "value": "={{\n$('Get Markdown + URL')\n  .all()\n  .map(item => item.json.url)\n}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "64e9c7a0-dcbd-4c2c-99aa-40b67650d97f",
+      "name": "Research Goal + Learnings",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        3344,
+        1856
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "db509e90-9a86-431f-8149-4094d22666cc",
+              "name": "should_stop",
+              "type": "boolean",
+              "value": "={{\n$runIndex >= ($('JobType Router').first().json.data.depth)\n}}"
+            },
+            {
+              "id": "90986e2b-8aca-4a22-a9db-ed8809d6284d",
+              "name": "all_learnings",
+              "type": "array",
+              "value": "={{\nArray($runIndex+1)\n  .fill(0)\n  .flatMap((_,idx) => {\n    try {\n      return $('Generate Learnings')\n        .all(0,idx)\n        .flatMap(item => item.json.data.flatMap(d => d.learnings))\n    } catch (e) {\n      return []\n    }\n  })\n}}"
+            },
+            {
+              "id": "3eade958-e8ab-4975-aac4-f4a4a983c163",
+              "name": "all_urls",
+              "type": "array",
+              "value": "={{\nArray($runIndex+1)\n  .fill(0)\n  .flatMap((_,idx) => {\n    try {\n      return $('Generate Learnings')\n        .all(0,idx)\n        .flatMap(item => item.json.data.flatMap(d => d.urls))\n    } catch (e) {\n      return []\n    }\n  })\n}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e3b5321e-46ed-42d4-ac05-f4b11491636a",
+      "name": "Accumulate Results",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1840,
+        864
+      ],
+      "executeOnce": true,
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{ $('Generate Learnings').item.json }}",
+        "options": {}
+      },
+      "id": "a4e5edf8-220c-4d59-af4c-91fff154b1fd",
+      "name": "DeepResearch Results",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        2208,
+        1056
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data",
+        "options": {}
+      },
+      "id": "7705426e-ccbe-41c9-9f92-75bb0f4bc0e2",
+      "name": "Results to Items",
+      "type": "n8n-nodes-base.splitOut",
+      "position": [
+        2368,
+        1056
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d88bfe95-9e73-4d25-b45c-9f164b940b0e",
+              "name": "query",
+              "type": "string",
+              "value": "=Objectif de recherche précédent : {{ $json.researchGoal }}\nOrientations de recherche complémentaires : {{ $json.followUpQuestions.map(q => `\\n${q}`).join('') }}"
+            },
+            {
+              "id": "4aa20690-d998-458a-b1e4-0d72e6a68e6b",
+              "name": "learnings",
+              "type": "array",
+              "value": "={{ $('Accumulate Results').item.json.all_learnings }}"
+            },
+            {
+              "id": "89acafae-b04a-4d5d-b08b-656e715654e4",
+              "name": "breadth",
+              "type": "number",
+              "value": "={{ $('JobType Router').first().json.data.breadth }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d2c0863c-6c8a-4908-823b-72ec12fb5457",
+      "name": "Set Next Queries",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        2528,
+        1056
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "70b25027-f479-440b-9520-f1f0bb81c2bf",
+      "name": "For Each Query...",
+      "type": "n8n-nodes-base.splitInBatches",
+      "position": [
+        1616,
+        1552
+      ],
+      "typeVersion": 3
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "output.questions",
+        "options": {}
+      },
+      "id": "930d733f-e56a-4628-b1ae-9f7b0e16bd30",
+      "name": "Feedback to Items",
+      "type": "n8n-nodes-base.splitOut",
+      "position": [
+        1328,
+        224
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "={{ $json[\"output.questions\"] }}",
+              "fieldType": "textarea",
+              "placeholder": "=",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "formTitle": "DeepResearcher",
+          "formDescription": "=<img\n  src=\"https://res.cloudinary.com/daglih2g8/image/upload/f_auto,q_auto/v1/n8n-workflows/o4wqztloz3j6okfxpeyw\"\n  width=\"100%\"\n  style=\"border:1px solid #ccc\"\n/>\n<p style=\"text-align:left\">\nRépondez aux questions de suivantes pour aider le DeepResearcher à mieux comprendre le sujet de recherche.\n</p>\n<hr style=\"display:block;margin-top:16px;margin-bottom:0\" />\n<p style=\"text-align:left;font-family:sans-serif;font-weight:700;\">\nTotal {{ $('Feedback to Items').all().length }} questions.\n</p>",
+          "buttonLabel": "Answer"
+        }
+      },
+      "id": "56cde11c-723c-4184-808e-4a4edb01e17e",
+      "name": "Ask Clarity Questions",
+      "type": "n8n-nodes-base.form",
+      "position": [
+        1680,
+        304
+      ],
+      "webhookId": "d4fd13b2-4519-4891-8553-24db9780dc43",
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "5d2cb674-68ac-4a39-a763-34fa66d6b04a",
+      "name": "For Each Question...",
+      "type": "n8n-nodes-base.splitInBatches",
+      "position": [
+        1504,
+        224
+      ],
+      "typeVersion": 3
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "requestId"
+            },
+            {
+              "name": "jobType"
+            },
+            {
+              "name": "data",
+              "type": "object"
+            }
+          ]
+        }
+      },
+      "id": "2bea1a1d-01c4-4736-ba58-df60d6b9ae1c",
+      "name": "DeepResearch Subworkflow",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        160,
+        1504
+      ],
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "content": "## 2. Poser des questions de clarification  \n[En savoir plus sur les nœuds de formulaire](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.form/)  \n\nPour gérer les questions de clarification générées par le LLM, j’ai utilisé la même technique que dans mon modèle \"AI Interviewer\" ([lien](https://n8n.io/workflows/2566-conversational-interviews-with-ai-agents-and-n8n-forms/)).  \nCela implique une boucle de formulaires générés dynamiquement pour collecter les réponses de l'utilisateur.  \n",
+        "height": 560,
+        "width": 1000,
+        "color": 7
+      },
+      "id": "d5f6f643-bdfa-4d21-9111-46fd0a518148",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        896,
+        16
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Étant donné la requête suivante de l'utilisateur, posez quelques questions pour clarifier la direction de la recherche. Retournez un maximum de 3 questions, mais n'hésitez pas à en proposer moins si la requête initiale est claire : <query>{{ $json.prompt }}</query>`",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "type": "HumanMessagePromptTemplate",
+              "message": "=## Contexte\nTu es un chercheur expert. Aujourd'hui, nous sommes le {{ $now.toLocaleString() }}. Suis ces instructions lorsque tu réponds :\n\n- Il se peut qu'on te demande de rechercher des sujets postérieurs à ta date limite de connaissance ; suppose que l'utilisateur a raison lorsqu'il mentionne une actualité.\n- L'utilisateur est un analyste hautement expérimenté. Inutile de simplifier, sois aussi détaillé que possible et assure-toi que ta réponse est correcte.\n- Sois très organisé.\n- Propose des solutions auxquelles je n'aurais pas pensé.\n- Sois proactif et anticipe mes besoins.\n- Traite-moi comme un expert dans tous les domaines.\n- Les erreurs érodent ma confiance, sois donc précis et rigoureux.\n- Fournis des explications détaillées, je suis à l'aise avec un haut niveau de détail.\n- Privilégie les bons arguments aux sources d'autorité, la provenance de l'information est secondaire.\n- Prends en compte les nouvelles technologies et les idées contraires à la sagesse - conventionnelle, et ne te limite pas à l'opinion majoritaire.\n- Tu peux faire des spéculations avancées ou des prédictions, mais indique-le clairement.\n- Effectue des recherches principalement dans des sources françaises, mais n'hésites pas à consulter des sources internationales et les traduires (suivant le besoin et le sujet)."
+            }
+          ]
+        }
+      },
+      "id": "36bff49a-a449-4b96-be57-c5748628d8cf",
+      "name": "Clarifying Questions",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "position": [
+        1008,
+        224
+      ],
+      "typeVersion": 1.5
+    },
+    {
+      "parameters": {
+        "content": "## 6. Boucle de recherche approfondie  \n[En savoir plus sur les boucles dans n8n](https://docs.n8n.io/flow-logic/looping/#creating-loops)  \n\nL’élément clé du flux DeepResearch est sa capacité étendue de collecte de données. Cette mise en œuvre repose sur une boucle de recherche web récursive qui commence par la requête initiale et s’étend avec des sous-requêtes générées par l’IA.  \n\nLe nombre de sous-requêtes dépend des paramètres de profondeur et d’étendue spécifiés.  \n\nDes \"enseignements\" sont générés pour chaque sous-requête et s’accumulent à chaque itération. Lorsque la limite de profondeur est atteinte, tous ces enseignements sont compilés et utilisés pour rédiger le rapport final.  \n",
+        "height": 640,
+        "width": 1360,
+        "color": 7
+      },
+      "id": "9b95ab62-ba3f-401d-ab0b-18ddadad99f2",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1376,
+        624
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "operation": "completion",
+        "completionTitle": "=Merci d'utiliser DeepResearcher.",
+        "completionMessage": "=Vous pouvez fermer la fenêtre.",
+        "options": {}
+      },
+      "id": "1d0bede0-123b-47f6-888d-1567464a43a0",
+      "name": "End Form",
+      "type": "n8n-nodes-base.form",
+      "position": [
+        3008,
+        272
+      ],
+      "webhookId": "16a46075-143c-4f22-a86a-4a49cd71d5e0",
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $workflow.id }}"
+        },
+        "workflowInputs": {
+          "value": {
+            "data": "={{\n{\n  \"query\": $('Get Initial Query').first().json.query,\n  \"learnings\": [],\n  \"depth\": $('Set Variables').first().json.depth,\n  \"breadth\": $('Set Variables').first().json.breadth,\n}\n}}",
+            "jobType": "deepresearch_initiate",
+            "requestId": "={{ $('Set Variables').first().json.request_id }}"
+          },
+          "schema": [
+            {
+              "id": "requestId",
+              "display": true,
+              "removed": false,
+              "required": false,
+              "displayName": "requestId",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "jobType",
+              "type": "string",
+              "display": true,
+              "removed": false,
+              "required": false,
+              "displayName": "jobType",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "data",
+              "type": "object",
+              "display": true,
+              "removed": false,
+              "required": false,
+              "displayName": "data",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            }
+          ],
+          "mappingMode": "defineBelow",
+          "matchingColumns": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "mode": "each",
+        "options": {
+          "waitForSubWorkflow": false
+        }
+      },
+      "id": "80900172-389b-4bc6-9296-db92e781c536",
+      "name": "Initiate DeepResearch",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "position": [
+        2640,
+        272
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "dataToSave": {
+          "values": [
+            {
+              "key": "requestId",
+              "value": "={{ $json.requestId }}"
+            },
+            {
+              "key": "=jobType",
+              "value": "={{ $json.jobType }}"
+            }
+          ]
+        }
+      },
+      "id": "935a7c1b-bbc2-42d7-92ca-99856899e3b8",
+      "name": "Execution Data",
+      "type": "n8n-nodes-base.executionData",
+      "position": [
+        336,
+        1504
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": true,
+                  "typeValidation": "strict"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.jobType }}",
+                    "rightValue": "deepresearch_initiate"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "initiate"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": true,
+                  "typeValidation": "strict"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "id": "ecbfa54d-fc97-48c5-8d3d-f0538b8d727b",
+                    "operator": {
+                      "name": "filter.operator.equals",
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.jobType }}",
+                    "rightValue": "deepresearch_learnings"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "learnings"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": true,
+                  "typeValidation": "strict"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "id": "392f9a98-ec22-4e57-9c8e-0e1ed6b7dafa",
+                    "operator": {
+                      "name": "filter.operator.equals",
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.jobType }}",
+                    "rightValue": "deepresearch_report"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "report"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0bc534bf-780a-4296-8bea-5ccd877b7831",
+      "name": "JobType Router",
+      "type": "n8n-nodes-base.switch",
+      "position": [
+        528,
+        1504
+      ],
+      "typeVersion": 3.2
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "14b77741-c3c3-4bd2-be6e-37bd09fcea2b",
+              "name": "query",
+              "type": "string",
+              "value": "=Requête initiale : {{ $('Set Variables').first().json.prompt }}\nQuestions et réponses :\n{{\n$input.all()\n  .map(item => {\n    const q = Object.keys(item.json)[0];\n    const a = item.json[q];\n    return `question: ${q}\\nanswer: ${a}`;\n  })\n  .join('\\n')\n}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "04ac8e56-4450-4c8c-b6e5-0282cf7a68da",
+      "name": "Get Initial Query",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1680,
+        144
+      ],
+      "executeOnce": true,
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"title\": {\n      \"type\": \"string\",\n      \"description\":\" Un titre court résumant le sujet de recherche\"\n    },\n    \"description\": {\n      \"type\": \"string\",\n      \"description\": \"Une brève description pour résumer le sujet de recherche\"\n    }\n  }\n}"
+      },
+      "id": "404cd533-5dd2-4704-ac68-41d477f4a8f9",
+      "name": "Structured Output Parser4",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "position": [
+        2208,
+        416
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "databaseId": {
+          "__rl": true,
+          "value": "1b582fe2-6406-80cc-a599-f3535e872dd2",
+          "mode": "list",
+          "cachedResultName": "n8n DeepResearch",
+          "cachedResultUrl": "https://www.notion.so/1b582fe2640680cca599f3535e872dd2"
+        },
+        "title": "={{ $json.output.title }}",
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "Description|rich_text",
+              "textContent": "={{ $json.output.description }}"
+            },
+            {
+              "key": "Status|status",
+              "statusValue": "Not started"
+            },
+            {
+              "key": "Request ID|rich_text",
+              "textContent": "={{ $('Set Variables').first().json.request_id }}"
+            },
+            {
+              "key": "Name|title",
+              "title": "={{ $json.output.title }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "92d80e3d-e930-43a7-bde1-c0996b6bbe51",
+      "name": "Create Row",
+      "type": "n8n-nodes-base.notion",
+      "position": [
+        2336,
+        272
+      ],
+      "typeVersion": 2.2,
+      "credentials": {
+        "notionApi": {
+          "id": "62MjEeirg4hzemTI",
+          "name": "Notion account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Créez un titre approprié pour le rapport de recherche qui sera généré à partir de la requête de l'utilisateur.\n<query>{{ $json.query }}</query>",
+        "hasOutputParser": true
+      },
+      "id": "7cd75321-fffd-48d1-aa82-3450ff0024a6",
+      "name": "Report Page Generator",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "position": [
+        2016,
+        272
+      ],
+      "typeVersion": 1.5
+    },
+    {
+      "parameters": {
+        "content": "## 3. Créer une page de rapport vide dans Notion  \n[En savoir plus sur le nœud Notion](https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.notion/)  \n\nUn choix a été fait pour déterminer où stocker le rapport final, et Notion a été retenu pour sa facilité. Cela peut facilement être remplacé par l’outil de documentation de votre choix.  \n\nSi vous souhaitez suivre ce guide, voici la base de données Notion à répliquer : [Jim’s n8n DeepResearcher Database](https://jimleuk.notion.site/19486dd60c0c80da9cb7eb1468ea9afd?v=19486dd60c0c805c8e0c000ce8c87acf).  \n",
+        "height": 560,
+        "width": 600,
+        "color": 7
+      },
+      "id": "33c9789e-bc43-475a-9baa-781d68c80408",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1920,
+        16
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## 4. Déclencher la recherche en arrière-plan  \n[En savoir plus sur le nœud Execute Trigger](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.executeworkflow/)  \n\nn8n gère les tâches asynchrones en les exécutant séparément. Cela signifie que l’utilisateur n’a pas besoin d’attendre ou de garder son navigateur ouvert pour que la recherche se termine.  \n\nUne fois la tâche DeepResearch lancée, nous pouvons conclure le processus d'onboarding pour offrir une bonne expérience utilisateur.  \n",
+        "height": 560,
+        "width": 640,
+        "color": 7
+      },
+      "id": "c487f604-8be8-49ba-9728-a25589bd0931",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2544,
+        16
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## 7. Générer les requêtes de recherche  \n[En savoir plus sur le nœud Basic LLM](https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.chainllm/)  \n\nComme un chercheur humain, DeepResearcher s’appuie sur la recherche web comme source principale d’information. Pour s’assurer qu’il couvre un large éventail de sources, l’IA génère d’abord des requêtes pertinentes qui seront explorées individuellement.  \n",
+        "height": 540,
+        "width": 620,
+        "color": 7
+      },
+      "id": "1c0b3fc3-1117-4f4c-a510-3a8849aaf335",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        880,
+        1312
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "75d18d88-6ba6-43df-bef7-3e8ad99ad8bd",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              },
+              "leftValue": "={{ $json.should_stop }}",
+              "rightValue": ""
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d8e47bc2-2c04-4271-9d5c-f8c3f6505a50",
+      "name": "Is Depth Reached?",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        2000,
+        864
+      ],
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "90b3da00-dcd5-4289-bd45-953146a3b0ba",
+              "name": "all_learnings",
+              "type": "array",
+              "value": "={{ $json.all_learnings }}"
+            },
+            {
+              "id": "623dbb3d-83a1-44a9-8ad3-48d92bc42811",
+              "name": "all_urls",
+              "type": "array",
+              "value": "={{ $json.all_urls }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3709accc-eacd-445e-a237-1f943fa29f1a",
+      "name": "Get Research Results",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        2208,
+        864
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": {
+          "__rl": true,
+          "value": "1b582fe2-6406-80cc-a599-f3535e872dd2",
+          "mode": "list",
+          "cachedResultName": "n8n DeepResearch",
+          "cachedResultUrl": "https://www.notion.so/1b582fe2640680cca599f3535e872dd2"
+        },
+        "limit": 1,
+        "filterType": "manual",
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "key": "Request ID|rich_text",
+              "condition": "equals",
+              "richTextValue": "={{ $json.requestId.toString() }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d20d13cc-2c84-4d8a-8de3-885dd7d8fc9d",
+      "name": "Get Existing Row",
+      "type": "n8n-nodes-base.notion",
+      "position": [
+        1008,
+        864
+      ],
+      "typeVersion": 2.2,
+      "credentials": {
+        "notionApi": {
+          "id": "62MjEeirg4hzemTI",
+          "name": "Notion account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "update",
+        "pageId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $json.id }}"
+        },
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "Status|status",
+              "statusValue": "In progress"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9174f0ef-c84e-462b-8133-21b8cb28935c",
+      "name": "Set In-Progress",
+      "type": "n8n-nodes-base.notion",
+      "position": [
+        1200,
+        864
+      ],
+      "typeVersion": 2.2,
+      "credentials": {
+        "notionApi": {
+          "id": "62MjEeirg4hzemTI",
+          "name": "Notion account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "update",
+        "pageId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $('Get Existing Row1').first().json.id }}"
+        },
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "Status|status",
+              "statusValue": "Done"
+            },
+            {
+              "key": "Last Updated|date",
+              "date": "={{ $now.toISO() }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "2482054c-b5c7-464b-b8c0-01dfaceb6ec5",
+      "name": "Set Done",
+      "type": "n8n-nodes-base.notion",
+      "position": [
+        3728,
+        2288
+      ],
+      "executeOnce": true,
+      "typeVersion": 2.2,
+      "credentials": {
+        "notionApi": {
+          "id": "62MjEeirg4hzemTI",
+          "name": "Notion account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "tag",
+        "options": {}
+      },
+      "id": "f4aa859e-752b-4618-a6b4-11b8581b50f3",
+      "name": "Tags to Items",
+      "type": "n8n-nodes-base.splitOut",
+      "position": [
+        1984,
+        2288
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "mode": "markdownToHtml",
+        "markdown": "={{ $json.text }}",
+        "options": {
+          "tables": true
+        }
+      },
+      "id": "1d571f05-27c8-4576-b31f-898aa8c370f6",
+      "name": "Convert to HTML",
+      "type": "n8n-nodes-base.markdown",
+      "position": [
+        1664,
+        2288
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "851b8a3f-c2d3-41ad-bf60-4e0e667f6c58",
+              "name": "tag",
+              "type": "array",
+              "value": "={{ $json.data.match(/<table[\\s\\S]*?<\\/table>|<ul[\\s\\S]*?<\\/ul>|<[^>]+>[^<]*<\\/[^>]+>/g) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "57fb2701-41d5-48f8-940e-0801c4349ead",
+      "name": "HTML to Array",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1824,
+        2288
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.tag.trim() }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Convertis le HTML suivant en son équivalent de Bloc Notion selon le schéma API de Notion.\n* Assure-toi que le contenu est toujours inclus et reste le même.\n* Renvoie uniquement une réponse JSON.\n* Génère des blocs de niveau enfant. Ne définis pas de propriété \"parent\" ou \"children\".\n* Privilégie fortement les titres, paragraphes, tableaux et des blocs de listes.\n* Les titres disponibles sont heading_1, heading_2 et heading_3 - h4, h5, h6 doivent utiliser le type heading_3 à la place. Assure-toi que les titres utilisent la définition de texte enrichi.\n* Assure-toi que les blocs de listes incluent tous les éléments de la liste.\n\n## Exemples\n\n1. Titres\n```\n<h3 id=\"references\">References</h3>\n```\nse convertirait en\n```\n{\"object\":  \"block\", \"type\": \"heading_3\", \"heading_3\": { \"rich_text\": [{\"type\": \"text\",\"text\": {\"content\": \"References\"}}]}}\n```\n\n2. Listes\n```\n<ul><li>hello</li><li>world</li></ul>\n```\nse convertirait en\n```\n[\n{\n  \"object\": \"block\",\n  \"type\": \"bulleted_list_item\",\n  \"bulleted_list_item\": {\"rich_text\": [{\"type\": \"text\",\"text\": {\"content\": \"hello\"}}]}\n},\n{\n  \"object\": \"block\",\n  \"type\": \"bulleted_list_item\",\n  \"bulleted_list_item\": {\"rich_text\": [{\"type\": \"text\",\"text\": {\"content\": \"world\"}}]}\n}\n]\n```\n\n3. Tableaux\n```\n<table>\n  <thead>\n    <tr><th>Technology</th><th>Potential Impact</th></tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>5G Connectivity</td><td>Enables faster data speeds and advanced apps</td>\n    </tr>\n  </tbody>\n</table>\n```\nse convertirait en\n```\n{\n  \"object\": \"block\",\n  \"type\": \"table\",\n  \"table\": {\n    \"table_width\": 2,\n    \"has_column_header\": true,\n    \"has_row_header\": false,\n    \"children\": [\n      {\n        \"object\": \"block\",\n        \"type\": \"table_row\",\n        \"table_row\": {\n          \"cells\": [\n            [\n              {\n                \"type\": \"text\",\n                \"text\": {\n                  \"content\": \"Technology\",\n                  \"link\": null\n                }\n              },\n              {\n                \"type\": \"text\",\n                \"text\": {\n                  \"content\": \"Potential Impact\",\n                  \"link\": null\n                }\n              }\n            ],\n            [\n              {\n                \"type\": \"text\",\n                \"text\": {\n                  \"content\": \"5G Connectivity\",\n                  \"link\": null\n                }\n              },\n              {\n                \"type\": \"text\",\n                \"text\": {\n                  \"content\": \"Enables faster data speeds and advanced apps\",\n                  \"link\": null\n                }\n              }\n            ]\n          ]\n        }\n      }\n    ]\n  }\n}\n```\n\n4. Liens d'ancrage\nPuisque Notion ne prend pas en charge les liens d'ancrage, convertis-les simplement en blocs de texte enrichi à la place.\n```\n<a href=\"#module-0-pre-course-setup-and-learning-principles\">Module 0: Pre-Course Setup and Learning Principles</a>\n```\nse convertit en\n```\n{\n  \"object\": \"block\",\n  \"type\": \"paragraph\",\n  \"paragraph\": {\n    \"rich_text\": [\n      {\n        \"type\": \"text\",\n        \"text\": {\n          \"content\": \"Module 0: Pre-Course Setup and Learning Principles\"\n        }\n      }\n    ]\n  }\n}\n```\n\n5. Parties HTML invalides\nLorsque le HTML n'est pas syntaxiquement valide, par ex. des balises de fermeture orphelines, ignore simplement la conversion et utilise un bloc de texte enrichi vide.\n```\n</li>\\n</ol>\n```\npeut être remplacé par\n```\n{\n  \"object\": \"block\",\n  \"type\": \"paragraph\",\n  \"paragraph\": {\n    \"rich_text\": [\n      {\n        \"type\": \"text\",\n        \"text\": {\n          \"content\": \" \"\n        }\n      }\n    ]\n  }\n}\n```"
+            }
+          ]
+        }
+      },
+      "id": "4ee48340-403d-4461-9d3c-62f898cecd65",
+      "name": "Notion Block Generator",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "position": [
+        2144,
+        2288
+      ],
+      "typeVersion": 1.5
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "73fcb8a0-2672-4bd5-86de-8075e1e02baf",
+              "name": "=block",
+              "type": "array",
+              "value": "={{\n(function(){\n  const block = $json.text\n    .replace('```json', '')\n    .replace('```', '')\n    .trim()\n    .parseJson();\n  if (Array.isArray(block)) return block;\n  if (block.type.startsWith('heading_')) {\n    const prev = Number(block.type.split('_')[1]);\n    const next = Math.max(1, prev - 1);\n    if (next !== prev) {\n      block.type = `heading_${next}`;\n      block[`heading_${next}`] = Object.assign({}, block[`heading_${prev}`]);\n      block[`heading_${prev}`] = undefined;\n    }\n  }\n  return [block];\n})()\n}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "59119cce-e2d4-4ae0-8e03-a25e0a4e580b",
+      "name": "Parse JSON blocks",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        2464,
+        2288
+      ],
+      "executeOnce": false,
+      "typeVersion": 3.4,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://api.notion.com/v1/blocks/{{ $('Get Existing Row1').first().json.id }}/children",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "notionApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Notion-Version",
+              "value": "2022-06-28"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{\n{\n  \"children\": $json.block\n}\n}}",
+        "options": {
+          "timeout": "={{ 1000 * 60 }}"
+        }
+      },
+      "id": "55f3cbc1-c7aa-4e18-b9cc-130093c2f269",
+      "name": "Upload to Notion Page",
+      "type": "n8n-nodes-base.httpRequest",
+      "maxTries": 2,
+      "position": [
+        3728,
+        2448
+      ],
+      "retryOnFail": true,
+      "typeVersion": 4.2,
+      "waitBetweenTries": 3000,
+      "credentials": {
+        "notionApi": {
+          "id": "62MjEeirg4hzemTI",
+          "name": "Notion account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "content": "## 8. Recherche web et extraction de contenu avec [APIFY.com](https://www.apify.com?fpr=414q6)  \n[En savoir plus sur le nœud HTTP Request](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/)  \n\nJ’ai choisi de ne pas utiliser Firecrawl.ai en raison de son coût élevé et du fait qu’un crawler classique fonctionne tout aussi bien et plus rapidement.  \n\nÀ la place, j’utilise [APIFY.com](https://www.apify.com?fpr=414q6), un service de web scraping plus performant, rentable et fiable. Si vous préférez un autre service, vous pouvez bien sûr le remplacer.  \n\nC’est l’étape la plus passionnante pour tester des améliorations et optimisations : intégrer des sources internes, ajouter Perplexity.ai ou Jina.ai, etc. Les possibilités sont infinies !  \n",
+        "height": 740,
+        "width": 1180,
+        "color": 7
+      },
+      "id": "fab4404c-881d-48be-9106-42bda72e7e96",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1520,
+        1312
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## 5. Passer le rapport au statut \"En cours\"  \n[En savoir plus sur le nœud Notion](https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.notion/)  \n",
+        "height": 360,
+        "width": 460,
+        "color": 7
+      },
+      "id": "60a2e0cc-a33e-4789-927d-c7ecae7c483e",
+      "name": "Sticky Note6",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        896,
+        752
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## 9. Compiler les enseignements avec un modèle de raisonnement  \n[En savoir plus sur le nœud Basic LLM](https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.chainllm/)  \n\nUne fois les sources collectées, elles sont données à un LLM qui en extrait des \"enseignements\".  \n\nPour DeepResearcher, nous utilisons OpenAI’s o3-mini, un modèle de raisonnement plus performant que les modèles de chat classiques, grâce à son processus de \"chaîne de pensée\".  \n\nLes \"enseignements\" sont ensuite combinés avec l’objectif initial de recherche pour compléter une boucle.  \n",
+        "height": 580,
+        "width": 800,
+        "color": 7
+      },
+      "id": "46de9ee5-8b8b-4f69-8a0e-37627ccd39b1",
+      "name": "Sticky Note7",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2736,
+        1472
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": {
+          "__rl": true,
+          "value": "1b582fe2-6406-80cc-a599-f3535e872dd2",
+          "mode": "list",
+          "cachedResultName": "n8n DeepResearch",
+          "cachedResultUrl": "https://www.notion.so/1b582fe2640680cca599f3535e872dd2"
+        },
+        "limit": 1,
+        "filterType": "manual",
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "key": "Request ID|rich_text",
+              "condition": "equals",
+              "richTextValue": "={{ $json.requestId.toString() }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "92f73220-515d-455b-aad2-d639540c2fe4",
+      "name": "Get Existing Row1",
+      "type": "n8n-nodes-base.notion",
+      "position": [
+        1024,
+        2288
+      ],
+      "typeVersion": 2.2,
+      "credentials": {
+        "notionApi": {
+          "id": "62MjEeirg4hzemTI",
+          "name": "Notion account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## 10. Générer le rapport final avec les enseignements  \n[En savoir plus sur le nœud Basic LLM](https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.chainllm/)  \n\nEnfin ! Après avoir accumulé tous les enseignements – ce qui peut prendre plus d’une heure avec des paramètres élevés – ils sont donnés au LLM pour générer le rapport final au format markdown.  \nTechniquement, DeepResearch se termine ici, mais pour ce modèle, nous devons encore envoyer le rapport à Notion. Si vous n’utilisez pas Notion, vous pouvez ignorer les étapes suivantes.  \n",
+        "height": 540,
+        "width": 660,
+        "color": 7
+      },
+      "id": "f446d6b0-9685-4872-b03f-b282f3328b87",
+      "name": "Sticky Note8",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        896,
+        2096
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## 11. Reformater le rapport en blocs Notion  \n[En savoir plus sur le nœud Markdown](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.markdown/)  \n\nPour écrire notre rapport dans Notion, nous devons le convertir en \"blocs\", des objets JSON spécialisés requis par l’API Notion.  \n\nIl existe plusieurs manières de faire cette conversion sans IA, mais j’ai choisi de l’utiliser pour le fun.  \nDans cette étape, nous convertissons d’abord en HTML pour structurer sémantiquement le rapport et faciliter son parsing par le LLM.  \n",
+        "height": 540,
+        "width": 1060,
+        "color": 7
+      },
+      "id": "41d46de6-c759-42e1-9c61-1cd7ff1dec5c",
+      "name": "Sticky Note9",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1584,
+        2096
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## 13. Mettre à jour le rapport dans Notion  \n[En savoir plus sur le nœud HTTP Request](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/)  \n\nDans cette étape, nous utilisons l’API Notion pour ajouter les blocs au rapport de manière séquentielle.  \n\nNous utilisons une boucle pour gérer les évent",
+        "height": 580,
+        "width": 800,
+        "color": 7
+      },
+      "id": "fe8e99f2-63d3-42d6-a54d-d00e9292b843",
+      "name": "Sticky Note10",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        3264,
+        2096
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## 1. Lançons la recherche !  \n[En savoir plus sur le nœud de déclenchement de formulaire](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.formtrigger)  \n\nLes formulaires n8n sont un excellent moyen de mettre rapidement en place une interface frontend. Comparés à une simple conversation, ils offrent une expérience utilisateur bien plus intuitive pour la saisie des données.  \n",
+        "height": 560,
+        "width": 680,
+        "color": 7
+      },
+      "id": "e621a5b8-09ab-452d-ad32-7b8b3f3055f8",
+      "name": "Sticky Note11",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        208,
+        16
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=## Contexte\nTu es un chercheur expert et perspicace.\n\n* Étant donné le prompt suivant de l'utilisateur, rédige un rapport final sur le sujet en utilisant les enseignements tirés de la recherche.\n* Fais-le aussi détaillé que possible, vise au minium 3 pages ou plus (pas de limite), inclus TOUS les enseignements de la recherche.\n* Formate le rapport en markdown. Utilise des titres, des listes et des tableaux uniquement et lorsque c'est approprié.\n\n<prompt>{{ $('JobType Router').first().json.data.query }}</prompt>\n\nVoici tous les enseignements des recherches précédentes :\n\n<learnings>\n{{\n$('JobType Router').first().json.data\n  .all_learnings\n  .map(item => `<learning>${item}</learning>`)  \n  .join('\\n')\n}}\n</learnings>"
+      },
+      "id": "b955dede-2add-41e7-a91d-9262575e5391",
+      "name": "DeepResearch Report",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "position": [
+        1184,
+        2288
+      ],
+      "typeVersion": 1.5
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Étant donné les contenus suivants d'une recherche SERP pour la requête: \n<query>{{ $('Item Ref').first().json.query }}</query>, génère une liste d'enseignements tirés des contenus. Renvoie un maximum de 3 enseignements, mais n'hésite pas à en renvoyer moins si les contenus sont clairs. Assure-toi que chaque enseignement est unique et pas similaire aux autres. Les enseignements doivent être concis et précis, aussi détaillés et denses en informations que possible. Assure-toi d'inclure toutes les entités comme les personnes, lieux, entreprises, produits, choses, etc. dans les enseignements, ainsi que toutes les métriques exactes, chiffres ou dates. Ces enseignements seront utilisés pour approfondir la recherche sur le sujet.\n\n<contents>\n{{\n$input\n  .all()\n  .map(item =>`<content>\\n${item.json.markdown.substr(0, 25_000)}\\n</content>`)\n  .join('\\n')\n}}\n</contents>",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "type": "HumanMessagePromptTemplate",
+              "message": "=## Contexte\nTu es un chercheur expert. Aujourd'hui nous sommes le {{ $now.toLocaleString() }}. Suis ces instructions lorsque tu réponds :\n\n- On peut te demander de rechercher des sujets postérieurs à ta date limite de connaissance, suppose que l'utilisateur a raison lorsqu'il présente une actualité.\n- L'utilisateur est un analyste hautement expérimenté, inutile de simplifier, sois aussi détaillé que possible et assure-toi que ta réponse est correcte.\n- Sois très organisé.\n- Suggère des solutions auxquelles je n'ai pas pensé.\n- Sois proactif et anticipe mes besoins.\n- Traite-moi comme un expert dans tous les domaines.\n- Les erreurs érodent ma confiance, sois donc précis et rigoureux.\n- Fournis des explications détaillées, je suis à l'aise avec beaucoup de détails.\n- Privilégie les bons arguments aux sources d'autorité, la provenance de l'information est secondaire.\n- Prends en compte les nouvelles technologies et les idées contraires à la sagesse conventionnelle, pas seulement l'opinion majoritaire.\n- Tu peux faire des spéculations ou prédictions de haut niveau, signale-les moi simplement.\n- Effectue des recherches principalement dans des sources françaises, mais n'hésites pas à consulter des sources internationales et les traduires (suivant le besoin et le sujet)."
+            }
+          ]
+        }
+      },
+      "id": "f2571334-caa3-4d37-a2fa-8808ff3557f9",
+      "name": "DeepResearch Learnings",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "position": [
+        3008,
+        1712
+      ],
+      "executeOnce": true,
+      "typeVersion": 1.5
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $workflow.id }}"
+        },
+        "workflowInputs": {
+          "value": {
+            "data": "={{\n{\n  ...Object.assign({}, $json),\n  query: $('JobType Router').first().json.data.query\n}\n}}",
+            "jobType": "deepresearch_report",
+            "requestId": "={{ $('JobType Router').first().json.requestId }}"
+          },
+          "schema": [
+            {
+              "id": "requestId",
+              "display": true,
+              "required": false,
+              "displayName": "requestId",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "jobType",
+              "type": "string",
+              "display": true,
+              "required": false,
+              "displayName": "jobType",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "data",
+              "type": "object",
+              "display": true,
+              "required": false,
+              "displayName": "data",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            }
+          ],
+          "mappingMode": "defineBelow",
+          "matchingColumns": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {
+          "waitForSubWorkflow": false
+        }
+      },
+      "id": "8b0154bf-2747-43b0-bcbc-f2069e3ae2aa",
+      "name": "Generate Report",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "position": [
+        2528,
+        864
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $workflow.id }}"
+        },
+        "workflowInputs": {
+          "value": {
+            "data": "={{ $json }}",
+            "jobType": "deepresearch_learnings",
+            "requestId": "={{ $('JobType Router').first().json.requestId }}"
+          },
+          "schema": [
+            {
+              "id": "requestId",
+              "display": true,
+              "removed": false,
+              "required": false,
+              "displayName": "requestId",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "jobType",
+              "type": "string",
+              "display": true,
+              "removed": false,
+              "required": false,
+              "displayName": "jobType",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "data",
+              "type": "object",
+              "display": true,
+              "removed": false,
+              "required": false,
+              "displayName": "data",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            }
+          ],
+          "mappingMode": "defineBelow",
+          "matchingColumns": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "mode": "each",
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "id": "dcd6c774-854c-4067-9d3f-b6b4a87ba36d",
+      "name": "Generate Learnings",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "position": [
+        1664,
+        864
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldType": "html",
+              "html": "=<a href=\"{{ $json.url }}\" style=\"text-decoration:none\" target=\"_blank\">\n<div style=\"display:flex;text-align:left;font-family:sans-serif;\">\n  <div style=\"width:150px;height:150px;padding:12px;\">\n    <img src=\"https://res.cloudinary.com/daglih2g8/image/upload/f_auto,q_auto/v1/n8n-workflows/cajjymprexcoesu4gg9g\" width=\"100%\" />\n  </div>\n  <div style=\"width:100%;padding:12px;\">\n    <div style=\"font-size:14px;font-weight:700\">{{ $json.name }}</div>\n    <div style=\"font-size:12px;color:#666\">\n      {{ $json.property_description }}\n    </div>\n  </div>\n</div>\n</a>"
+            }
+          ]
+        },
+        "options": {
+          "formTitle": "DeepResearcher",
+          "formDescription": "=<img\n  src=\"https://res.cloudinary.com/daglih2g8/image/upload/f_auto,q_auto/v1/n8n-workflows/o4wqztloz3j6okfxpeyw\"\n  width=\"100%\"\n  style=\"border:1px solid #ccc\"\n/>\n<p style=\"text-align:left\">\n<strong style=\"display:block;font-family:sans-serif;font-weight:700;font-size:16px;margin-top:12px;margin-bottom:0;\">Rapport en cours de construction !</strong>\n<br/>\nDeepResearcher travaillera désormais de manière indépendante pour mener la recherche et le rapport sera disponible sur la page Notion suivante.\n<br/><br/>\nMerci de cliquer sur le bouton pour terminer.\n</p>\n<hr style=\"display:block;margin-top:16px;margin-bottom:0\" />",
+          "buttonLabel": "Done"
+        }
+      },
+      "id": "db02016c-e0f1-4c17-9e60-0755b322a742",
+      "name": "Confirmation",
+      "type": "n8n-nodes-base.form",
+      "position": [
+        2816,
+        272
+      ],
+      "webhookId": "3b827305-3ce7-403b-baf5-b73440d93f84",
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "f68cefe0-e109-4d41-9aa3-043f3bc6c449",
+              "operator": {
+                "type": "string",
+                "operation": "notExists",
+                "singleValue": true
+              },
+              "leftValue": "={{ $json.error }}",
+              "rightValue": ""
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "76597001-d307-4dae-b145-481fde91d729",
+      "name": "Valid Blocks",
+      "type": "n8n-nodes-base.filter",
+      "position": [
+        2784,
+        2288
+      ],
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "content": "## 12. Ajouter la liste des sources URL  \n[En savoir plus sur le nœud Code](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.code/)  \n\nPour les URLs sources, nous allons composer manuellement les blocs Notion, car elles sont souvent nombreuses. Ensuite, nous les ajoutons à la fin des autres blocs.  \n",
+        "height": 580,
+        "width": 580,
+        "color": 7
+      },
+      "id": "9b964f00-c12a-4f7f-b2af-ae388e944a60",
+      "name": "Sticky Note12",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2656,
+        2096
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {},
+      "id": "a5e6ed02-59ff-45f9-a77a-957595b70968",
+      "name": "Append Blocks",
+      "type": "n8n-nodes-base.merge",
+      "position": [
+        3040,
+        2448
+      ],
+      "typeVersion": 3
+    },
+    {
+      "parameters": {
+        "jsCode": "const urls = Object.values($('JobType Router').first().json.data.all_urls\n  .reduce((acc, url) => ({ ...acc, [url]: url }),{}));\nconst chunksize = 50;\nconst splits = Math.max(1, Math.floor(urls.length/chunksize));\n\nconst blocks = Array(splits).fill(0)\n  .map((_, idx) => {\n    const block = urls\n      .slice(\n        idx * chunksize, \n        (idx * chunksize) + chunksize - 1\n      )\n      .map(url => {\n        return {\n          object: \"block\",\n          type: \"bulleted_list_item\",\n          bulleted_list_item: {\n            rich_text: [\n              { type: \"text\", text: { content: url } }\n            ]\n          }\n        }\n      });\n    return { json: { block } }\n  });\n\nreturn [\n  { json: {\n    block:[{\n      \"object\": \"block\",\n      \"type\": \"heading_2\",\n      \"heading_2\": {\n        \"rich_text\": [\n          {\n            \"type\": \"text\",\n            \"text\": {\n              \"content\": \"Sources\"\n            }\n          }\n        ]\n      }\n    }]\n  } },\n  ...blocks\n];"
+      },
+      "id": "6ec571ee-3bd1-46a9-be9e-eb61e9dcfbe0",
+      "name": "URL Sources to Lists",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        2784,
+        2448
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1de40158-338b-4db3-9e22-6fd63b21f825",
+              "name": "ResearchGoal",
+              "type": "string",
+              "value": "={{ $('Item Ref').first().json.researchGoal }}"
+            },
+            {
+              "id": "9f59a2d4-5e5a-4d0b-8adf-2832ce746f0f",
+              "name": "learnings",
+              "type": "array",
+              "value": "={{ [] }}"
+            },
+            {
+              "id": "972ab5f5-0537-4755-afcb-d1db4f09ad60",
+              "name": "followUpQuestions",
+              "type": "array",
+              "value": "={{ [] }}"
+            },
+            {
+              "id": "90cef471-76b0-465d-91a4-a0e256335cd3",
+              "name": "urls",
+              "type": "array",
+              "value": "={{ [] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "6c0cf5f2-1005-4f2c-81db-58ea6ce9328b",
+      "name": "Empty Response",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        2496,
+        1856
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "1ef1039a-4792-47f9-860b-d2ffcffd7129",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty",
+                "singleValue": true
+              },
+              "leftValue": "={{ $json }}",
+              "rightValue": ""
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ff035d74-5769-4f5a-b369-490118567cd6",
+      "name": "Has Content?",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        2336,
+        1712
+      ],
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "content": "\n### 🚫 Autre solution que les formulaires ?  \nN’hésitez pas à remplacer cette approche par un chat ou même des webhooks pour mieux s’adapter à vos flux de travail existants.  \n",
+        "height": 140,
+        "width": 300,
+        "color": 5
+      },
+      "id": "31cd4fd8-b00f-43d1-bb23-1eb1a3893d0f",
+      "name": "Sticky Note13",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        224,
+        416
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "### 🚏 Le modèle d’événement en sous-workflow  \nSi vous débutez avec n8n, cette technique avancée peut nécessiter des explications. En résumé, nous utilisons des sous-workflows pour exécuter différentes parties de notre workflow **DeepResearcher** comme des exécutions distinctes.  \n\n✅ Indispensable pour implémenter le mécanisme de boucle récursive nécessaire à ce workflow.  \n✅ Évite d’avoir à diviser ce workflow en plusieurs modèles distincts.  \n✅ Excellente approche pour optimiser les performances des workflows",
+        "height": 80,
+        "width": 460,
+        "color": 5
+      },
+      "id": "42905428-aeff-4eb0-b91c-4de0c3ceebb0",
+      "name": "Sticky Note14",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        160,
+        1216
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "### 🔁 Boucle récursive  \nLa boucle récursive implémentée dans ce workflow repose sur une technique avancée de liaison des éléments.  \nElle fonctionne en contrôlant précisément quels nœuds s'exécutent une seule fois et lesquels s'exécutent pour chaque élément.  \n\n⚠️ Faites attention lors de la suppression de nœuds ! Avant de remplacer un nœud, vérifiez bien ses paramètres pour vous assurer que les réglages correspondent.  \n",
+        "height": 260,
+        "width": 340,
+        "color": 5
+      },
+      "id": "194f7abb-c11a-42bd-8b2b-b65203d77b86",
+      "name": "Sticky Note15",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2768,
+        624
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "id": "bb6e823f-6ba6-4cdf-b334-e838124b090d",
+      "name": "Combine & Send back to Loop",
+      "type": "n8n-nodes-base.aggregate",
+      "position": [
+        1824,
+        1552
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "d0c8f01a-b267-42dc-9a52-90e0aa492977",
+      "name": "For Each Block...",
+      "type": "n8n-nodes-base.splitInBatches",
+      "position": [
+        3488,
+        2288
+      ],
+      "typeVersion": 3
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "f44691e4-f753-47b0-b66a-068a723b6beb",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              },
+              "leftValue": "={{ $json.crawl.requestStatus }}",
+              "rightValue": "handled"
+            },
+            {
+              "id": "8e05df2b-0d4a-47da-9aab-da7e8907cbca",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              },
+              "leftValue": "={{ $json.markdown }}",
+              "rightValue": ""
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9ef1cd38-b86c-4f97-a640-15d12b2b53d6",
+      "name": "Valid Results",
+      "type": "n8n-nodes-base.filter",
+      "position": [
+        2176,
+        1712
+      ],
+      "typeVersion": 2.2,
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.apify.com/v2/acts/apify~rag-web-browser/run-sync-get-dataset-items",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "memory",
+              "value": "4096"
+            },
+            {
+              "name": "timeout",
+              "value": "180"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "query",
+              "value": "={{\n`${$json.query} -filetype:pdf (-site:tiktok.com OR -site:instagram.com OR -site:youtube.com OR -site:linkedin.com OR -site:reddit.com)`\n}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8e978cac-6119-4077-98fb-5766da3c70de",
+      "name": "RAG Web Browser",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        2000,
+        1712
+      ],
+      "typeVersion": 4.2,
+      "retryOnFail": true,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Ykhn9noDklAoUKJu",
+          "name": "Apify Key"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c41592db-f9f0-4228-b6d8-0514c9a21fca",
+              "name": "markdown",
+              "type": "string",
+              "value": "={{ $json.markdown }}"
+            },
+            {
+              "id": "5579a411-94dc-4b10-a276-24adf775be1d",
+              "name": "url",
+              "type": "string",
+              "value": "={{ $json.searchResult.url }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "048fbb74-8e17-4789-96a8-8b497e8cae37",
+      "name": "Get Markdown + URL",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        2816,
+        1712
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "What would you like to research?",
+              "fieldType": "textarea",
+              "requiredField": true
+            },
+            {
+              "fieldType": "html",
+              "html": "<div class=\"form-group\" style=\"margin-bottom:16px;\">\n  <label class=\"form-label\" for=\"depth\">\n    Enter research depth (Default 1)\n  </label>\n  <p style=\"font-size:12px;color:#666;text-align:left\">\n    This value determines how many sub-queries to generate.\n  </p>\n  <input\n    class=\"form-input\"\n    type=\"range\"\n    id=\"depth\"\n    name=\"depth\"\n    value=\"1\"\n    step=\"1\"\n    max=\"3\"\n    min=\"0\"\n    list=\"depth-markers\"\n    onChange=\"document.querySelector(`input[name='field-4']`).value = this.value\"\n\n  >\n  <datalist\n    id=\"depth-markers\"\n    style=\"display: flex;\n    flex-direction: row;\n    justify-content: space-between;\n    writing-mode: horizontal-tb;\n    margin-top: -10px;\n    text-align: center;\n    font-size: 10px;\n    margin-left: 16px;\n    margin-right: 16px;\"\n  >\n    <option style=\"padding:0\" value=\"0\" label=\"0\"></option>\n    <option style=\"padding:0\" value=\"1\" label=\"1\"></option>\n    <option style=\"padding:0\" value=\"2\" label=\"2\"></option>\n    <option style=\"padding:0\" value=\"3\" label=\"3\"></option>\n  </datalist>\n</div>"
+            },
+            {
+              "fieldType": "html",
+              "html": "<div class=\"form-group\" style=\"margin-bottom:16px;\">\n  <label class=\"form-label\" for=\"breadth\">\n    Enter research breadth (Default 2)\n  </label>\n  <p style=\"font-size:12px;color:#666;text-align:left\">\n    This value determines how many sources to explore.\n  </p>\n  <input\n    class=\"form-input\"\n    type=\"range\"\n    id=\"breadth\"\n    name=\"breadth\"\n    value=\"2\"\n    step=\"1\"\n    max=\"5\"\n    min=\"1\"\n    list=\"breadth-markers\"\n    onChange=\"document.querySelector(`input[name='field-5']`).value = this.value\"\n  >\n  <datalist\n    id=\"breadth-markers\"\n    style=\"display: flex;\n    flex-direction: row;\n    justify-content: space-between;\n    writing-mode: horizontal-tb;\n    margin-top: -10px;\n    text-align: center;\n    font-size: 10px;\n    margin-left: 16px;\n    margin-right: 16px;\"\n  >\n    <option value=\"1\" label=\"1\"></option>\n    <option value=\"2\" label=\"2\"></option>\n    <option value=\"3\" label=\"3\"></option>\n    <option value=\"4\" label=\"4\"></option>\n    <option value=\"5\" label=\"5\"></option>\n  </datalist>\n</div>\n\n"
+            },
+            {
+              "fieldLabel": "={{ \"\" }}",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "=I understand higher depth and breath values I've selected may incur longer wait times and higher costs. I acknowledging this and wish to proceed with the research request."
+                  }
+                ]
+              },
+              "multiselect": true,
+              "requiredField": true
+            },
+            {
+              "fieldName": "depth",
+              "fieldType": "hiddenField",
+              "fieldValue": "1"
+            },
+            {
+              "fieldName": "breadth",
+              "fieldType": "hiddenField",
+              "fieldValue": "2"
+            }
+          ]
+        },
+        "options": {
+          "formTitle": "DeepResearcher",
+          "formDescription": "=<img\n  src=\"https://res.cloudinary.com/daglih2g8/image/upload/f_auto,q_auto/v1/n8n-workflows/o4wqztloz3j6okfxpeyw\"\n  width=\"100%\"\n  style=\"border:1px solid #ccc\"\n/>"
+        }
+      },
+      "id": "9fc8ca3f-5cfd-4e89-9866-abc94adcce52",
+      "name": "Research Request",
+      "type": "n8n-nodes-base.form",
+      "position": [
+        544,
+        432
+      ],
+      "webhookId": "63a5a0d0-9676-41b3-b653-5e277314f3d9",
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Que souhaitez vous rechercher ?",
+              "fieldType": "textarea",
+              "placeholder": "Décrire en quelques mots le sujet de la recherche",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Profondeur de recherche  (1 par défaut)",
+              "fieldType": "number",
+              "placeholder": "min:0, max:3",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Etendue de la recherche  (2 par défaut)",
+              "fieldType": "number",
+              "placeholder": "min:1, max:5",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "={{ \"\" }}",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "=Attention des valeurs plus élevées peuvent entrainer un temps de recherche et un cout plus long !"
+                  }
+                ]
+              },
+              "multiselect": true,
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "formTitle": "DeepResearcher",
+          "formDescription": "=<img\n  src=\"https://res.cloudinary.com/daglih2g8/image/upload/f_auto,q_auto/v1/n8n-workflows/o4wqztloz3j6okfxpeyw\"\n  width=\"100%\"\n  style=\"border:1px solid #ccc\"\n/>"
+        }
+      },
+      "id": "ba0b91bd-7094-4d1e-ab1b-0f44d164cc63",
+      "name": "Research Request1",
+      "type": "n8n-nodes-base.form",
+      "position": [
+        480,
+        224
+      ],
+      "webhookId": "71fc0356-29ff-4f00-9c71-2a337f5a544c",
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "model": "google/gemini-2.5-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        2144,
+        2448
+      ],
+      "id": "5e74619c-f07d-4720-ab3d-6b385d79eb99",
+      "name": "gemini 2.5 flash",
+      "credentials": {
+        "openRouterApi": {
+          "id": "zb2293xtkSB2aBnr",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "openai/o3-mini",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        1008,
+        384
+      ],
+      "id": "38947a30-a943-49ec-bbdf-3666c12d411c",
+      "name": "o3 mini",
+      "credentials": {
+        "openRouterApi": {
+          "id": "zb2293xtkSB2aBnr",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "openai/o3-mini",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        2016,
+        416
+      ],
+      "id": "9eff4c0f-7a4b-4973-adbb-180374bcf561",
+      "name": "o3 mini1",
+      "credentials": {
+        "openRouterApi": {
+          "id": "zb2293xtkSB2aBnr",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "openai/o3-mini",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        1008,
+        1664
+      ],
+      "id": "2916b5ac-468a-4055-af32-7a1b1d640c5b",
+      "name": "o3 mini2",
+      "credentials": {
+        "openRouterApi": {
+          "id": "zb2293xtkSB2aBnr",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "openai/o3-mini",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        3008,
+        1872
+      ],
+      "id": "f5c5b9d5-d06c-4d8e-b3e3-c685ee47ff40",
+      "name": "o3 mini3",
+      "credentials": {
+        "openRouterApi": {
+          "id": "zb2293xtkSB2aBnr",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "openai/o3-mini",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        1184,
+        2448
+      ],
+      "id": "3045a57c-3cad-4a8a-84c6-097c485ef0be",
+      "name": "o3 mini4",
+      "credentials": {
+        "openRouterApi": {
+          "id": "zb2293xtkSB2aBnr",
+          "name": "OpenRouter account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-03-05T21:05:21.652Z",
+      "createdAt": "2026-03-05T21:05:21.652Z",
+      "role": "workflow:owner",
+      "workflowId": "kB8dREJhSvBcYtLF",
+      "projectId": "TBUFy0KozocPEXEX"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-03-05T21:14:09.235Z",
+  "versionId": "3c138790-7942-4f89-a59f-9cdc38a9f3be"
+}
