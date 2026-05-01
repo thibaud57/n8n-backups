@@ -423,17 +423,6 @@
   },
   "activeVersionId": "111695e4-7efc-4eb0-b8b4-5e99e674dc6c",
   "connections": {
-    "Claude Sonnet 4.5": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Mapping": {
       "main": [
         [
@@ -546,6 +535,28 @@
           }
         ]
       ]
+    },
+    "MCP Notion": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Claude Sonnet 4.6": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-11-11T12:54:42.910Z",
@@ -556,26 +567,6 @@
   },
   "name": "Pipeline Leads To TickTick",
   "nodes": [
-    {
-      "parameters": {
-        "model": "anthropic/claude-sonnet-4.5",
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
-      "typeVersion": 1,
-      "position": [
-        560,
-        -320
-      ],
-      "id": "4e0d4759-32a6-4895-adf1-aecfcaac910b",
-      "name": "Claude Sonnet 4.5",
-      "credentials": {
-        "openRouterApi": {
-          "id": "zb2293xtkSB2aBnr",
-          "name": "OpenRouter account"
-        }
-      }
-    },
     {
       "parameters": {
         "authentication": "tickTickOAuth2Api",
@@ -599,7 +590,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const lead = $input.first().json;\n\n// Nettoyer les notes\nconst cleanedNotes = (lead.Notes || '')\n  .replace(/\\n/g, ' ')\n  .replace(/\\r/g, '')\n  .replace(/\\t/g, ' ')\n  .replace(/\"/g, '\\\\\"')\n  .replace(/\\\\/g, '\\\\\\\\')\n  .trim();\n\nreturn {\n  name: lead['Nom Contact'],\n  poste: lead.Poste,\n  statut: lead.Statut,\n  nextStep: lead['Next Step'],\n  interet: lead['Intérêt'],\n  dateProchainMessage: lead['Date Prochain Message']?.start,\n  notes: cleanedNotes\n};"
+        "jsCode": "const PROSPECTION_PROJECT_ID = '69812a3347f00dd54ba8333b';\nconst lead = $input.first().json;\n\nreturn {\n  PROSPECTION_PROJECT_ID,\n  name: lead['Nom Contact'],\n  poste: lead.Poste,\n  statut: lead.Statut,\n  nextStep: lead['Next Step'],\n  interet: lead['Intérêt'],\n  dateProchainMessage: lead['Date Prochain Message']?.start,\n  notes: lead['Notes']\n};"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -658,7 +649,7 @@
         "authentication": "tickTickOAuth2Api",
         "resource": "project",
         "operation": "get",
-        "projectId": "66ba4bbedb643ca0adb34ab0",
+        "projectId": "={{ $json.projectId }}",
         "projectData": true
       },
       "type": "n8n-nodes-ticktick.tickTick",
@@ -694,7 +685,7 @@
       "parameters": {
         "authentication": "tickTickOAuth2Api",
         "operation": "update",
-        "projectId": "66ba4bbedb643ca0adb34ab0",
+        "projectId": "={{ $('Mapping').item.json.PROSPECTION_PROJECT_ID }}",
         "taskId": "={{ $json.id }}",
         "title": "={{ $('Format').item.json.title }}",
         "additionalFields": {
@@ -753,7 +744,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// Déclaration des constantes\nconst TRAVAIL_PROJECT_ID = '66ba4bbedb643ca0adb34ab0';\nconst value = $('Mapping').first().json;\nconst output = $input.first().json.output;\n\n// Format content\nconst content = `\nMessage suggéré:\n\n${output.message}\n\n---\n\nNotes:\n\n${value.notes}\n`;\n\nreturn {\n  projectId: TRAVAIL_PROJECT_ID,\n  title: `${output.title}: ${value.name}`,\n  content: content.trim(),\n  startDate: `${value.dateProchainMessage}`,\n  tags: [\"🤖Auto\", \"🕒-5mn\"],\n};"
+        "jsCode": "// Déclaration des constantes\nconst value = $('Mapping').first().json;\nconst output = $input.first().json.output;\n\n// Format content\nconst content = `\nMessage suggéré:\n\n${output.message}\n\n---\n\nNotes:\n\n${value.notes}\n`;\n\nreturn {\n  projectId: $('Mapping').first().json.PROSPECTION_PROJECT_ID,\n  title: `${output.title}: ${value.name}`,\n  content: content.trim(),\n  startDate: `${value.dateProchainMessage}`,\n  tags: [\"🤖Auto\", \"🕒-5mn\"],\n};"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -800,10 +791,10 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "=Nom Contact: {{ $('Mapping').item.json.name }}\nPoste: {{ $('Mapping').item.json.poste }}\nStatut: {{ $('Mapping').item.json.statut }}\nNext Step: {{ $('Mapping').item.json.nextStep }}\nIntéret: {{ $('Mapping').item.json.interet }}\nDate Prochain Message: {{ $('Mapping').item.json.dateProchainMessage }}\nNotes: {{ $('Mapping').item.json.notes }}",
+        "text": "=Id: {{ $('Notion Trigger').item.json.id }}\nNom Contact: {{ $('Mapping').item.json.name }}\nPoste: {{ $('Mapping').item.json.poste }}\nStatut: {{ $('Mapping').item.json.statut }}\nNext Step: {{ $('Mapping').item.json.nextStep }}\nIntéret: {{ $('Mapping').item.json.interet }}\nDate Prochain Message: {{ $('Mapping').item.json.dateProchainMessage }}\nNotes: {{ $('Mapping').item.json.notes }}",
         "hasOutputParser": true,
         "options": {
-          "systemMessage": "=Tu es un assistant spécialisé dans la rédaction de messages professionnels pour du networking B2B et recherche d'opportunités.\n\n# Contexte\nL'utilisateur maintient un CRM de leads professionnels dans Notion. Chaque lead a un statut, un niveau d'intérêt, et des notes contextuelles. Tu dois générer un message de relance adapté au contexte.\n\n# Données du lead\nLes informations suivantes te sont fournies :\n- Nom du contact\n- Poste occupé\n- Statut actuel de la relation\n- Prochaine action prévue (Next Step)\n- Niveau d'intérêt\n- Date du prochain message\n- Notes contextuelles (historique des échanges, contexte métier, informations clés)\n\n# Règles de rédaction\n\n## Ton et vouvoiement/tutoiement\n- Analyse les notes pour détecter le ton établi dans les échanges précédents\n- Si les Notes sont vides ou absentes : adapte le message en conséquence (premier contact neutre, pas de références à des échanges passés)\n- Si aucun historique : vouvoie par défaut les postes C-level (CEO, CTO, CFO, etc.), tutoie les autres\n- Utilise le prénom uniquement (sauf si les notes indiquent un contexte très formel)\n\n## Structure du message\n- Court et direct (3-5 phrases maximum)\n- Commence par un contexte minimal si nécessaire\n- Une question claire ou un CTA précis\n- Signature simple (prénom uniquement)\n\n## Adaptation au contexte\nAnalyse le statut, le next step, l'intérêt et la date de la prochaine tâche pour adapter le ton, le contenu du message et son titre.\n\n### Statut de la relation\n- **🆕 Nouveau** : premier message, propose un échange pour se connaître\n- **💬 Discussion** : continue la conversation naturellement en référençant les échanges précédents\n- **📅 RDV planifié** : confirme le RDV ou relance si la date approche\n- **✅ Deal** : message de suivi post-deal (onboarding, start date, collaboration, etc.)\n- **❌ Perdu** : maintien la relation pour opportunités futures\n- **🧊 Stand-by** : relance douce après une période d'inactivité, donne une porte de sortie facile\n\n### Prochaine action (Next Step)\n- **📧 DM/Email à envoyer** : propose une prochaine étape concrète (call, échange, meeting)\n- **🤝 LinkedIn à connecter** : message de connexion personnalisé avec contexte\n- **📞 Call à booker** : propose des créneaux ou demande disponibilité\n- **⏳ En attente** : relance douce sur l'avancement sans être pressant\n- **✅ Fait** : message de suivi ou remerciement si pertinent\n- **❌ Pas pertinent** : message de clôture courtois et professionnel\n\n### Niveau d'intérêt\n- **🔥 Hot** : montre de l'enthousiasme et de la réactivité sans être lourd\n- **🟡 Warm** : reste professionnel et courtois, ton équilibré\n- **❄️ Cold** : sois bref, direct, et donne une porte de sortie facile\n- **❓ Unknown** : approche neutre et professionnelle, jauge l'intérêt\n\n### Date\n- **Si une date d'événement est mentionnée dans les Notes** (ex: \"RDV le 18/11\", \"Repas mardi 18\"), compare-la avec la Date Prochain Message pour adapter le timing du message\nExemples :\n  - Date Prochain Message : 17/11, Notes : \"Repas le 18\" → Message : \"à demain\" ou \"pour demain\"\n  - Date Prochain Message : 15/11, Notes : \"RDV le 18\" → Message : \"dans 3 jours\" ou \"mercredi prochain\"\n  - Date Prochain Message : 18/11, Notes : \"Call le 18\" → Message : \"aujourd'hui\" ou \"ce matin/cet après-midi\"\n- Si aucune date précise n'est dans les Notes, reste vague sur le timing\n\n## Style\n- Authentique, pas corporate\n- Pas de formules creuses (\"J'espère que ce message vous trouve bien\")\n- Pas de sur-motivation (\"Je serais ravi de...\", \"Ce serait un honneur...\")\n- Évite les points d'exclamation excessifs et les émojis\n- Utilise les informations des notes pour personnaliser (références à des échanges précédents, contexte métier, etc.)\n- Signe avec mon prénom (Thibaud)\n\n## Titre du message\nLe titre doit être **strictement choisi** parmi cette liste selon le Next Step :\n\n| Next Step | Titre à utiliser |\n|-----------|------------------|\n| 📧 DM/Email à envoyer (Statut 🆕 Nouveau) | **Premier contact** |\n| 📧 DM/Email à envoyer (autres statuts) | **Relance** |\n| 🤝 LinkedIn à connecter | **Demande de connexion** |\n| 📞 Call à booker | **Proposition de call** |\n| ⏳ En attente | **Relance** |\n| ✅ Fait | **Suivi** |\n| ❌ Pas pertinent | **Clôture** |\n\n**IMPORTANT : N'invente pas de titre, utilise uniquement ceux de la liste ci-dessus.**\n\n# Format de sortie\nFournis ta réponse en JSON uniquement :\n```json\n{\n  \"title\": \"Le titre du message\",\n  \"message\": \"Le contenu du message prêt à copier-coller\"\n}\n```\n\nPas d'introduction ni explication supplémentaire."
+          "systemMessage": "=Tu es un assistant spécialisé dans la rédaction de messages professionnels pour du networking B2B et recherche d'opportunités.\n\n# Contexte\nL'utilisateur maintient un CRM de leads professionnels dans Notion. Chaque lead a un statut, un niveau d'intérêt, et un body de page enrichi qui contient le contexte narratif (mission, timeline des échanges, prochaine action). Tu dois générer un message de relance adapté au contexte.\n\n**Important** : Le contenu narratif vit dans le **body de la fiche Notion** (sections `📋 Mission`, `📅 Timeline`, `🎯 Contexte & Prochaine action`). Le champ `Notes` est désormais une **1-ligne de marqueurs forts** (~150 caractères, séparés par ` | `) qui sert d'aperçu rapide, **pas de récit**. Ta source de vérité narrative est le body de la page, à récupérer via MCP.\n\n# Workflow d'exécution (obligatoire)\n\n1. **Lis d'abord la page Notion via MCP** : appelle l'outil MCP `notion-fetch` avec l'`id` de la page Lead fourni en input. Tu récupères le body markdown complet (sections `📋 Mission`, `📅 Timeline`, `🎯 Contexte & Prochaine action`).\n2. **Combine** ce contexte enrichi avec les propriétés DB (Statut, Intérêt, Next Step, Notes 1-ligne, Date Prochain Message, Poste, Nom Contact).\n3. **Rédige** le message en respectant les règles ci-dessous.\n\nSi le fetch échoue ou que la page n'a pas de body, fallback sur les Notes 1-ligne uniquement et signale-le implicitement (message plus générique).\n\n# Données du lead (input)\n- `id` : ID Notion de la page Lead (à utiliser pour le fetch)\n- `Nom Contact`, `Poste`, `Statut`, `Next Step`, `Intérêt`\n- `Date Prochain Message`\n- `Notes` : 1-ligne marqueurs forts (aperçu, pas récit)\n\n# Règles de rédaction\n\n## Ton et vouvoiement/tutoiement\n- Analyse la `📅 Timeline` et le `🎯 Contexte` du body pour détecter le ton établi dans les échanges précédents (verbatim user-paste — fiable)\n- Si le body est minimal ou inexistant : premier contact neutre, pas de références à des échanges passés\n- Si aucun historique : vouvoie par défaut les postes C-level (CEO, CTO, CFO, etc.), tutoie les autres\n- Utilise le prénom uniquement (sauf si le contexte indique un cadre très formel)\n\n## Structure du message\n- Court et direct (3-5 phrases maximum)\n- Commence par un contexte minimal si nécessaire\n- Une question claire ou un CTA précis\n- Signature simple (prénom uniquement : Thibaud)\n\n## Adaptation au contexte\n\n### Statut de la relation\n- **🆕 Nouveau** : premier message, propose un échange pour se connaître\n- **💬 Discussion** : continue la conversation naturellement en référençant les échanges du body (Timeline)\n- **📅 RDV planifié** : confirme le RDV ou relance si la date approche\n- **✅ Deal** : message de suivi post-deal (onboarding, start date, collaboration)\n- **❌ Perdu** : maintien la relation pour opportunités futures\n- **🧊 Stand-by** : relance douce après inactivité, donne une porte de sortie facile\n\n### Prochaine action (Next Step)\n- **📧 DM/Email à envoyer** : propose une étape concrète (call, échange, meeting)\n- **🤝 LinkedIn à connecter** : message de connexion personnalisé avec contexte\n- **📞 Call à booker** : propose des créneaux ou demande disponibilité\n- **⏳ En attente** : relance douce sur l'avancement, sans être pressant\n- **✅ Fait** : message de suivi ou remerciement si pertinent\n- **❌ Pas pertinent** : message de clôture courtois et professionnel\n\n### Niveau d'intérêt\n- **🔥 Hot** : enthousiasme et réactivité sans être lourd\n- **🟡 Warm** : professionnel et courtois, ton équilibré\n- **❄️ Cold** : bref, direct, porte de sortie facile\n- **❓ Unknown** : neutre et professionnel, jauge l'intérêt\n\n### Date\n- Cherche les **dates précises dans la `📅 Timeline` et le `🎯 Contexte`** du body (ex: \"RDV le 18/11\", \"Repas mardi 18\", \"call jeudi prochain\")\n- Compare-les avec la `Date Prochain Message` pour adapter le timing du message :\n  - Date Prochain Message : 17/11, body : \"Repas le 18\" → \"à demain\" ou \"pour demain\"\n  - Date Prochain Message : 15/11, body : \"RDV le 18\" → \"dans 3 jours\" ou \"mercredi prochain\"\n  - Date Prochain Message : 18/11, body : \"Call le 18\" → \"aujourd'hui\" ou \"ce matin/cet après-midi\"\n- Si aucune date précise dans le body, reste vague sur le timing\n\n## Style\n- Authentique, pas corporate\n- Pas de formules creuses (\"J'espère que ce message vous trouve bien\")\n- Pas de sur-motivation (\"Je serais ravi de...\", \"Ce serait un honneur...\")\n- Évite les points d'exclamation excessifs et les émojis\n- Utilise les éléments concrets du body (Timeline, 🎯 Contexte) pour personnaliser : références aux échanges précédents, contexte mission, points spécifiques mentionnés\n- Si le body contient un `⚠️` (point d'attention) ou une décision en suspens (ex: choix de stratégie de message), prends-en compte sans l'exposer brutalement dans le message\n- Signe avec : Thibaud\n\n## Titre du message\nLe titre doit être **strictement choisi** parmi cette liste selon le Next Step et le Statut :\n\n| Next Step | Statut | Titre à utiliser |\n|-----------|--------|------------------|\n| 📧 DM/Email à envoyer | 🆕 Nouveau | **Premier contact** |\n| 📧 DM/Email à envoyer | autres | **Relance** |\n| 🤝 LinkedIn à connecter | tous | **Demande de connexion** |\n| 📞 Call à booker | tous | **Proposition de call** |\n| ⏳ En attente | tous | **Relance** |\n| ✅ Fait | tous | **Suivi** |\n| ❌ Pas pertinent | tous | **Clôture** |\n\n**IMPORTANT : N'invente pas de titre, utilise uniquement ceux de la liste ci-dessus.**\n\n# Format de sortie\nFournis ta réponse en JSON uniquement :\n\n```json\n{\n  \"title\": \"Le titre du message\",\n  \"message\": \"Le contenu du message prêt à copier-coller\"\n}"
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
@@ -822,7 +813,7 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.3,
       "position": [
-        704,
+        816,
         -320
       ],
       "id": "028eab91-de80-4a4b-a2e1-5bf204c52bfc",
@@ -838,6 +829,49 @@
       ],
       "id": "5275234b-da8b-45a6-8783-a8a13a24d83c",
       "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {
+        "endpointUrl": "https://mcp.notion.com/mcp",
+        "authentication": "mcpOAuth2Api",
+        "options": {
+          "timeout": 60000
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1.2,
+      "position": [
+        688,
+        -320
+      ],
+      "id": "24193590-1f0c-45a5-9e7d-f71bd0534269",
+      "name": "MCP Notion",
+      "credentials": {
+        "mcpOAuth2Api": {
+          "id": "kCAQVNNeTE9QsH1H",
+          "name": "MCP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "anthropic/claude-sonnet-4.6",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        560,
+        -320
+      ],
+      "id": "4e0d4759-32a6-4895-adf1-aecfcaac910b",
+      "name": "Claude Sonnet 4.6",
+      "credentials": {
+        "openRouterApi": {
+          "id": "zb2293xtkSB2aBnr",
+          "name": "OpenRouter account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -860,9 +894,9 @@
   ],
   "staticData": {
     "node:Notion Trigger": {
-      "lastTimeChecked": "2026-04-22T20:07:00.000Z",
+      "lastTimeChecked": "2026-04-30T15:03:00.000Z",
       "possibleDuplicates": [
-        "33482fe2-6406-810e-bae2-ee3bb3a4a70f"
+        "35282fe2-6406-8186-8520-fe35ddc475fb"
       ]
     }
   },
@@ -875,6 +909,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2026-02-18T16:53:45.916Z",
-  "versionId": "111695e4-7efc-4eb0-b8b4-5e99e674dc6c"
+  "updatedAt": "2026-04-30T15:30:27.046Z",
+  "versionId": "e9eee2c7-679b-4fef-a370-cfda463d4585"
 }
