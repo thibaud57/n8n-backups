@@ -230,8 +230,8 @@
       "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
       "typeVersion": 1.2,
       "position": [
-        704,
-        672
+        720,
+        688
       ],
       "id": "6592febb-cd34-4cd1-a9d7-fe1f2d6b6a18",
       "name": "MCP Notion",
@@ -282,7 +282,8 @@
     "executionOrder": "v1",
     "callerPolicy": "workflowsFromSameOwner",
     "availableInMCP": false,
-    "errorWorkflow": "zSl3wxrgtLrk7m2j"
+    "errorWorkflow": "zSl3wxrgtLrk7m2j",
+    "binaryMode": "separate"
   },
   "shared": [
     {
@@ -310,6 +311,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2026-03-05T21:18:49.444Z",
-  "versionId": "0e01aab0-975f-4515-9737-57a25a7d093c"
+  "updatedAt": "2026-05-12T10:29:24.231Z",
+  "versionId": "7eae362a-83ca-46a4-baaa-1f00c8664b6e"
 }
