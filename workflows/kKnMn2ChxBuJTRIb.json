@@ -3,34 +3,85 @@
   "activeVersion": null,
   "activeVersionId": null,
   "connections": {
-    "When chat message received": {
+    "Morning Trigger": {
       "main": [
         [
           {
-            "node": "AI Agent",
+            "node": "Build Context",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "MCP Notion": {
-      "ai_tool": [
+    "Build Context": {
+      "main": [
         [
           {
-            "node": "AI Agent",
-            "type": "ai_tool",
+            "node": "Generate Daily Brief",
+            "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "OpenRouter Chat Model": {
+    "Test Manuel": {
+      "main": [
+        [
+          {
+            "node": "Build Context",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Daily Brief": {
+      "main": [
+        [
+          {
+            "node": "Has Brief",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Claude Sonnet 4.5": {
       "ai_languageModel": [
         [
           {
-            "node": "AI Agent",
+            "node": "Generate Daily Brief",
             "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Brief Schema": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Generate Daily Brief",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Brief": {
+      "main": [
+        [
+          {
+            "node": "Format Brief",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Skip - Empty Brief",
+            "type": "main",
             "index": 0
           }
         ]
@@ -39,89 +90,224 @@
   },
   "createdAt": "2026-05-12T10:29:48.995Z",
   "id": "kKnMn2ChxBuJTRIb",
-  "isArchived": true,
+  "isArchived": false,
   "meta": {
-    "templateCredsSetupCompleted": true
+    "aiBuilderAssisted": true,
+    "builderVariant": "mcp"
   },
-  "name": "My workflow",
+  "name": "Daily AI Brief",
   "nodes": [
     {
       "parameters": {
-        "options": {}
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 0 8 * * *"
+            }
+          ]
+        }
       },
-      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
-      "typeVersion": 1.4,
+      "id": "80b0488f-3568-4825-b065-33c6d6cec8da",
+      "name": "Morning Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
       "position": [
         0,
-        0
-      ],
-      "id": "f1c68881-3266-4e60-af49-e55e95394fce",
-      "name": "When chat message received",
-      "webhookId": "17913ae3-20b5-4689-94d3-92f63f7d957a"
+        16
+      ]
     },
     {
       "parameters": {
-        "options": {
-          "systemMessage": "Tu es un agent spécialisé en deep research.\n\nTu disposes de deux outils :\n1. **DeepResearch** : pour effectuer des recherches complexes, détaillées et fiables sur n'importe quel sujet\n2. **MCP Notion** : pour écrire le contenu directement dans la page Notion\n\n# Input\nL'utilisateur te fournira deux champs :\n- \"Titre\" : titre de la recherche\n- \"Description\" : courte description du sujet à explorer\n- \"Id\" : id de la page à compléter\n\n# Workflow\n1. Simule le tool DeepResearch pour collecter les informations les plus pertinentes, fiables et variées.\n2. Analyse et croise les sources.\n3. Synthétise les résultats de manière claire, neutre, structurée en Markdown.\n4. Utilise le tool MCP Notion pour ajouter le contenu à la page Notion dont l'ID est : 35e82fe2640680c0a54df776a02cf121\n\n# Output\n- Utilise des titres (#, ## et ###), des listes, des tableaux si pertinent\n- À la fin, ajoute une section \"# Sources\" avec la liste des URLs utilisées\n\n# Règles\n- Ne pas inventer de données ou de sources\n- Mentionner les points de divergence entre sources si nécessaire\n- Le résultat doit être concis mais complet, orienté insights/actionable intelligence"
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 3.1,
-      "position": [
-        208,
-        0
-      ],
-      "id": "ebafb864-d846-4cad-ae7b-8ed5e05d1f2c",
-      "name": "AI Agent"
-    },
-    {
-      "parameters": {
-        "endpointUrl": "https://mcp.notion.com/mcp",
-        "authentication": "mcpOAuth2Api",
-        "options": {
-          "timeout": 60000
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
-      "typeVersion": 1.2,
-      "position": [
-        448,
-        192
-      ],
-      "id": "04692f0d-cb7f-4a1f-b6f8-da801c1f46f8",
-      "name": "MCP Notion",
-      "credentials": {
-        "mcpOAuth2Api": {
-          "id": "kCAQVNNeTE9QsH1H",
-          "name": "MCP Notion"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "model": "anthropic/claude-sonnet-4.6",
+        "assignments": {
+          "assignments": [
+            {
+              "id": "date-iso",
+              "name": "date",
+              "type": "string",
+              "value": "={{ $now.toISO() }}"
+            },
+            {
+              "id": "date-pretty",
+              "name": "datePretty",
+              "type": "string",
+              "value": "={{ $now.toFormat(\"dd LLLL yyyy\") }}"
+            },
+            {
+              "id": "topics",
+              "name": "topics",
+              "type": "array",
+              "value": "={{ [\"IA agents\", \"n8n automation\", \"Claude SDK\", \"RAG\", \"MCP\"] }}"
+            },
+            {
+              "id": "persona",
+              "name": "persona",
+              "type": "string",
+              "value": "Consultant IA et automatisation freelance, fullstack Scala/Angular"
+            }
+          ]
+        },
         "options": {}
       },
+      "id": "8fe45382-36ed-4939-a4c0-f2839fb3cbdf",
+      "name": "Build Context",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        224,
+        112
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "e412b4f2-eecf-4056-8a28-8e5c70121c66",
+      "name": "Test Manuel",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        208
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Génère un brief tech du {{ $json.datePretty }} pour un {{ $json.persona }}.\n\nSujets à couvrir : {{ $json.topics.join(\", \") }}.\n\nBrief court, actionnable, pas de bullshit corporate.",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "Tu es un veilleur tech pragmatique. Tu écris des briefs courts, directs, actionnables. Pas de motivation cringe, pas de hedging. Tu privilégies les insights concrets aux généralités."
+        }
+      },
+      "id": "96d8feae-a262-480e-b77b-4ce836e7f28d",
+      "name": "Generate Daily Brief",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        448,
+        112
+      ]
+    },
+    {
+      "parameters": {
+        "model": "anthropic/claude-sonnet-4.5",
+        "options": {
+          "temperature": 0.4
+        }
+      },
+      "id": "57f8f4aa-c3cd-4843-ae3f-1e9df1cba0c4",
+      "name": "Claude Sonnet 4.5",
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
       "typeVersion": 1,
       "position": [
-        176,
-        192
+        448,
+        336
       ],
-      "id": "3865c171-cef6-4466-9eb9-5626143a18ca",
-      "name": "OpenRouter Chat Model",
       "credentials": {
         "openRouterApi": {
           "id": "zb2293xtkSB2aBnr",
           "name": "OpenRouter account"
         }
       }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"date\": \"22 mai 2026\",\n  \"headline\": \"Tendance dominante du jour\",\n  \"highlights\": [\n    { \"topic\": \"Claude SDK\", \"insight\": \"court insight actionnable\" }\n  ],\n  \"action_to_consider\": \"Une action concrète à envisager aujourd'hui\"\n}"
+      },
+      "id": "15c2823e-7818-4501-b21d-45d323f21692",
+      "name": "Brief Schema",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        592,
+        336
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "output-exists",
+              "leftValue": "={{ $json.output?.headline }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "905c479e-2587-48b8-8166-11074b375e75",
+      "name": "Has Brief",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        800,
+        112
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "subject",
+              "name": "subject",
+              "type": "string",
+              "value": "=Daily AI Brief - {{ $json.output.date }}"
+            },
+            {
+              "id": "headline",
+              "name": "headline",
+              "type": "string",
+              "value": "={{ $json.output.headline }}"
+            },
+            {
+              "id": "body",
+              "name": "body",
+              "type": "string",
+              "value": "={{ $json.output.highlights.map(h => \"- \" + h.topic + \" : \" + h.insight).join(\"\\n\") }}\\n\\nAction : {{ $json.output.action_to_consider }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7aae3767-709d-405d-9d85-152646cfbb95",
+      "name": "Format Brief",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1024,
+        16
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "7585eaa3-aabf-44fd-bd91-db1ae3fe982f",
+      "name": "Skip - Empty Brief",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1024,
+        208
+      ]
     }
   ],
   "pinData": {},
   "settings": {
     "executionOrder": "v1",
-    "binaryMode": "separate"
+    "binaryMode": "separate",
+    "availableInMCP": true
   },
   "shared": [
     {
@@ -135,6 +321,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2026-05-12T11:00:48.000Z",
-  "versionId": "145d94e9-6fbf-4b86-8f63-ec75412d0729"
+  "updatedAt": "2026-05-21T15:47:16.503Z",
+  "versionId": "bd1a4e6a-c5b9-4e81-a67a-4b19d799a798"
 }
