@@ -1,8 +1,6 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-12-08T18:54:38.474Z",
-    "createdAt": "2025-12-08T18:54:38.474Z",
     "versionId": "111695e4-7efc-4eb0-b8b4-5e99e674dc6c",
     "workflowId": "ybAxfufVGPJPln2i",
     "nodes": [
@@ -416,10 +414,13 @@
         ]
       }
     },
+    "nodeGroups": [],
     "authors": "Thibaud Geisler",
     "name": null,
     "description": null,
-    "autosaved": false
+    "autosaved": false,
+    "createdAt": "2025-12-08T18:54:38.474Z",
+    "updatedAt": "2025-12-08T18:54:38.474Z"
   },
   "activeVersionId": "111695e4-7efc-4eb0-b8b4-5e99e674dc6c",
   "connections": {
@@ -566,6 +567,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Pipeline Leads To TickTick",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
@@ -885,27 +887,27 @@
   },
   "shared": [
     {
-      "updatedAt": "2025-11-11T12:54:42.916Z",
-      "createdAt": "2025-11-11T12:54:42.916Z",
       "role": "workflow:owner",
       "workflowId": "ybAxfufVGPJPln2i",
-      "projectId": "TBUFy0KozocPEXEX"
+      "projectId": "TBUFy0KozocPEXEX",
+      "createdAt": "2025-11-11T12:54:42.916Z",
+      "updatedAt": "2025-11-11T12:54:42.916Z"
     }
   ],
   "staticData": {
     "node:Notion Trigger": {
-      "lastTimeChecked": "2026-04-30T15:03:00.000Z",
+      "lastTimeChecked": "2026-09-04T15:28:00Z",
       "possibleDuplicates": [
-        "35282fe2-6406-8186-8520-fe35ddc475fb"
+        "3cf82fe2-6406-81b4-ba0b-c58b972b8f4a"
       ]
     }
   },
   "tags": [
     {
-      "updatedAt": "2025-11-11T12:50:13.688Z",
-      "createdAt": "2025-11-11T12:50:13.688Z",
       "id": "xHtq7NpvAtN0PkNm",
-      "name": "work"
+      "name": "work",
+      "createdAt": "2025-11-11T12:50:13.688Z",
+      "updatedAt": "2025-11-11T12:50:13.688Z"
     }
   ],
   "triggerCount": 1,
