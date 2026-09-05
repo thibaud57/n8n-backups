@@ -701,6 +701,7 @@
   "isArchived": false,
   "meta": null,
   "name": "Deep Research  old(fr)",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
@@ -2765,11 +2766,11 @@
   },
   "shared": [
     {
-      "updatedAt": "2026-03-05T21:05:21.652Z",
-      "createdAt": "2026-03-05T21:05:21.652Z",
       "role": "workflow:owner",
       "workflowId": "kB8dREJhSvBcYtLF",
-      "projectId": "TBUFy0KozocPEXEX"
+      "projectId": "TBUFy0KozocPEXEX",
+      "createdAt": "2026-03-05T21:05:21.652Z",
+      "updatedAt": "2026-03-05T21:05:21.652Z"
     }
   ],
   "staticData": null,
