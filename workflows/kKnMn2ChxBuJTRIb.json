@@ -96,6 +96,7 @@
     "builderVariant": "mcp"
   },
   "name": "Daily AI Brief",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
@@ -311,11 +312,11 @@
   },
   "shared": [
     {
-      "updatedAt": "2026-05-12T10:29:48.997Z",
-      "createdAt": "2026-05-12T10:29:48.997Z",
       "role": "workflow:owner",
       "workflowId": "kKnMn2ChxBuJTRIb",
-      "projectId": "TBUFy0KozocPEXEX"
+      "projectId": "TBUFy0KozocPEXEX",
+      "createdAt": "2026-05-12T10:29:48.997Z",
+      "updatedAt": "2026-05-12T10:29:48.997Z"
     }
   ],
   "staticData": null,
