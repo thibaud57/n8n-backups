@@ -1,8 +1,6 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-12-03T17:30:58.237Z",
-    "createdAt": "2025-12-03T17:30:58.237Z",
     "versionId": "9b80c806-2f6e-4a0a-bf31-bf4c3ff36af4",
     "workflowId": "Colt07ZKx5izbEjv",
     "nodes": [
@@ -811,10 +809,13 @@
         ]
       }
     },
+    "nodeGroups": [],
     "authors": "system migration",
     "name": null,
     "description": null,
-    "autosaved": false
+    "autosaved": false,
+    "createdAt": "2025-12-03T17:30:58.237Z",
+    "updatedAt": "2025-12-03T17:30:58.237Z"
   },
   "activeVersionId": "9b80c806-2f6e-4a0a-bf31-bf4c3ff36af4",
   "connections": {
@@ -1080,6 +1081,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Backup workflow to Github",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {},
@@ -1638,24 +1640,29 @@
   },
   "shared": [
     {
-      "updatedAt": "2025-08-07T10:30:22.719Z",
-      "createdAt": "2025-08-07T10:30:22.719Z",
       "role": "workflow:owner",
       "workflowId": "Colt07ZKx5izbEjv",
-      "projectId": "TBUFy0KozocPEXEX"
+      "projectId": "TBUFy0KozocPEXEX",
+      "createdAt": "2025-08-07T10:30:22.719Z",
+      "updatedAt": "2025-08-07T10:30:22.719Z"
     }
   ],
   "staticData": {
     "node:Schedule Trigger": {
-      "recurrenceRules": []
+      "recurrenceRules": [
+        null
+      ],
+      "recurrenceRuleSignatures": [
+        null
+      ]
     }
   },
   "tags": [
     {
-      "updatedAt": "2025-08-07T10:30:25.888Z",
-      "createdAt": "2025-08-07T10:30:25.888Z",
       "id": "LY77LjNLhF7GHiQF",
-      "name": "github"
+      "name": "github",
+      "createdAt": "2025-08-07T10:30:25.888Z",
+      "updatedAt": "2025-08-07T10:30:25.888Z"
     }
   ],
   "triggerCount": 1,
