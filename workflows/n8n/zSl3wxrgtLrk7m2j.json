@@ -1,8 +1,6 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-02-18T16:06:06.000Z",
-    "createdAt": "2026-02-18T16:06:01.658Z",
     "versionId": "f1bb5a2f-618f-4e13-affa-c9c54ce4caa3",
     "workflowId": "zSl3wxrgtLrk7m2j",
     "nodes": [
@@ -151,10 +149,13 @@
         ]
       }
     },
+    "nodeGroups": [],
     "authors": "Thibaud Geisler",
     "name": "Version f1bb5a2f",
     "description": "",
-    "autosaved": true
+    "autosaved": true,
+    "createdAt": "2026-02-18T16:06:01.658Z",
+    "updatedAt": "2026-02-18T16:06:06.000Z"
   },
   "activeVersionId": "f1bb5a2f-618f-4e13-affa-c9c54ce4caa3",
   "connections": {
@@ -210,6 +211,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Error workflow",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {},
@@ -316,20 +318,20 @@
   },
   "shared": [
     {
-      "updatedAt": "2025-08-07T10:20:13.942Z",
-      "createdAt": "2025-08-07T10:20:13.942Z",
       "role": "workflow:owner",
       "workflowId": "zSl3wxrgtLrk7m2j",
-      "projectId": "TBUFy0KozocPEXEX"
+      "projectId": "TBUFy0KozocPEXEX",
+      "createdAt": "2025-08-07T10:20:13.942Z",
+      "updatedAt": "2025-08-07T10:20:13.942Z"
     }
   ],
   "staticData": null,
   "tags": [
     {
-      "updatedAt": "2025-08-07T10:22:01.636Z",
-      "createdAt": "2025-08-07T10:22:01.636Z",
       "id": "wirLDhY1stP4zoD9",
-      "name": "n8n"
+      "name": "n8n",
+      "createdAt": "2025-08-07T10:22:01.636Z",
+      "updatedAt": "2025-08-07T10:22:01.636Z"
     }
   ],
   "triggerCount": 0,
