@@ -1,8 +1,6 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-12-03T17:30:58.237Z",
-    "createdAt": "2025-12-03T17:30:58.237Z",
     "versionId": "408a1703-838d-4247-92ca-1b063ffb2d22",
     "workflowId": "Mitkczrl445MAz26",
     "nodes": [
@@ -220,10 +218,13 @@
         ]
       }
     },
+    "nodeGroups": [],
     "authors": "system migration",
     "name": null,
     "description": null,
-    "autosaved": false
+    "autosaved": false,
+    "createdAt": "2025-12-03T17:30:58.237Z",
+    "updatedAt": "2025-12-03T17:30:58.237Z"
   },
   "activeVersionId": "408a1703-838d-4247-92ca-1b063ffb2d22",
   "connections": {
@@ -300,6 +301,7 @@
   "isArchived": false,
   "meta": null,
   "name": "Techno Scraper MCP",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
@@ -452,20 +454,20 @@
   },
   "shared": [
     {
-      "updatedAt": "2025-11-04T09:26:19.034Z",
-      "createdAt": "2025-11-04T09:26:19.034Z",
       "role": "workflow:owner",
       "workflowId": "Mitkczrl445MAz26",
-      "projectId": "TBUFy0KozocPEXEX"
+      "projectId": "TBUFy0KozocPEXEX",
+      "createdAt": "2025-11-04T09:26:19.034Z",
+      "updatedAt": "2025-11-04T09:26:19.034Z"
     }
   ],
   "staticData": null,
   "tags": [
     {
-      "updatedAt": "2025-08-07T10:25:02.468Z",
-      "createdAt": "2025-08-07T10:25:02.468Z",
       "id": "NNXPfNAEfEIlBHrI",
-      "name": "music"
+      "name": "music",
+      "createdAt": "2025-08-07T10:25:02.468Z",
+      "updatedAt": "2025-08-07T10:25:02.468Z"
     }
   ],
   "triggerCount": 0,
