@@ -1,8 +1,6 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-12-03T17:30:58.237Z",
-    "createdAt": "2025-12-03T17:30:58.237Z",
     "versionId": "e96949e7-2c77-482a-974d-c77bb454270c",
     "workflowId": "71hsjPmhK3mmIjWl",
     "nodes": [
@@ -1494,10 +1492,13 @@
         ]
       }
     },
+    "nodeGroups": [],
     "authors": "system migration",
     "name": null,
     "description": null,
-    "autosaved": false
+    "autosaved": false,
+    "createdAt": "2025-12-03T17:30:58.237Z",
+    "updatedAt": "2025-12-03T17:30:58.237Z"
   },
   "activeVersionId": "e96949e7-2c77-482a-974d-c77bb454270c",
   "connections": {
@@ -1921,6 +1922,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Book Summary",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
@@ -3002,20 +3004,20 @@
   },
   "shared": [
     {
-      "updatedAt": "2025-11-03T11:07:42.416Z",
-      "createdAt": "2025-11-03T11:07:42.416Z",
       "role": "workflow:owner",
       "workflowId": "71hsjPmhK3mmIjWl",
-      "projectId": "TBUFy0KozocPEXEX"
+      "projectId": "TBUFy0KozocPEXEX",
+      "createdAt": "2025-11-03T11:07:42.416Z",
+      "updatedAt": "2025-11-03T11:07:42.416Z"
     }
   ],
   "staticData": null,
   "tags": [
     {
-      "updatedAt": "2025-11-03T11:07:41.253Z",
-      "createdAt": "2025-11-03T11:07:41.253Z",
       "id": "uo4UE4QP4q1Krqxl",
-      "name": "notion"
+      "name": "notion",
+      "createdAt": "2025-11-03T11:07:41.253Z",
+      "updatedAt": "2025-11-03T11:07:41.253Z"
     }
   ],
   "triggerCount": 1,
