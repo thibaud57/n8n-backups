@@ -896,9 +896,11 @@
   ],
   "staticData": {
     "node:Notion Trigger": {
-      "lastTimeChecked": "2026-10-07T09:51:00Z",
+      "lastTimeChecked": "2026-10-09T17:23:00Z",
       "possibleDuplicates": [
-        "3f282fe2-6406-81de-82cb-f75016bf186b"
+        "3e482fe2-6406-81d8-8ccf-daeaa1a57fb5",
+        "3e482fe2-6406-8102-91e2-e729a2903907",
+        "3e482fe2-6406-81e0-9994-f1f569972a30"
       ]
     }
   },
